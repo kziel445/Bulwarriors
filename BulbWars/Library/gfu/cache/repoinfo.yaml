@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 1
-  lastUpdatedAtString: 2021-10-05T10:16:55.921+02:00
-  initializedAtString: 2021-10-05T09:35:03.990+02:00
+  lastUpdatedAtString: 2021-10-05T10:57:07.917+02:00
+  initializedAtString: 2021-10-05T10:57:07.917+02:00
   currentGitRemote:
     name: origin
     url: https://github.com/kziel445/BulbWars.git
@@ -25,13 +25,13 @@ MonoBehaviour:
     token: 
   currentGitBranch:
     name: git_files
-    tracking: 
+    tracking: origin/git_files
   currentConfigBranch:
     name: git_files
     remote:
-      name: 
-      url: 
-    trackingBranch: 
+      name: origin
+      url: https://github.com/kziel445/BulbWars.git
+    trackingBranch: git_files
   currentConfigRemote:
     name: origin
     url: https://github.com/kziel445/BulbWars.git

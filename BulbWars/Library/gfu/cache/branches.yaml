@@ -13,19 +13,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2021-10-05T10:16:55.909+02:00
-  initializedAtString: 2021-10-05T09:35:04.904+02:00
+  lastUpdatedAtString: 2021-10-05T10:57:07.960+02:00
+  initializedAtString: 2021-10-05T10:57:07.941+02:00
   localBranches:
   - name: git_files
-    tracking: 
-  - name: main
-    tracking: origin/main
+    tracking: origin/git_files
   remoteBranches:
   - name: origin/HEAD
-    tracking: '[None]'
-  - name: origin/issue_templates
-    tracking: '[None]'
-  - name: origin/main
     tracking: '[None]'
   remotes:
   - name: origin
@@ -38,39 +32,21 @@ MonoBehaviour:
   localConfigBranches:
     keys:
     - git_files
-    - main
     values:
     - name: git_files
       remote:
-        name: 
-        url: 
-      trackingBranch: 
-    - name: main
-      remote:
         name: origin
         url: https://github.com/kziel445/BulbWars.git
-      trackingBranch: main
+      trackingBranch: git_files
   remoteConfigBranches:
     keys:
     - origin
     subKeys:
     - Values:
       - HEAD
-      - issue_templates
-      - main
     subKeyValues:
     - Values:
       - name: HEAD
-        remote:
-          name: origin
-          url: https://github.com/kziel445/BulbWars.git
-        trackingBranch: 
-      - name: issue_templates
-        remote:
-          name: origin
-          url: https://github.com/kziel445/BulbWars.git
-        trackingBranch: 
-      - name: main
         remote:
           name: origin
           url: https://github.com/kziel445/BulbWars.git
