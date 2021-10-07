@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// Functions to show selected units and move groups
 public class UnitRTS : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -11,9 +13,9 @@ public class UnitRTS : MonoBehaviour
 
     private void Awake()
     {
-        selectedGameObject = transform.Find("Selected").gameObject;
+        // selectedGameObject = transform.Find("Selected").gameObject;
         movePosition = GetComponent<IMovePosition>();
-        SetSelectedVisible(false);
+        // SetSelectedVisible(false);
     }
     public void SetSelectedVisible(bool visible)
     {
