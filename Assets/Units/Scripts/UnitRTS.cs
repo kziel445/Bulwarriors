@@ -13,9 +13,9 @@ public class UnitRTS : MonoBehaviour
 
     private void Awake()
     {
-        // selectedGameObject = transform.Find("Selected").gameObject;
+        selectedGameObject = transform.Find("Selected").gameObject;
         movePosition = GetComponent<IMovePosition>();
-        // SetSelectedVisible(false);
+        SetSelectedVisible(false);
     }
     public void SetSelectedVisible(bool visible)
     {
