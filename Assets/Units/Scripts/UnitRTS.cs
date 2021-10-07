@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// Functions to show selected units and move groups
 public class UnitRTS : MonoBehaviour
 {
     // Start is called before the first frame update
