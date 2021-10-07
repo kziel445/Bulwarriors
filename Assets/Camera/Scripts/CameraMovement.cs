@@ -6,12 +6,12 @@ using CodeMonkey.MonoBehaviours;
 public class CameraMovement : MonoBehaviour
 {
     private float cameraSpeed = 10f;
+    private float zoom = 1.6f;
 
     // Update is called once per frame
     void Update()
     {
         Vector3 position = transform.position;
-
         if (Input.GetKey(KeyCode.W))
         {
             position.y += cameraSpeed * Time.deltaTime;
@@ -30,12 +30,13 @@ public class CameraMovement : MonoBehaviour
         }
         if(Input.GetAxis("Mouse ScrollWheel")>0 && GetComponent<Camera>().orthographicSize>0.4)
         {
-            GetComponent<Camera>().orthographicSize-=0.2f;
+            zoom-=0.2f;
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && GetComponent<Camera>().orthographicSize < 10)
         {
-            GetComponent<Camera>().orthographicSize += 0.2f;
+            zoom += 0.2f;
         }
+        GetComponent<Camera>().orthographicSize = zoom;
         transform.position = position;
     }
 }
