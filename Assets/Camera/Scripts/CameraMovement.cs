@@ -5,9 +5,13 @@ using CodeMonkey.MonoBehaviours;
 
 public class CameraMovement : MonoBehaviour
 {
-    private float cameraSpeed = 10f;
-    private float zoom = 1.6f;
+    [SerializeField] private float cameraSpeed = 10f;
+    [SerializeField] private float zoom = 1.6f;
 
+    private void Start()
+    {
+        zoom = zoomController (zoom);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -28,15 +32,23 @@ public class CameraMovement : MonoBehaviour
         {
             position.x += cameraSpeed * Time.deltaTime;
         }
-        if(Input.GetAxis("Mouse ScrollWheel")>0 && GetComponent<Camera>().orthographicSize>0.4)
+        if(Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             zoom-=0.2f;
+            zoom = zoomController(zoom);
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && GetComponent<Camera>().orthographicSize < 10)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             zoom += 0.2f;
+            zoom = zoomController(zoom);
         }
         GetComponent<Camera>().orthographicSize = zoom;
         transform.position = position;
+    }
+    private float zoomController(float zoom)
+    {
+        if (zoom > 10f) return 10f;
+        if (zoom < 0.4f) return 0.4f;
+        return zoom;
     }
 }
