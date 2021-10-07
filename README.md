@@ -6,6 +6,6 @@ Unity project
 w - camera goes up \
 a - camera goes left\
 s - camera goes down \
-d - camera goes right\
+d - camera goes right
 
 scroll - zoom in/out
