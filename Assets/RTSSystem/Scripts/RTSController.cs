@@ -66,10 +66,18 @@ public class RTSController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            Vector2 movePosition = cursorPosition.getMousePosition();
+            Vector2 moveToPosition = cursorPosition.getMousePosition();
+
+            List<Vector2> targetPositionList = new List<Vector2>
+            {
+                moveToPosition + new Vector2(0,0),
+                moveToPosition + new Vector2(1,0)
+            };
+            int targetPositionListIndex = 0;
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {
-                unitRTS.MoveTo(movePosition);
+                unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
+                targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
             }
         }
 
