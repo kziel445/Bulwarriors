@@ -22,15 +22,14 @@ public class RTSController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("1" + cursorPosition.getMousePosition());
-            // get curosor cordinates, when LPM state is changed
-            startPosition = UtilsClass.GetMouseWorldPosition();
+            // get cursor cordinates, when LPM state is changed
+            startPosition = cursorPosition.getMousePosition();
             selectionAreaTransform.gameObject.SetActive(true);
         }
         if (Input.GetMouseButton(0))
         {
             // create field to select units
-            Vector3 currentMousePosition = UtilsClass.GetMouseWorldPosition();
+            Vector2 currentMousePosition = cursorPosition.getMousePosition();
             Vector3 lowerLeft = new Vector3(
                 Mathf.Min(startPosition.x, currentMousePosition.x),
                 Mathf.Min(startPosition.y, currentMousePosition.y)
