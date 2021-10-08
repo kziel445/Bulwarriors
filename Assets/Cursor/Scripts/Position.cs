@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Cursor
 {
-    public class Position : MonoBehaviour
+    public class Position
     {
         // Start is called before the first frame update
         public Vector2 getMousePosition()
