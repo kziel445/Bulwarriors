@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using Cursor;
 
 
 // script for selection units and give commands
@@ -10,6 +11,7 @@ public class RTSController : MonoBehaviour
     [SerializeField] private Transform selectionAreaTransform;
     private Vector3 startPosition;
     private List<UnitRTS> selectedUnitRTSList;
+    private Position cursorPosition = new Position();
     private void Awake()
     {
         selectedUnitRTSList = new List<UnitRTS>();
@@ -20,6 +22,7 @@ public class RTSController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("1" + cursorPosition.getMousePosition());
             // get curosor cordinates, when LPM state is changed
             startPosition = UtilsClass.GetMouseWorldPosition();
             selectionAreaTransform.gameObject.SetActive(true);
