@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey.Utils;
 using Cursor;
 
 
@@ -9,7 +8,7 @@ using Cursor;
 public class RTSController : MonoBehaviour
 {
     [SerializeField] private Transform selectionAreaTransform;
-    private Vector3 startPosition;
+    private Vector2 startPosition;
     private List<UnitRTS> selectedUnitRTSList;
     private Position cursorPosition = new Position();
     private void Awake()
@@ -30,11 +29,11 @@ public class RTSController : MonoBehaviour
         {
             // create field to select units
             Vector2 currentMousePosition = cursorPosition.getMousePosition();
-            Vector3 lowerLeft = new Vector3(
+            Vector2 lowerLeft = new Vector2(
                 Mathf.Min(startPosition.x, currentMousePosition.x),
                 Mathf.Min(startPosition.y, currentMousePosition.y)
                 );
-            Vector3 upperRight = new Vector3(
+            Vector2 upperRight = new Vector2(
                 Mathf.Max(startPosition.x, currentMousePosition.x),
                 Mathf.Max(startPosition.y, currentMousePosition.y)
                 );
@@ -45,7 +44,7 @@ public class RTSController : MonoBehaviour
         {
             // get curosor cordinates, when LPM state is changed, again
             selectionAreaTransform.gameObject.SetActive(false);
-            Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, UtilsClass.GetMouseWorldPosition());
+            Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, cursorPosition.getMousePosition());
             // deslect units
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {
@@ -67,7 +66,7 @@ public class RTSController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            Vector3 movePosition = UtilsClass.GetMouseWorldPosition();
+            Vector2 movePosition = cursorPosition.getMousePosition();
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {
                 unitRTS.MoveTo(movePosition);
