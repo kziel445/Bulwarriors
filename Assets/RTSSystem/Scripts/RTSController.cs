@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cursor;
 
-
 // script for selection units and give commands
 public class RTSController : MonoBehaviour
 {
@@ -67,12 +66,8 @@ public class RTSController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Vector2 moveToPosition = cursorPosition.getMousePosition();
-
-            List<Vector2> targetPositionList = new List<Vector2>
-            {
-                moveToPosition + new Vector2(0,0),
-                moveToPosition + new Vector2(1,0)
-            };
+            // TODO: set dynamic vlaues down below
+            List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] {0.5f,1,1.5f}, new int[] { 5, 10, 20 });
             int targetPositionListIndex = 0;
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {
@@ -104,6 +99,33 @@ public class RTSController : MonoBehaviour
             }
             Debug.Log(selectedUnitRTSList.Count);
         }
+    }
+    private List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
+    {
+        List<Vector2> positionList = new List<Vector2>();
+        positionList.Add(startPosition);
+        for (int i = 0; i < ringDistanceArray.Length; i++)
+        {
+            positionList.AddRange(GetPositionListAround(startPosition, ringDistanceArray[i], ringPositionCountArray[i]));
+        }
+        return positionList;
+    }
+    private List<Vector2> GetPositionListAround(Vector2 startPosition, float distance, int positionCount)
+    {
+        List<Vector2> positionList = new List<Vector2>();
+        for(int i = 0; i < positionCount; i++)
+        {
+            float angle = i * (360f / positionCount);
+            Vector2 dir = ApplyRotationToVector(new Vector2(1, 0), angle);
+            Vector2 position = startPosition + dir * distance;
+            positionList.Add(position);
+        }
+        return positionList;
+    }
+
+    private Vector2 ApplyRotationToVector(Vector2 vec, float angle)
+    {
+        return Quaternion.Euler(0, 0, angle) * vec;
     }
 
 }
