@@ -79,25 +79,29 @@ public class RTSController : MonoBehaviour
         // when I-key pressed, select all units
         if (Input.GetKey(KeyCode.I))
         {
-            Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(new Vector2(-100, -100), new Vector2(1000, 1000));
-
-            //deslect units
-            foreach (UnitRTS unitRTS in selectedUnitRTSList)
-            {
-                unitRTS.SetSelectedVisible(false);
-            }
-            selectedUnitRTSList.Clear();
-            //select units
-            foreach (Collider2D collider2D in collider2DArray)
-            {
-                UnitRTS unitRTS = collider2D.GetComponent<UnitRTS>();
-                if (unitRTS != null)
-                {
-                    unitRTS.SetSelectedVisible(true);
-                    selectedUnitRTSList.Add(unitRTS);
-                }
-            }
+            SelectAllUnits();
             Debug.Log(selectedUnitRTSList.Count);
+        }
+    }
+    private void SelectAllUnits()
+    {
+        Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(new Vector2(-100, -100), new Vector2(1000, 1000));
+
+        //deslect units
+        foreach (UnitRTS unitRTS in selectedUnitRTSList)
+        {
+            unitRTS.SetSelectedVisible(false);
+        }
+        selectedUnitRTSList.Clear();
+        //select units
+        foreach (Collider2D collider2D in collider2DArray)
+        {
+            UnitRTS unitRTS = collider2D.GetComponent<UnitRTS>();
+            if (unitRTS != null)
+            {
+                unitRTS.SetSelectedVisible(true);
+                selectedUnitRTSList.Add(unitRTS);
+            }
         }
     }
     private List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
