@@ -7,7 +7,7 @@ public class ClickManager: MonoBehaviour
 	[SerializeField] private Camera camera;
     void Update()
     {
-     	if(Input.GetMouseButtonDown(1))
+     	if(Input.GetMouseButtonDown(0))
 	{
 		Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
 		RaycastHit2D clicked = Physics2D.Raycast(mousePosition, Vector2.zero);
