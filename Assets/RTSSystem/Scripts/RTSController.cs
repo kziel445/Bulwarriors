@@ -10,6 +10,8 @@ public class RTSController : MonoBehaviour
     private Vector2 startPosition;
     private List<UnitRTS> selectedUnitRTSList;
     private Position cursorPosition = new Position();
+    [SerializeField] private Camera camera;
+
     private void Awake()
     {
         selectedUnitRTSList = new List<UnitRTS>();
@@ -73,6 +75,17 @@ public class RTSController : MonoBehaviour
             {
                 unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
                 targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
+            }
+        }
+        // attacking
+        if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count!=0)
+        {
+            Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D clicked = Physics2D.Raycast(mousePosition, Vector2.zero);
+            if (clicked)
+            {
+                //TODO: go then attack
+                Debug.Log("attack!");
             }
         }
 

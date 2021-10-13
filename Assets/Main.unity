@@ -427,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionAreaTransform: {fileID: 2111148486}
+  camera: {fileID: 4348043}
 --- !u!4 &1186447060
 Transform:
   m_ObjectHideFlags: 0
