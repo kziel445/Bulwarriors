@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey.Utils;
-
+using Cursor;
 
 // script for selection units and give commands
 public class RTSController : MonoBehaviour
 {
     [SerializeField] private Transform selectionAreaTransform;
-    private Vector3 startPosition;
+    private Vector2 startPosition;
     private List<UnitRTS> selectedUnitRTSList;
+    private Position cursorPosition = new Position();
     private void Awake()
     {
         selectedUnitRTSList = new List<UnitRTS>();
@@ -20,19 +20,19 @@ public class RTSController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // get curosor cordinates, when LPM state is changed
-            startPosition = UtilsClass.GetMouseWorldPosition();
+            // get cursor cordinates, when LPM state is changed
+            startPosition = cursorPosition.getMousePosition();
             selectionAreaTransform.gameObject.SetActive(true);
         }
         if (Input.GetMouseButton(0))
         {
             // create field to select units
-            Vector3 currentMousePosition = UtilsClass.GetMouseWorldPosition();
-            Vector3 lowerLeft = new Vector3(
+            Vector2 currentMousePosition = cursorPosition.getMousePosition();
+            Vector2 lowerLeft = new Vector2(
                 Mathf.Min(startPosition.x, currentMousePosition.x),
                 Mathf.Min(startPosition.y, currentMousePosition.y)
                 );
-            Vector3 upperRight = new Vector3(
+            Vector2 upperRight = new Vector2(
                 Mathf.Max(startPosition.x, currentMousePosition.x),
                 Mathf.Max(startPosition.y, currentMousePosition.y)
                 );
@@ -43,7 +43,7 @@ public class RTSController : MonoBehaviour
         {
             // get curosor cordinates, when LPM state is changed, again
             selectionAreaTransform.gameObject.SetActive(false);
-            Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, UtilsClass.GetMouseWorldPosition());
+            Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, cursorPosition.getMousePosition());
             // deslect units
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {
@@ -65,36 +65,71 @@ public class RTSController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            Vector3 movePosition = UtilsClass.GetMouseWorldPosition();
+            Vector2 moveToPosition = cursorPosition.getMousePosition();
+            // TODO: set dynamic vlaues down below
+            List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] {0.5f,1,1.5f}, new int[] { 5, 10, 20 });
+            int targetPositionListIndex = 0;
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {
-                unitRTS.MoveTo(movePosition);
+                unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
+                targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
             }
         }
 
         // when I-key pressed, select all units
         if (Input.GetKey(KeyCode.I))
         {
-            Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(new Vector2(-100, -100), new Vector2(1000, 1000));
-
-            //deslect units
-            foreach (UnitRTS unitRTS in selectedUnitRTSList)
-            {
-                unitRTS.SetSelectedVisible(false);
-            }
-            selectedUnitRTSList.Clear();
-            //select units
-            foreach (Collider2D collider2D in collider2DArray)
-            {
-                UnitRTS unitRTS = collider2D.GetComponent<UnitRTS>();
-                if (unitRTS != null)
-                {
-                    unitRTS.SetSelectedVisible(true);
-                    selectedUnitRTSList.Add(unitRTS);
-                }
-            }
+            SelectAllUnits();
             Debug.Log(selectedUnitRTSList.Count);
         }
+    }
+    private void SelectAllUnits()
+    {
+        Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(new Vector2(-100, -100), new Vector2(1000, 1000));
+
+        //deslect units
+        foreach (UnitRTS unitRTS in selectedUnitRTSList)
+        {
+            unitRTS.SetSelectedVisible(false);
+        }
+        selectedUnitRTSList.Clear();
+        //select units
+        foreach (Collider2D collider2D in collider2DArray)
+        {
+            UnitRTS unitRTS = collider2D.GetComponent<UnitRTS>();
+            if (unitRTS != null)
+            {
+                unitRTS.SetSelectedVisible(true);
+                selectedUnitRTSList.Add(unitRTS);
+            }
+        }
+    }
+    private List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
+    {
+        List<Vector2> positionList = new List<Vector2>();
+        positionList.Add(startPosition);
+        for (int i = 0; i < ringDistanceArray.Length; i++)
+        {
+            positionList.AddRange(GetPositionListAround(startPosition, ringDistanceArray[i], ringPositionCountArray[i]));
+        }
+        return positionList;
+    }
+    private List<Vector2> GetPositionListAround(Vector2 startPosition, float distance, int positionCount)
+    {
+        List<Vector2> positionList = new List<Vector2>();
+        for(int i = 0; i < positionCount; i++)
+        {
+            float angle = i * (360f / positionCount);
+            Vector2 dir = ApplyRotationToVector(new Vector2(1, 0), angle);
+            Vector2 position = startPosition + dir * distance;
+            positionList.Add(position);
+        }
+        return positionList;
+    }
+
+    private Vector2 ApplyRotationToVector(Vector2 vec, float angle)
+    {
+        return Quaternion.Euler(0, 0, angle) * vec;
     }
 
 }
