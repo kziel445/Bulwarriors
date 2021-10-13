@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 /// Functions to show selected units and move groups
-public class UnitRTS : MonoBehaviour
+public class UnitRTS : MonoBehaviour, IClickable
 {
     // Start is called before the first frame update
     
@@ -24,5 +24,10 @@ public class UnitRTS : MonoBehaviour
     public void MoveTo(Vector3 targetPosition)
     {
         movePosition.SetMovePosition(targetPosition);
+    }
+
+    public void Click()
+    {
+        Debug.Log("Unit");
     }
 }
