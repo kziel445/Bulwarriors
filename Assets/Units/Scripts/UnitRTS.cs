@@ -30,4 +30,8 @@ public class UnitRTS : MonoBehaviour, IClickable
     {
         Debug.Log("Unit");
     }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("trigger");
+    }
 }
