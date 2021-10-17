@@ -89,12 +89,7 @@ public class RTSController : MonoBehaviour
                 if(clickable.Layer() != unitLayer && clickable.Layer() != unitLayer+1)
                 {
                     Debug.Log(selectedUnitRTSList[0].name + " is going to attack " + clickable);
-                    clickable.Layer();
                 }
-                //TODO: go then attack
-                
-
-                //.collider.GetComponent<IClickable>())
             }
         }
 
