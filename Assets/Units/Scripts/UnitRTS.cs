@@ -34,4 +34,6 @@ public class UnitRTS : MonoBehaviour, IClickable
     {
         Debug.Log("trigger");
     }
+
+    public int Layer() { return gameObject.layer; }
 }
