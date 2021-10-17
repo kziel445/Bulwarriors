@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6900654596202218194}
   - component: {fileID: 4330490610527725323}
   - component: {fileID: 8659747472063240193}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UnitPotato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.002516389, y: -0.008807391}
@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 869736850493841677}
   - component: {fileID: 7398042696346863045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6734870730128943220}
   - component: {fileID: 6734870730128943115}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Selected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
