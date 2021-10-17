@@ -88,10 +88,19 @@ public class RTSController : MonoBehaviour
                 int unitLayer = selectedUnitRTSList[0].Layer();
                 if(clickable.Layer() != unitLayer && clickable.Layer() != unitLayer+1)
                 {
-                    Debug.Log(selectedUnitRTSList[0].name + " is going to attack " + clickable);
+                    Debug.Log(selectedUnitRTSList[0].name + " group is going to attack " + clickable);
+                    foreach (UnitRTS unitRTS in selectedUnitRTSList)
+                    {
+                        unitRTS.attackObjective = clickable;
+                    }
+                    Debug.Log("Attacking objective is " + selectedUnitRTSList[0].attackObjective);
                 }
+                
+
             }
         }
+
+        
 
         // when I-key pressed, select all units
         if (Input.GetKey(KeyCode.I))
