@@ -22,4 +22,8 @@ public class EnemyRTS : MonoBehaviour, IClickable
     {
         
     }
+    public void ImEnemy()
+    {
+
+    }
 }

@@ -4,21 +4,33 @@ using UnityEngine;
 
 
 /// Functions to show selected units and move groups
-public class UnitRTS : MonoBehaviour, IClickable
+public class UnitRTS : MonoBehaviour, IClickable, IFight
 {
     // Start is called before the first frame update
     
-    [SerializeField] int health;
+    [SerializeField] int maxHealth;
+    public int health;
     [SerializeField] float speedDontWork;
     [SerializeField] int damage;
+    public IClickable attackObjective; //TODO other class
     private GameObject selectedGameObject;
     private IMovePosition movePosition;
 
     private void Awake()
     {
+        health = maxHealth;
         selectedGameObject = transform.Find("Selected").gameObject;
         movePosition = GetComponent<IMovePosition>();
         SetSelectedVisible(false);
+    }
+    private void Update()
+    {
+        //if()
+        //OnCollisionEnter(GameObject.Find(attackObjective.ToString()).);
+        if(health<=0)
+        {
+            death();
+        }
     }
     public void SetSelectedVisible(bool visible)
     {
@@ -39,4 +51,24 @@ public class UnitRTS : MonoBehaviour, IClickable
     }
 
     public int Layer() { return gameObject.layer; }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        attack();
+    }
+
+    public void attack()
+    {
+        Debug.Log("Hit: " + damage + " to " + attackObjective);
+    }
+
+    public void death()
+    {
+        Debug.Log("Dead" + gameObject.name);
+    }
 }
+
+
+//Debug.Log("collide (name) : " + collide.collider.gameObject.name);
+//Debug.Log("collide (tag) : " + collide.collider.gameObject.tag);
+//if (collide.collider.gameObject.name == "Hitbox")
