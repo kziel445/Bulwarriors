@@ -8,6 +8,9 @@ public class UnitRTS : MonoBehaviour, IClickable
 {
     // Start is called before the first frame update
     
+    [SerializeField] int health;
+    [SerializeField] float speedDontWork;
+    [SerializeField] int damage;
     private GameObject selectedGameObject;
     private IMovePosition movePosition;
 
