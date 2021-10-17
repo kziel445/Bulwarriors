@@ -84,8 +84,17 @@ public class RTSController : MonoBehaviour
             RaycastHit2D clicked = Physics2D.Raycast(mousePosition, Vector2.zero);
             if (clicked)
             {
+                IClickable clickable = clicked.collider.GetComponent<IClickable>();
+                int unitLayer = selectedUnitRTSList[0].Layer();
+                if(clickable.Layer() != unitLayer && clickable.Layer() != unitLayer+1)
+                {
+                    Debug.Log(selectedUnitRTSList[0].name + " is going to attack " + clickable);
+                    clickable.Layer();
+                }
                 //TODO: go then attack
-                Debug.Log("attack!");
+                
+
+                //.collider.GetComponent<IClickable>())
             }
         }
 
