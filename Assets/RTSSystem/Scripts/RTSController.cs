@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cursor;
+using Units;
 
 // script for selection units and give commands
 public class RTSController : MonoBehaviour
@@ -10,6 +11,8 @@ public class RTSController : MonoBehaviour
     private Vector2 startPosition;
     private List<UnitRTS> selectedUnitRTSList;
     private Position cursorPosition = new Position();
+    public Transform playerUnits;
+
     [SerializeField] private Camera camera;
 
     private void Awake()
@@ -47,6 +50,7 @@ public class RTSController : MonoBehaviour
             selectionAreaTransform.gameObject.SetActive(false);
             Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, cursorPosition.getMousePosition());
             // deslect units
+
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {
                 unitRTS.SetSelectedVisible(false);
@@ -56,7 +60,7 @@ public class RTSController : MonoBehaviour
             foreach (Collider2D collider2D in collider2DArray)
             {
                 UnitRTS unitRTS = collider2D.GetComponent<UnitRTS>();
-                if (unitRTS != null)
+                if (unitRTS != null && unitRTS.gameObject.layer==8)
                 {
                     unitRTS.SetSelectedVisible(true);
                     selectedUnitRTSList.Add(unitRTS);
@@ -88,10 +92,19 @@ public class RTSController : MonoBehaviour
                 int unitLayer = selectedUnitRTSList[0].Layer();
                 if(clickable.Layer() != unitLayer && clickable.Layer() != unitLayer+1)
                 {
-                    Debug.Log(selectedUnitRTSList[0].name + " is going to attack " + clickable);
+                    Debug.Log(selectedUnitRTSList[0].name + " group is going to attack " + clickable);
+                    foreach (UnitRTS unitRTS in selectedUnitRTSList)
+                    {
+                        unitRTS.attackObjective = clickable;
+                    }
+                    Debug.Log("Attacking objective is " + selectedUnitRTSList[0].attackObjective);
                 }
+                
+
             }
         }
+
+        
 
         // when I-key pressed, select all units
         if (Input.GetKey(KeyCode.I))

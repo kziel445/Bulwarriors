@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingRTS : MonoBehaviour, IClickable
+public class EnemyRTS : MonoBehaviour, IClickable
 {
     public void Click()
     {
-        Debug.Log("Building options in UI");
-        Debug.Log("Building health");
+        Debug.Log("Enemy");
     }
 
     public int Layer() { return gameObject.layer; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +21,9 @@ public class BuildingRTS : MonoBehaviour, IClickable
     void Update()
     {
         
+    }
+    public void ImEnemy()
+    {
+
     }
 }
