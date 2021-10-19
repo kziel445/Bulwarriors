@@ -4,14 +4,24 @@ using UnityEngine;
 
 
 /// Functions to show selected units and move groups
-public class UnitRTS : MonoBehaviour, IClickable, IFight
+public class UnitRTS : MonoBehaviour, IClickable
 {
-    // Start is called before the first frame update
-    
-    [SerializeField] int maxHealth;
+    public enum unitType
+    {
+        Worker, Warrior, Archer
+    }
+
+    //statistics
+    public string unitName;
+    public float speedDontWork;
+    public int damage;
+    public int maxHealth;
+    public int cost;
+    public int armor;
     public int health;
-    [SerializeField] float speedDontWork;
-    [SerializeField] int damage;
+    public unitType type;
+    public GameObject unitPrefab; 
+
     public IClickable attackObjective; //TODO other class
     private GameObject selectedGameObject;
     private IMovePosition movePosition;
@@ -27,10 +37,7 @@ public class UnitRTS : MonoBehaviour, IClickable, IFight
     {
         //if()
         //OnCollisionEnter(GameObject.Find(attackObjective.ToString()).);
-        if(health<=0)
-        {
-            death();
-        }
+
     }
     public void SetSelectedVisible(bool visible)
     {
@@ -62,9 +69,9 @@ public class UnitRTS : MonoBehaviour, IClickable, IFight
         Debug.Log("Hit: " + damage + " to " + attackObjective);
     }
 
-    public void death()
+    private void OnDestroy()
     {
-        Debug.Log("Dead" + gameObject.name);
+        Destroy(gameObject);
     }
 }
 
