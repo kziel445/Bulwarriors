@@ -12,6 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5973fca7ce3243e49b02483d14006fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-9009758163932332915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7623033894500739430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb35e6452df4f86488cdc2b99c7b2b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  range: 0
+  armor: 0
+  health: 0
+  speed: 0
+  cost: 0
 --- !u!1001 &6910287094461440976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,7 +83,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
       propertyPath: m_Name
-      value: UnitBadPotato (1) Variant
+      value: EnemyUnit
       objectReference: {fileID: 0}
     - target: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
       propertyPath: m_Layer

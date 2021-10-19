@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace Player
 {
+    /// Player manager should be executed with Unit Handler in good order 
     public class PlayerManager : MonoBehaviour
     {
+
         public static PlayerManager instance;
         public Transform playerUnits;
         public Transform enemyUnits;

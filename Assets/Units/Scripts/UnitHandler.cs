@@ -9,7 +9,6 @@ namespace Units
         public static UnitHandler instance;
         [SerializeField]
         private UnitTemplate worker, warrior, archer;
-
         private void Start()
         {
             instance = this;
@@ -54,10 +53,16 @@ namespace Units
                         playerUnit.cost = stats.cost;
 
                     }
-                    //else if (type == Player.PlayerManager.instance.enemyUnits)
-                    //{
-                    //    //set enemy stats
-                    //}
+                    else if (type == Player.PlayerManager.instance.enemyUnits)
+                    {
+                        playerUnit = unit.GetComponent<UnitRTS>();
+                        playerUnit.damage = stats.damage;
+                        playerUnit.range = stats.range;
+                        playerUnit.armor = stats.armor;
+                        playerUnit.health = stats.health;
+                        playerUnit.speed = stats.speed;
+                        playerUnit.cost = stats.cost;
+                    }
                 }
             }
         }

@@ -11,6 +11,8 @@ public class RTSController : MonoBehaviour
     private Vector2 startPosition;
     private List<UnitRTS> selectedUnitRTSList;
     private Position cursorPosition = new Position();
+    public Transform playerUnits;
+
     [SerializeField] private Camera camera;
 
     private void Awake()
@@ -48,6 +50,7 @@ public class RTSController : MonoBehaviour
             selectionAreaTransform.gameObject.SetActive(false);
             Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, cursorPosition.getMousePosition());
             // deslect units
+
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {
                 unitRTS.SetSelectedVisible(false);
@@ -57,7 +60,7 @@ public class RTSController : MonoBehaviour
             foreach (Collider2D collider2D in collider2DArray)
             {
                 UnitRTS unitRTS = collider2D.GetComponent<UnitRTS>();
-                if (unitRTS != null)
+                if (unitRTS != null && unitRTS.gameObject.layer==8)
                 {
                     unitRTS.SetSelectedVisible(true);
                     selectedUnitRTSList.Add(unitRTS);
