@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.Units
+namespace Units
 {
     [CreateAssetMenu(fileName = "New Unit", menuName = "New Unit")]
-    public class Unit : ScriptableObject
+    public class BasicUnit : ScriptableObject
     {
         public enum unitType
         {

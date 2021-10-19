@@ -16,7 +16,7 @@ MonoBehaviour:
   type: 1
   unitPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
   damage: 20
-  range: 0
+  range: 1
   armor: 20
   health: 100
   speed: 4

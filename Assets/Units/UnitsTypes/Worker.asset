@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: 
   type: 0
-  unitPrefab: {fileID: 0}
+  unitPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
   damage: 1
-  range: 0
+  range: 1
   armor: 1
   health: 50
   speed: 5

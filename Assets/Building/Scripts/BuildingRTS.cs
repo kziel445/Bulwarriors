@@ -6,7 +6,8 @@ public class BuildingRTS : MonoBehaviour, IClickable
 {
     public void Click()
     {
-        Debug.Log("Building");
+        Debug.Log("Building options in UI");
+        Debug.Log("Building health");
     }
 
     public int Layer() { return gameObject.layer; }

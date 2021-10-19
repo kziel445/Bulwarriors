@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   unitName: 
-  type: 0
-  unitPrefab: {fileID: 0}
+  type: 2
+  unitPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
   damage: 40
-  range: 0
+  range: 10
   armor: 10
   health: 50
   speed: 4
