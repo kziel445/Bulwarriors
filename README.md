@@ -24,7 +24,7 @@ RTSController - contains commands for units, like, move, attack, etc
 ### Units - contains set of actions which unit can do
 EnemyRTS - all aspects of enemy, contains clickable
 Movement - all movement settings for all units
-BasicUnit
+UnitTemplate - template to create all kind of units
 
 UnitsHandler - [..]
 Clicker - when clicked objects, do something
