@@ -21,5 +21,10 @@ IClickable - Interface, when used, means that object is clickable
 Position - script to get cursor position
 ### RTSSystem - contains elements needed to give orders
 RTSController - contains commands for units, like, move, attack, etc
+### Units - contains set of actions which unit can do
+EnemyRTS - all aspects of enemy, contains clickable
+Movement - all movement settings for all units
+BasicUnit
+
 UnitsHandler - [..]
 Clicker - when clicked objects, do something
