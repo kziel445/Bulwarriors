@@ -4,26 +4,19 @@ using UnityEngine;
 
 namespace Units
 {
-    ///
     public class UnitHandler : MonoBehaviour
     {
         public static UnitHandler instance;
         [SerializeField]
-        private BasicUnit worker, warrior, archer;
+        private UnitTemplate worker, warrior, archer;
 
         private void Start()
         {
             instance = this;
         }
-
-        void Update()
-        {
-
-        }
-
         public (int damage, int range, int armor, int health, float speed, int cost) getUnitStats(string type)
         {
-            BasicUnit unit;
+            UnitTemplate unit;
             switch(type)
             {
                 case "worker":
@@ -45,18 +38,26 @@ namespace Units
         {
             foreach(Transform child in type)
             {
-                foreach(Transform unit in child)
+                foreach (Transform unit in child)
                 {
                     string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
                     var stats = getUnitStats(unitName);
-                    UnitRTS playerUnit = unit.GetComponent<UnitRTS>();
-                    playerUnit.damage = stats.damage;
-                    playerUnit.range = stats.range;
-                    playerUnit.armor = stats.armor;
-                    playerUnit.health = stats.health;
-                    playerUnit.speed = stats.speed;
-                    playerUnit.cost = stats.cost;
+                    UnitRTS playerUnit;
+                    if (type == Player.PlayerManager.instance.playerUnits)
+                    {
+                        playerUnit = unit.GetComponent<UnitRTS>();
+                        playerUnit.damage = stats.damage;
+                        playerUnit.range = stats.range;
+                        playerUnit.armor = stats.armor;
+                        playerUnit.health = stats.health;
+                        playerUnit.speed = stats.speed;
+                        playerUnit.cost = stats.cost;
 
+                    }
+                    //else if (type == Player.PlayerManager.instance.enemyUnits)
+                    //{
+                    //    //set enemy stats
+                    //}
                 }
             }
         }

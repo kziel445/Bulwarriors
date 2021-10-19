@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5bf295aab1acf47b8c15b9b4d711a6, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  unitName: Potato Warrior
+  unitName: 
   type: 1
-  unitPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+  playerPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+  enemyPrefab: {fileID: 7623033894500739430, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
   damage: 20
   range: 1
   armor: 20
   health: 100
   speed: 4
-  cost: 50
+  cost: 100

@@ -8,14 +8,12 @@ namespace Units
     public class UnitRTS : MonoBehaviour, IClickable
     {
         //statistics
-        public string unitName;
         public int damage;
         public int range;
         public int armor;
         public int health;
         public float speed;
         public int cost;
-        public GameObject unitPrefab;
 
         public IClickable attackObjective; //TODO other class
         private GameObject selectedGameObject;

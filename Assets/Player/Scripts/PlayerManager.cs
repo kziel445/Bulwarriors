@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+namespace Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerManager : MonoBehaviour
     {
-        
-    }
+        public static PlayerManager instance;
+        public Transform playerUnits;
+        public Transform enemyUnits;
+        void Start()
+        {
+            instance = this;
+            Units.UnitHandler.instance.setUnitStats(playerUnits);
+            Units.UnitHandler.instance.setUnitStats(enemyUnits);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
+
+        void Update()
+        {
+           
+        }
     }
 }
+

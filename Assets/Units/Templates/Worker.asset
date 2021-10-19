@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: 
   type: 0
-  unitPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
-  damage: 1
-  range: 1
-  armor: 1
-  health: 50
-  speed: 5
-  cost: 100
+  playerPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+  enemyPrefab: {fileID: 7623033894500739430, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
+  damage: 10
+  range: 10
+  armor: 10
+  health: 10
+  speed: 10
+  cost: 10
