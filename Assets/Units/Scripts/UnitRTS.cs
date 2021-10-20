@@ -7,14 +7,7 @@ namespace Units
     /// Functions to show selected units and move groups
     public class UnitRTS : MonoBehaviour, IClickable
     {
-        //statistics
-        public int damage;
-        public int range;
-        public int armor;
-        public int health;
-        public float speed;
-        public int cost;
-
+        public UnitStatTypes.Base baseStats;
         public IClickable attackObjective; //TODO other class
         private GameObject selectedGameObject;
         private IMovePosition movePosition;

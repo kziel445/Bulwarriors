@@ -10,15 +10,19 @@ namespace Player
         public static PlayerManager instance;
         public Transform playerUnits;
         public Transform enemyUnits;
-        void Start()
+        private void Awake()
         {
             instance = this;
+
+        }
+        private void Start()
+        {
             Units.UnitHandler.instance.setUnitStats(playerUnits);
             Units.UnitHandler.instance.setUnitStats(enemyUnits);
 
         }
 
-        void Update()
+        private void Update()
         {
            
         }
