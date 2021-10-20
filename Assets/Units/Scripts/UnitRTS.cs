@@ -51,7 +51,7 @@ namespace Units
 
         public void attack()
         {
-            Debug.Log("Hit: " + damage + " to " + attackObjective);
+            //Debug.Log("Hit: " + damage + " to " + attackObjective);
         }
 
         private void OnDestroy()

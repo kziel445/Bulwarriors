@@ -12,6 +12,7 @@ namespace Units
         private UnitTemplate worker, warrior, archer;
         private void Awake()
         {
+            Debug.Log("done!!!!");
             instance = this;
 
         }
@@ -42,7 +43,7 @@ namespace Units
         public void setUnitStats(Transform type)
         {
             Transform playerUnits = PlayerManager.instance.playerUnits;
-            Transform playerEnemy = PlayerManager.instance.enemyUnits;
+            Transform enemyUnits = PlayerManager.instance.enemyUnits;
 
             foreach (Transform child in type)
             {
@@ -50,10 +51,11 @@ namespace Units
                 {
                     string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
                     var stats = getUnitStats(unitName);
-                    UnitRTS playerUnit;
+
                     if (type == playerUnits)
                     {
-                        playerUnit = unit.GetComponent<UnitRTS>();
+                        UnitRTS playerUnit = unit.GetComponent<UnitRTS>();
+                        
                         playerUnit.baseStats.cost = stats.cost;
                         playerUnit.baseStats.damage = stats.damage;
                         playerUnit.baseStats.aggroRange = stats.aggroRange;
@@ -62,15 +64,18 @@ namespace Units
                         playerUnit.baseStats.armor = stats.armor;
                         playerUnit.baseStats.speed = stats.speed;
                     }
-                    else if (type == playerEnemy)
+                    else if (type == enemyUnits)
                     {
-                        playerUnit = unit.GetComponent<UnitRTS>();
-                        playerUnit.damage = stats.damage;
-                        playerUnit.range = stats.range;
-                        playerUnit.armor = stats.armor;
-                        playerUnit.health = stats.health;
-                        playerUnit.speed = stats.speed;
-                        playerUnit.cost = stats.cost;
+
+                        EnemyRTS enemyUnit = unit.GetComponent<EnemyRTS>();
+
+                        enemyUnit.baseStats.cost = stats.cost;
+                        enemyUnit.baseStats.damage = stats.damage;
+                        enemyUnit.baseStats.aggroRange = stats.aggroRange;
+                        enemyUnit.baseStats.atkRange = stats.atkRange;
+                        enemyUnit.baseStats.health = stats.health;
+                        enemyUnit.baseStats.armor = stats.armor;
+                        enemyUnit.baseStats.speed = stats.speed;
                     }
                 }
             }

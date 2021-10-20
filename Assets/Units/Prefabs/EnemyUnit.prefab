@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9009758163932332915
+--- !u!114 &2925027121642500664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7623033894500739430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb35e6452df4f86488cdc2b99c7b2b15, type: 3}
+  m_Script: {fileID: 11500000, guid: 5973fca7ce3243e49b02483d14006fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  range: 0
-  armor: 0
-  health: 0
-  speed: 0
-  cost: 0
+  baseStats:
+    cost: 0
+    damage: 0
+    aggroRange: 0
+    atkRange: 0
+    health: 0
+    armor: 0
+    speed: 0
 --- !u!1001 &6910287094461440976
 PrefabInstance:
   m_ObjectHideFlags: 0

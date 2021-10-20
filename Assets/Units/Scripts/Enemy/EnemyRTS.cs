@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Units;
 
-namespace Enemy
+namespace Units
 {
-    [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyRTS : MonoBehaviour, IClickable
     {
         public UnitStatTypes.Base baseStats;
