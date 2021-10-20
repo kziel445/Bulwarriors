@@ -9,9 +9,14 @@ namespace Units
         public static UnitHandler instance;
         [SerializeField]
         private UnitTemplate worker, warrior, archer;
-        private void Start()
+        private void Awake()
         {
             instance = this;
+
+        }
+        private void Start()
+        {
+            
         }
         public (int damage, int range, int armor, int health, float speed, int cost) getUnitStats(string type)
         {
