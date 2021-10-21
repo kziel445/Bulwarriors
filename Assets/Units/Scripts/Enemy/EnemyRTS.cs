@@ -1,13 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Units
 {
-    public class EnemyRTS : MonoBehaviour, IClickable
+    public class EnemyRTS : UnitRTS, IClickable
     {
-        public UnitStatTypes.Base baseStats;
+        public static EnemyRTS instance;
+
+        void Start()
+        {
+            instance = this;
+        }
+
+        void Update()
+        {
+            if(!hasAggro)
+            {
+                CheckForEnenmyTargets(baseStats.aggroRange);
+            }
+            else
+            {
+                MoveToTarget(aggroTarget.position);
+            }
+        }
+
         public void Click()
         {
             Debug.Log("Enemy");
@@ -15,17 +32,8 @@ namespace Units
 
         public int Layer() { return gameObject.layer; }
 
-        // Start is called before the first frame update
-        void Start()
-        {
 
-        }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
         public void ImEnemy()
         {
 
