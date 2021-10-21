@@ -5,7 +5,7 @@ using Cursor;
 using Units;
 
 // script for selection units and give commands
-public class RTSController : MonoBehaviour
+public class InputHandler : MonoBehaviour
 {
     [SerializeField] private Transform selectionAreaTransform;
     private Vector2 startPosition;
