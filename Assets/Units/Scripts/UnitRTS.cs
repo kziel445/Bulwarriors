@@ -90,6 +90,10 @@ namespace Units
         {
             //Debug.Log("Hit: " + damage + " to " + attackObjective);
         }
+        public void die()
+        {
+            Destroy(gameObject);
+        }
 
         private void OnDestroy()
         {
