@@ -47,15 +47,13 @@ namespace Units
             //get distanceToTarget, when good range can attack
             distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
             //(baseStats.atkRange + 1);
+            if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
+            else MoveTo(transform.position);
 
-            if (distanceToTarget <= baseStats.aggroRange)
-            {
-                MoveTo(aggroTarget.position);
-                //navAgent.SetDestination(aggroTarget.position);
-            }
+
 
         }
-
+        //for now, function check for random enemy(probably close to "0,0")
         internal void CheckForEnenmyTargets(float aggroRange)
         {
             rangeColliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
