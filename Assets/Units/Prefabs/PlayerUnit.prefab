@@ -92,9 +92,11 @@ MonoBehaviour:
     damage: 0
     aggroRange: 0
     atkRange: 0
-    health: 0
+    health: 1
     armor: 0
     speed: 0
+  healthBarAmount: {fileID: 5446169509193701394}
+  currentHealth: 0
 --- !u!114 &4330490610527725323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +293,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3376829743847562926}
     m_Modifications:
+    - target: {fileID: 203376446852521225, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 547677863885083938, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -390,3 +396,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
   m_PrefabInstance: {fileID: 5279951169481770267}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5446169509193701394 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 203376446852521225, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+  m_PrefabInstance: {fileID: 5279951169481770267}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

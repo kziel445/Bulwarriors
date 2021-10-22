@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Units
 {
@@ -18,9 +19,13 @@ namespace Units
         private protected bool hasAggro = false;
         private float distanceToTarget;
 
+        public Image healthBarAmount;
+        public float currentHealth;
+
         private void Start()
         {
             instance = this;
+            currentHealth = baseStats.health;
         }
         private void Awake()
         {
@@ -30,6 +35,7 @@ namespace Units
         }
         private void Update()
         {
+            HandleHealth();
             //if()
             //OnCollisionEnter(GameObject.Find(attackObjective.ToString()).);
 
@@ -49,8 +55,6 @@ namespace Units
             //(baseStats.atkRange + 1);
             if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
             else MoveTo(transform.position);
-
-
 
         }
         //for now, function check for random enemy(probably close to "0,0")
@@ -86,16 +90,16 @@ namespace Units
             attack();
         }
 
+        private void HandleHealth()
+        {
+            healthBarAmount.fillAmount = currentHealth / baseStats.health;
+            if (currentHealth <= 0) Die();
+        }
         public void attack()
         {
             //Debug.Log("Hit: " + damage + " to " + attackObjective);
         }
-        public void die()
-        {
-            Destroy(gameObject);
-        }
-
-        private void OnDestroy()
+        public void Die()
         {
             Destroy(gameObject);
         }
