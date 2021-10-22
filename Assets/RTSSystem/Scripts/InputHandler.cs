@@ -23,6 +23,7 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
             // get cursor cordinates, when LPM state is changed
@@ -99,18 +100,25 @@ public class InputHandler : MonoBehaviour
                     }
                     Debug.Log("Attacking objective is " + selectedUnitRTSList[0].attackObjective);
                 }
-                
+
 
             }
         }
 
-        
+
 
         // when I-key pressed, select all units
         if (Input.GetKey(KeyCode.I))
         {
             SelectAllUnits();
             Debug.Log(selectedUnitRTSList.Count);
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if(hit.collider!= null)
+        {
+            
+            Debug.Log(hit.collider.gameObject.tag);
         }
     }
     private void SelectAllUnits()
