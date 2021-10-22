@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Unit
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Units0
+    uniqueID: 2665426119
+    locked: 0
+  - name: Units1
+    uniqueID: 3985400319
+    locked: 0
+  - name: UI
+    uniqueID: 2964176741
     locked: 0
