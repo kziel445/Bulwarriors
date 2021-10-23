@@ -16,10 +16,6 @@ namespace Units
             instance = this;
 
         }
-        private void Start()
-        {
-            
-        }
         public (float cost, float damage, float aggroRange, float atkRange, float health, float armor, float speed) getUnitStats(string type)
         {
         UnitTemplate unit;
