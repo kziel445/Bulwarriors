@@ -43,6 +43,22 @@ namespace Units
         {
             selectedGameObject.SetActive(visible);
         }
+        public void Click()
+        {
+            Debug.Log("Unit");
+        }
+        public void OnTriggerEnter2D(Collider2D collision)
+        {
+            Debug.Log("trigger");
+        }
+
+        public int Layer() { return gameObject.layer; }
+
+        public void OnCollisionEnter(Collision collision)
+        {
+            attack();
+        }
+        //movement segment
         public void MoveTo(Vector3 targetPosition)
         {
             movePosition.SetMovePosition(targetPosition);
@@ -79,23 +95,7 @@ namespace Units
                 }
             }
         }
-
-        public void Click()
-        {
-            Debug.Log("Unit");
-        }
-        public void OnTriggerEnter2D(Collider2D collision)
-        {
-            Debug.Log("trigger");
-        }
-
-        public int Layer() { return gameObject.layer; }
-
-        public void OnCollisionEnter(Collision collision)
-        {
-            attack();
-        }
-
+        // combat segment
         private void HandleHealth()
         {
             healthBarAmount.fillAmount = currentHealth / baseStats.health;
@@ -108,7 +108,12 @@ namespace Units
                     }
                 Die();
             }
-
+        } 
+        public void TakeDamage(float damage)
+        {
+            //TODO: do better formula for fight
+            damage -= baseStats.armor;
+            currentHealth -= damage;
         }
         public void attack()
         {
