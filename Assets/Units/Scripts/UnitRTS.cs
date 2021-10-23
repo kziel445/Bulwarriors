@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace Units
 {
     /// Functions to show selected units and move groups
@@ -36,9 +37,7 @@ namespace Units
         private void Update()
         {
             HandleHealth();
-            //if()
             //OnCollisionEnter(GameObject.Find(attackObjective.ToString()).);
-
         }
         public void SetSelectedVisible(bool visible)
         {
@@ -50,12 +49,19 @@ namespace Units
         }
         public void MoveToTarget(Vector3 targetPosition)
         {
-            //get distanceToTarget, when good range can attack
-            distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
-            //(baseStats.atkRange + 1);
-            if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
-            else MoveTo(transform.position);
-
+            if(aggroTarget == null)
+            {
+                MoveTo(transform.position);
+                hasAggro = false;
+            }
+            else
+            {
+                //get distanceToTarget, when good range can attack
+                distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
+                //(baseStats.atkRange + 1);
+                if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
+                else MoveTo(transform.position);
+            }
         }
         //for now, function check for random enemy(probably close to "0,0")
         internal void CheckForEnenmyTargets(float aggroRange)
@@ -93,7 +99,13 @@ namespace Units
         private void HandleHealth()
         {
             healthBarAmount.fillAmount = currentHealth / baseStats.health;
-            if (currentHealth <= 0) Die();
+
+            if (currentHealth <= 0)
+            {
+                InputManager.InputHandler.instance.selectedUnitRTSList.Remove(gameObject.GetComponent<UnitRTS>());
+                Die();
+            }
+
         }
         public void attack()
         {
@@ -104,8 +116,6 @@ namespace Units
             Destroy(gameObject);
         }
     }
-
-
     //Debug.Log("collide (name) : " + collide.collider.gameObject.name);
     //Debug.Log("collide (tag) : " + collide.collider.gameObject.tag);
     //if (collide.collider.gameObject.name == "Hitbox")
