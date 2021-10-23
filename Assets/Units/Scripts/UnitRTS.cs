@@ -102,7 +102,10 @@ namespace Units
 
             if (currentHealth <= 0)
             {
-                InputManager.InputHandler.instance.selectedUnitRTSList.Remove(gameObject.GetComponent<UnitRTS>());
+                if (InputManager.InputHandler.instance.selectedUnitRTSList.Contains(gameObject.GetComponent<UnitRTS>()))
+                    {
+                    InputManager.InputHandler.instance.selectedUnitRTSList.Remove(gameObject.GetComponent<UnitRTS>());
+                    }
                 Die();
             }
 
