@@ -9,7 +9,12 @@ namespace Units
         [System.Serializable]
         public class Base
         {
-            public float cost, damage, aggroRange, atkRange, health, armor, speed;
+            //
+            public float cost;
+            //attack stats
+            public float damage, atkSpeed, atkRange, aggroRange;
+            //other stats
+            public float health, armor, movementSpeed;
         }
     }
 }

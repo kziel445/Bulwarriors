@@ -13,8 +13,8 @@ namespace Player
         private void Awake()
         {
             instance = this;
-            Units.UnitHandler.instance.setUnitStats(playerUnits);
-            Units.UnitHandler.instance.setUnitStats(enemyUnits);
+            Units.UnitHandler.instance.SetUnitStats(playerUnits);
+            Units.UnitHandler.instance.SetUnitStats(enemyUnits);
         }
         private void Start()
         {

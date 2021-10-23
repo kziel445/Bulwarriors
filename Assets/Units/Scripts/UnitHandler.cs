@@ -16,7 +16,7 @@ namespace Units
             instance = this;
 
         }
-        public (float cost, float damage, float aggroRange, float atkRange, float health, float armor, float speed) getUnitStats(string type)
+        public UnitStatTypes.Base GetUnitStats(string type)
         {
         UnitTemplate unit;
             switch(type)
@@ -32,11 +32,11 @@ namespace Units
                     break;
                 default:
                     Debug.Log($"Unit Type: {type} could not be found or does not exist!");
-                    return (0, 0, 0, 0, 0, 0, 0);
+                    return null;
             }
-            return (unit.baseStats.cost, unit.baseStats.damage, unit.baseStats.aggroRange, unit.baseStats.atkRange, unit.baseStats.health, unit.baseStats.armor, unit.baseStats.speed);
+            return unit.baseStats;
         }
-        public void setUnitStats(Transform type)
+        public void SetUnitStats(Transform type)
         {
             Transform playerUnits = PlayerManager.instance.playerUnits;
             Transform enemyUnits = PlayerManager.instance.enemyUnits;
@@ -46,32 +46,17 @@ namespace Units
                 foreach (Transform unit in child)
                 {
                     string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
-                    var stats = getUnitStats(unitName);
+                    var stats = GetUnitStats(unitName);
 
                     if (type == playerUnits)
                     {
                         UnitRTS playerUnit = unit.GetComponent<UnitRTS>();
-                        
-                        playerUnit.baseStats.cost = stats.cost;
-                        playerUnit.baseStats.damage = stats.damage;
-                        playerUnit.baseStats.aggroRange = stats.aggroRange;
-                        playerUnit.baseStats.atkRange = stats.atkRange;
-                        playerUnit.baseStats.health = stats.health;
-                        playerUnit.baseStats.armor = stats.armor;
-                        playerUnit.baseStats.speed = stats.speed;
+                        playerUnit.baseStats = GetUnitStats(unitName);
                     }
                     else if (type == enemyUnits)
                     {
-
                         EnemyRTS enemyUnit = unit.GetComponent<EnemyRTS>();
-
-                        enemyUnit.baseStats.cost = stats.cost;
-                        enemyUnit.baseStats.damage = stats.damage;
-                        enemyUnit.baseStats.aggroRange = stats.aggroRange;
-                        enemyUnit.baseStats.atkRange = stats.atkRange;
-                        enemyUnit.baseStats.health = stats.health;
-                        enemyUnit.baseStats.armor = stats.armor;
-                        enemyUnit.baseStats.speed = stats.speed;
+                        enemyUnit.baseStats = GetUnitStats(unitName);
                     }
                 }
             }

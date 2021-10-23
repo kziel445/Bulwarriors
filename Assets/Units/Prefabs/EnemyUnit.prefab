@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats:
-    cost: 0
-    damage: 0
-    aggroRange: 0
-    atkRange: 0
+    cost: 1
+    damage: 1
+    aggroRange: 1
+    atkRange: 1
     health: 1
-    armor: 0
-    speed: 0
+    armor: 1
+    speed: 1
   healthBarAmount: {fileID: 1473499308020661186}
-  currentHealth: 0
+  currentHealth: 1
 --- !u!1001 &6910287094461440976
 PrefabInstance:
   m_ObjectHideFlags: 0
