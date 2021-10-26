@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9009758163932332915
+--- !u!114 &2925027121642500664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,15 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7623033894500739430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb35e6452df4f86488cdc2b99c7b2b15, type: 3}
+  m_Script: {fileID: 11500000, guid: 5973fca7ce3243e49b02483d14006fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  range: 0
-  armor: 0
-  health: 0
-  speed: 0
-  cost: 0
+  baseStats:
+    cost: 1
+    damage: 1
+    atkSpeed: 1
+    atkRange: 1
+    aggroRange: 1
+    health: 1
+    armor: 1
+    movementSpeed: 1
+  healthBarAmount: {fileID: 1473499308020661186}
+  currentHealth: 1
 --- !u!1001 &6910287094461440976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77,6 +82,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+      propertyPath: m_TagString
+      value: Unit
+      objectReference: {fileID: 0}
     - target: {fileID: 6681126326978182757, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -117,3 +126,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
   m_PrefabInstance: {fileID: 6910287094461440976}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1473499308020661186 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5446169509193701394, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+  m_PrefabInstance: {fileID: 6910287094461440976}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -21,12 +21,7 @@ namespace Units
         public GameObject enemyPrefab;
 
         [Header("Unit Stats")]
-        public int damage;
-        public int range;
-        public int armor;
-        public int health;
-        public float speed;
-        public int cost;
+        public UnitStatTypes.Base baseStats;
     }
 }
 

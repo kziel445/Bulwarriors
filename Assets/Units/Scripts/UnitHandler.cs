@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Player;
 
 namespace Units
 {
@@ -9,13 +10,13 @@ namespace Units
         public static UnitHandler instance;
         [SerializeField]
         private UnitTemplate worker, warrior, archer;
-        private void Start()
+        private void Awake()
         {
             instance = this;
         }
-        public (int damage, int range, int armor, int health, float speed, int cost) getUnitStats(string type)
+        public UnitStatTypes.Base GetUnitStats(string type)
         {
-            UnitTemplate unit;
+        UnitTemplate unit;
             switch(type)
             {
                 case "worker":
@@ -29,39 +30,31 @@ namespace Units
                     break;
                 default:
                     Debug.Log($"Unit Type: {type} could not be found or does not exist!");
-                    return (0, 0, 0, 0, 0, 0);
+                    return null;
             }
-            return (unit.damage, unit.range, unit.armor, unit.health, unit.speed, unit.cost);
+            return unit.baseStats;
         }
-        public void setUnitStats(Transform type)
+        public void SetUnitStats(Transform type)
         {
-            foreach(Transform child in type)
+            Transform playerUnits = PlayerManager.instance.playerUnits;
+            Transform enemyUnits = PlayerManager.instance.enemyUnits;
+
+            foreach (Transform child in type)
             {
                 foreach (Transform unit in child)
                 {
                     string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
-                    var stats = getUnitStats(unitName);
-                    UnitRTS playerUnit;
-                    if (type == Player.PlayerManager.instance.playerUnits)
-                    {
-                        playerUnit = unit.GetComponent<UnitRTS>();
-                        playerUnit.damage = stats.damage;
-                        playerUnit.range = stats.range;
-                        playerUnit.armor = stats.armor;
-                        playerUnit.health = stats.health;
-                        playerUnit.speed = stats.speed;
-                        playerUnit.cost = stats.cost;
+                    var stats = GetUnitStats(unitName);
 
-                    }
-                    else if (type == Player.PlayerManager.instance.enemyUnits)
+                    if (type == playerUnits)
                     {
-                        playerUnit = unit.GetComponent<UnitRTS>();
-                        playerUnit.damage = stats.damage;
-                        playerUnit.range = stats.range;
-                        playerUnit.armor = stats.armor;
-                        playerUnit.health = stats.health;
-                        playerUnit.speed = stats.speed;
-                        playerUnit.cost = stats.cost;
+                        UnitRTS playerUnit = unit.GetComponent<UnitRTS>();
+                        playerUnit.baseStats = GetUnitStats(unitName);
+                    }
+                    else if (type == enemyUnits)
+                    {
+                        EnemyRTS enemyUnit = unit.GetComponent<EnemyRTS>();
+                        enemyUnit.baseStats = GetUnitStats(unitName);
                     }
                 }
             }

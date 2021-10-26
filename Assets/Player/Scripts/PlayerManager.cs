@@ -4,22 +4,25 @@ using UnityEngine;
 
 namespace Player
 {
-    /// Player manager should be executed with Unit Handler in good order 
     public class PlayerManager : MonoBehaviour
     {
 
         public static PlayerManager instance;
         public Transform playerUnits;
         public Transform enemyUnits;
-        void Start()
+        private void Awake()
         {
             instance = this;
-            Units.UnitHandler.instance.setUnitStats(playerUnits);
-            Units.UnitHandler.instance.setUnitStats(enemyUnits);
+            Units.UnitHandler.instance.SetUnitStats(playerUnits);
+            Units.UnitHandler.instance.SetUnitStats(enemyUnits);
+        }
+        private void Start()
+        {
+            
 
         }
 
-        void Update()
+        private void Update()
         {
            
         }

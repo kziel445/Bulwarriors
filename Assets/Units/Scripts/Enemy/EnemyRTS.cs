@@ -2,28 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyRTS : MonoBehaviour, IClickable
+namespace Units
 {
-    public void Click()
+    public class EnemyRTS : UnitRTS, IClickable
     {
-        Debug.Log("Enemy");
-    }
+        public static EnemyRTS instance;
 
-    public int Layer() { return gameObject.layer; }
+        void Start()
+        {
+            instance = this;
+            currentHealth = baseStats.health;
+        }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        void Update()
+        {
+            if(atkCooldown>0) atkCooldown = atkCooldown - Time.deltaTime;
+            HandleHealth();
+            if (!hasAggro)
+            {
+                CheckForEnenmyTargets(baseStats.aggroRange);
+            }
+            else
+            {
+                Attack();
+                if (aggroTarget!=null) MoveToTarget(aggroTarget.position);
+            }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void ImEnemy()
-    {
+        public void Click()
+        {
+            Debug.Log("Enemy");
+        }
 
+        public int Layer() { return gameObject.layer; }
+
+
+
+        public void ImEnemy()
+        {
+
+        }
     }
 }
