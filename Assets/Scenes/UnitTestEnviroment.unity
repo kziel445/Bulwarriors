@@ -349,7 +349,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7623033894500739430, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
       propertyPath: m_Name
-      value: EnemyUnit
+      value: EnemyUnit1
       objectReference: {fileID: 0}
     - target: {fileID: 8159024177342774654, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
       propertyPath: m_RootOrder
@@ -1028,6 +1028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionAreaTransform: {fileID: 2111148486}
+  selectedUnitRTSList: []
   playerUnits: {fileID: 0}
   camera: {fileID: 4348043}
 --- !u!114 &1882251680

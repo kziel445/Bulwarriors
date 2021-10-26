@@ -17,12 +17,14 @@ namespace Units
         
         private Collider2D[] rangeColliders;
         private protected Transform aggroTarget;
+
         private protected bool hasAggro = false;
         private float distanceToTarget;
 
         public Image healthBarAmount;
         public float currentHealth;
 
+        public float atkCooldown;
         private void Start()
         {
             instance = this;
@@ -54,10 +56,6 @@ namespace Units
 
         public int Layer() { return gameObject.layer; }
 
-        public void OnCollisionEnter(Collision collision)
-        {
-            attack();
-        }
         //movement segment
         public void MoveTo(Vector3 targetPosition)
         {
@@ -65,28 +63,19 @@ namespace Units
         }
         public void MoveToTarget(Vector3 targetPosition)
         {
-            if(aggroTarget == null)
-            {
                 MoveTo(transform.position);
-                hasAggro = false;
-            }
-            else
-            {
                 //get distanceToTarget, when good range can attack
                 distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
                 //(baseStats.atkRange + 1);
                 if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
                 else MoveTo(transform.position);
-            }
         }
         //for now, function check for random enemy(probably close to "0,0")
         internal void CheckForEnenmyTargets(float aggroRange)
         {
             rangeColliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
-            Debug.Log(rangeColliders);
             for (int i = 0; i < rangeColliders.Length; i++)
             {
-                Debug.Log(rangeColliders[i].gameObject.name);
                 if (rangeColliders[i].gameObject.layer != gameObject.layer && rangeColliders[i].gameObject.layer != gameObject.layer + 1)
                 {
                     aggroTarget = rangeColliders[i].gameObject.transform;
@@ -96,7 +85,7 @@ namespace Units
             }
         }
         // combat segment
-        private void HandleHealth()
+        public void HandleHealth()
         {
             healthBarAmount.fillAmount = currentHealth / baseStats.health;
 
@@ -113,10 +102,23 @@ namespace Units
         {
             //TODO: do better formula for fight
             damage -= baseStats.armor;
+            if (damage < 0) damage = 1;
+            Debug.Log(damage);
             currentHealth -= damage;
         }
-        public void attack()
+        public void Attack()
         {
+            if(aggroTarget!=null)
+            {
+                if (atkCooldown <= 0 && distanceToTarget <= baseStats.atkRange)
+                {
+                    Debug.Log("Hit!");
+                    aggroTarget.GetComponent<UnitRTS>().TakeDamage(baseStats.damage);
+                    atkCooldown = baseStats.atkSpeed;
+                }
+            }
+            else hasAggro = false;
+
             //Debug.Log("Hit: " + damage + " to " + attackObjective);
         }
         public void Die()

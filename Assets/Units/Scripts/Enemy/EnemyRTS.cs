@@ -11,17 +11,21 @@ namespace Units
         void Start()
         {
             instance = this;
+            currentHealth = baseStats.health;
         }
 
         void Update()
         {
-            if(!hasAggro)
+            if(atkCooldown>0) atkCooldown = atkCooldown - Time.deltaTime;
+            HandleHealth();
+            if (!hasAggro)
             {
                 CheckForEnenmyTargets(baseStats.aggroRange);
             }
             else
             {
-                MoveToTarget(aggroTarget.position);
+                Attack();
+                if (aggroTarget!=null) MoveToTarget(aggroTarget.position);
             }
         }
 
