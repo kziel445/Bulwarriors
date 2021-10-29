@@ -93,23 +93,26 @@ namespace InputManager
                 RaycastHit2D clicked = Physics2D.Raycast(mousePosition, Vector2.zero);
                 if (clicked)
                 {
-                    IClickable clickable = clicked.collider.GetComponent<IClickable>();
-                    int unitLayer = selectedUnitRTSList[0].Layer();
-                    if (clickable.Layer() != unitLayer && clickable.Layer() != unitLayer + 1)
+                    Debug.Log(clicked);
+
+                    Transform target = clicked.collider.GetComponent<Transform>();
+                    int unitLayer = selectedUnitRTSList[0].gameObject.layer;
+                    int targetLayer = clicked.collider.gameObject.layer;
+                    if (targetLayer != unitLayer && targetLayer != unitLayer + 1)
                     {
-                        Debug.Log(selectedUnitRTSList[0].name + " group is going to attack " + clickable);
+                        //Debug.Log(selectedUnitRTSList[0].name + " group is going to attack " + target);
                         foreach (UnitRTS unitRTS in selectedUnitRTSList)
                         {
-                            unitRTS.attackObjective = clickable;
+                            unitRTS.aggroTarget = target;
+                            unitRTS.hasAggro = true;
+                            //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
                         }
-                        Debug.Log("Attacking objective is " + selectedUnitRTSList[0].attackObjective);
+                        //Debug.Log("Attacking objective is " + selectedUnitRTSList[0].attackObjective);
                     }
 
 
                 }
             }
-
-
 
             // when I-key pressed, select all units
             if (Input.GetKey(KeyCode.I))
@@ -122,7 +125,7 @@ namespace InputManager
             if (hit.collider != null)
             {
 
-                Debug.Log(hit.collider.gameObject.tag);
+                //Debug.Log(hit.collider.gameObject.tag);
             }
         }
         private void SelectAllUnits()
