@@ -56,9 +56,6 @@ namespace Units
         {
             Debug.Log("trigger");
         }
-
-        public int Layer() { return gameObject.layer; }
-
         //movement segment
         public void MoveTo(Vector3 targetPosition)
         {

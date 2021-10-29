@@ -33,10 +33,6 @@ namespace Units
             Debug.Log("Enemy");
         }
 
-        public int Layer() { return gameObject.layer; }
-
-
-
         public void ImEnemy()
         {
 
