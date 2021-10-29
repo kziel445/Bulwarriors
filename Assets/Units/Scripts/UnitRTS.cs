@@ -16,9 +16,10 @@ namespace Units
         private IMovePosition movePosition;
         
         private Collider2D[] rangeColliders;
-        private protected Transform aggroTarget;
-
-        private protected bool hasAggro = false;
+        //change from public
+        public Transform aggroTarget;
+        //change from public
+        public bool hasAggro = false;
         private float distanceToTarget;
 
         public Image healthBarAmount;
@@ -38,7 +39,9 @@ namespace Units
         }
         private void Update()
         {
+            if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
             HandleHealth();
+            if (hasAggro) FollowAndAttack();
             //OnCollisionEnter(GameObject.Find(attackObjective.ToString()).);
         }
         public void SetSelectedVisible(bool visible)
@@ -53,9 +56,6 @@ namespace Units
         {
             Debug.Log("trigger");
         }
-
-        public int Layer() { return gameObject.layer; }
-
         //movement segment
         public void MoveTo(Vector3 targetPosition)
         {
@@ -103,7 +103,7 @@ namespace Units
             //TODO: do better formula for fight
             damage -= baseStats.armor;
             if (damage < 0) damage = 1;
-            Debug.Log(damage);
+            //Debug.Log(damage);
             currentHealth -= damage;
         }
         public void Attack()
@@ -120,6 +120,14 @@ namespace Units
             else hasAggro = false;
 
             //Debug.Log("Hit: " + damage + " to " + attackObjective);
+        }
+        public void FollowAndAttack()
+        {
+            if (aggroTarget != null)
+            {
+                MoveToTarget(aggroTarget.position);
+                Attack();
+            }
         }
         public void Die()
         {

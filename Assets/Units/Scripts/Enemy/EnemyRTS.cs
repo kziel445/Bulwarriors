@@ -16,7 +16,7 @@ namespace Units
 
         void Update()
         {
-            if(atkCooldown>0) atkCooldown = atkCooldown - Time.deltaTime;
+            if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
             HandleHealth();
             if (!hasAggro)
             {
@@ -24,8 +24,7 @@ namespace Units
             }
             else
             {
-                Attack();
-                if (aggroTarget!=null) MoveToTarget(aggroTarget.position);
+                FollowAndAttack();                
             }
         }
 
@@ -33,10 +32,6 @@ namespace Units
         {
             Debug.Log("Enemy");
         }
-
-        public int Layer() { return gameObject.layer; }
-
-
 
         public void ImEnemy()
         {

@@ -10,7 +10,6 @@ public class BuildingRTS : MonoBehaviour, IClickable
         Debug.Log("Building health");
     }
 
-    public int Layer() { return gameObject.layer; }
     // Start is called before the first frame update
     void Start()
     {
