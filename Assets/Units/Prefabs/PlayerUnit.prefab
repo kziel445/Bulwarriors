@@ -96,8 +96,11 @@ MonoBehaviour:
     health: 1
     armor: 1
     movementSpeed: 1
+  aggroTarget: {fileID: 0}
+  hasAggro: 0
   healthBarAmount: {fileID: 5446169509193701394}
   currentHealth: 1
+  atkCooldown: 0
 --- !u!114 &4330490610527725323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.38010818
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_LocalRotation.w
