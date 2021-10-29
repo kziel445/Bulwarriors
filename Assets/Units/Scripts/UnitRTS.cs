@@ -117,7 +117,7 @@ namespace Units
                     atkCooldown = baseStats.atkSpeed;
                 }
             }
-            else hasAggro = false;
+            //else hasAggro = false;
 
             //Debug.Log("Hit: " + damage + " to " + attackObjective);
         }
@@ -128,6 +128,7 @@ namespace Units
                 MoveToTarget(aggroTarget.position);
                 Attack();
             }
+            else hasAggro = false;
         }
         public void Die()
         {

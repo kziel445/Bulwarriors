@@ -27,7 +27,7 @@ namespace InputManager
         // Update is called once per frame
         void Update()
         {
-
+            // Selection area
             if (Input.GetMouseButtonDown(0))
             {
                 // get cursor cordinates, when LPM state is changed
@@ -74,10 +74,19 @@ namespace InputManager
                 // show how manyh objects has been selected
                 Debug.Log(selectedUnitRTSList.Count);
             }
-            if (Input.GetMouseButtonDown(1))
+
+            //Command move
+            if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0)
             {
+                foreach (UnitRTS unitRTS in selectedUnitRTSList)
+                {
+                    unitRTS.aggroTarget = null;
+                    unitRTS.hasAggro = false;
+                    //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
+                }
                 Vector2 moveToPosition = cursorPosition.getMousePosition();
                 // TODO: set dynamic vlaues down below
+
                 List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f }, new int[] { 5, 10, 20 });
                 int targetPositionListIndex = 0;
                 foreach (UnitRTS unitRTS in selectedUnitRTSList)
@@ -85,8 +94,10 @@ namespace InputManager
                     unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
                     targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
                 }
+
             }
-            // attacking
+
+            // Command attack
             if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0)
             {
                 Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);

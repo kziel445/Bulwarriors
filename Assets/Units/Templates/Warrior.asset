@@ -18,9 +18,9 @@ MonoBehaviour:
   enemyPrefab: {fileID: 7623033894500739430, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
   baseStats:
     cost: 100
-    damage: 55
+    damage: 5
     atkSpeed: 1
-    atkRange: 2
+    atkRange: 1
     aggroRange: 10
     health: 50
     armor: 50
