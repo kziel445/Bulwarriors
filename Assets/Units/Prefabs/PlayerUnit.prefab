@@ -96,6 +96,7 @@ MonoBehaviour:
     health: 1
     armor: 1
     movementSpeed: 1
+  animator: {fileID: 3046017700376117356}
   aggroTarget: {fileID: 0}
   hasAggro: 0
   healthBarAmount: {fileID: 5446169509193701394}

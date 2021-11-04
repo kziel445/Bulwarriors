@@ -14,6 +14,7 @@ namespace Units
         public IClickable attackObjective; //TODO other class
         private GameObject selectedGameObject;
         private IMovePosition movePosition;
+        public Animator animator;
         
         private Collider2D[] rangeColliders;
         //change from public
@@ -112,11 +113,13 @@ namespace Units
             {
                 if (atkCooldown <= 0 && distanceToTarget <= baseStats.atkRange)
                 {
+                    animator.SetBool("IfAttack", true);
                     Debug.Log("Hit!");
                     aggroTarget.GetComponent<UnitRTS>().TakeDamage(baseStats.damage);
                     atkCooldown = baseStats.atkSpeed;
                 }
             }
+
             //else hasAggro = false;
 
             //Debug.Log("Hit: " + damage + " to " + attackObjective);
@@ -128,7 +131,26 @@ namespace Units
                 MoveToTarget(aggroTarget.position);
                 Attack();
             }
-            else hasAggro = false;
+            else
+            {
+                animator.SetBool("IfAttack", false);
+                hasAggro = false;
+            }       
+        }
+        public void AttackAnimation(bool TurnOn, bool AttackRight)
+        {
+            if (TurnOn && AttackRight)
+            {
+                animator.SetBool("IfAttack", true);
+            }
+            else if(TurnOn && AttackRight)
+            {
+                animator.SetBool("IfAttack", true);
+            }
+            else
+            {
+                animator.SetBool("IfAttack", false);
+            }
         }
         public void Die()
         {

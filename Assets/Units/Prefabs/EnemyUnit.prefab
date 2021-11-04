@@ -103,6 +103,7 @@ MonoBehaviour:
     health: 1
     armor: 1
     movementSpeed: 1
+  animator: {fileID: 8476871217724236732}
   aggroTarget: {fileID: 0}
   hasAggro: 0
   healthBarAmount: {fileID: 1473499308020661186}
@@ -214,6 +215,11 @@ GameObject:
 --- !u!4 &8159024177342774654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3376829743847562926, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+  m_PrefabInstance: {fileID: 6910287094461440976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8476871217724236732 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3046017700376117356, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
   m_PrefabInstance: {fileID: 6910287094461440976}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1473499308020661186 stripped

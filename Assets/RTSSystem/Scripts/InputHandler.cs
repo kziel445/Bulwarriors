@@ -80,8 +80,11 @@ namespace InputManager
             {
                 foreach (UnitRTS unitRTS in selectedUnitRTSList)
                 {
+                    
+                    //unitRTS.animator.SetBool("IfAttack", false);
                     unitRTS.aggroTarget = null;
                     unitRTS.hasAggro = false;
+
                     //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
                 }
                 Vector2 moveToPosition = cursorPosition.getMousePosition();
@@ -94,7 +97,6 @@ namespace InputManager
                     unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
                     targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
                 }
-
             }
 
             // Command attack
@@ -115,7 +117,8 @@ namespace InputManager
                         foreach (UnitRTS unitRTS in selectedUnitRTSList)
                         {
                             unitRTS.aggroTarget = target;
-                            unitRTS.hasAggro = true;
+                            unitRTS.hasAggro = true; 
+                            
                             //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
                         }
                         //Debug.Log("Attacking objective is " + selectedUnitRTSList[0].attackObjective);
