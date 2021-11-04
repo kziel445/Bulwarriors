@@ -109,16 +109,18 @@ namespace Units
         }
         public void Attack()
         {
-            if(aggroTarget!=null)
+            if (aggroTarget != null)
             {
                 if (atkCooldown <= 0 && distanceToTarget <= baseStats.atkRange)
                 {
+                    AttackAnimation(true, 1);
                     animator.SetBool("IfAttack", true);
                     Debug.Log("Hit!");
                     aggroTarget.GetComponent<UnitRTS>().TakeDamage(baseStats.damage);
                     atkCooldown = baseStats.atkSpeed;
                 }
             }
+            else AttackAnimation(false);
 
             //else hasAggro = false;
 
@@ -137,20 +139,14 @@ namespace Units
                 hasAggro = false;
             }       
         }
-        public void AttackAnimation(bool TurnOn, bool AttackRight)
+        public void AttackAnimation(bool TurnOn, float attackDirection=0)
         {
-            if (TurnOn && AttackRight)
+            if (TurnOn)
             {
                 animator.SetBool("IfAttack", true);
             }
-            else if(TurnOn && AttackRight)
-            {
-                animator.SetBool("IfAttack", true);
-            }
-            else
-            {
-                animator.SetBool("IfAttack", false);
-            }
+            else animator.SetBool("IfAttack", false);
+
         }
         public void Die()
         {
