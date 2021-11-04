@@ -78,15 +78,7 @@ namespace InputManager
             //Command move
             if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0)
             {
-                foreach (UnitRTS unitRTS in selectedUnitRTSList)
-                {
-                    
-                    //unitRTS.animator.SetBool("IfAttack", false);
-                    unitRTS.aggroTarget = null;
-                    unitRTS.hasAggro = false;
-
-                    //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
-                }
+                ReCommand(selectedUnitRTSList);
                 Vector2 moveToPosition = cursorPosition.getMousePosition();
                 // TODO: set dynamic vlaues down below
 
@@ -140,6 +132,15 @@ namespace InputManager
             {
 
                 //Debug.Log(hit.collider.gameObject.tag);
+            }
+        }
+        private void ReCommand(List<UnitRTS> selectedUnits)
+        {
+            foreach (UnitRTS unitRTS in selectedUnitRTSList)
+            {
+                unitRTS.aggroTarget = null;
+                unitRTS.hasAggro = false;
+                unitRTS.animator.SetBool("IfAttack", false); 
             }
         }
         private void SelectAllUnits()

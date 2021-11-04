@@ -113,7 +113,7 @@ namespace Units
             {
                 if (atkCooldown <= 0 && distanceToTarget <= baseStats.atkRange)
                 {
-                    AttackAnimation(true, 1);
+                    AttackAnimation(true);
                     animator.SetBool("IfAttack", true);
                     Debug.Log("Hit!");
                     aggroTarget.GetComponent<UnitRTS>().TakeDamage(baseStats.damage);
@@ -139,11 +139,17 @@ namespace Units
                 hasAggro = false;
             }       
         }
-        public void AttackAnimation(bool TurnOn, float attackDirection=0)
+        public void AttackAnimation(bool TurnOn)
         {
             if (TurnOn)
             {
+                float attackDirection = 0;
                 animator.SetBool("IfAttack", true);
+
+                attackDirection = aggroTarget.position.x - gameObject.transform.position.x;
+                if (attackDirection > 0) attackDirection = 1;
+                else attackDirection = -1;
+                animator.SetFloat("AttackDirection", attackDirection);
             }
             else animator.SetBool("IfAttack", false);
 
