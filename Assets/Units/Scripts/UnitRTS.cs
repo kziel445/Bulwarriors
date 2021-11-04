@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Movement;
 
 namespace Units
 {
@@ -28,8 +28,8 @@ namespace Units
         public Transform missile;
         public float atkCooldown;
 
-        //TMP
-        public Vector2 movement;
+        public bool IfCommand = false;
+
         private void Start()
         {
             instance = this;
@@ -43,9 +43,23 @@ namespace Units
         }
         private void Update()
         {
+            //
             if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
             HandleHealth();
-            if (hasAggro) FollowAndAttack();
+            //player commands
+            if (hasAggro)
+            {
+                FollowAndAttack();
+            }
+            //else
+            //{
+            //    CheckForEnenmyTargets(baseStats.atkRange);
+            //}
+
+
+
+            //auto commands
+
             //OnCollisionEnter(GameObject.Find(attackObjective.ToString()).);
         }
         public void SetSelectedVisible(bool visible)
@@ -65,6 +79,7 @@ namespace Units
         {
             movePosition.SetMovePosition(targetPosition);
         }
+
         public void MoveToTarget(Vector3 targetPosition)
         {
                 MoveTo(transform.position);
