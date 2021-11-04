@@ -25,8 +25,11 @@ namespace Units
 
         public Image healthBarAmount;
         public float currentHealth;
-
+        public Transform missile;
         public float atkCooldown;
+
+        //TMP
+        public Vector2 movement;
         private void Start()
         {
             instance = this;

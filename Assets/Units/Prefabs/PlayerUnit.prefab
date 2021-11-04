@@ -101,6 +101,7 @@ MonoBehaviour:
   hasAggro: 0
   healthBarAmount: {fileID: 5446169509193701394}
   currentHealth: 1
+  missile: {fileID: 7970398710126197076, guid: fbccdba9bd4846241bff260f795ec69f, type: 3}
   atkCooldown: 0
 --- !u!114 &4330490610527725323
 MonoBehaviour:
