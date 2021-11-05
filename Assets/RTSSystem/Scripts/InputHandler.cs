@@ -78,12 +78,8 @@ namespace InputManager
             //Command move
             if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0)
             {
-                foreach (UnitRTS unitRTS in selectedUnitRTSList)
-                {
-                    unitRTS.aggroTarget = null;
-                    unitRTS.hasAggro = false;
-                    //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
-                }
+                ReCommand(selectedUnitRTSList);
+
                 Vector2 moveToPosition = cursorPosition.getMousePosition();
                 // TODO: set dynamic vlaues down below
 
@@ -94,7 +90,6 @@ namespace InputManager
                     unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
                     targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
                 }
-
             }
 
             // Command attack
@@ -115,7 +110,8 @@ namespace InputManager
                         foreach (UnitRTS unitRTS in selectedUnitRTSList)
                         {
                             unitRTS.aggroTarget = target;
-                            unitRTS.hasAggro = true;
+                            unitRTS.hasAggro = true; 
+                            
                             //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
                         }
                         //Debug.Log("Attacking objective is " + selectedUnitRTSList[0].attackObjective);
@@ -137,6 +133,16 @@ namespace InputManager
             {
 
                 //Debug.Log(hit.collider.gameObject.tag);
+            }
+        }
+        private void ReCommand(List<UnitRTS> selectedUnits)
+        {
+            foreach (UnitRTS unitRTS in selectedUnitRTSList)
+            {
+                unitRTS.IfCommand = true;
+                unitRTS.aggroTarget = null;
+                unitRTS.hasAggro = false;
+                unitRTS.animator.SetBool("IfAttack", false); 
             }
         }
         private void SelectAllUnits()

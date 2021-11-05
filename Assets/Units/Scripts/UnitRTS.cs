@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Movement;
 
 namespace Units
 {
@@ -14,6 +14,7 @@ namespace Units
         public IClickable attackObjective; //TODO other class
         private GameObject selectedGameObject;
         private IMovePosition movePosition;
+        public Animator animator;
         
         private Collider2D[] rangeColliders;
         //change from public
@@ -24,8 +25,11 @@ namespace Units
 
         public Image healthBarAmount;
         public float currentHealth;
-
+        public Transform missile;
         public float atkCooldown;
+
+        public bool IfCommand = false;
+
         private void Start()
         {
             instance = this;
@@ -39,11 +43,30 @@ namespace Units
         }
         private void Update()
         {
+
             if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
             HandleHealth();
-            if (hasAggro) FollowAndAttack();
-            //OnCollisionEnter(GameObject.Find(attackObjective.ToString()).);
+            //player commands
+            if(IfCommand)
+            {
+                if (gameObject.GetComponent<MovePosition>().movement.sqrMagnitude == 0) IfCommand = false;
+            }
+            else
+            {
+                if (hasAggro)
+                {
+                    FollowAndAttack();
+                }
+                else
+                {
+                    CheckForEnenmyTargets(baseStats.aggroRange);
+                }
+            }
+ 
+            
+            //auto commands
         }
+
         public void SetSelectedVisible(bool visible)
         {
             selectedGameObject.SetActive(visible);
@@ -61,6 +84,7 @@ namespace Units
         {
             movePosition.SetMovePosition(targetPosition);
         }
+
         public void MoveToTarget(Vector3 targetPosition)
         {
                 MoveTo(transform.position);
@@ -102,21 +126,25 @@ namespace Units
         {
             //TODO: do better formula for fight
             damage -= baseStats.armor;
-            if (damage < 0) damage = 1;
+            if (damage <= 0) damage = 1;
             //Debug.Log(damage);
             currentHealth -= damage;
         }
         public void Attack()
         {
-            if(aggroTarget!=null)
+            if (aggroTarget != null)
             {
                 if (atkCooldown <= 0 && distanceToTarget <= baseStats.atkRange)
                 {
+                    AttackAnimation(true);
+                    animator.SetBool("IfAttack", true);
                     Debug.Log("Hit!");
                     aggroTarget.GetComponent<UnitRTS>().TakeDamage(baseStats.damage);
                     atkCooldown = baseStats.atkSpeed;
                 }
             }
+            else AttackAnimation(false);
+
             //else hasAggro = false;
 
             //Debug.Log("Hit: " + damage + " to " + attackObjective);
@@ -128,7 +156,26 @@ namespace Units
                 MoveToTarget(aggroTarget.position);
                 Attack();
             }
-            else hasAggro = false;
+            else
+            {
+                animator.SetBool("IfAttack", false);
+                hasAggro = false;
+            }       
+        }
+        public void AttackAnimation(bool TurnOn)
+        {
+            if (TurnOn)
+            {
+                float attackDirection = 0;
+                animator.SetBool("IfAttack", true);
+
+                attackDirection = aggroTarget.position.x - gameObject.transform.position.x;
+                if (attackDirection > 0) attackDirection = 1;
+                else attackDirection = -1;
+                animator.SetFloat("AttackDirection", attackDirection);
+            }
+            else animator.SetBool("IfAttack", false);
+
         }
         public void Die()
         {
