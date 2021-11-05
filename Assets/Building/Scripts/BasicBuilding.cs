@@ -15,7 +15,10 @@ namespace Building
         public BuildingType type;
         public new string name;
         public GameObject buildingPrefab;
+
         public BuildingStatTypes.Base baseStats;
+
+         
     }
 
 }
