@@ -7,9 +7,9 @@ namespace Movement
     public class MovePosition : MonoBehaviour, IMovePosition
     {
         public MovePosition instance;
-        internal Vector2 movePosition;
+        public Vector2 movePosition;
         public Animator animator;
-        private Vector2 movement;
+        public Vector2 movement;
 
         public void Awake()
         {

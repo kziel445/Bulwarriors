@@ -43,25 +43,30 @@ namespace Units
         }
         private void Update()
         {
-            //
+
             if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
             HandleHealth();
             //player commands
-            if (hasAggro)
+            if(IfCommand)
             {
-                FollowAndAttack();
+                if (gameObject.GetComponent<MovePosition>().movement.sqrMagnitude == 0) IfCommand = false;
             }
-            //else
-            //{
-            //    CheckForEnenmyTargets(baseStats.atkRange);
-            //}
-
-
-
+            else
+            {
+                if (hasAggro)
+                {
+                    FollowAndAttack();
+                }
+                else
+                {
+                    CheckForEnenmyTargets(baseStats.aggroRange);
+                }
+            }
+ 
+            
             //auto commands
-
-            //OnCollisionEnter(GameObject.Find(attackObjective.ToString()).);
         }
+
         public void SetSelectedVisible(bool visible)
         {
             selectedGameObject.SetActive(visible);
@@ -121,7 +126,7 @@ namespace Units
         {
             //TODO: do better formula for fight
             damage -= baseStats.armor;
-            if (damage < 0) damage = 1;
+            if (damage <= 0) damage = 1;
             //Debug.Log(damage);
             currentHealth -= damage;
         }

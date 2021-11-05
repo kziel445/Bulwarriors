@@ -79,6 +79,7 @@ namespace InputManager
             if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0)
             {
                 ReCommand(selectedUnitRTSList);
+
                 Vector2 moveToPosition = cursorPosition.getMousePosition();
                 // TODO: set dynamic vlaues down below
 
@@ -138,6 +139,7 @@ namespace InputManager
         {
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {
+                unitRTS.IfCommand = true;
                 unitRTS.aggroTarget = null;
                 unitRTS.hasAggro = false;
                 unitRTS.animator.SetBool("IfAttack", false); 

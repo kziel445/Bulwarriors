@@ -108,7 +108,9 @@ MonoBehaviour:
   hasAggro: 0
   healthBarAmount: {fileID: 1473499308020661186}
   currentHealth: 1
+  missile: {fileID: 0}
   atkCooldown: 0
+  IfCommand: 0
 --- !u!1001 &6910287094461440976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171,6 +173,18 @@ PrefabInstance:
     - target: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
       propertyPath: m_TagString
       value: Unit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446169509193701394, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.06054926
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446169509193701394, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446169509193701394, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6681126326978182757, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
       propertyPath: m_Layer
