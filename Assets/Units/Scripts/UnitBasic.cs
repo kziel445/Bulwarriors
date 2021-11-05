@@ -6,7 +6,7 @@ namespace Units
 {   
     /// BasicUnit
     [CreateAssetMenu(fileName = "New Unit", menuName = "New Unit")]
-    public class UnitTemplate : ScriptableObject
+    public class UnitBasic : ScriptableObject
     {
         public enum unitType
         {

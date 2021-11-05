@@ -9,14 +9,14 @@ namespace Units
     {
         public static UnitHandler instance;
         [SerializeField]
-        private UnitTemplate worker, warrior, archer;
+        private UnitBasic worker, warrior, archer;
         private void Awake()
         {
             instance = this;
         }
         public UnitStatTypes.Base GetUnitStats(string type)
         {
-        UnitTemplate unit;
+        UnitBasic unit;
             switch(type)
             {
                 case "worker":
