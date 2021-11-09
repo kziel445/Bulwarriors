@@ -28,9 +28,9 @@ namespace Units
         public Animator animator;
         //movement
         public bool IfCommand = false;
-        private IMovePosition movePosition;
+        internal IMovePosition movePosition;
 
-        private GameObject selectedGameObject;
+        internal GameObject selectedGameObject;
         private UnitRTS instance;
 
         private void Start()
