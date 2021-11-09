@@ -7,28 +7,31 @@ using Movement;
 namespace Units
 {
     /// Functions to show selected units and move groups
-    public class UnitRTS : MonoBehaviour, IClickable
+    public class UnitRTS : MonoBehaviour
     {
-        private UnitRTS instance;
+        //statistics
         public UnitStatTypes.Base baseStats;
+        public Image healthBarAmount;
+        public float currentHealth;
+        //combat
         public IClickable attackObjective; //TODO other class
-        private GameObject selectedGameObject;
-        private IMovePosition movePosition;
-        public Animator animator;
-        
         private Collider2D[] rangeColliders;
         //change from public
         public Transform aggroTarget;
         //change from public
         public bool hasAggro = false;
         private float distanceToTarget;
-
-        public Image healthBarAmount;
-        public float currentHealth;
         public Transform missile;
         public float atkCooldown;
 
+        //animation
+        public Animator animator;
+        //movement
         public bool IfCommand = false;
+        private IMovePosition movePosition;
+
+        private GameObject selectedGameObject;
+        private UnitRTS instance;
 
         private void Start()
         {
@@ -71,10 +74,7 @@ namespace Units
         {
             selectedGameObject.SetActive(visible);
         }
-        public void Click()
-        {
-            Debug.Log("Unit");
-        }
+
         public void OnTriggerEnter2D(Collider2D collision)
         {
             Debug.Log("trigger");
@@ -138,7 +138,7 @@ namespace Units
                 {
                     AttackAnimation(true);
                     animator.SetBool("IfAttack", true);
-                    Debug.Log("Hit!");
+                    //Debug.Log("Hit!");
                     aggroTarget.GetComponent<UnitRTS>().TakeDamage(baseStats.damage);
                     atkCooldown = baseStats.atkSpeed;
                 }
