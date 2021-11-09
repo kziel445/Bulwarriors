@@ -53,7 +53,7 @@ namespace Units
                     }
                     else if (type == enemyUnits)
                     {
-                        EnemyRTS enemyUnit = unit.GetComponent<EnemyRTS>();
+                        Enemy.EnemyRTS enemyUnit = unit.GetComponent<Enemy.EnemyRTS>();
                         enemyUnit.baseStats = GetUnitStats(unitName);
                     }
                 }
