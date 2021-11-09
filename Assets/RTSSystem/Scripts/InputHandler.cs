@@ -76,28 +76,10 @@ namespace InputManager
                 Debug.Log(selectedUnitRTSList.Count);
             }
 
-            //Command move
+
+            // Command attack or move
             if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0)
             {
-                Debug.Log("move");
-                ReCommand(selectedUnitRTSList);
-
-                Vector2 moveToPosition = cursorPosition.getMousePosition();
-                // TODO: set dynamic vlaues down below
-
-                List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f }, new int[] { 5, 10, 20 });
-                int targetPositionListIndex = 0;
-                foreach (PlayerRTS unitRTS in selectedUnitRTSList)
-                {
-                    unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
-                    targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
-                }
-            }
-
-            // Command attack
-            if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0)
-            {
-                Debug.Log("attack");
                 Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D clicked = Physics2D.Raycast(mousePosition, Vector2.zero);
                 if (clicked)
@@ -113,15 +95,15 @@ namespace InputManager
                         foreach (PlayerRTS unitRTS in selectedUnitRTSList)
                         {
                             unitRTS.aggroTarget = target;
-                            unitRTS.hasAggro = true; 
-                            
+                            unitRTS.hasAggro = true;
+
                             //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
                         }
                         //Debug.Log("Attacking objective is " + selectedUnitRTSList[0].attackObjective);
                     }
-
-
                 }
+                else GroupMove();
+
             }
 
             // when I-key pressed, select all units
@@ -138,6 +120,21 @@ namespace InputManager
                 //Debug.Log(hit.collider.gameObject.tag);
             }
         }
+        private void GroupMove()
+        {
+            ReCommand(selectedUnitRTSList);
+
+            Vector2 moveToPosition = cursorPosition.getMousePosition();
+            // TODO: set dynamic vlaues down below
+
+            List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f }, new int[] { 5, 10, 20 });
+            int targetPositionListIndex = 0;
+            foreach (PlayerRTS unitRTS in selectedUnitRTSList)
+            {
+                unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
+                targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
+            }
+        }
         private void ReCommand(List<PlayerRTS> selectedUnits)
         {
             foreach (PlayerRTS unitRTS in selectedUnitRTSList)
@@ -147,6 +144,10 @@ namespace InputManager
                 unitRTS.hasAggro = false;
                 unitRTS.animator.SetBool("IfAttack", false); 
             }
+        }
+        private void GroupAttack()
+        {
+
         }
         private void SelectAllUnits()
         {
