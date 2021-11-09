@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Building
+namespace Buildings
 {
     public class BuildingStatTypes : ScriptableObject
     {

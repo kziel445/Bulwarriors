@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBuilding : MonoBehaviour
+namespace Buildings.Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerBuilding : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public BuildingStatTypes.Base baseStats;
     }
 }

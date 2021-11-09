@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Building
+namespace Buildings
 {
     [CreateAssetMenu(fileName = "Building", menuName = "New Building/Basic")]
     public class BasicBuilding : ScriptableObject
