@@ -7,7 +7,9 @@ namespace Units.Player
 {
     public class PlayerRTS : UnitRTS, IClickable
     {
-        public PlayerRTS instance;
+        public static PlayerRTS instance;
+        
+        public bool IfCommand = false;
         // Start is called before the first frame update
         private void Start()
         {
@@ -26,9 +28,13 @@ namespace Units.Player
             if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
             HandleHealth();
             //player commands
+
             if (IfCommand)
             {
-                if (gameObject.GetComponent<MovePosition>().movement.sqrMagnitude == 0) IfCommand = false;
+                if (
+                    gameObject.GetComponent<MovePosition>().movement.sqrMagnitude == 0 && 
+                    Vector2.Distance(gameObject.GetComponent<MovePosition>().movePosition, transform.position) < 0.2f                    
+                    ) IfCommand = false;
             }
             else
             {
@@ -43,10 +49,25 @@ namespace Units.Player
             }
             //auto commands
         }
+        public override void HandleHealth()
+        {
+
+            healthBarAmount.fillAmount = currentHealth / baseStats.health;
+
+            if (currentHealth <= 0)
+            {
+                if (InputManager.InputHandler.instance.selectedUnitRTSList.Contains(gameObject.GetComponent<PlayerRTS>()))
+                {
+                    InputManager.InputHandler.instance.selectedUnitRTSList.Remove(gameObject.GetComponent<PlayerRTS>());
+                }
+                Die();
+            }
+        }
         public void Click()
         {
             Debug.Log("Unit");
         }
     }
 }
+
 

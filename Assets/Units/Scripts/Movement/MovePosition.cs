@@ -31,7 +31,7 @@ namespace Movement
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Speed", movement.sqrMagnitude);
 
-            if (Vector2.Distance(movePosition, transform.position) < 0.4f)
+            if (Vector2.Distance(movePosition, transform.position) < 0.2f)
             {
                 moveDir = Vector2.zero;
                 movement.x = moveDir.x;

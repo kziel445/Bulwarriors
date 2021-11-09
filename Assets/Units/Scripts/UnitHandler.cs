@@ -48,7 +48,7 @@ namespace Units
 
                     if (type == playerUnits)
                     {
-                        UnitRTS playerUnit = unit.GetComponent<UnitRTS>();
+                        Player.PlayerRTS playerUnit = unit.GetComponent<Player.PlayerRTS>();
                         playerUnit.baseStats = GetUnitStats(unitName);
                     }
                     else if (type == enemyUnits)

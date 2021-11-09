@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cursor;
+using Units.Player;
 using Units;
 
 namespace InputManager
@@ -12,7 +13,7 @@ namespace InputManager
         public static InputHandler instance;
         [SerializeField] private Transform selectionAreaTransform;
         private Vector2 startPosition;
-        public List<UnitRTS> selectedUnitRTSList;
+        public List<PlayerRTS> selectedUnitRTSList;
         private Position cursorPosition = new Position();
         public Transform playerUnits;
 
@@ -21,7 +22,7 @@ namespace InputManager
         private void Awake()
         {
             instance = this;
-            selectedUnitRTSList = new List<UnitRTS>();
+            selectedUnitRTSList = new List<PlayerRTS>();
             selectionAreaTransform.gameObject.SetActive(false);
         }
         // Update is called once per frame
@@ -56,7 +57,7 @@ namespace InputManager
                 Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, cursorPosition.getMousePosition());
                 // deslect units
 
-                foreach (UnitRTS unitRTS in selectedUnitRTSList)
+                foreach (PlayerRTS unitRTS in selectedUnitRTSList)
                 {
                     unitRTS.SetSelectedVisible(false);
                 }
@@ -64,7 +65,7 @@ namespace InputManager
                 // select units
                 foreach (Collider2D collider2D in collider2DArray)
                 {
-                    UnitRTS unitRTS = collider2D.GetComponent<UnitRTS>();
+                    PlayerRTS unitRTS = collider2D.GetComponent<PlayerRTS>();
                     if (unitRTS != null && unitRTS.gameObject.layer == 8)
                     {
                         unitRTS.SetSelectedVisible(true);
@@ -78,6 +79,7 @@ namespace InputManager
             //Command move
             if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0)
             {
+                Debug.Log("move");
                 ReCommand(selectedUnitRTSList);
 
                 Vector2 moveToPosition = cursorPosition.getMousePosition();
@@ -85,7 +87,7 @@ namespace InputManager
 
                 List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f }, new int[] { 5, 10, 20 });
                 int targetPositionListIndex = 0;
-                foreach (UnitRTS unitRTS in selectedUnitRTSList)
+                foreach (PlayerRTS unitRTS in selectedUnitRTSList)
                 {
                     unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
                     targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
@@ -95,6 +97,7 @@ namespace InputManager
             // Command attack
             if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0)
             {
+                Debug.Log("attack");
                 Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D clicked = Physics2D.Raycast(mousePosition, Vector2.zero);
                 if (clicked)
@@ -107,7 +110,7 @@ namespace InputManager
                     if (targetLayer != unitLayer && targetLayer != unitLayer + 1)
                     {
                         //Debug.Log(selectedUnitRTSList[0].name + " group is going to attack " + target);
-                        foreach (UnitRTS unitRTS in selectedUnitRTSList)
+                        foreach (PlayerRTS unitRTS in selectedUnitRTSList)
                         {
                             unitRTS.aggroTarget = target;
                             unitRTS.hasAggro = true; 
@@ -135,9 +138,9 @@ namespace InputManager
                 //Debug.Log(hit.collider.gameObject.tag);
             }
         }
-        private void ReCommand(List<UnitRTS> selectedUnits)
+        private void ReCommand(List<PlayerRTS> selectedUnits)
         {
-            foreach (UnitRTS unitRTS in selectedUnitRTSList)
+            foreach (PlayerRTS unitRTS in selectedUnitRTSList)
             {
                 unitRTS.IfCommand = true;
                 unitRTS.aggroTarget = null;
@@ -150,7 +153,7 @@ namespace InputManager
             Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(new Vector2(-100, -100), new Vector2(1000, 1000));
 
             //deslect units
-            foreach (UnitRTS unitRTS in selectedUnitRTSList)
+            foreach (PlayerRTS unitRTS in selectedUnitRTSList)
             {
                 unitRTS.SetSelectedVisible(false);
             }
@@ -158,7 +161,7 @@ namespace InputManager
             //select units
             foreach (Collider2D collider2D in collider2DArray)
             {
-                UnitRTS unitRTS = collider2D.GetComponent<UnitRTS>();
+                PlayerRTS unitRTS = collider2D.GetComponent<PlayerRTS>();
                 if (unitRTS != null)
                 {
                     unitRTS.SetSelectedVisible(true);

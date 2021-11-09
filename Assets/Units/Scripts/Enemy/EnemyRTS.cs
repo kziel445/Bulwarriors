@@ -7,6 +7,12 @@ namespace Units.Enemy
     public class EnemyRTS : UnitRTS, IClickable
     {
         public static EnemyRTS instance;
+        private void Awake()
+        {
+            selectedGameObject = transform.Find("Selected").gameObject;
+            movePosition = GetComponent<IMovePosition>();
+            SetSelectedVisible(false);
+        }
 
         void Start()
         {

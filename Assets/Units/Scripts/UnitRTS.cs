@@ -9,6 +9,8 @@ namespace Units
     /// Functions to show selected units and move groups
     public class UnitRTS : MonoBehaviour
     {
+        public static UnitRTS instance;
+
         //statistics
         public UnitStatTypes.Base baseStats;
         public Image healthBarAmount;
@@ -27,48 +29,18 @@ namespace Units
         //animation
         public Animator animator;
         //movement
-        public bool IfCommand = false;
+
         internal IMovePosition movePosition;
 
         internal GameObject selectedGameObject;
-        private UnitRTS instance;
+        
 
         private void Start()
         {
             instance = this;
             currentHealth = baseStats.health;
         }
-        private void Awake()
-        {
-            selectedGameObject = transform.Find("Selected").gameObject;
-            movePosition = GetComponent<IMovePosition>();
-            SetSelectedVisible(false);
-        }
-        private void Update()
-        {
 
-            if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
-            HandleHealth();
-            //player commands
-            if(IfCommand)
-            {
-                if (gameObject.GetComponent<MovePosition>().movement.sqrMagnitude == 0) IfCommand = false;
-            }
-            else
-            {
-                if (hasAggro)
-                {
-                    FollowAndAttack();
-                }
-                else
-                {
-                    CheckForEnenmyTargets(baseStats.aggroRange);
-                }
-            }
- 
-            
-            //auto commands
-        }
 
         public void SetSelectedVisible(bool visible)
         {
@@ -109,16 +81,13 @@ namespace Units
             }
         }
         // combat segment
-        public void HandleHealth()
+        public virtual void HandleHealth()
         {
             healthBarAmount.fillAmount = currentHealth / baseStats.health;
 
             if (currentHealth <= 0)
             {
-                if (InputManager.InputHandler.instance.selectedUnitRTSList.Contains(gameObject.GetComponent<UnitRTS>()))
-                    {
-                    InputManager.InputHandler.instance.selectedUnitRTSList.Remove(gameObject.GetComponent<UnitRTS>());
-                    }
+
                 Die();
             }
         } 

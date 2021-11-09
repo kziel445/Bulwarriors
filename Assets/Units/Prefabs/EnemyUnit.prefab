@@ -103,13 +103,13 @@ MonoBehaviour:
     health: 1
     armor: 1
     movementSpeed: 1
-  animator: {fileID: 8476871217724236732}
-  aggroTarget: {fileID: 0}
-  hasAggro: 0
   healthBarAmount: {fileID: 1473499308020661186}
   currentHealth: 1
+  aggroTarget: {fileID: 0}
+  hasAggro: 0
   missile: {fileID: 0}
   atkCooldown: 0
+  animator: {fileID: 8476871217724236732}
   IfCommand: 0
 --- !u!1001 &6910287094461440976
 PrefabInstance:
@@ -185,6 +185,10 @@ PrefabInstance:
     - target: {fileID: 5446169509193701394, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367212826603208795, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6681126326978182757, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
       propertyPath: m_Layer
