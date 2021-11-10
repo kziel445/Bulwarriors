@@ -9,7 +9,6 @@ namespace Units
         [System.Serializable]
         public class Base
         {
-            //
             public float cost;
             //attack stats
             public float damage, atkSpeed, atkRange, aggroRange;

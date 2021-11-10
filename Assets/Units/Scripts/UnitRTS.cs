@@ -16,6 +16,7 @@ namespace Units
         public Image healthBarAmount;
         public float currentHealth;
         //combat
+        public bool isPlayer;
         public IClickable attackObjective; //TODO other class
         private Collider2D[] rangeColliders;
         //change from public
@@ -87,7 +88,6 @@ namespace Units
 
             if (currentHealth <= 0)
             {
-
                 Die();
             }
         } 
@@ -108,7 +108,10 @@ namespace Units
                     AttackAnimation(true);
                     animator.SetBool("IfAttack", true);
                     //Debug.Log("Hit!");
-                    aggroTarget.GetComponent<UnitRTS>().TakeDamage(baseStats.damage);
+                    
+                    if(isPlayer) aggroTarget.GetComponent<Enemy.EnemyRTS>().TakeDamage(baseStats.damage);
+                    else aggroTarget.GetComponent<Player.PlayerRTS>().TakeDamage(baseStats.damage);
+
                     atkCooldown = baseStats.atkSpeed;
                 }
             }

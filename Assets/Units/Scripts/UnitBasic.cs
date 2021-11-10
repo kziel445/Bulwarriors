@@ -12,7 +12,6 @@ namespace Units
         {
             Worker, Warrior, Archer
         }
-
         //statistics
         [Header("Unit Settings")]
         public string unitName;

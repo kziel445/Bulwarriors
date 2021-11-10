@@ -44,7 +44,6 @@ namespace Units
                 foreach (Transform unit in child)
                 {
                     string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
-                    var stats = GetUnitStats(unitName);
 
                     if (type == playerUnits)
                     {

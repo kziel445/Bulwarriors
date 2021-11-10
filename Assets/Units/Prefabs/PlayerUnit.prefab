@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3376829743847562926}
   - component: {fileID: 8249411027295003965}
   - component: {fileID: 6502818908295786300}
-  - component: {fileID: 6900654596202218194}
   - component: {fileID: 4330490610527725323}
   - component: {fileID: 6367212826603208795}
   - component: {fileID: 8659747472063240193}
@@ -76,35 +75,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6900654596202218194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3903549335357196982}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb35e6452df4f86488cdc2b99c7b2b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseStats:
-    cost: 1
-    damage: 1
-    atkSpeed: 1
-    atkRange: 1
-    aggroRange: 1
-    health: 1
-    armor: 1
-    movementSpeed: 1
-  healthBarAmount: {fileID: 5446169509193701394}
-  currentHealth: 1
-  aggroTarget: {fileID: 0}
-  hasAggro: 0
-  missile: {fileID: 7970398710126197076, guid: fbccdba9bd4846241bff260f795ec69f, type: 3}
-  atkCooldown: 0
-  animator: {fileID: 3046017700376117356}
-  IfCommand: 0
 --- !u!114 &4330490610527725323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +114,7 @@ MonoBehaviour:
     movementSpeed: 0
   healthBarAmount: {fileID: 5446169509193701394}
   currentHealth: 0
+  isPlayer: 1
   aggroTarget: {fileID: 0}
   hasAggro: 0
   missile: {fileID: 0}
