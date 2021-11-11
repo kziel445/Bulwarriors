@@ -55,9 +55,10 @@ namespace Core
 
             if (currentHealth <= 0)
             {
-                if (InputManager.InputHandler.instance.selectedUnitRTSList.Contains(gameObject.GetComponent<Units.Player.PlayerRTS>()))
+                if (InputManager.InputHandler.instance.selectedUnitRTSList.Contains(gameObject.GetComponentInParent<Units.Player.PlayerRTS>()))
                 {
-                    InputManager.InputHandler.instance.selectedUnitRTSList.Remove(gameObject.GetComponent<Units.Player.PlayerRTS>());
+                    InputManager.InputHandler.instance.selectedUnitRTSList.Remove(gameObject.GetComponentInParent<Units.Player.PlayerRTS>());
+                    Debug.Log("Object died, removed");
                 }
                 Die();
             }

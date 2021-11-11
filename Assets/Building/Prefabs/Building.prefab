@@ -168,6 +168,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3344567179856296187}
     m_Modifications:
+    - target: {fileID: 547677863885083938, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3570855488675475108, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_Name
       value: StatsDisplay

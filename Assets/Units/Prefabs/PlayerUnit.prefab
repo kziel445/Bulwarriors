@@ -112,8 +112,6 @@ MonoBehaviour:
     health: 1
     armor: 0
     movementSpeed: 0
-  healthBarAmount: {fileID: 5446169509193701394}
-  currentHealth: 0
   isPlayer: 1
   aggroTarget: {fileID: 0}
   hasAggro: 0
@@ -318,22 +316,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &818693868831428009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8041276528084228050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55440e0310934cc48871327a18fe2800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBarAmount: {fileID: 5446169509193701394}
-  currentHealth: 0
-  baseHealth: 1
-  baseArmor: 0
 --- !u!1001 &5279951169481770267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -444,19 +426,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
   m_PrefabInstance: {fileID: 5279951169481770267}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8041276528084228050 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2800814524884259529, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
-  m_PrefabInstance: {fileID: 5279951169481770267}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5446169509193701394 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 203376446852521225, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
-  m_PrefabInstance: {fileID: 5279951169481770267}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8041276528084228050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

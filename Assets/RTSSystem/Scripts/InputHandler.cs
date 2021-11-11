@@ -137,12 +137,20 @@ namespace InputManager
         }
         private void ReCommand(List<PlayerRTS> selectedUnits)
         {
-            foreach (PlayerRTS unitRTS in selectedUnitRTSList)
+            foreach (PlayerRTS unitRTS in selectedUnits)
             {
-                unitRTS.IfCommand = true;
-                unitRTS.aggroTarget = null;
-                unitRTS.hasAggro = false;
-                unitRTS.animator.SetBool("IfAttack", false); 
+                try
+                {
+                    unitRTS.IfCommand = true;
+                    unitRTS.aggroTarget = null;
+                    unitRTS.hasAggro = false;
+                    unitRTS.animator.SetBool("IfAttack", false);
+                }
+                catch(MissingReferenceException)
+                {
+                    Debug.Log("Object died");
+                }
+                
             }
         }
         private void GroupAttack()
