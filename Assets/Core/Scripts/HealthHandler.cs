@@ -58,7 +58,6 @@ namespace Core
                 if (InputManager.InputHandler.instance.selectedUnitRTSList.Contains(gameObject.GetComponentInParent<Units.Player.PlayerRTS>()))
                 {
                     InputManager.InputHandler.instance.selectedUnitRTSList.Remove(gameObject.GetComponentInParent<Units.Player.PlayerRTS>());
-                    Debug.Log("Object died, removed");
                 }
                 Die();
             }

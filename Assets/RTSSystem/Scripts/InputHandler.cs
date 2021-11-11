@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cursor;
 using Units.Player;
-using Units;
+using UI;
 
 namespace InputManager
 {
@@ -72,6 +72,7 @@ namespace InputManager
                         selectedUnitRTSList.Add(unitRTS);
                     }
                 }
+                UIHandler.instance.UpdateSelectedUnits();
                 // show how manyh objects has been selected
                 Debug.Log(selectedUnitRTSList.Count);
             }
