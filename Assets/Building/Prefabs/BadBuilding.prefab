@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8785293758967982823}
   - component: {fileID: 5542922774733731041}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5894519150096459024}
   - component: {fileID: 5894519150096459025}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 5894519150835256210}
   - component: {fileID: 5894519150835256301}
   - component: {fileID: 8518670937148741905}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: BadBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,9 +249,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5894519150835256210}
     m_Modifications:
+    - target: {fileID: 329639259714526961, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800814524884259529, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3570855488675475108, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_Name
       value: StatsDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570855488675475108, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3570855488675475108, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_IsActive
