@@ -14,7 +14,6 @@ namespace Units.Player
         private void Start()
         {
             instance = this;
-            currentHealth = baseStats.health;
         }
         private void Awake()
         {
@@ -26,7 +25,7 @@ namespace Units.Player
         {
 
             if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
-            HandleHealth();
+            //HandleHealth();
             //player commands
 
             if (IfCommand)
@@ -49,20 +48,17 @@ namespace Units.Player
             }
             //auto commands
         }
-        public override void HandleHealth()
-        {
+        //public override void HandleHealth()
+        //{
 
-            healthBarAmount.fillAmount = currentHealth / baseStats.health;
+        //    healthBarAmount.fillAmount = currentHealth / baseStats.health;
 
-            if (currentHealth <= 0)
-            {
-                if (InputManager.InputHandler.instance.selectedUnitRTSList.Contains(gameObject.GetComponent<PlayerRTS>()))
-                {
-                    InputManager.InputHandler.instance.selectedUnitRTSList.Remove(gameObject.GetComponent<PlayerRTS>());
-                }
-                Die();
-            }
-        }
+        //    if (currentHealth <= 0)
+        //    {
+                
+        //        Die();
+        //    }
+        //}
         public void Click()
         {
             Debug.Log("Unit");

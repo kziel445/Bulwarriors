@@ -20,7 +20,6 @@ namespace Buildings
             {
                 case "barrack":
                     building = barracks;
-                    Debug.Log(building.baseStats.health);
                     break;
                 case "house":
                     building = house;

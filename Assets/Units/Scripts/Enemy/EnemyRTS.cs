@@ -17,13 +17,12 @@ namespace Units.Enemy
         void Start()
         {
             instance = this;
-            currentHealth = baseStats.health;
         }
 
         void Update()
         {
             if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
-            HandleHealth();
+            //HandleHealth();
             if (!hasAggro)
             {
                 CheckForEnenmyTargets(baseStats.aggroRange);

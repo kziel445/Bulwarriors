@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Movement;
 
 namespace Units
 {
@@ -13,8 +12,6 @@ namespace Units
 
         //statistics
         public UnitStatTypes.Base baseStats;
-        public Image healthBarAmount;
-        public float currentHealth;
         //combat
         public bool isPlayer;
         public IClickable attackObjective; //TODO other class
@@ -39,7 +36,6 @@ namespace Units
         private void Start()
         {
             instance = this;
-            currentHealth = baseStats.health;
         }
 
 
@@ -82,23 +78,27 @@ namespace Units
             }
         }
         // combat segment
-        public virtual void HandleHealth()
-        {
-            healthBarAmount.fillAmount = currentHealth / baseStats.health;
+        //public virtual void HandleHealth()
+        //{
+        //    healthBarAmount.fillAmount = currentHealth / baseStats.health;
 
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-        } 
-        public void TakeDamage(float damage)
-        {
-            //TODO: do better formula for fight
-            damage -= baseStats.armor;
-            if (damage <= 0) damage = 1;
-            //Debug.Log(damage);
-            currentHealth -= damage;
-        }
+        //    if (currentHealth <= 0)
+        //    {
+        //        Die();
+        //    }
+        //} 
+        //public void TakeDamage(float damage)
+        //{
+        //    //TODO: do better formula for fight
+        //    damage -= baseStats.armor;
+        //    if (damage <= 0) damage = 1;
+        //    //Debug.Log(damage);
+        //    currentHealth -= damage;
+        //}
+        //public void Die()
+        //{
+        //    Destroy(gameObject);
+        //}
         public void Attack()
         {
             if (aggroTarget != null)
@@ -109,9 +109,7 @@ namespace Units
                     animator.SetBool("IfAttack", true);
                     //Debug.Log("Hit!");
                     
-                    if(isPlayer) aggroTarget.GetComponent<Enemy.EnemyRTS>().TakeDamage(baseStats.damage);
-                    else aggroTarget.GetComponent<Player.PlayerRTS>().TakeDamage(baseStats.damage);
-
+                    aggroTarget.GetComponentInChildren<Core.HealthHandler>().TakeDamage(baseStats.damage);
                     atkCooldown = baseStats.atkSpeed;
                 }
             }
@@ -149,10 +147,7 @@ namespace Units
             else animator.SetBool("IfAttack", false);
 
         }
-        public void Die()
-        {
-            Destroy(gameObject);
-        }
+
     }
     //Debug.Log("collide (name) : " + collide.collider.gameObject.name);
     //Debug.Log("collide (tag) : " + collide.collider.gameObject.tag);

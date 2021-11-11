@@ -242,6 +242,8 @@ MonoBehaviour:
     armor: 0
     attack: 0
     cost: 0
+  healthBarAmount: {fileID: 4326182794470099373}
+  currentHealth: 0
 --- !u!1001 &4529277182221964452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -252,6 +254,10 @@ PrefabInstance:
     - target: {fileID: 329639259714526961, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 547677863885083938, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2800814524884259529, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_Layer
@@ -267,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3570855488675475108, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_Pivot.x
@@ -360,3 +366,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
   m_PrefabInstance: {fileID: 4529277182221964452}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4326182794470099373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 203376446852521225, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+  m_PrefabInstance: {fileID: 4529277182221964452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
