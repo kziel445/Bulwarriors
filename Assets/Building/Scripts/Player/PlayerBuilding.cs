@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Buildings.Player
 {
-    public class PlayerBuilding : MonoBehaviour
+    public class PlayerBuilding : BuildingRTS
     {
-        public BuildingStatTypes.Base baseStats;
+        
     }
 }

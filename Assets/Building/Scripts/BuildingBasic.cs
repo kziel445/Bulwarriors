@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Buildings
 {
     [CreateAssetMenu(fileName = "Building", menuName = "New Building/Basic")]
-    public class BasicBuilding : ScriptableObject
+    public class BuildingBasic : ScriptableObject
     {
         public enum BuildingType
         {

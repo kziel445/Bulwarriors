@@ -6,6 +6,7 @@ namespace Buildings
 {
     public class BuildingRTS : MonoBehaviour, IClickable
     {
+        public BuildingStatTypes.Base baseStats;
         [System.Serializable]
         public class BuildUnits
         {
