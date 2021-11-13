@@ -62,6 +62,13 @@ namespace InputManager
                     unitRTS.SetSelectedVisible(false);
                 }
                 selectedUnitRTSList.Clear();
+
+                if(collider2DArray.Length==0)
+                {
+                    Debug.Log("Building actions");
+                    return;
+                }
+                
                 // select units
                 foreach (Collider2D collider2D in collider2DArray)
                 {

@@ -25,6 +25,10 @@ namespace UI
 
             
         }
+        public void ShowStatistics()
+        {
+
+        }
         public void UpdateSelectedUnits()
         {
             if (InputHandler.instance.selectedUnitRTSList.Count == 0)
