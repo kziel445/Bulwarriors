@@ -17,9 +17,7 @@ namespace Units.Player
         }
         private void Awake()
         {
-            selectedGameObject = transform.Find("Selected").gameObject;
             movePosition = GetComponent<IMovePosition>();
-            SetSelectedVisible(false);
         }
         private void Update()
         {

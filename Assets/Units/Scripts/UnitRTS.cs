@@ -30,18 +30,9 @@ namespace Units
 
         internal IMovePosition movePosition;
 
-        internal GameObject selectedGameObject;
-        
-
         private void Start()
         {
             instance = this;
-        }
-
-
-        public void SetSelectedVisible(bool visible)
-        {
-            selectedGameObject.SetActive(visible);
         }
 
         public void OnTriggerEnter2D(Collider2D collision)
@@ -77,28 +68,6 @@ namespace Units
                 }
             }
         }
-        // combat segment
-        //public virtual void HandleHealth()
-        //{
-        //    healthBarAmount.fillAmount = currentHealth / baseStats.health;
-
-        //    if (currentHealth <= 0)
-        //    {
-        //        Die();
-        //    }
-        //} 
-        //public void TakeDamage(float damage)
-        //{
-        //    //TODO: do better formula for fight
-        //    damage -= baseStats.armor;
-        //    if (damage <= 0) damage = 1;
-        //    //Debug.Log(damage);
-        //    currentHealth -= damage;
-        //}
-        //public void Die()
-        //{
-        //    Destroy(gameObject);
-        //}
         public void Attack()
         {
             if (aggroTarget != null)

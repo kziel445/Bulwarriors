@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3282622585745739228}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 5.308616, y: 5.308616, z: 0}
   m_Children: []
   m_Father: {fileID: 3344567179856296187}
@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 3344567179856296187}
   - component: {fileID: 3344567179856296068}
   - component: {fileID: 693455230049167992}
+  - component: {fileID: 2979974026489213280}
   m_Layer: 9
   m_Name: Building
   m_TagString: Untagged
@@ -108,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3344567179856296069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 0.9621028, z: -3.120916}
+  m_LocalPosition: {x: 0, y: 0, z: -3.120916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5828192954327010521}
@@ -162,6 +163,19 @@ MonoBehaviour:
     cost: 0
   healthBarAmount: {fileID: 0}
   currentHealth: 0
+--- !u!114 &2979974026489213280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3344567179856296069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8535c038594fe5f478c8c829b4ff46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInteracting: 0
 --- !u!1 &3344567180728129146
 GameObject:
   m_ObjectHideFlags: 0

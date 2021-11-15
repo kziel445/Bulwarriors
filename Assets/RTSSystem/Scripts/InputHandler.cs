@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cursor;
 using Units.Player;
+using Core;
 using UI;
 
 namespace InputManager
@@ -59,7 +60,7 @@ namespace InputManager
 
                 foreach (PlayerRTS unitRTS in selectedUnitRTSList)
                 {
-                    unitRTS.SetSelectedVisible(false);
+                    unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
                 }
                 selectedUnitRTSList.Clear();
 
@@ -75,7 +76,7 @@ namespace InputManager
                     PlayerRTS unitRTS = collider2D.GetComponent<PlayerRTS>();
                     if (unitRTS != null && unitRTS.gameObject.layer == 8)
                     {
-                        unitRTS.SetSelectedVisible(true);
+                        unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
                         selectedUnitRTSList.Add(unitRTS);
                     }
                 }
@@ -172,7 +173,7 @@ namespace InputManager
             //deslect units
             foreach (PlayerRTS unitRTS in selectedUnitRTSList)
             {
-                unitRTS.SetSelectedVisible(false);
+                unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
             }
             selectedUnitRTSList.Clear();
             //select units
@@ -181,7 +182,7 @@ namespace InputManager
                 PlayerRTS unitRTS = collider2D.GetComponent<PlayerRTS>();
                 if (unitRTS != null)
                 {
-                    unitRTS.SetSelectedVisible(true);
+                    unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
                     selectedUnitRTSList.Add(unitRTS);
                 }
             }
