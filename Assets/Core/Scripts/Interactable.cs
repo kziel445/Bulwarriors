@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Core
+namespace Core.Interactables
 {
     public class Interactable : MonoBehaviour
     {
@@ -12,12 +10,6 @@ namespace Core
         {
             selectedGameObject = transform.Find("Selected").gameObject;
             SetSelectedVisible(false);
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
         public virtual void SetSelection(bool visible)
         {

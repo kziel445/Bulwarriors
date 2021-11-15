@@ -12,6 +12,8 @@ namespace UI
         public List<GameObject> unitsSelected;
         public GameObject frame;
         public GameObject actionUI;
+
+        public int playerUnits = 0;
         private float minPosX = -580, maxPosY = 37;
 
         private void Start()

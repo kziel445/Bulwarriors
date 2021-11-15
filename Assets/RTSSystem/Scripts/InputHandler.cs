@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cursor;
 using Units.Player;
-using Core;
+using Core.Interactables;
 using UI;
 
 namespace InputManager
@@ -14,8 +13,15 @@ namespace InputManager
         public static InputHandler instance;
         [SerializeField] private Transform selectionAreaTransform;
         private Vector2 startPosition;
-        public List<PlayerRTS> selectedUnitRTSList;
+
+        //object selection
+        public List<Interactable> selectedUnitRTSList;
+        public Transform selectedObject=null;
+        public bool isSelectedBuilding = false;
+
+        //cursor
         private Position cursorPosition = new Position();
+        //unused?
         public Transform playerUnits;
 
         [SerializeField] private Camera camera;
@@ -23,7 +29,7 @@ namespace InputManager
         private void Awake()
         {
             instance = this;
-            selectedUnitRTSList = new List<PlayerRTS>();
+            selectedUnitRTSList = new List<Interactable>();
             selectionAreaTransform.gameObject.SetActive(false);
         }
         // Update is called once per frame
@@ -57,15 +63,21 @@ namespace InputManager
                 selectionAreaTransform.gameObject.SetActive(false);
                 Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, cursorPosition.getMousePosition());
                 // deslect units
-
-                foreach (PlayerRTS unitRTS in selectedUnitRTSList)
+                
+                foreach (Interactable interactableObject in selectedUnitRTSList)
                 {
-                    unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
+                    interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
+                    isSelectedBuilding = false;
                 }
                 selectedUnitRTSList.Clear();
 
-                if(collider2DArray.Length==0)
+                if(collider2DArray.Length==1 && collider2DArray[0].GetComponent<Buildings.Player.PlayerBuilding>()!=null)
                 {
+                    Interactable building = collider2DArray[0].gameObject.GetComponent<Interactable>();
+                    building.SetSelectedVisible(true);
+                    selectedUnitRTSList.Add(building);
+                    isSelectedBuilding = true;
+
                     Debug.Log("Building actions");
                     return;
                 }
@@ -73,11 +85,11 @@ namespace InputManager
                 // select units
                 foreach (Collider2D collider2D in collider2DArray)
                 {
-                    PlayerRTS unitRTS = collider2D.GetComponent<PlayerRTS>();
-                    if (unitRTS != null && unitRTS.gameObject.layer == 8)
+                    Interactable interactableObject = collider2D.GetComponent<Interactable>();
+                    if (interactableObject != null && interactableObject.gameObject.layer == 8)
                     {
-                        unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
-                        selectedUnitRTSList.Add(unitRTS);
+                        interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
+                        selectedUnitRTSList.Add(interactableObject);
                     }
                 }
                 UIHandler.instance.UpdateSelectedUnits();
@@ -87,7 +99,7 @@ namespace InputManager
 
 
             // Command attack or move
-            if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0)
+            if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0 && !isSelectedBuilding)
             {
                 Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D clicked = Physics2D.Raycast(mousePosition, Vector2.zero);
@@ -101,9 +113,10 @@ namespace InputManager
                     if (targetLayer != unitLayer && targetLayer != unitLayer + 1)
                     {
                         //Debug.Log(selectedUnitRTSList[0].name + " group is going to attack " + target);
-                        foreach (PlayerRTS unitRTS in selectedUnitRTSList)
+                        foreach (Interactable interactableObject in selectedUnitRTSList)
                         {
-                            unitRTS.aggroTarget = target;
+                            PlayerRTS unitRTS = interactableObject.GetComponent<PlayerRTS>();
+                            unitRTS.GetComponent<PlayerRTS>().aggroTarget = target;
                             unitRTS.hasAggro = true;
 
                             //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
@@ -115,12 +128,12 @@ namespace InputManager
 
             }
 
-            // when I-key pressed, select all units
-            if (Input.GetKey(KeyCode.I))
-            {
-                SelectAllUnits();
-                Debug.Log(selectedUnitRTSList.Count);
-            }
+            //// when I-key pressed, select all units
+            //if (Input.GetKey(KeyCode.I))
+            //{
+            //    SelectAllUnits();
+            //    Debug.Log(selectedUnitRTSList.Count);
+            //}
 
             RaycastHit2D hit = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit.collider != null)
@@ -138,16 +151,19 @@ namespace InputManager
 
             List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f }, new int[] { 5, 10, 20 });
             int targetPositionListIndex = 0;
-            foreach (PlayerRTS unitRTS in selectedUnitRTSList)
+            foreach (Interactable interactableObject in selectedUnitRTSList)
             {
+                PlayerRTS unitRTS = interactableObject.GetComponent<PlayerRTS>();
                 unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
                 targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
             }
         }
-        private void ReCommand(List<PlayerRTS> selectedUnits)
+        private void ReCommand(List<Interactable> selectedUnits)
         {
-            foreach (PlayerRTS unitRTS in selectedUnits)
+            foreach (Interactable interactableObject in selectedUnits)
             {
+
+                PlayerRTS unitRTS = interactableObject.GetComponent<PlayerRTS>();
                 try
                 {
                     unitRTS.IfCommand = true;
@@ -166,27 +182,27 @@ namespace InputManager
         {
 
         }
-        private void SelectAllUnits()
-        {
-            Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(new Vector2(-100, -100), new Vector2(1000, 1000));
+        //private void SelectAllUnits()
+        //{
+        //    Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(new Vector2(-100, -100), new Vector2(1000, 1000));
 
-            //deslect units
-            foreach (PlayerRTS unitRTS in selectedUnitRTSList)
-            {
-                unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
-            }
-            selectedUnitRTSList.Clear();
-            //select units
-            foreach (Collider2D collider2D in collider2DArray)
-            {
-                PlayerRTS unitRTS = collider2D.GetComponent<PlayerRTS>();
-                if (unitRTS != null)
-                {
-                    unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
-                    selectedUnitRTSList.Add(unitRTS);
-                }
-            }
-        }
+        //    //deslect units
+        //    foreach (PlayerRTS unitRTS in selectedUnitRTSList)
+        //    {
+        //        unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
+        //    }
+        //    selectedUnitRTSList.Clear();
+        //    //select units
+        //    foreach (Collider2D collider2D in collider2DArray)
+        //    {
+        //        PlayerRTS unitRTS = collider2D.GetComponent<PlayerRTS>();
+        //        if (unitRTS != null)
+        //        {
+        //            unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
+        //            selectedUnitRTSList.Add(unitRTS);
+        //        }
+        //    }
+        //}
         private List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
         {
             List<Vector2> positionList = new List<Vector2>();
