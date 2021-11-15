@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cursor;
 using Units.Player;
-using Units;
+using UI;
 
 namespace InputManager
 {
@@ -62,6 +62,13 @@ namespace InputManager
                     unitRTS.SetSelectedVisible(false);
                 }
                 selectedUnitRTSList.Clear();
+
+                if(collider2DArray.Length==0)
+                {
+                    Debug.Log("Building actions");
+                    return;
+                }
+                
                 // select units
                 foreach (Collider2D collider2D in collider2DArray)
                 {
@@ -72,6 +79,7 @@ namespace InputManager
                         selectedUnitRTSList.Add(unitRTS);
                     }
                 }
+                UIHandler.instance.UpdateSelectedUnits();
                 // show how manyh objects has been selected
                 Debug.Log(selectedUnitRTSList.Count);
             }

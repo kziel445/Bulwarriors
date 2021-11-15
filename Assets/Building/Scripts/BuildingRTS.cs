@@ -12,6 +12,8 @@ namespace Buildings
         public Image healthBarAmount;
         public float currentHealth;
 
+        internal GameObject selectedGameObject;
+
         [System.Serializable]
         public class BuildUnits
         {
@@ -20,6 +22,7 @@ namespace Buildings
         }
         public void Click()
         {
+
             Debug.Log("Building options in UI");
             Debug.Log("Building health");
         }
@@ -35,27 +38,11 @@ namespace Buildings
         {
 
         }
-        public virtual void HandleHealth()
+        public void SetSelectedVisible(bool visible)
         {
-            healthBarAmount.fillAmount = currentHealth / baseStats.health;
+            selectedGameObject.SetActive(visible);
+        }
 
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-        }
-        public void TakeDamage(float damage)
-        {
-            //TODO: do better formula for fight
-            damage -= baseStats.armor;
-            if (damage <= 0) damage = 1;
-            //Debug.Log(damage);
-            currentHealth -= damage;
-        }
-        public void Die()
-        {
-            Destroy(gameObject);
-        }
     }
 
 }
