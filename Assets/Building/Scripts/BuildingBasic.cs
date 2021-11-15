@@ -17,7 +17,7 @@ namespace Buildings
         public GameObject buildingPrefab;
 
         public BuildingStatTypes.Base baseStats;
-        public BuildingRTS.BuildUnits Units;
+        //public BuildingRTS.BuildUnits Units;
          
     }
 

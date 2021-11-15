@@ -26,18 +26,6 @@ namespace Buildings
             Debug.Log("Building options in UI");
             Debug.Log("Building health");
         }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
         public void SetSelectedVisible(bool visible)
         {
             selectedGameObject.SetActive(visible);
