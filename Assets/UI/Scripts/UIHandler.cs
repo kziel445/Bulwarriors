@@ -52,7 +52,7 @@ namespace UI
                 foreach (var unit in InputHandler.instance.selectedUnitRTSList)
                 {
                     var sprite = unit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
-                    frame.transform.GetChild(0).GetComponent<Image>().sprite = sprite.sprite;
+                    frame.transform.GetChild(1).GetComponent<Image>().sprite = sprite.sprite;
                     var image = (GameObject)Instantiate(frame, actionUI.transform);
                     image.GetComponent<RectTransform>().anchoredPosition = new Vector2(posX, posY);
                     unitsSelected.Add(image);
