@@ -4,11 +4,14 @@ namespace Core.Interactables
 {
     public class Interactable : MonoBehaviour
     {
-        internal GameObject selectedGameObject;
+        public static Interactable instance;
+        [SerializeField] internal GameObject selectedGameObject;
         public bool isInteracting = false;
         private void Awake()
         {
-            selectedGameObject = transform.Find("Selected").gameObject;
+            instance = this;
+            //selectedGameObject = transform.Find("Selected").gameObject;
+
             SetSelectedVisible(false);
         }
         public virtual void SetSelection(bool visible)

@@ -11,7 +11,7 @@ namespace UI
         [SerializeField] private Button actionButton;
         [SerializeField] private Transform actionListUI;
 
-        private List<Button> buttons = new List<Button>();
+        public List<Button> buttons = new List<Button>();
 
         private void Awake()
         {
@@ -40,11 +40,12 @@ namespace UI
         }
         public void ClearActions()
         {
+            Debug.Log("Clear buttons");
             foreach(Button button in buttons)
             {
-                buttons.Remove(button);
-                Destroy(button);
+                Destroy(button.gameObject);
             }
+            buttons.Clear();
         }
     }
 

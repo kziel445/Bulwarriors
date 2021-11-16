@@ -70,6 +70,12 @@ namespace InputManager
                     interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
                     isSelectedBuilding = false;
                 }
+                if(selectedUnitRTSList.Find(x=> x.GetComponent<BuildingUI>()))
+                {
+                    selectedUnitRTSList[0].GetComponent<BuildingUI>().SetSelectedVisible(false);
+                    isSelectedBuilding = false;
+                    
+                }
                 selectedUnitRTSList.Clear();
 
                 if(collider2DArray.Length==1 && collider2DArray[0].GetComponent<Buildings.Player.PlayerBuilding>()!=null)

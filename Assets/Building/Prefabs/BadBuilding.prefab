@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8535c038594fe5f478c8c829b4ff46fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedGameObject: {fileID: 6866212300251364042}
   isInteracting: 0
 --- !u!1 &6866212300251364042
 GameObject:
