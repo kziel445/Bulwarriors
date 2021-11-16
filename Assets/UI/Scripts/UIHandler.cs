@@ -11,7 +11,7 @@ namespace UI
         public static UIHandler instance;
         public List<GameObject> unitsSelected;
         public GameObject frame;
-        public GameObject actionUI;
+        public Transform actionUI;
 
         public int playerUnits = 0;
         private float minPosX = -580, maxPosY = 37;
@@ -53,7 +53,7 @@ namespace UI
                 {
                     var sprite = unit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
                     frame.transform.GetChild(1).GetComponent<Image>().sprite = sprite.sprite;
-                    var image = (GameObject)Instantiate(frame, actionUI.transform);
+                    var image = (GameObject)Instantiate(frame, actionUI);
                     image.GetComponent<RectTransform>().anchoredPosition = new Vector2(posX, posY);
                     unitsSelected.Add(image);
                     posX += 80;

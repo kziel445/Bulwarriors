@@ -64,6 +64,7 @@ namespace InputManager
                 Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, cursorPosition.getMousePosition());
                 // deslect units
                 
+
                 foreach (Interactable interactableObject in selectedUnitRTSList)
                 {
                     interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
@@ -73,7 +74,7 @@ namespace InputManager
 
                 if(collider2DArray.Length==1 && collider2DArray[0].GetComponent<Buildings.Player.PlayerBuilding>()!=null)
                 {
-                    Interactable building = collider2DArray[0].gameObject.GetComponent<Interactable>();
+                    BuildingUI building = collider2DArray[0].gameObject.GetComponent<BuildingUI>();
                     building.SetSelectedVisible(true);
                     selectedUnitRTSList.Add(building);
                     isSelectedBuilding = true;
