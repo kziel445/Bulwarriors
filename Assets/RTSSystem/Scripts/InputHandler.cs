@@ -44,6 +44,20 @@ namespace InputManager
             {
                 if (EventSystem.current.IsPointerOverGameObject()) return;
 
+                foreach (Interactable interactableObject in selectedUnitRTSList)
+                {
+                    interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
+                    isSelectedBuilding = false;
+                }
+                if (selectedUnitRTSList.Find(x => x.GetComponent<BuildingUI>()))
+                {
+                    selectedUnitRTSList[0].GetComponent<BuildingUI>().SetSelectedVisible(false);
+                    isSelectedBuilding = false;
+
+                }
+                selectedUnitRTSList.Clear();
+                UIHandler.instance.UpdateSelectedUnits();
+
                 // get cursor cordinates, when LPM state is changed
                 startPosition = cursorPosition.getMousePosition();
                 selectionAreaTransform.gameObject.SetActive(true);
@@ -72,20 +86,9 @@ namespace InputManager
                 // deslect units
                 
 
-                foreach (Interactable interactableObject in selectedUnitRTSList)
-                {
-                    interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
-                    isSelectedBuilding = false;
-                }
-                if(selectedUnitRTSList.Find(x=> x.GetComponent<BuildingUI>()))
-                {
-                    selectedUnitRTSList[0].GetComponent<BuildingUI>().SetSelectedVisible(false);
-                    isSelectedBuilding = false;
-                    
-                }
-                selectedUnitRTSList.Clear();
+                
 
-                if(collider2DArray.Length==1 && collider2DArray[0].GetComponent<Buildings.Player.PlayerBuilding>()!=null)
+                if (collider2DArray.Length==1 && collider2DArray[0].GetComponent<Buildings.Player.PlayerBuilding>()!=null)
                 {
                     BuildingUI building = collider2DArray[0].gameObject.GetComponent<BuildingUI>();
                     building.SetSelectedVisible(true);
