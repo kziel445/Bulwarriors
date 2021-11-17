@@ -44,13 +44,18 @@ namespace Player
 
                     if (type == playerUnits)
                     {
-                        Units.Player.PlayerRTS playerUnit = transformObject.GetComponent< Units.Player.PlayerRTS >();
-                        playerUnit.baseStats = Units.UnitHandler.instance.GetUnitStats(objectName);
+                        Units.Player.PlayerRTS playerUnit = transformObject.GetComponent<Units.Player.PlayerRTS >();
+                        Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);
+                        playerUnit.baseStats = settings.baseStats;
+
+                        playerUnit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = settings.classColor;
+                        // Units.UnitHandler.instance.GetUnitColor(objectName);
+                        //playerUnit.transform.GetChild(0).GetComponent<SpriteRenderer>().color = playerUnit.
                     }
                     else if (type == enemyUnits)
                     {
                         Units.Enemy.EnemyRTS enemyUnit = transformObject.GetComponent<Units.Enemy.EnemyRTS>();
-                        enemyUnit.baseStats = Units.UnitHandler.instance.GetUnitStats(objectName);
+                        enemyUnit.baseStats = Units.UnitHandler.instance.GetUnitSettings(objectName).baseStats;
                     }
                     else if (type == playerBuildings)
                     {
