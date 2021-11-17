@@ -4,6 +4,7 @@ using Cursor;
 using Units.Player;
 using Core.Interactables;
 using UI;
+using UnityEngine.EventSystems;
 
 namespace InputManager
 {
@@ -11,6 +12,7 @@ namespace InputManager
     public class InputHandler : MonoBehaviour
     {
         public static InputHandler instance;
+
         [SerializeField] private Transform selectionAreaTransform;
         private Vector2 startPosition;
 
@@ -18,6 +20,7 @@ namespace InputManager
         public List<Interactable> selectedUnitRTSList;
         public Transform selectedObject=null;
         public bool isSelectedBuilding = false;
+        public bool isSelecting = false;
 
         //cursor
         private Position cursorPosition = new Position();
@@ -35,14 +38,18 @@ namespace InputManager
         // Update is called once per frame
         void Update()
         {
+
             // Selection area
             if (Input.GetMouseButtonDown(0))
             {
+                if (EventSystem.current.IsPointerOverGameObject()) return;
+
                 // get cursor cordinates, when LPM state is changed
                 startPosition = cursorPosition.getMousePosition();
                 selectionAreaTransform.gameObject.SetActive(true);
+                isSelecting = true;
             }
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && isSelecting == true)
             {
                 // create field to select units
                 Vector2 currentMousePosition = cursorPosition.getMousePosition();
@@ -57,7 +64,7 @@ namespace InputManager
                 selectionAreaTransform.position = lowerLeft;
                 selectionAreaTransform.localScale = upperRight - lowerLeft;
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && isSelecting == true)
             {
                 // get curosor cordinates, when LPM state is changed, again
                 selectionAreaTransform.gameObject.SetActive(false);
@@ -84,8 +91,7 @@ namespace InputManager
                     building.SetSelectedVisible(true);
                     selectedUnitRTSList.Add(building);
                     isSelectedBuilding = true;
-
-                    Debug.Log("Building actions");
+                    isSelecting = false;
                     return;
                 }
                 
@@ -100,8 +106,9 @@ namespace InputManager
                     }
                 }
                 UIHandler.instance.UpdateSelectedUnits();
+                isSelecting = false;
                 // show how manyh objects has been selected
-                Debug.Log(selectedUnitRTSList.Count);
+                //Debug.Log(selectedUnitRTSList.Count);
             }
 
 

@@ -12,14 +12,22 @@ namespace UI
         [SerializeField] private Transform actionListUI;
 
         public List<Button> buttons = new List<Button>();
+        private PlayerActions actionList = null;
+
+        public List<float> spawningQueueTimer = new List<float>();
+        public List<GameObject> spawnQueue = new List<GameObject>();
+
+        public Transform spawnPoint = null;
 
         private void Awake()
         {
             instance = this;
         }
-        public void SetActionButtons(PlayerActions actions)
+        public void SetActionButtons(PlayerActions actions, Transform spawnLocation)
         {
-            if(actions.basicUnits.Length>0)
+            spawnPoint = spawnLocation;
+            actionList = actions;
+            if(actions.basicUnits.Count>0)
             {
                 foreach(Units.UnitBasic unit in actions.basicUnits)
                 {
@@ -29,7 +37,7 @@ namespace UI
                     buttons.Add(button);
                 }
             }
-            if(actions.basicBuildings.Length>0)
+            if(actions.basicBuildings.Count>0)
             {
                 foreach(Buildings.BuildingBasic building in actions.basicBuildings)
                 {
@@ -48,6 +56,71 @@ namespace UI
             }
             buttons.Clear();
         }
+        public void StartQueueTimer(string objectToSpawn)
+        {
+            if (IsUnit(objectToSpawn))
+            {
+                Units.UnitBasic unit = IsUnit(objectToSpawn);
+                spawningQueueTimer.Add(unit.spawnTime);
+                spawnQueue.Add(unit.playerPrefab);
+
+            }
+            else if (IsBuilding(objectToSpawn))
+            {
+                Buildings.BuildingBasic building = IsBuilding(objectToSpawn);
+                spawningQueueTimer.Add(building.spawnTime);
+                spawnQueue.Add(building.buildingPrefab);
+            }
+            else Debug.Log($"{objectToSpawn} is not spawnable");
+
+            if(spawnQueue.Count == 1)
+            {
+                ActionTimer.instance.StartCoroutine(ActionTimer.instance.SpawnQueue());
+            }
+            else if(spawnQueue.Count == 0)
+            {
+                ActionTimer.instance.StopAllCoroutines();
+            }
+
+        }
+        public void Spawn()
+        {
+            Instantiate(
+                spawnQueue[0], 
+                new Vector3(spawnPoint.position.x - 0.5f, spawnPoint.position.y, spawnPoint.position.z - 0.5f), 
+                Quaternion.identity
+                );
+            
+        }
+        private Units.UnitBasic IsUnit(string name)
+        {
+            if(actionList.basicUnits.Count>0)
+            {
+                foreach(Units.UnitBasic unit in actionList.basicUnits)
+                {
+                    if(unit.name == name)
+                    {
+                        return unit;
+                    }
+                }
+            }
+            return null;
+        }
+        private Buildings.BuildingBasic IsBuilding(string name)
+        {
+            if (actionList.basicUnits.Count > 0)
+            {
+                foreach (Buildings.BuildingBasic building in actionList.basicBuildings)
+                {
+                    if (building.name == name)
+                    {
+                        return building;
+                    }
+                }
+            }
+            return null;
+        }
+
     }
 
 }

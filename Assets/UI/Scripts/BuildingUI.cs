@@ -14,7 +14,7 @@ namespace UI
         {
             if(ActionFrame.instance!=null)
             {
-                if (visible) ActionFrame.instance.SetActionButtons(actions);
+                if (visible) ActionFrame.instance.SetActionButtons(actions, gameObject.transform);
                 else if (!visible) ActionFrame.instance.ClearActions();
             }
 

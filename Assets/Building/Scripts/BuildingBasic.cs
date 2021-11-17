@@ -16,6 +16,7 @@ namespace Buildings
         public new string name;
         public GameObject buildingPrefab;
         public Sprite icon;
+        public float spawnTime;
 
         public BuildingStatTypes.Base baseStats;
         //public BuildingRTS.BuildUnits Units;

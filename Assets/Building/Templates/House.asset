@@ -15,6 +15,8 @@ MonoBehaviour:
   type: 0
   name: 
   buildingPrefab: {fileID: 0}
+  icon: {fileID: 0}
+  spawnTime: 4
   baseStats:
     health: 0
     armor: 0

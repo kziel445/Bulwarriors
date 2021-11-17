@@ -19,6 +19,7 @@ namespace Units
         public GameObject playerPrefab;
         public GameObject enemyPrefab;
         public Sprite icon;
+        public float spawnTime;
 
         [Header("Unit Stats")]
         public UnitStatTypes.Base baseStats;
