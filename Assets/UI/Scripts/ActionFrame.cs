@@ -25,6 +25,7 @@ namespace UI
                 {
                     Button button = Instantiate(actionButton, actionListUI);
                     button.name = unit.name;
+                    button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = unit.icon;
                     buttons.Add(button);
                 }
             }

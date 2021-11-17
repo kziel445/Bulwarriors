@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8379953237749845854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.22, y: -0.81, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8379953237890698954}
@@ -159,7 +159,6 @@ MonoBehaviour:
   selectedGameObject: {fileID: 8379953237890698955}
   isInteracting: 0
   actions: {fileID: 11400000, guid: b0b65f63fc29f824e986e268ef5ddec2, type: 2}
-  actionFrameUI: {fileID: 0}
 --- !u!114 &8379953237749845792
 MonoBehaviour:
   m_ObjectHideFlags: 0
