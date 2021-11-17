@@ -87,13 +87,24 @@ namespace UI
         }
         public void Spawn()
         {
-            Instantiate(
+            string objectName = "Warriors";
+            //objectName = spawnQueue[0].GetComponent<Units.Player.PlayerRTS>().baseStats.unitClass;
+            
+            
+            GameObject unit = Instantiate(
                 spawnQueue[0],
                 new Vector3(spawnPoint.position.x, spawnPoint.position.y - 0.5f, spawnPoint.position.z),
                 Quaternion.identity,
-                objectToStoreUnits.Find("Warriors")
+                objectToStoreUnits.Find(objectName)
                 );
-            
+            objectName = objectName.Substring(0, objectName.Length - 1).ToLower();
+            //TODO to function, the same in PlayerManager.cs
+            Units.Player.PlayerRTS playerUnit = unit.GetComponent<Units.Player.PlayerRTS>();
+
+            Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);
+            playerUnit.baseStats = settings.baseStats;
+            playerUnit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = settings.classColor;
+
         }
         private Units.UnitBasic IsUnit(string name)
         {
