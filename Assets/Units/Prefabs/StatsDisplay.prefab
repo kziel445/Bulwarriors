@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 6234888390379912680}
   - component: {fileID: 5041771070105189918}
   - component: {fileID: 547677863885083938}
+  - component: {fileID: 2085458359812334679}
   - component: {fileID: 7304796551471348256}
   m_Layer: 5
   m_Name: StatsDisplay
@@ -233,7 +234,23 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
+--- !u!114 &2085458359812334679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570855488675475108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55440e0310934cc48871327a18fe2800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarAmount: {fileID: 203376446852521225}
+  currentHealth: 1
+  baseHealth: 1
+  baseArmor: 0
 --- !u!114 &7304796551471348256
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3376829743847562926}
   - component: {fileID: 8249411027295003965}
   - component: {fileID: 6502818908295786300}
-  - component: {fileID: 6900654596202218194}
   - component: {fileID: 4330490610527725323}
+  - component: {fileID: 6367212826603208795}
   - component: {fileID: 8659747472063240193}
+  - component: {fileID: 4066147121055570125}
   m_Layer: 8
   m_Name: PlayerUnit
   m_TagString: Unit
@@ -75,34 +76,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6900654596202218194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3903549335357196982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb35e6452df4f86488cdc2b99c7b2b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseStats:
-    cost: 1
-    damage: 1
-    atkSpeed: 1
-    atkRange: 1
-    aggroRange: 1
-    health: 1
-    armor: 1
-    movementSpeed: 1
-  animator: {fileID: 3046017700376117356}
-  aggroTarget: {fileID: 0}
-  hasAggro: 0
-  healthBarAmount: {fileID: 5446169509193701394}
-  currentHealth: 1
-  missile: {fileID: 7970398710126197076, guid: fbccdba9bd4846241bff260f795ec69f, type: 3}
-  atkCooldown: 0
 --- !u!114 &4330490610527725323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +88,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa36bcacfd07da4799427d297a85362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instance: {fileID: 0}
+  movePosition: {x: 0, y: 0}
   animator: {fileID: 3046017700376117356}
+  movement: {x: 0, y: 0}
+--- !u!114 &6367212826603208795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903549335357196982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a24ad3097f01d409b3e8ab6f72143d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats:
+    cost: 0
+    damage: 0
+    atkSpeed: 0
+    atkRange: 0
+    aggroRange: 0
+    health: 1
+    armor: 0
+    movementSpeed: 0
+  isPlayer: 1
+  aggroTarget: {fileID: 0}
+  hasAggro: 0
+  missile: {fileID: 0}
+  atkCooldown: 0
+  animator: {fileID: 3046017700376117356}
+  IfCommand: 0
 --- !u!114 &8659747472063240193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +133,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+--- !u!114 &4066147121055570125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903549335357196982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8535c038594fe5f478c8c829b4ff46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedGameObject: {fileID: 6734870730128943221}
+  isInteracting: 0
 --- !u!1 &6681126326978182757
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,14 +441,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
   m_PrefabInstance: {fileID: 5279951169481770267}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5446169509193701394 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 203376446852521225, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
-  m_PrefabInstance: {fileID: 5279951169481770267}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
