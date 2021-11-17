@@ -16,8 +16,10 @@ namespace UI
 
         public List<float> spawningQueueTimer = new List<float>();
         public List<GameObject> spawnQueue = new List<GameObject>();
+        public Transform objectToStoreUnits;
 
         public Transform spawnPoint = null;
+
 
         private void Awake()
         {
@@ -86,9 +88,10 @@ namespace UI
         public void Spawn()
         {
             Instantiate(
-                spawnQueue[0], 
-                new Vector3(spawnPoint.position.x - 0.5f, spawnPoint.position.y, spawnPoint.position.z - 0.5f), 
-                Quaternion.identity
+                spawnQueue[0],
+                new Vector3(spawnPoint.position.x, spawnPoint.position.y - 0.5f, spawnPoint.position.z),
+                Quaternion.identity,
+                objectToStoreUnits.Find("Warriors")
                 );
             
         }

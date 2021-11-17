@@ -38,7 +38,7 @@ namespace InputManager
         // Update is called once per frame
         void Update()
         {
-
+            //TODO when selected buidlding then units, slection in UI stuck
             // Selection area
             if (Input.GetMouseButtonDown(0))
             {
