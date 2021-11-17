@@ -16,6 +16,8 @@ namespace UI
 
         public List<float> spawningQueueTimer = new List<float>();
         public List<GameObject> spawnQueue = new List<GameObject>();
+        public List<Units.UnitBasic.unitType> spawnTypes = new List<Units.UnitBasic.unitType>();
+
         public Transform objectToStoreUnits;
 
         public Transform spawnPoint = null;
@@ -65,6 +67,7 @@ namespace UI
                 Units.UnitBasic unit = IsUnit(objectToSpawn);
                 spawningQueueTimer.Add(unit.spawnTime);
                 spawnQueue.Add(unit.playerPrefab);
+                spawnTypes.Add(unit.type);
 
             }
             else if (IsBuilding(objectToSpawn))
@@ -87,9 +90,9 @@ namespace UI
         }
         public void Spawn()
         {
-            string objectName = "Warriors";
+            string objectName = spawnTypes[0].ToString() + "s";
             //objectName = spawnQueue[0].GetComponent<Units.Player.PlayerRTS>().baseStats.unitClass;
-            
+            Debug.Log(objectName);
             
             GameObject unit = Instantiate(
                 spawnQueue[0],
