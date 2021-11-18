@@ -12,6 +12,8 @@ namespace UI
         [SerializeField] private Button actionButton;
         [SerializeField] private Transform actionListUI;
 
+        public bool ActiveUI = false;
+        public PlayerStats.Statistics statistics;
 
         private PlayerActions actionList = null;
         public GameObject spawnBuilding = null;
@@ -33,7 +35,38 @@ namespace UI
         {
             instance = this;
         }
-        
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            statistics = GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>();
+        }
+
+        private void Update()
+        {
+                try
+                {
+
+                    foreach (Button button in buttons)
+                    {
+                        if (statistics.money < 1000)
+                        {
+                            button.interactable = false;
+                            button.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+
+                    }
+                        else
+                        {
+                            button.interactable = true;
+                            button.GetComponent<Image>().color = new Color(255, 255, 255, 0.4f);
+                    }
+                    }
+                }
+                catch { }
+            
+            
+        }
+
         //clear buttons from UI
         public void ClearActions()
         {
@@ -50,6 +83,8 @@ namespace UI
         //building actions
         public void SetActionButtonsBuilding(PlayerActions actions, GameObject spawnLocation)
         {
+            ActiveUI = true;
+
             //unused
             spawnBuilding = spawnLocation;
             actionList = actions;
