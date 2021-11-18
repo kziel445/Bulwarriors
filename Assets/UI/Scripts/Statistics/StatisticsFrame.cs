@@ -12,19 +12,22 @@ namespace UI
         {
             instance = this;
         }
-        public void ChangeStatsOfObject(float currentHealth, float maxHealth)
+        public void ChangeStatsOfObject(float currentHealth, float maxHealth, Sprite sprite)
         {
-            gameObject.GetComponentInChildren<Text>().text= $"Health: {currentHealth}	Max health: {maxHealth}";
+            gameObject.transform.Find("Icon").GetComponent<Image>().sprite = sprite;
+            gameObject.GetComponentInChildren<Text>().text= $"Health: {currentHealth} \nMax health: {maxHealth}";
         }
         public void Clear()
         {
 
             //better would be visible off
             Debug.Log("Clear Stats");
-            foreach (Transform child in transform)
-            {
-                Destroy(child.gameObject);
-            }
+            gameObject.GetComponentInChildren<Text>().text = "";
+            gameObject.transform.Find("Icon").GetComponent<Image>().sprite = null; ;
+            //foreach (Transform child in transform)
+            //{
+            //    Destroy(child.gameObject);
+            //}
         }
     }
 }
