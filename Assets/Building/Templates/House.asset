@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8458292b142e12f43a6d7f2ad37e3b0f, type: 3}
   m_Name: House
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   name: 
   buildingPrefab: {fileID: 8379953237749845854, guid: 2d80643210d89864db85d77ba2a7f28c, type: 3}
   icon: {fileID: 0}

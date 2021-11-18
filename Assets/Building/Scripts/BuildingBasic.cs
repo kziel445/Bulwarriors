@@ -9,7 +9,7 @@ namespace Buildings
     {
         public enum BuildingType
         {
-            Barracks,
+            Barrack,
             House
         }
         public BuildingType type;
