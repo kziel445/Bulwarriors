@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Buildings;
 
 //TODO reformat code
 namespace UI
@@ -10,7 +11,9 @@ namespace UI
         public static Action instance;
         public void OnClick()
         {
-            ActionFrame.instance.StartQueueTimer(name);
+            ActionFrame.instance.spawnBuilding.GetComponent<UnitSpawnQueue>().StartQueueTimer(name);
+            //spawnQueue.StartQueueTimer(name);
+            //UnitSpawnQueue.instance.StartQueueTimer(name);
         }
 
     }

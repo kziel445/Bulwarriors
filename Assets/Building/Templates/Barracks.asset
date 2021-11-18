@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   name: 
   buildingPrefab: {fileID: 8379953237749845854, guid: 2d80643210d89864db85d77ba2a7f28c, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: f9899fbc349a55b43a821dbd8416afce, type: 3}
   spawnTime: 5
   baseStats:
     health: 1000

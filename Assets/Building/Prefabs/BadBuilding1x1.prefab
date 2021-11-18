@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8518670937148741905}
   - component: {fileID: 1554044877042175897}
   m_Layer: 11
-  m_Name: BadBuilding
+  m_Name: BadBuilding1x1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
