@@ -10,7 +10,7 @@ namespace Buildings
     {
         public static SpawnTimer instance;
 
-        public UnitSpawnQueue spawnList;
+        private UnitSpawnQueue spawnList;
         private void Awake()
         {
             instance = this;

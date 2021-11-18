@@ -27,6 +27,15 @@ namespace Buildings
         private void Start()
         {
             actionList = gameObject.GetComponent<Player.PlayerBuilding>().baseStats.actions;
+            try
+            {
+                objectToStoreUnits = GameObject.Find("PlayerUnits").transform;
+            }
+            catch
+            {
+                Debug.Log("Units goes wrong object");
+            }
+            
         }
         public void StartQueueTimer(string objectToSpawn)
         {
