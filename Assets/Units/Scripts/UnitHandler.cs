@@ -12,7 +12,7 @@ namespace Units
         public UnitBasic worker, warrior, archer;
         private void Awake()
         {
-            instance = this;
+           instance = this;
         }
 
         public UnitStatTypes.Base GetUnitStats(string type)

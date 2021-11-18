@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1002418606568289517}
+  - component: {fileID: 1002418606568289519}
   - component: {fileID: 1002418606568289516}
   - component: {fileID: 2773025260123041041}
-  - component: {fileID: 1002418606568289519}
   - component: {fileID: 1002418606568289489}
   - component: {fileID: 1002418606568289518}
   m_Layer: 0
@@ -36,6 +36,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1002418606568289519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002418606568289514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4ad5bed6e58304baf29558b2fc35fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DEBUG: {fileID: 0}
+  playerUnits: {fileID: 0}
+  enemyUnits: {fileID: 0}
+  playerBuildings: {fileID: 0}
+  enemyBuildings: {fileID: 0}
 --- !u!114 &1002418606568289516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,23 +82,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   house: {fileID: 11400000, guid: ae96190311d493a45991f63a0c644f8b, type: 2}
   barrack: {fileID: 0}
---- !u!114 &1002418606568289519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002418606568289514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd4ad5bed6e58304baf29558b2fc35fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DEBUG: {fileID: 0}
-  playerUnits: {fileID: 0}
-  enemyUnits: {fileID: 0}
-  playerBuildings: {fileID: 0}
-  enemyBuildings: {fileID: 0}
 --- !u!114 &1002418606568289489
 MonoBehaviour:
   m_ObjectHideFlags: 0
