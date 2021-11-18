@@ -16,6 +16,8 @@ namespace UI
 
         public List<float> spawningQueueTimer = new List<float>();
         public List<GameObject> spawnQueue = new List<GameObject>();
+        public List<Units.UnitBasic.unitType> spawnTypes = new List<Units.UnitBasic.unitType>();
+
         public Transform objectToStoreUnits;
 
         public Transform spawnPoint = null;
@@ -25,30 +27,7 @@ namespace UI
         {
             instance = this;
         }
-        public void SetActionButtons(PlayerActions actions, Transform spawnLocation)
-        {
-            spawnPoint = spawnLocation;
-            actionList = actions;
-            if(actions.basicUnits.Count>0)
-            {
-                foreach(Units.UnitBasic unit in actions.basicUnits)
-                {
-                    Button button = Instantiate(actionButton, actionListUI);
-                    button.name = unit.name;
-                    button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = unit.icon;
-                    buttons.Add(button);
-                }
-            }
-            if(actions.basicBuildings.Count>0)
-            {
-                foreach(Buildings.BuildingBasic building in actions.basicBuildings)
-                {
-                    Button button = Instantiate(actionButton, actionListUI);
-                    button.name = building.name;
-                    buttons.Add(button);
-                }
-            }
-        }
+        
         public void ClearActions()
         {
             Debug.Log("Clear buttons");
@@ -58,6 +37,34 @@ namespace UI
             }
             buttons.Clear();
         }
+        //worker actions
+
+
+        //building actions
+        public void SetActionButtonsBuilding(PlayerActions actions, Transform spawnLocation)
+        {
+            spawnPoint = spawnLocation;
+            actionList = actions;
+            if (actions.basicUnits.Count > 0)
+            {
+                foreach (Units.UnitBasic unit in actions.basicUnits)
+                {
+                    Button button = Instantiate(actionButton, actionListUI);
+                    button.name = unit.name;
+                    button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = unit.icon;
+                    buttons.Add(button);
+                }
+            }
+            if (actions.basicBuildings.Count > 0)
+            {
+                foreach (Buildings.BuildingBasic building in actions.basicBuildings)
+                {
+                    Button button = Instantiate(actionButton, actionListUI);
+                    button.name = building.name;
+                    buttons.Add(button);
+                }
+            }
+        }
         public void StartQueueTimer(string objectToSpawn)
         {
             if (IsUnit(objectToSpawn))
@@ -65,6 +72,7 @@ namespace UI
                 Units.UnitBasic unit = IsUnit(objectToSpawn);
                 spawningQueueTimer.Add(unit.spawnTime);
                 spawnQueue.Add(unit.playerPrefab);
+                spawnTypes.Add(unit.type);
 
             }
             else if (IsBuilding(objectToSpawn))
@@ -87,13 +95,24 @@ namespace UI
         }
         public void Spawn()
         {
-            Instantiate(
+            string objectName = spawnTypes[0].ToString() + "s";
+            //objectName = spawnQueue[0].GetComponent<Units.Player.PlayerRTS>().baseStats.unitClass;
+            Debug.Log(objectName);
+            
+            GameObject unit = Instantiate(
                 spawnQueue[0],
                 new Vector3(spawnPoint.position.x, spawnPoint.position.y - 0.5f, spawnPoint.position.z),
                 Quaternion.identity,
-                objectToStoreUnits.Find("Warriors")
+                objectToStoreUnits.Find(objectName)
                 );
-            
+            objectName = objectName.Substring(0, objectName.Length - 1).ToLower();
+            //TODO to function, the same in PlayerManager.cs
+            Units.Player.PlayerRTS playerUnit = unit.GetComponent<Units.Player.PlayerRTS>();
+
+            Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);
+            playerUnit.baseStats = settings.baseStats;
+            playerUnit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = settings.classColor;
+
         }
         private Units.UnitBasic IsUnit(string name)
         {

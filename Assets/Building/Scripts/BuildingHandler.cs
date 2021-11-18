@@ -8,7 +8,7 @@ namespace Buildings
     {
         public static BuildingHandler instance;
         [SerializeField]
-        private BuildingBasic house, barracks;
+        public BuildingBasic house, barrack;
         private void Awake()
         {
             instance = this;
@@ -19,7 +19,7 @@ namespace Buildings
             switch (type)
             {
                 case "barrack":
-                    building = barracks;
+                    building = barrack;
                     break;
                 case "house":
                     building = house;

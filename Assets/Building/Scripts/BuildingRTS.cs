@@ -9,8 +9,7 @@ namespace Buildings
     {
         //statistics
         public BuildingStatTypes.Base baseStats;
-        public Image healthBarAmount;
-        public float currentHealth;
+
 
         internal GameObject selectedGameObject;
 

@@ -690,6 +690,8 @@ MonoBehaviour:
   buttons: []
   spawningQueueTimer: []
   spawnQueue: []
+  spawnTypes: 
+  objectToStoreUnits: {fileID: 0}
   spawnPoint: {fileID: 0}
 --- !u!1 &6211411002846851787
 GameObject:
