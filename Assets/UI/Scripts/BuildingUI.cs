@@ -14,7 +14,7 @@ namespace UI
             {
                 if (visible) ActionFrame.instance.SetActionButtonsBuilding(
                     gameObject.GetComponent<Buildings.Player.PlayerBuilding>().baseStats.actions, 
-                    gameObject.transform
+                    gameObject
                     );
                 else if (!visible) ActionFrame.instance.ClearActions();
             }
