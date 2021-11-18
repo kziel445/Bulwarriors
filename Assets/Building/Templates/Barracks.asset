@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   name: 
-  buildingPrefab: {fileID: 3344567179856296069, guid: 2d80643210d89864db85d77ba2a7f28c, type: 3}
+  buildingPrefab: {fileID: 8379953237749845854, guid: 2d80643210d89864db85d77ba2a7f28c, type: 3}
   icon: {fileID: 0}
   spawnTime: 5
   baseStats:
@@ -22,3 +22,4 @@ MonoBehaviour:
     armor: 5
     attack: 0
     cost: 200
+    actions: {fileID: 11400000, guid: b0b65f63fc29f824e986e268ef5ddec2, type: 2}

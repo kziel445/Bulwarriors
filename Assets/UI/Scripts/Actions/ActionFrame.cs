@@ -27,30 +27,7 @@ namespace UI
         {
             instance = this;
         }
-        public void SetActionButtons(PlayerActions actions, Transform spawnLocation)
-        {
-            spawnPoint = spawnLocation;
-            actionList = actions;
-            if(actions.basicUnits.Count>0)
-            {
-                foreach(Units.UnitBasic unit in actions.basicUnits)
-                {
-                    Button button = Instantiate(actionButton, actionListUI);
-                    button.name = unit.name;
-                    button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = unit.icon;
-                    buttons.Add(button);
-                }
-            }
-            if(actions.basicBuildings.Count>0)
-            {
-                foreach(Buildings.BuildingBasic building in actions.basicBuildings)
-                {
-                    Button button = Instantiate(actionButton, actionListUI);
-                    button.name = building.name;
-                    buttons.Add(button);
-                }
-            }
-        }
+        
         public void ClearActions()
         {
             Debug.Log("Clear buttons");
@@ -59,6 +36,34 @@ namespace UI
                 Destroy(button.gameObject);
             }
             buttons.Clear();
+        }
+        //worker actions
+
+
+        //building actions
+        public void SetActionButtonsBuilding(PlayerActions actions, Transform spawnLocation)
+        {
+            spawnPoint = spawnLocation;
+            actionList = actions;
+            if (actions.basicUnits.Count > 0)
+            {
+                foreach (Units.UnitBasic unit in actions.basicUnits)
+                {
+                    Button button = Instantiate(actionButton, actionListUI);
+                    button.name = unit.name;
+                    button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = unit.icon;
+                    buttons.Add(button);
+                }
+            }
+            if (actions.basicBuildings.Count > 0)
+            {
+                foreach (Buildings.BuildingBasic building in actions.basicBuildings)
+                {
+                    Button button = Instantiate(actionButton, actionListUI);
+                    button.name = building.name;
+                    buttons.Add(button);
+                }
+            }
         }
         public void StartQueueTimer(string objectToSpawn)
         {

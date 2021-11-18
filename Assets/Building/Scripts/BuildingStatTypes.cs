@@ -10,6 +10,7 @@ namespace Buildings
         public class Base
         {
             public float health, armor, attack, cost;
+            public UI.PlayerActions actions;
         }
     }
 

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2773025260123041041}
   - component: {fileID: 1002418606568289489}
   - component: {fileID: 1002418606568289518}
-  - component: {fileID: 6834271048518987085}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -80,8 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a9878871bf934459f4f1307a58e3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  house: {fileID: 0}
-  barracks: {fileID: 0}
+  house: {fileID: 11400000, guid: ae96190311d493a45991f63a0c644f8b, type: 2}
+  barracks: {fileID: 11400000, guid: 97c2338dbc68ed5409b2e5519a9f8c97, type: 2}
 --- !u!114 &1002418606568289489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,21 +108,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionAreaTransform: {fileID: 1681550144095403942}
   selectedUnitRTSList: []
+  selectedObject: {fileID: 0}
+  isSelectedBuilding: 0
+  isSelecting: 0
   playerUnits: {fileID: 0}
   camera: {fileID: 0}
---- !u!114 &6834271048518987085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002418606568289514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89d7ce26c3792a241b14ea3fd50d077e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitsSelected: []
 --- !u!1001 &1002418606094377438
 PrefabInstance:
   m_ObjectHideFlags: 0
