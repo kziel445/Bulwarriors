@@ -16,7 +16,7 @@ namespace UI
         public void OnClick()
         {
             
-            ActionFrame.instance.spawnBuilding.GetComponent<UnitSpawnQueue>().StartQueueTimer(name);
+            ActionFrame.instance.spawnBuilding.GetComponent<SpawnObject>().StartQueueTimer(name);
             //spawnQueue.StartQueueTimer(name);
             //UnitSpawnQueue.instance.StartQueueTimer(name);
         }

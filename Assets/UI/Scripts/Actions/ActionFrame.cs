@@ -111,6 +111,8 @@ namespace UI
                 {
                     Button button = Instantiate(actionButton, actionListUI);
                     button.name = building.name;
+                    button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = building.icon;
+                    button.gameObject.transform.GetChild(1).GetComponent<Text>().text = building.baseStats.cost.ToString();
                     buttons.Add(button);
                 }
             }

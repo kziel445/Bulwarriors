@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4330490610527725323}
   - component: {fileID: 6367212826603208795}
   - component: {fileID: 8659747472063240193}
-  - component: {fileID: 4066147121055570125}
+  - component: {fileID: 1757466076438925126}
   m_Layer: 8
   m_Name: PlayerUnit
   m_TagString: Unit
@@ -113,6 +113,7 @@ MonoBehaviour:
     health: 1
     armor: 0
     movementSpeed: 0
+    actions: {fileID: 0}
   isPlayer: 1
   aggroTarget: {fileID: 0}
   hasAggro: 0
@@ -133,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
---- !u!114 &4066147121055570125
+--- !u!114 &1757466076438925126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3903549335357196982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8535c038594fe5f478c8c829b4ff46fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 531bd8dd9d4cf6e4b8842c1a75463f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   selectedGameObject: {fileID: 6734870730128943221}

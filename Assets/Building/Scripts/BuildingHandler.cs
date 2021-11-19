@@ -13,7 +13,7 @@ namespace Buildings
         {
             instance = this;
         }
-        public BuildingStatTypes.Base GetBuildingStats(string type)
+        public BuildingBasic GetBuildingStats(string type)
         {
             BuildingBasic building;
             switch (type)
@@ -28,7 +28,7 @@ namespace Buildings
                     Debug.Log($"Building Type: {type} could not be found or does not exist!");
                     return null;
             }
-            return building.baseStats;
+            return building;
         }
         //public void SetUnitStats(Transform type)
         //{
