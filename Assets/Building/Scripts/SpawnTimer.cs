@@ -10,7 +10,7 @@ namespace Buildings
     {
         public static SpawnTimer instance;
 
-        private SpawnObject spawnList;
+        private UnitSpawnQueue spawnList;
 
         private Text statsText;
         private void Awake()
@@ -19,7 +19,7 @@ namespace Buildings
         }
         private void Start()
         {
-            spawnList = gameObject.GetComponent<SpawnObject>();
+            spawnList = gameObject.GetComponent<UnitSpawnQueue>();
             statsText = gameObject.transform.GetComponentInChildren<Text>();
         }
         public IEnumerator SpawnQueue()

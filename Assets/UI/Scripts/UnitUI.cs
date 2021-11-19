@@ -9,7 +9,7 @@ namespace UI
     {
         public override void SetSelectedVisible(bool visible)
         {
-            if (ActionFrame.instance != null && gameObject.GetComponent<Units.Player.PlayerRTS>().baseStats.actions != null)
+            if (ActionFrame.instance != null)
             {
                 Debug.Log("visible" + visible);
                 if (visible) ActionFrame.instance.SetActionButtonsBuilding(

@@ -18,17 +18,6 @@ namespace UI
         private PlayerActions actionList = null;
         public GameObject spawnBuilding = null;
         public List<Button> buttons = new List<Button>();
-        //
-
-        
-        
-
-        //public List<float> spawningQueueTimer = new List<float>();
-        //public List<GameObject> spawnQueue = new List<GameObject>();
-        //public List<Units.UnitBasic.unitType> spawnTypes = new List<Units.UnitBasic.unitType>();
-
-        //public Transform objectToStoreUnits;
-
 
 
         private void Awake()
@@ -67,9 +56,6 @@ namespace UI
                 }
                 catch { }
             }
-                
-            
-            
         }
 
         //clear buttons from UI
@@ -90,7 +76,7 @@ namespace UI
         public void SetActionButtonsBuilding(PlayerActions actions, GameObject spawnLocation)
         {
             ActiveUI = true;
-
+            if (actions == null) return;
             //unused
             spawnBuilding = spawnLocation;
             actionList = actions;

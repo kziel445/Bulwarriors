@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 namespace Buildings
 {
-    public class SpawnObject : MonoBehaviour
+    public class UnitSpawnQueue : MonoBehaviour
     {
-        public static SpawnObject instance;
+        public static UnitSpawnQueue instance;
 
         public List<Button> buttons = new List<Button>();
         private UI.PlayerActions actionList = null;
