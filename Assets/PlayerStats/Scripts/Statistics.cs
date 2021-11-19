@@ -21,7 +21,7 @@ namespace PlayerStats
         }
         private void Update()
         {
-            if(Input.GetKey(KeyCode.M))
+            if(Input.GetKeyDown(KeyCode.M))
             {
                 money += 500;
             }
