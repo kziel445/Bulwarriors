@@ -44,25 +44,30 @@ namespace UI
 
         private void Update()
         {
+            if(ActiveUI)
+            {
                 try
                 {
 
                     foreach (Button button in buttons)
                     {
-                        if (statistics.money < 1000)
+
+                        if (statistics.money < int.Parse(button.GetComponentInChildren<Text>().text))
                         {
                             button.interactable = false;
                             button.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
-
-                    }
+                            
+                        }
                         else
                         {
                             button.interactable = true;
                             button.GetComponent<Image>().color = new Color(255, 255, 255, 0.4f);
-                    }
+                        }
                     }
                 }
                 catch { }
+            }
+                
             
             
         }
@@ -75,6 +80,7 @@ namespace UI
             {
                 Destroy(button.gameObject);
             }
+            ActiveUI = false;
             buttons.Clear();
         }
         //worker actions
@@ -95,6 +101,7 @@ namespace UI
                     Button button = Instantiate(actionButton, actionListUI);
                     button.name = unit.name;
                     button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = unit.icon;
+                    button.gameObject.transform.GetChild(1).GetComponent<Text>().text = unit.baseStats.cost.ToString();
                     buttons.Add(button);
                 }
             }

@@ -42,6 +42,7 @@ namespace Buildings
             
             if (IsUnit(objectToSpawn))
             {
+                
                 Units.UnitBasic unit = IsUnit(objectToSpawn);
                 //spawnTMP.Add((
                 //    unit.spawnTime,
@@ -57,9 +58,11 @@ namespace Buildings
                     gameObject.transform.position.y - 0.5f,
                     gameObject.transform.position.z
                     ));
+                GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>().money -= unit.baseStats.cost;
                 spawningQueueTimer.Add(unit.spawnTime);
                 spawnQueue.Add(unit.playerPrefab);
                 spawnTypes.Add(unit.type);
+                gameObject.transform.GetComponentInChildren<Text>().text = spawningQueueTimer.Count.ToString();
 
             }
             else if (IsBuilding(objectToSpawn))
@@ -82,7 +85,7 @@ namespace Buildings
         }
         public void Spawn()
         {
-
+            
             string objectName = spawnTypes[0].ToString() + "s";
             //objectName = spawnQueue[0].GetComponent<Units.Player.PlayerRTS>().baseStats.unitClass;
             Debug.Log(objectName);
@@ -105,7 +108,6 @@ namespace Buildings
             Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);
             playerUnit.baseStats = settings.baseStats;
             playerUnit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = settings.classColor;
-
         }
         private Units.UnitBasic IsUnit(string name)
         {

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UI;
+using UnityEngine.UI;
 
 //TODO reformat code
 namespace Buildings
@@ -11,6 +11,8 @@ namespace Buildings
         public static SpawnTimer instance;
 
         private UnitSpawnQueue spawnList;
+
+        private Text statsText;
         private void Awake()
         {
             instance = this;
@@ -18,6 +20,7 @@ namespace Buildings
         private void Start()
         {
             spawnList = gameObject.GetComponent<UnitSpawnQueue>();
+            statsText = gameObject.transform.GetComponentInChildren<Text>();
         }
         public IEnumerator SpawnQueue()
         {
@@ -34,6 +37,11 @@ namespace Buildings
                 spawnList.spawnQueue.Remove(spawnList.spawnQueue[0]);
                 spawnList.spawningQueueTimer.Remove(spawnList.spawningQueueTimer[0]);
                 spawnList.spawnTypes.Remove(spawnList.spawnTypes[0]);
+
+                if (spawnList.spawningQueueTimer.Count == 0) statsText.text = "";
+                else statsText.text = (spawnList.spawningQueueTimer.Count).ToString();
+
+
 
                 if (spawnList.spawningQueueTimer.Count > 0)
                 {
