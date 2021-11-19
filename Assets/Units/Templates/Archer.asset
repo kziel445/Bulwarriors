@@ -20,7 +20,7 @@ MonoBehaviour:
   classColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
   spawnTime: 5
   baseStats:
-    cost: 500
+    cost: 200
     damage: 10
     atkSpeed: 1
     atkRange: 5

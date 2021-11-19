@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerManager : MonoBehaviour
+    public class ObjectsManager : MonoBehaviour
     {
-        public static PlayerManager instance;
+        public static ObjectsManager instance;
         public Transform playerUnits;
         public Transform enemyUnits;
 

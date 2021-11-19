@@ -12,6 +12,10 @@ namespace UI
         {
             instance = this;
         }
+        private void Update()
+        {
+               
+        }
         public void ChangeStatsOfObject(float currentHealth, float maxHealth, Sprite sprite)
         {
             gameObject.transform.Find("Icon").GetComponent<Image>().sprite = sprite;
