@@ -41,7 +41,7 @@ namespace UI
                     foreach (Button button in buttons)
                     {
 
-                        if (statistics.money < int.Parse(button.GetComponentInChildren<Text>().text))
+                        if (statistics.money < int.Parse(button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text))
                         {
                             button.interactable = false;
                             button.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
@@ -87,7 +87,7 @@ namespace UI
                     Button button = Instantiate(actionButton, actionListUI);
                     button.name = unit.name;
                     button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = unit.icon;
-                    button.gameObject.transform.GetChild(1).GetComponent<Text>().text = unit.baseStats.cost.ToString();
+                    button.gameObject.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text = unit.baseStats.cost.ToString();
                     button.gameObject.transform.GetComponent<Action>().isUnit = true;
                     buttons.Add(button);
                 }
@@ -106,7 +106,7 @@ namespace UI
                         Button button = Instantiate(actionButton, actionListUI);
                         button.name = building.name;
                         button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = building.icon;
-                        button.gameObject.transform.GetChild(1).GetComponent<Text>().text = building.baseStats.cost.ToString();
+                        button.gameObject.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text = building.baseStats.cost.ToString();
                         button.gameObject.transform.GetComponent<Action>().isUnit = false;
                         buttons.Add(button);
 

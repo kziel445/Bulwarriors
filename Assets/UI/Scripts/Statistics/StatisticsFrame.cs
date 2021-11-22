@@ -19,19 +19,14 @@ namespace UI
         public void ChangeStatsOfObject(float currentHealth, float maxHealth, Sprite sprite)
         {
             gameObject.transform.Find("Icon").GetComponent<Image>().sprite = sprite;
-            gameObject.GetComponentInChildren<Text>().text= $"Health: {currentHealth} \nMax health: {maxHealth}";
+            gameObject.GetComponentInChildren<TMPro.TextMeshProUGUI>().text= $"Health: {currentHealth} \nMax health: {maxHealth}";
         }
         public void Clear()
         {
-
-            //better would be visible off
             Debug.Log("Clear Stats");
-            gameObject.GetComponentInChildren<Text>().text = "";
+            gameObject.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "";
             gameObject.transform.Find("Icon").GetComponent<Image>().sprite = null; ;
-            //foreach (Transform child in transform)
-            //{
-            //    Destroy(child.gameObject);
-            //}
+
         }
     }
 }

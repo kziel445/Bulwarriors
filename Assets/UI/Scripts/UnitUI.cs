@@ -20,15 +20,7 @@ namespace UI
                     );
                 else if (!visible) ActionFrame.instance.ClearActions();
             }
-            //if(StatisticsFrame.instance!=null)
-            //{
-            //    if (visible) StatisticsFrame.instance.ChangeStatsOfObject(
-            //        gameObject.transform.Find("StatsDisplay").GetComponent<Core.HealthHandler>().currentHealth,
-            //        gameObject.transform.Find("StatsDisplay").GetComponent<Core.HealthHandler>().baseHealth,
-            //        gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite
-            //        );
-            //    else if (!visible) StatisticsFrame.instance.Clear();
-            //}
+
             base.SetSelectedVisible(visible);
         }
 
