@@ -17,8 +17,8 @@ namespace UI
         // Update is called once per frame
         void Update()
         {
-            gameObject.transform.GetChild(0).GetComponentInChildren<Text>().text = statistics.money.ToString();
-            gameObject.transform.GetChild(1).GetComponentInChildren<Text>().text = statistics.units.ToString();
+            gameObject.transform.GetChild(0).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = statistics.money.ToString();
+            gameObject.transform.GetChild(1).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = statistics.units.ToString();
         }
     }
 }
