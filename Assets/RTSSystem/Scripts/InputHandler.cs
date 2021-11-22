@@ -13,7 +13,7 @@ namespace InputManager
     {
         public static InputHandler instance;
 
-        [SerializeField] private Transform selectionAreaTransform;
+        [SerializeField] internal Transform selectionAreaTransform;
         private Vector2 startPosition;
 
         //object selection

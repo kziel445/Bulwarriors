@@ -88,6 +88,7 @@ namespace UI
                     button.name = unit.name;
                     button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = unit.icon;
                     button.gameObject.transform.GetChild(1).GetComponent<Text>().text = unit.baseStats.cost.ToString();
+                    button.gameObject.transform.GetComponent<Action>().isUnit = true;
                     buttons.Add(button);
                 }
             }
@@ -95,11 +96,21 @@ namespace UI
             {
                 foreach (Buildings.BuildingBasic building in actions.basicBuildings)
                 {
-                    Button button = Instantiate(actionButton, actionListUI);
-                    button.name = building.name;
-                    button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = building.icon;
-                    button.gameObject.transform.GetChild(1).GetComponent<Text>().text = building.baseStats.cost.ToString();
-                    buttons.Add(button);
+                    foreach(Button buttonName in buttons)
+                    {
+                        if (building.name == buttonName.name)
+                        {
+                            return;
+                        }
+                    }
+                        Button button = Instantiate(actionButton, actionListUI);
+                        button.name = building.name;
+                        button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = building.icon;
+                        button.gameObject.transform.GetChild(1).GetComponent<Text>().text = building.baseStats.cost.ToString();
+                        button.gameObject.transform.GetComponent<Action>().isUnit = false;
+                        buttons.Add(button);
+
+
                 }
             }
         }

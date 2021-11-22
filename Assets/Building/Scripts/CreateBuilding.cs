@@ -7,6 +7,7 @@ namespace Buildings
 {
     public class CreateBuilding : MonoBehaviour
     {
+        public static CreateBuilding instance;
         public bool isHoldingAScheme = false;
         [SerializeField]
         BuildingBasic buildingType;
@@ -15,30 +16,31 @@ namespace Buildings
         [SerializeField] private Camera camera;
         private Transform scheme;
 
+        [SerializeField]
+        private UI.PlayerActions actionList = null;
+
         private Position cursorPosition = new Position();
 
         private void Awake()
         {
+            instance = this;
             parentObject = GameObject.Find("PlayerBuildings").transform;
+            
+        }
+        private void Start()
+        {
+            
         }
         // Update is called once per frame
         void Update()
         {
             if (scheme != null) scheme.transform.position = cursorPosition.getMousePosition();
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                isHoldingAScheme = true;
-                scheme = Instantiate(
-                    buildingType.buildingPrefab.transform.GetChild(1),
-                    cursorPosition.getMousePosition(),
-                    Quaternion.identity,
-                    parentObject
-                    );
 
-            }
             if (isHoldingAScheme && Input.GetMouseButtonDown(0))
             {
-                SpawnNewBuilding(camera.ScreenToWorldPoint(Input.mousePosition));
+                SpawnNewBuilding(camera.ScreenToWorldPoint(Input.mousePosition),buildingType.name);
+                isHoldingAScheme = false;
+                Destroy(scheme.gameObject);
             }
             if (isHoldingAScheme && Input.GetMouseButtonDown(1))
             {
@@ -46,14 +48,45 @@ namespace Buildings
                 Destroy(scheme.gameObject);
             }
         }
-        public void SpawnNewBuilding(Vector2 mousePosition)
+        public void SpawnNewBuilding(Vector2 mousePosition, string buildingToSpawn)
         {
             
-            Instantiate(buildingType.buildingPrefab, mousePosition, Quaternion.identity, parentObject.GetChild(0));
+            GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>().money -= buildingType.baseStats.cost;
+            Instantiate(
+                buildingType.buildingPrefab,
+                mousePosition,
+                Quaternion.identity,
+                parentObject.Find(buildingType.name + "s")
+                );
+
         }
-        public void SpawnScheme()
+        public void SpawnScheme(string objectName)
         {
-            
+            buildingType = IsBuilding(objectName);
+            if (buildingType == null) return;
+
+            isHoldingAScheme = true;
+            scheme = Instantiate(
+                buildingType.buildingPrefab.transform.GetChild(1),
+                cursorPosition.getMousePosition(),
+                Quaternion.identity,
+                parentObject.Find(buildingType.name + "s")
+                );
         }
+        private BuildingBasic IsBuilding(string name)
+        {
+            if (actionList.basicBuildings.Count > 0)
+            {
+                foreach (BuildingBasic building in actionList.basicBuildings)
+                {
+                    if (building.name == name)
+                    {
+                        return building;
+                    }
+                }
+            }
+            return null;
+        }
+        
     }
 }

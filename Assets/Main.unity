@@ -2185,6 +2185,7 @@ MonoBehaviour:
   buildingType: {fileID: 11400000, guid: 97c2338dbc68ed5409b2e5519a9f8c97, type: 2}
   parentObject: {fileID: 0}
   camera: {fileID: 1568576542}
+  actionList: {fileID: 11400000, guid: 54971b804d36ab747a69e39d2698862d, type: 2}
 --- !u!4 &1584293398
 Transform:
   m_ObjectHideFlags: 0
@@ -2849,6 +2850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f0a77178b2448489de09104cc8d2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isUnit: 0
 --- !u!1001 &2037402938
 PrefabInstance:
   m_ObjectHideFlags: 0

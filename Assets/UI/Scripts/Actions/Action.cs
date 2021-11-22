@@ -9,17 +9,20 @@ namespace UI
     public class Action : MonoBehaviour
     {
         public static Action instance;
-        
+
+        public bool isUnit=false;
         void Start()
         {
+
         }
         public void OnClick()
         {
-            
-            ActionFrame.instance.spawnBuilding.GetComponent<UnitSpawnQueue>().StartQueueTimer(name);
+            if(isUnit) ActionFrame.instance.spawnBuilding.GetComponent<ObjectSpawnQueue>().StartQueueTimer(name);
+            if (!isUnit) CreateBuilding.instance.SpawnScheme(name);
             //spawnQueue.StartQueueTimer(name);
             //UnitSpawnQueue.instance.StartQueueTimer(name);
         }
+
 
     }
 }

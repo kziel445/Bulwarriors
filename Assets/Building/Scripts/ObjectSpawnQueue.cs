@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 namespace Buildings
 {
-    public class UnitSpawnQueue : MonoBehaviour
+    public class ObjectSpawnQueue : MonoBehaviour
     {
-        public static UnitSpawnQueue instance;
+        public static ObjectSpawnQueue instance;
 
         public List<Button> buttons = new List<Button>();
         private UI.PlayerActions actionList = null;
@@ -44,32 +44,12 @@ namespace Buildings
             {
                 
                 Units.UnitBasic unit = IsUnit(objectToSpawn);
-                //spawnTMP.Add((
-                //    unit.spawnTime,
-                //    unit.playerPrefab,
-                //    unit.type,
-                //    new Vector3(spawnPoint.position.x, spawnPoint.position.y - 0.5f, spawnPoint.position.z)
-                //    ));
-                Debug.Log(unit.spawnTime);
-                Debug.Log(unit.playerPrefab);
-                Debug.Log(unit.type);
-                Debug.Log(new Vector3(
-                    gameObject.transform.position.x,
-                    gameObject.transform.position.y - 0.5f,
-                    gameObject.transform.position.z
-                    ));
                 GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>().money -= unit.baseStats.cost;
                 spawningQueueTimer.Add(unit.spawnTime);
                 spawnQueue.Add(unit.playerPrefab);
                 spawnTypes.Add(unit.type);
                 gameObject.transform.GetComponentInChildren<Text>().text = spawningQueueTimer.Count.ToString();
 
-            }
-            else if (IsBuilding(objectToSpawn))
-            {
-                BuildingBasic building = IsBuilding(objectToSpawn);
-                spawningQueueTimer.Add(building.spawnTime);
-                spawnQueue.Add(building.buildingPrefab);
             }
             else Debug.Log($"{objectToSpawn} is not spawnable");
             Debug.Log("Corutine");
@@ -123,20 +103,7 @@ namespace Buildings
             }
             return null;
         }
-        private BuildingBasic IsBuilding(string name)
-        {
-            if (actionList.basicUnits.Count > 0)
-            {
-                foreach (BuildingBasic building in actionList.basicBuildings)
-                {
-                    if (building.name == name)
-                    {
-                        return building;
-                    }
-                }
-            }
-            return null;
-        }
+        
     }
 }
 

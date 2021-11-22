@@ -9,7 +9,8 @@ namespace Buildings
         [System.Serializable] 
         public class Base
         {
-            public float health, armor, attack, cost;
+            public int cost;
+            public float health, armor, attack;
             public UI.PlayerActions actions;
         }
     }
