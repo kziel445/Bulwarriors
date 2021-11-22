@@ -82,7 +82,7 @@ namespace Buildings
                 objectToStoreUnits.Find(objectName)
                 );
             objectName = objectName.Substring(0, objectName.Length - 1).ToLower();
-            //TODO to function, the same in PlayerManager.cs
+            //TODO to function, the same in PlayerManager.cs and createBuilding
             Units.Player.PlayerRTS playerUnit = unit.GetComponent<Units.Player.PlayerRTS>();
 
             Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);

@@ -52,12 +52,20 @@ namespace Buildings
         {
             
             GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>().money -= buildingType.baseStats.cost;
-            Instantiate(
+            GameObject building = Instantiate(
                 buildingType.buildingPrefab,
                 mousePosition,
                 Quaternion.identity,
                 parentObject.Find(buildingType.name + "s")
                 );
+
+            //TODO to function, the same in PlayerManager.cs and createBuilding
+            Buildings.Player.PlayerBuilding playerBuilding = building.GetComponent<Player.PlayerBuilding>();
+
+
+            BuildingBasic settings = BuildingHandler.instance.GetBuildingStats(buildingType.name.ToLower());
+            playerBuilding.baseStats = settings.baseStats;
+
 
         }
         public void SpawnScheme(string objectName)
