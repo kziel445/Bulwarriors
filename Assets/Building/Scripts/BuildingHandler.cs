@@ -13,7 +13,7 @@ namespace Buildings
         {
             instance = this;
         }
-        public BuildingStatTypes.Base GetBuildingStats(string type)
+        public BuildingBasic GetBuildingStats(string type)
         {
             BuildingBasic building;
             switch (type)
@@ -28,31 +28,7 @@ namespace Buildings
                     Debug.Log($"Building Type: {type} could not be found or does not exist!");
                     return null;
             }
-            return building.baseStats;
+            return building;
         }
-        //public void SetUnitStats(Transform type)
-        //{
-        //    Transform playerUnits = PlayerManager.instance.playerUnits;
-        //    Transform enemyUnits = PlayerManager.instance.enemyUnits;
-
-        //    foreach (Transform child in type)
-        //    {
-        //        foreach (Transform unit in child)
-        //        {
-        //            string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
-
-        //            if (type == playerUnits)
-        //            {
-        //                Player.PlayerRTS playerUnit = unit.GetComponent<Player.PlayerRTS>();
-        //                playerUnit.baseStats = GetUnitStats(unitName);
-        //            }
-        //            else if (type == enemyUnits)
-        //            {
-        //                Enemy.EnemyRTS enemyUnit = unit.GetComponent<Enemy.EnemyRTS>();
-        //                enemyUnit.baseStats = GetUnitStats(unitName);
-        //            }
-        //        }
-        //    }
-        //}
     }
 }

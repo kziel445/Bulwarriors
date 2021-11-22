@@ -60,13 +60,13 @@ namespace Player
                     else if (type == playerBuildings)
                     {
                         Buildings.Player.PlayerBuilding playerBuilding = transformObject.GetComponent<Buildings.Player.PlayerBuilding>();
-                        playerBuilding.baseStats = Buildings.BuildingHandler.instance.GetBuildingStats(objectName);
+                        playerBuilding.baseStats = Buildings.BuildingHandler.instance.GetBuildingStats(objectName).baseStats;
 
                     }
                     else if (type == enemyBuildings)
                     {
                         Buildings.Enemy.EnemyBuilding enemyBuilding = transformObject.GetComponent<Buildings.Enemy.EnemyBuilding>();
-                        enemyBuilding.baseStats = Buildings.BuildingHandler.instance.GetBuildingStats(objectName);
+                        enemyBuilding.baseStats = Buildings.BuildingHandler.instance.GetBuildingStats(objectName).baseStats;
                     }
                 }
             }

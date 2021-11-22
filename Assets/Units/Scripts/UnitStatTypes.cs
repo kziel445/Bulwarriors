@@ -14,6 +14,7 @@ namespace Units
             public float damage, atkSpeed, atkRange, aggroRange;
             //other stats
             public float health, armor, movementSpeed;
+            public UI.PlayerActions actions;
         }
     }
 }

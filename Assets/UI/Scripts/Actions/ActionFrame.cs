@@ -18,17 +18,6 @@ namespace UI
         private PlayerActions actionList = null;
         public GameObject spawnBuilding = null;
         public List<Button> buttons = new List<Button>();
-        //
-
-        
-        
-
-        //public List<float> spawningQueueTimer = new List<float>();
-        //public List<GameObject> spawnQueue = new List<GameObject>();
-        //public List<Units.UnitBasic.unitType> spawnTypes = new List<Units.UnitBasic.unitType>();
-
-        //public Transform objectToStoreUnits;
-
 
 
         private void Awake()
@@ -67,9 +56,6 @@ namespace UI
                 }
                 catch { }
             }
-                
-            
-            
         }
 
         //clear buttons from UI
@@ -90,7 +76,7 @@ namespace UI
         public void SetActionButtonsBuilding(PlayerActions actions, GameObject spawnLocation)
         {
             ActiveUI = true;
-
+            if (actions == null) return;
             //unused
             spawnBuilding = spawnLocation;
             actionList = actions;
@@ -102,6 +88,7 @@ namespace UI
                     button.name = unit.name;
                     button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = unit.icon;
                     button.gameObject.transform.GetChild(1).GetComponent<Text>().text = unit.baseStats.cost.ToString();
+                    button.gameObject.transform.GetComponent<Action>().isUnit = true;
                     buttons.Add(button);
                 }
             }
@@ -109,9 +96,21 @@ namespace UI
             {
                 foreach (Buildings.BuildingBasic building in actions.basicBuildings)
                 {
-                    Button button = Instantiate(actionButton, actionListUI);
-                    button.name = building.name;
-                    buttons.Add(button);
+                    foreach(Button buttonName in buttons)
+                    {
+                        if (building.name == buttonName.name)
+                        {
+                            return;
+                        }
+                    }
+                        Button button = Instantiate(actionButton, actionListUI);
+                        button.name = building.name;
+                        button.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = building.icon;
+                        button.gameObject.transform.GetChild(1).GetComponent<Text>().text = building.baseStats.cost.ToString();
+                        button.gameObject.transform.GetComponent<Action>().isUnit = false;
+                        buttons.Add(button);
+
+
                 }
             }
         }
