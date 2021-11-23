@@ -17,7 +17,7 @@ namespace PlayerStats
         }
         private void Start()
         {
-            StartCoroutine(GetMoneyPassive());
+            StartCoroutine(GetMoneyPassive(10));
         }
         private void Update()
         {
@@ -41,11 +41,11 @@ namespace PlayerStats
             }
         }
 
-        public IEnumerator GetMoneyPassive()
+        public IEnumerator GetMoneyPassive(int gold)
         {
             yield return new WaitForSeconds(2);
-            money += 10;
-            StartCoroutine(GetMoneyPassive());
+            money += gold;
+            StartCoroutine(GetMoneyPassive(gold));
         }
     }
 }

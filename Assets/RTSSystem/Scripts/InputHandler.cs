@@ -129,7 +129,7 @@ namespace InputManager
                     Transform target = clicked.collider.GetComponent<Transform>();
                     int unitLayer = selectedUnitRTSList[0].gameObject.layer;
                     int targetLayer = clicked.collider.gameObject.layer;
-                    if (targetLayer != unitLayer && targetLayer != unitLayer + 1)
+                    if (targetLayer != unitLayer && targetLayer != unitLayer + 1 && targetLayer != 7)
                     {
                         //Debug.Log(selectedUnitRTSList[0].name + " group is going to attack " + target);
                         foreach (Interactable interactableObject in selectedUnitRTSList)
