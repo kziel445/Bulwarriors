@@ -14,7 +14,7 @@ public class MoveVelocity : MonoBehaviour, IMoveVelocity
     }
     private void Start()
     {
-        moveSpeed = gameObject.GetComponent<Units.Player.PlayerRTS>().baseStats.movementSpeed;
+        moveSpeed = gameObject.GetComponent<Units.UnitRTS>().baseStats.movementSpeed;
 
     }
     public void SetVelocity(Vector2 velocityVector)
