@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   name: House
-  buildingPrefab: {fileID: 8379953237749845854, guid: 2d80643210d89864db85d77ba2a7f28c, type: 3}
+  buildingPrefab: {fileID: 2887446333919445906, guid: 79a87860100542f4ba0b8576366a1de7, type: 3}
   icon: {fileID: 21300000, guid: a728fc738b43edd448fa9811b5e0c723, type: 3}
   spawnTime: 4
   baseStats:
+    cost: 500
     health: 500
     armor: 1
     attack: 0
-    cost: 500
     actions: {fileID: 11400000, guid: 8458b6f6337d6c248a13d5096f7b18db, type: 2}

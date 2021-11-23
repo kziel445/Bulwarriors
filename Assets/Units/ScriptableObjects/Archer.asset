@@ -27,5 +27,5 @@ MonoBehaviour:
     aggroRange: 6
     health: 100
     armor: 100
-    movementSpeed: 0
+    movementSpeed: 3
     actions: {fileID: 0}
