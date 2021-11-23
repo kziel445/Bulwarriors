@@ -9,15 +9,15 @@ namespace Units
     {
         public static UnitHandler instance;
         [SerializeField]
-        private UnitTemplate worker, warrior, archer;
+        public UnitBasic worker, warrior, archer;
         private void Awake()
         {
-            instance = this;
+           instance = this;
         }
-        public UnitStatTypes.Base GetUnitStats(string type)
+        public UnitBasic GetUnitSettings(string type)
         {
-        UnitTemplate unit;
-            switch(type)
+            UnitBasic unit;
+            switch (type)
             {
                 case "worker":
                     unit = worker;
@@ -32,32 +32,8 @@ namespace Units
                     Debug.Log($"Unit Type: {type} could not be found or does not exist!");
                     return null;
             }
-            return unit.baseStats;
+            return unit;
         }
-        public void SetUnitStats(Transform type)
-        {
-            Transform playerUnits = PlayerManager.instance.playerUnits;
-            Transform enemyUnits = PlayerManager.instance.enemyUnits;
 
-            foreach (Transform child in type)
-            {
-                foreach (Transform unit in child)
-                {
-                    string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
-                    var stats = GetUnitStats(unitName);
-
-                    if (type == playerUnits)
-                    {
-                        UnitRTS playerUnit = unit.GetComponent<UnitRTS>();
-                        playerUnit.baseStats = GetUnitStats(unitName);
-                    }
-                    else if (type == enemyUnits)
-                    {
-                        EnemyRTS enemyUnit = unit.GetComponent<EnemyRTS>();
-                        enemyUnit.baseStats = GetUnitStats(unitName);
-                    }
-                }
-            }
-        }
     }
 }
