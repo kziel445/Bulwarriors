@@ -8,13 +8,11 @@ namespace UI
     public class ResourcesFrame : MonoBehaviour
     {
         public PlayerStats.Statistics statistics;
-        // Start is called before the first frame update
         void Start()
         {
             statistics = GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             gameObject.transform.GetChild(0).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = statistics.money.ToString();
