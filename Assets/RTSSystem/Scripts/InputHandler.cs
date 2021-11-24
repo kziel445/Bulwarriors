@@ -38,11 +38,8 @@ namespace InputManager
         // Update is called once per frame
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                if(Time.timeScale == 0) Time.timeScale = 1;
-                else Time.timeScale = 0;
-            }
+            
+            
             //TODO when selected buidlding then units, slection in UI stuck
             // Selection area
             if (Input.GetMouseButtonDown(0))

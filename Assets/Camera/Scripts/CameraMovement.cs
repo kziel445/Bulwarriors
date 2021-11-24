@@ -31,12 +31,12 @@ public class CameraMovement : MonoBehaviour
         {
             position.x += cameraSpeed * Time.deltaTime;
         }
-        if(Input.GetAxis("Mouse ScrollWheel") > 0)
+        if(Input.GetAxis("Mouse ScrollWheel") > 0 && Time.timeScale != 0)
         {
             zoom-=0.2f;
             zoom = zoomController(zoom);
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && Time.timeScale != 0)
         {
             zoom += 0.2f;
             zoom = zoomController(zoom);
