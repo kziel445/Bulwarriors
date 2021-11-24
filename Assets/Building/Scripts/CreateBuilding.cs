@@ -50,11 +50,11 @@ namespace Buildings
         }
         public void SpawnNewBuilding(Vector2 mousePosition, string buildingToSpawn)
         {
-            
+
             GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>().money -= buildingType.baseStats.cost;
             GameObject building = Instantiate(
                 buildingType.buildingPrefab,
-                mousePosition,
+                new Vector3(mousePosition.x,mousePosition.y, mousePosition.y/1000),
                 Quaternion.identity,
                 parentObject.Find(buildingType.name + "s")
                 );
