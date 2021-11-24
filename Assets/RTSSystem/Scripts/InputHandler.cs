@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Cursor;
+using KZ.Cursor;
 using Units.Player;
 using Core.Interactables;
 using UI;

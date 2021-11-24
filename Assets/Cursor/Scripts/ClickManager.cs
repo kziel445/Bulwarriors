@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using KZ.Cursor;
 
 public class ClickManager: MonoBehaviour
 {
 	[SerializeField] private Camera camera;
+	[SerializeField] private Texture2D cursor;
+
+    private void Awake()
+    {
+		Cursor.SetCursor(cursor, Vector3.zero, CursorMode.ForceSoftware);
+    }
     void Update()
     {
      	if(Input.GetMouseButtonDown(0))

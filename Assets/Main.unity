@@ -691,6 +691,10 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1568576542}
+    - target: {fileID: 1002418606568289489, guid: 3ab7e9be6252ba64496f4c5f00ae1bd5, type: 3}
+      propertyPath: cursor
+      value: 
+      objectReference: {fileID: 2800000, guid: 0ff8d58a27126814b84d6818ac34ef9a, type: 3}
     - target: {fileID: 1002418606568289514, guid: 3ab7e9be6252ba64496f4c5f00ae1bd5, type: 3}
       propertyPath: m_Name
       value: GameController
