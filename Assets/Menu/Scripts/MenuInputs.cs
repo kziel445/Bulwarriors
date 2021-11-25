@@ -15,20 +15,21 @@ public class MenuInputs : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 
-            if (Time.timeScale == 0)
+            if (Time.timeScale == 0 && menu.active)
             {
-
+                
                 menu.SetActive(false);
                 Time.timeScale = 1;
             }
             else
             {
                 Debug.Log(GameObject.Find("Menu"));
+                pasued.SetActive(false);
                 menu.SetActive(true);
                 Time.timeScale = 0;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !menu.active)
         {
             if (Time.timeScale == 0)
             {
