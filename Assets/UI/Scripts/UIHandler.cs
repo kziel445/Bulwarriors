@@ -54,7 +54,7 @@ namespace UI
                     var sprite = unit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
                     var parent = unit.gameObject.transform.parent.name;
                     string objectName = parent.Substring(0, parent.Length - 1).ToLower();
-                    Debug.Log(parent);
+
 
                     frame.transform.GetChild(1).GetComponent<Image>().sprite = Units.UnitHandler.instance.GetUnitSettings(objectName).icon;
                     frame.transform.GetChild(1).GetComponent<Image>().color = Units.UnitHandler.instance.GetUnitSettings(objectName).classColor;

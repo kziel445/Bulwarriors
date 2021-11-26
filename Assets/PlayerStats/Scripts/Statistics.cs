@@ -8,10 +8,12 @@ namespace PlayerStats
     {
         public Transform UnitsObject;
         internal int money = 500;
+        internal int moneyCollected;
         internal int units;
 
         private void Awake()
         {
+            money = moneyCollected;
             if(UnitsObject==null) UnitsObject = GameObject.Find("PlayerUnits").transform;
             GetNumberOfUnits();
         }
@@ -23,12 +25,17 @@ namespace PlayerStats
         {
             if(Input.GetKeyDown(KeyCode.M))
             {
-                money += 500;
+                GetMoney(500);
             }
             GetNumberOfUnits();
             
         }
 
+        public void GetMoney(int amout)
+        {
+            money += amout;
+            moneyCollected += amout;
+        }
         public void GetNumberOfUnits()
         {
             units = 0;
@@ -44,7 +51,7 @@ namespace PlayerStats
         public IEnumerator GetMoneyPassive(int gold)
         {
             yield return new WaitForSeconds(2);
-            money += gold;
+            GetMoney(gold);
             StartCoroutine(GetMoneyPassive(gold));
         }
     }

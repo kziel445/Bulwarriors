@@ -88,11 +88,10 @@ namespace InputManager
                 // deslect units
                 
 
-                
 
                 if (collider2DArray.Length==1 && collider2DArray[0].GetComponent<Buildings.Player.PlayerBuilding>()!=null)
                 {
-                    Debug.Log(collider2DArray[0]);
+                    
                     Interactable building = collider2DArray[0].GetComponent<Interactable>();
                     //BuildingUI building = collider2DArray[0].gameObject.GetComponent<BuildingUI>();
                     building.SetSelectedVisible(true);
@@ -108,8 +107,9 @@ namespace InputManager
                     Interactable interactableObject = collider2D.GetComponent<Interactable>();
                     if (interactableObject != null && interactableObject.gameObject.layer == 8)
                     {
-                        interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
                         selectedUnitRTSList.Add(interactableObject);
+                        interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
+                        
                     }
                 }
                 UIHandler.instance.UpdateSelectedUnits();

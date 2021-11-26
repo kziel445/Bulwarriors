@@ -18,7 +18,8 @@ namespace UI
                     );
                 else if (!visible) ActionFrame.instance.ClearActions();
             }
-            if(StatisticsFrame.instance!=null)
+            Debug.Log(StatisticsFrame.instance);
+            if (StatisticsFrame.instance!=null)
             {
                 if (visible) StatisticsFrame.instance.ChangeStatsOfObject(
                     gameObject.transform.Find("StatsDisplay").GetComponent<Core.HealthHandler>().currentHealth,

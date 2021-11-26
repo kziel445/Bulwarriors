@@ -61,7 +61,6 @@ namespace UI
         //clear buttons from UI
         public void ClearActions()
         {
-            Debug.Log("Clear buttons");
             foreach(Button button in buttons)
             {
                 Destroy(button.gameObject);
