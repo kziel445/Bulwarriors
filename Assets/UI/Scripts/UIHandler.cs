@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using InputManager;
+
 
 namespace UI
 {
@@ -27,9 +29,9 @@ namespace UI
 
             
         }
-        public void ShowStatistics()
+        public void GoToMainMenu()
         {
-
+            SceneManager.LoadScene(0);
         }
         public void UpdateSelectedUnits()
         {

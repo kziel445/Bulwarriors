@@ -7,13 +7,13 @@ namespace PlayerStats
     public class Statistics : MonoBehaviour
     {
         public Transform UnitsObject;
-        internal int money = 500;
+        internal int money = 100;
         internal int moneyCollected;
         internal int units;
 
         private void Awake()
         {
-            money = moneyCollected;
+            moneyCollected = money;
             if(UnitsObject==null) UnitsObject = GameObject.Find("PlayerUnits").transform;
             GetNumberOfUnits();
         }

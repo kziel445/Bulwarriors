@@ -31,11 +31,12 @@ namespace UI
             Debug.Log(gameController);
             if (StatisticsFrame.instance != null)
             {
-                Debug.Log("Halo " + visible + " " + gameController.GetComponent<InputManager.InputHandler>().selectedUnitRTSList.Count);
-                if (visible && gameController.GetComponent<InputManager.InputHandler>().selectedUnitRTSList.Count==1) StatisticsFrame.instance.ChangeStatsOfObject(
-                    gameObject.transform.Find("StatsDisplay").GetComponent<Core.HealthHandler>().currentHealth,
-                    gameObject.transform.Find("StatsDisplay").GetComponent<Core.HealthHandler>().baseHealth,
-                    gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite
+                
+                if (visible && gameController.GetComponent<InputManager.InputHandler>().selectedUnitRTSList.Count==1) 
+                    StatisticsFrame.instance.ChangeStatsOfObject(
+                        gameObject.transform.Find("StatsDisplay").GetComponent<Core.HealthHandler>().currentHealth,
+                        gameObject.transform.Find("StatsDisplay").GetComponent<Core.HealthHandler>().baseHealth,
+                        gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite
                     );
                 else if (!visible || gameController.GetComponent<InputManager.InputHandler>().selectedUnitRTSList.Count>1) StatisticsFrame.instance.Clear();
             }

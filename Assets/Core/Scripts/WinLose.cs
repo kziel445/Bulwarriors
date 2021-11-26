@@ -3,21 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WinLose : MonoBehaviour
-{   
+{
+    [SerializeField]
+    GameObject victory;
+    [SerializeField]
+    GameObject deafeat;
+
     [SerializeField]
     Transform playerBuildings;
     [SerializeField]
     Transform enemyBuildings;
     int playerBuildingsCount = 1;
     int enemyBuildingsCount = 1;
-    private bool ifWin, ifEndOfGame = false;
+    private bool ifEndOfGame = false;
 
     void Update()
     {
         UpdatePlayerBuildings();
-        if (playerBuildingsCount == 0) LoseScreen();
+        if (playerBuildingsCount == 0 && !ifEndOfGame)
+        {
+            DefeatScreen();
+            ifEndOfGame = true;
+        }
         UpdateEnemyBuildings();
-        if (enemyBuildingsCount == 0) WinScreen();
+        if (enemyBuildingsCount == 0 && !ifEndOfGame)
+        {
+            VictoryScreen();
+            ifEndOfGame = true;
+        }
     }
     public int UpdatePlayerBuildings()
     {
@@ -37,13 +50,14 @@ public class WinLose : MonoBehaviour
         }
         return enemyBuildingsCount;
     }
-    public void WinScreen()
+    public void VictoryScreen()
     {
-        
+        victory.SetActive(true);
         Debug.Log("You are a winner! :D");
     }
-    public void LoseScreen()
+    public void DefeatScreen()
     {
+        deafeat.SetActive(true);
         Debug.Log("You lose");
     }
 }
