@@ -8,13 +8,18 @@ namespace Buildings
     public class GoldUp : MonoBehaviour
     {
         PlayerStats.Statistics statistics;
+        [SerializeField]
+        private int goldPerTime = 10;
+        [SerializeField]
+        private int secondsToGold = 2;
+
         private void Awake()
         {
             statistics = GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>();
         }
         private void Start()
         {
-            StartCoroutine(GetMoneyPassive(5));
+            StartCoroutine(GetMoneyPassive(goldPerTime));
         }
 
         // Update is called once per frame
@@ -25,8 +30,8 @@ namespace Buildings
 
         public IEnumerator GetMoneyPassive(int gold)
         {
-            yield return new WaitForSeconds(2);
-            statistics.money += gold;
+            yield return new WaitForSeconds(secondsToGold);
+            statistics.GetMoney(gold);
             StartCoroutine(GetMoneyPassive(gold));
         }
     }
