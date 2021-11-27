@@ -46,12 +46,20 @@ namespace Units
 
         public void MoveToTarget(Vector3 targetPosition)
         {
-                MoveTo(transform.position);
-                //get distanceToTarget, when good range can attack
-                distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
-                //(baseStats.atkRange + 1);
-                if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
-                else MoveTo(transform.position);
+            MoveTo(transform.position);
+            //get distanceToTarget, when good range can attack
+            distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
+            if(aggroTarget.GetComponent<BoxCollider2D>()!=null)
+            {
+                distanceToTarget -= aggroTarget.GetComponent<BoxCollider2D>().bounds.extents.x/2*Mathf.Sqrt(2);
+            }
+            else if (aggroTarget.GetComponent<CircleCollider2D>() != null)
+            {
+                distanceToTarget -= aggroTarget.GetComponent<CircleCollider2D>().bounds.extents.x / 2;
+            }
+            //(baseStats.atkRange + 1);
+            if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
+            else MoveTo(transform.position);
         }
         //for now, function check for random enemy(probably close to "0,0")
         internal void CheckForEnenmyTargets(float aggroRange)
@@ -132,8 +140,16 @@ namespace Units
             else animator.SetBool("IfAttack", false);
 
         }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if(collision.gameObject.transform == aggroTarget)
+            {
+
+            }
+        }
 
     }
+    
     //Debug.Log("collide (name) : " + collide.collider.gameObject.name);
     //Debug.Log("collide (tag) : " + collide.collider.gameObject.tag);
     //if (collide.collider.gameObject.name == "Hitbox")
