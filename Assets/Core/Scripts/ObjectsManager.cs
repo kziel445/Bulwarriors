@@ -13,6 +13,7 @@ namespace Player
         public Transform playerBuildings;
         public Transform enemyBuildings;
 
+        private Transform objectPostion;
         private void Awake()
         {
             instance = this;
@@ -47,6 +48,8 @@ namespace Player
                         Units.Player.PlayerRTS playerUnit = transformObject.GetComponent<Units.Player.PlayerRTS >();
                         Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);
                         playerUnit.baseStats = settings.baseStats;
+                        objectPostion = playerUnit.gameObject.transform;
+                        objectPostion.position = new Vector3(objectPostion.position.x, objectPostion.position.y, objectPostion.position.y / 1000);
 
                         playerUnit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = settings.classColor;
                         // Units.UnitHandler.instance.GetUnitColor(objectName);
@@ -56,17 +59,24 @@ namespace Player
                     {
                         Units.Enemy.EnemyRTS enemyUnit = transformObject.GetComponent<Units.Enemy.EnemyRTS>();
                         enemyUnit.baseStats = Units.UnitHandler.instance.GetUnitSettings(objectName).baseStats;
+                        objectPostion = enemyUnit.gameObject.transform;
+                        objectPostion.position = new Vector3(objectPostion.position.x, objectPostion.position.y, objectPostion.position.y / 1000);
                     }
                     else if (type == playerBuildings)
                     {
                         Buildings.Player.PlayerBuilding playerBuilding = transformObject.GetComponent<Buildings.Player.PlayerBuilding>();
                         playerBuilding.baseStats = Buildings.BuildingHandler.instance.GetBuildingStats(objectName).baseStats;
+                        objectPostion = playerBuilding.gameObject.transform;
+                        objectPostion.position = new Vector3(objectPostion.position.x, objectPostion.position.y, objectPostion.position.y / 1000);
 
                     }
                     else if (type == enemyBuildings)
                     {
                         Buildings.Enemy.EnemyBuilding enemyBuilding = transformObject.GetComponent<Buildings.Enemy.EnemyBuilding>();
                         enemyBuilding.baseStats = Buildings.BuildingHandler.instance.GetBuildingStats(objectName).baseStats;
+                        objectPostion = enemyBuilding.gameObject.transform;
+                        objectPostion.position = new Vector3(objectPostion.position.x, objectPostion.position.y, objectPostion.position.y / 1000);
+
                     }
                 }
             }

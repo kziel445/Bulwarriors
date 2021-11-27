@@ -7,28 +7,35 @@ namespace PlayerStats
     public class Statistics : MonoBehaviour
     {
         public Transform UnitsObject;
-        internal int money = 500;
+        internal int money = 100;
+        internal int moneyCollected;
         internal int units;
 
         private void Awake()
         {
+            moneyCollected = money;
             if(UnitsObject==null) UnitsObject = GameObject.Find("PlayerUnits").transform;
             GetNumberOfUnits();
         }
         private void Start()
         {
-            StartCoroutine(GetMoneyPassive());
+            StartCoroutine(GetMoneyPassive(10));
         }
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.M))
             {
-                money += 500;
+                GetMoney(500);
             }
             GetNumberOfUnits();
             
         }
 
+        public void GetMoney(int amout)
+        {
+            money += amout;
+            moneyCollected += amout;
+        }
         public void GetNumberOfUnits()
         {
             units = 0;
@@ -41,11 +48,11 @@ namespace PlayerStats
             }
         }
 
-        public IEnumerator GetMoneyPassive()
+        public IEnumerator GetMoneyPassive(int gold)
         {
             yield return new WaitForSeconds(2);
-            money += 10;
-            StartCoroutine(GetMoneyPassive());
+            GetMoney(gold);
+            StartCoroutine(GetMoneyPassive(gold));
         }
     }
 }

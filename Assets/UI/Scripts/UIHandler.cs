@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using InputManager;
+
 
 namespace UI
 {
@@ -27,9 +29,9 @@ namespace UI
 
             
         }
-        public void ShowStatistics()
+        public void GoToMainMenu()
         {
-
+            SceneManager.LoadScene(0);
         }
         public void UpdateSelectedUnits()
         {
@@ -54,7 +56,7 @@ namespace UI
                     var sprite = unit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
                     var parent = unit.gameObject.transform.parent.name;
                     string objectName = parent.Substring(0, parent.Length - 1).ToLower();
-                    Debug.Log(parent);
+
 
                     frame.transform.GetChild(1).GetComponent<Image>().sprite = Units.UnitHandler.instance.GetUnitSettings(objectName).icon;
                     frame.transform.GetChild(1).GetComponent<Image>().color = Units.UnitHandler.instance.GetUnitSettings(objectName).classColor;

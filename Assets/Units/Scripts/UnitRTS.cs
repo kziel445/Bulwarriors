@@ -57,15 +57,32 @@ namespace Units
         internal void CheckForEnenmyTargets(float aggroRange)
         {
             rangeColliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
+
+            Transform aggroTmp = null;
             for (int i = 0; i < rangeColliders.Length; i++)
             {
-                if (rangeColliders[i].gameObject.layer != gameObject.layer && rangeColliders[i].gameObject.layer != gameObject.layer + 1)
+                if(aggroTmp==null &&
+                    rangeColliders[i].gameObject.layer != gameObject.layer &&
+                    rangeColliders[i].gameObject.layer != gameObject.layer + 1 &&
+                    rangeColliders[i].gameObject.layer != 7 //7 is world obstacles
+                    )
                 {
-                    aggroTarget = rangeColliders[i].gameObject.transform;
-                    hasAggro = true;
-                    break;
+                    aggroTmp = rangeColliders[i].gameObject.transform;
+                }
+                else if (rangeColliders[i].gameObject.layer != gameObject.layer &&
+                    rangeColliders[i].gameObject.layer != gameObject.layer + 1 &&
+                    rangeColliders[i].gameObject.layer != 7 &&
+                    Vector2.Distance(aggroTmp.transform.position,gameObject.transform.position)>
+                    Vector2.Distance(rangeColliders[i].gameObject.transform.position, gameObject.transform.position)
+                    )
+                {
+                    aggroTmp = rangeColliders[i].gameObject.transform;
                 }
             }
+            aggroTarget = aggroTmp;
+            hasAggro = true;
+
+
         }
         public void Attack()
         {

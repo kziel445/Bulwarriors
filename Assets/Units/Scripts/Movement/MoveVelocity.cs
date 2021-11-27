@@ -12,6 +12,11 @@ public class MoveVelocity : MonoBehaviour, IMoveVelocity
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
+    private void Start()
+    {
+        moveSpeed = gameObject.GetComponent<Units.UnitRTS>().baseStats.movementSpeed;
+
+    }
     public void SetVelocity(Vector2 velocityVector)
     {
         this.velocityVector = velocityVector;

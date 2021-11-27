@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Cursor;
+using KZ.Cursor;
 using Units.Player;
 using Core.Interactables;
 using UI;
@@ -38,6 +38,8 @@ namespace InputManager
         // Update is called once per frame
         void Update()
         {
+            
+            
             //TODO when selected buidlding then units, slection in UI stuck
             // Selection area
             if (Input.GetMouseButtonDown(0))
@@ -86,11 +88,10 @@ namespace InputManager
                 // deslect units
                 
 
-                
 
                 if (collider2DArray.Length==1 && collider2DArray[0].GetComponent<Buildings.Player.PlayerBuilding>()!=null)
                 {
-                    Debug.Log(collider2DArray[0]);
+                    
                     Interactable building = collider2DArray[0].GetComponent<Interactable>();
                     //BuildingUI building = collider2DArray[0].gameObject.GetComponent<BuildingUI>();
                     building.SetSelectedVisible(true);
@@ -106,8 +107,9 @@ namespace InputManager
                     Interactable interactableObject = collider2D.GetComponent<Interactable>();
                     if (interactableObject != null && interactableObject.gameObject.layer == 8)
                     {
-                        interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
                         selectedUnitRTSList.Add(interactableObject);
+                        interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
+                        
                     }
                 }
                 UIHandler.instance.UpdateSelectedUnits();
@@ -129,7 +131,7 @@ namespace InputManager
                     Transform target = clicked.collider.GetComponent<Transform>();
                     int unitLayer = selectedUnitRTSList[0].gameObject.layer;
                     int targetLayer = clicked.collider.gameObject.layer;
-                    if (targetLayer != unitLayer && targetLayer != unitLayer + 1)
+                    if (targetLayer != unitLayer && targetLayer != unitLayer + 1 && targetLayer != 7)
                     {
                         //Debug.Log(selectedUnitRTSList[0].name + " group is going to attack " + target);
                         foreach (Interactable interactableObject in selectedUnitRTSList)

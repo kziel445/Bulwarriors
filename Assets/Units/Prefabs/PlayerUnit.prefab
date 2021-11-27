@@ -88,7 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa36bcacfd07da4799427d297a85362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instance: {fileID: 0}
   movePosition: {x: 0, y: 0}
   animator: {fileID: 3046017700376117356}
   movement: {x: 0, y: 0}
@@ -148,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedGameObject: {fileID: 6734870730128943221}
   isInteracting: 0
+  gameController: {fileID: 0}
 --- !u!1 &6681126326978182757
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3570855488675475108, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_Name
-      value: UnitStatsDisplay
+      value: StatsDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_Pivot.x
