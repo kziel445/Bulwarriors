@@ -44,7 +44,7 @@ namespace Buildings
             {
                 
                 Units.UnitBasic unit = IsUnit(objectToSpawn);
-                GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>().money -= unit.baseStats.cost;
+                GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().money -= unit.baseStats.cost;
                 spawningQueueTimer.Add(unit.spawnTime);
                 spawnQueue.Add(unit.playerPrefab);
                 spawnTypes.Add(unit.type);

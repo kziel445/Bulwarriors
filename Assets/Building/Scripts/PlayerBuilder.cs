@@ -5,9 +5,9 @@ using KZ.Cursor;
 
 namespace Buildings
 {
-    public class CreateBuilding : MonoBehaviour
+    public class PlayerBuilder : MonoBehaviour
     {
-        public static CreateBuilding instance;
+        public static PlayerBuilder instance;
         public bool isHoldingAScheme = false;
         [SerializeField]
         BuildingBasic buildingType;
@@ -51,7 +51,7 @@ namespace Buildings
         public void SpawnNewBuilding(Vector2 mousePosition, string buildingToSpawn)
         {
 
-            GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>().money -= buildingType.baseStats.cost;
+            GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().money -= buildingType.baseStats.cost;
             GameObject building = Instantiate(
                 buildingType.buildingPrefab,
                 new Vector3(mousePosition.x,mousePosition.y, mousePosition.y/1000),

@@ -2,19 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PlayerStats
+namespace Statistics
 {
     public class Statistics : MonoBehaviour
     {
-        public Transform UnitsObject;
-        internal int money = 100;
-        internal int moneyCollected;
-        internal int units;
+        public Transform unitsObject;
+        [SerializeField] internal int money = 100;
+        [SerializeField] internal int moneyCollected;
+        [SerializeField] internal int units;
 
         private void Awake()
         {
             moneyCollected = money;
-            if(UnitsObject==null) UnitsObject = GameObject.Find("PlayerUnits").transform;
+            if (unitsObject == null)
+            {
+                if (gameObject.name.Contains("Player"))
+                    unitsObject = GameObject.Find("PlayerStatistics").transform;
+                else if (gameObject.name.Contains("Enemy"))
+                    unitsObject = GameObject.Find("EnemyStatistics").transform;
+                else Debug.LogWarning("Player or enemy statistics not found");
+            }
             GetNumberOfUnits();
         }
         private void Start()
@@ -23,14 +30,13 @@ namespace PlayerStats
         }
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.M))
+            if (Input.GetKeyDown(KeyCode.M))
             {
                 GetMoney(500);
             }
             GetNumberOfUnits();
-            
-        }
 
+        }
         public void GetMoney(int amout)
         {
             money += amout;
@@ -39,7 +45,7 @@ namespace PlayerStats
         public void GetNumberOfUnits()
         {
             units = 0;
-            foreach (Transform child in UnitsObject)
+            foreach (Transform child in unitsObject)
             {
                 foreach (Transform transformObject in child)
                 {

@@ -7,10 +7,10 @@ namespace UI
 {
     public class ResourcesFrame : MonoBehaviour
     {
-        public PlayerStats.Statistics statistics;
+        public Statistics.Statistics statistics;
         void Start()
         {
-            statistics = GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>();
+            statistics = GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>();
         }
 
         void Update()

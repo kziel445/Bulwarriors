@@ -53,7 +53,7 @@ public class WinLose : MonoBehaviour
     public void VictoryScreen()
     {
         victory.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text +=
-            GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>().moneyCollected.ToString();
+            GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().moneyCollected.ToString();
         victory.SetActive(true);
         Debug.Log("You are a winner! :D");
         
@@ -61,7 +61,7 @@ public class WinLose : MonoBehaviour
     public void DefeatScreen()
     {
         deafeat.transform.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text +=
-            GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>().moneyCollected.ToString();
+            GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().moneyCollected.ToString();
         deafeat.SetActive(true);
         Debug.Log("You lose");
     }
