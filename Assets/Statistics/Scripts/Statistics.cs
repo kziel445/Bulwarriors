@@ -17,12 +17,12 @@ namespace Statistics
             if (unitsObject == null)
             {
                 if (gameObject.name.Contains("Player"))
-                    unitsObject = GameObject.Find("PlayerStatistics").transform;
+                    unitsObject = GameObject.Find("PlayerUnits").transform;
                 else if (gameObject.name.Contains("Enemy"))
-                    unitsObject = GameObject.Find("EnemyStatistics").transform;
+                    unitsObject = GameObject.Find("EnemyUnits").transform;
                 else Debug.LogWarning("Player or enemy statistics not found");
             }
-            GetNumberOfUnits();
+            units = GetNumberOfUnits();
         }
         private void Start()
         {
@@ -34,7 +34,7 @@ namespace Statistics
             {
                 GetMoney(500);
             }
-            GetNumberOfUnits();
+            units = GetNumberOfUnits();
 
         }
         public void GetMoney(int amout)
@@ -42,16 +42,14 @@ namespace Statistics
             money += amout;
             moneyCollected += amout;
         }
-        public void GetNumberOfUnits()
+        public int GetNumberOfUnits()
         {
-            units = 0;
+            var count = 0;
             foreach (Transform child in unitsObject)
             {
-                foreach (Transform transformObject in child)
-                {
-                    units++;
-                }
+                count += child.childCount;
             }
+            return count;
         }
 
         public IEnumerator GetMoneyPassive(int gold)
