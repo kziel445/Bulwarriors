@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     }
     void Update()
     {
-        timer += Time.deltaTime;
+        
         //int timeSeconds = (int)(timer % 60);
     }
 }
