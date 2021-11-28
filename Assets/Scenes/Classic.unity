@@ -97299,6 +97299,10 @@ PrefabInstance:
       propertyPath: yMinBound
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4541322018156118900, guid: 66ea3550128537a408d4d1219c251a1f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4541322018156118901, guid: 66ea3550128537a408d4d1219c251a1f, type: 3}
       propertyPath: near clip plane
       value: 2
