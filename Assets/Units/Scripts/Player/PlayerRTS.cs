@@ -9,7 +9,7 @@ namespace Units.Player
     {
         public static PlayerRTS instance;
         
-        public bool IfCommand = false;
+        
         // Start is called before the first frame update
         private void Start()
         {

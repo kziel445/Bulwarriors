@@ -22,11 +22,11 @@ namespace Units
         private float distanceToTarget;
         public Transform missile;
         public float atkCooldown;
-
+        
         //animation
         public Animator animator;
         //movement
-
+        public bool IfCommand = false;
         internal IMovePosition movePosition;
 
         private void Start()
@@ -46,7 +46,7 @@ namespace Units
 
         public void MoveToTarget(Vector3 targetPosition)
         {
-            MoveTo(transform.position);
+            //MoveTo(transform.position);
             //get distanceToTarget, when good range can attack
             distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
             if(aggroTarget.GetComponent<BoxCollider2D>()!=null)
@@ -114,7 +114,14 @@ namespace Units
         }
         public void FollowAndAttack()
         {
-            if (aggroTarget != null)
+            if (aggroTarget != null && Vector2.Distance(aggroTarget.position, gameObject.transform.position) > baseStats.aggroRange * 2)
+            {
+                MoveToTarget(gameObject.transform.position);
+                aggroTarget = null;
+                animator.SetBool("IfAttack", false);
+                hasAggro = false;
+            }
+             else if (aggroTarget != null)
             {
                 MoveToTarget(aggroTarget.position);
                 Attack();
