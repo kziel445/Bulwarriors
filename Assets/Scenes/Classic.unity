@@ -1204,7 +1204,7 @@ MonoBehaviour:
   unitsWithCommands: []
   parentOfBuildings: {fileID: 0}
   selectedBuildings: []
-  playerBase: {x: 10, y: 10}
+  playerBase: {x: 3, y: 3}
   groupPoint: {x: 20, y: 20}
 --- !u!4 &324754782
 Transform:
