@@ -32,7 +32,7 @@ public class EnemyAIHandler : MonoBehaviour
         if(waitingForCommand)
         {
             waitingForCommand = false;
-            StartCoroutine(Command(10,ChooseRandomUnits));
+            StartCoroutine(Command(60, ChooseRandomUnits));
             Debug.Log("Command get");
             //ChooseRandomUnits();
         }
@@ -185,6 +185,5 @@ public class EnemyAIHandler : MonoBehaviour
         GroupMove(playerBase);
         selectedUnit.Clear();
         waitingForCommand = true;
-
     }
 }
