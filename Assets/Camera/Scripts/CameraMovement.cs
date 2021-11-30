@@ -42,9 +42,6 @@ public class CameraMovement : MonoBehaviour
         {
             zoom += 0.2f;
             zoom = zoomController(zoom);
-            Debug.Log(GetComponent<Camera>().ViewportToWorldPoint(
-                new Vector3(1,1,GetComponent<Camera>().nearClipPlane)
-                ));
         }
         GetComponent<Camera>().orthographicSize = zoom;
 

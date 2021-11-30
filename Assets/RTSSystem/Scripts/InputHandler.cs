@@ -163,23 +163,23 @@ namespace InputManager
                 //Debug.Log(hit.collider.gameObject.tag);
             }
         }
-        private void GroupMove()
+        public void GroupMove()
         {
             ReCommand(selectedUnitRTSList);
 
             Vector2 moveToPosition = cursorPosition.getMousePosition();
             // TODO: set dynamic vlaues down below
 
-            List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f }, new int[] { 5, 10, 20 });
+            List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f, 2f }, new int[] { 5, 10, 20, 40 });
             int targetPositionListIndex = 0;
             foreach (Interactable interactableObject in selectedUnitRTSList)
             {
-                PlayerRTS unitRTS = interactableObject.GetComponent<PlayerRTS>();
+                Units.UnitRTS unitRTS = interactableObject.GetComponent<Units.UnitRTS>();
                 unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
                 targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
             }
         }
-        private void ReCommand(List<Interactable> selectedUnits)
+        public void ReCommand(List<Interactable> selectedUnits)
         {
             foreach (Interactable interactableObject in selectedUnits)
             {
@@ -224,7 +224,7 @@ namespace InputManager
         //        }
         //    }
         //}
-        private List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
+        public List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
         {
             List<Vector2> positionList = new List<Vector2>();
             positionList.Add(startPosition);

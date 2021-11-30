@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Buildings
 {
     public class GoldUp : MonoBehaviour
     {
-        PlayerStats.Statistics statistics;
+        Statistics.Statistics statistics;
         [SerializeField]
         private int goldPerTime = 10;
         [SerializeField]
@@ -15,17 +14,16 @@ namespace Buildings
 
         private void Awake()
         {
-            statistics = GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>();
+            if (gameObject.name.Contains("Player"))
+                statistics = GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>();
+            else if (gameObject.name.Contains("Enemy"))
+                statistics = GameObject.Find("EnemyStatistics").GetComponent<Statistics.Statistics>();
+            else Debug.LogWarning("Player or enemy statistics not found");
+            
         }
         private void Start()
         {
             StartCoroutine(GetMoneyPassive(goldPerTime));
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public IEnumerator GetMoneyPassive(int gold)

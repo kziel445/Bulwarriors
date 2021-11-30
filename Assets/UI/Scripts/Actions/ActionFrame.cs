@@ -13,7 +13,7 @@ namespace UI
         [SerializeField] private Transform actionListUI;
 
         public bool ActiveUI = false;
-        public PlayerStats.Statistics statistics;
+        public Statistics.Statistics statistics;
 
         private PlayerActions actionList = null;
         public GameObject spawnBuilding = null;
@@ -28,7 +28,7 @@ namespace UI
         // Start is called before the first frame update
         void Start()
         {
-            statistics = GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>();
+            statistics = GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>();
         }
 
         private void Update()

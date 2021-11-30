@@ -18,7 +18,7 @@ namespace UI
         public void OnClick()
         {
             if(isUnit) ActionFrame.instance.spawnBuilding.GetComponent<ObjectSpawnQueue>().StartQueueTimer(name);
-            if (!isUnit) CreateBuilding.instance.SpawnScheme(name);
+            if (!isUnit) PlayerBuilder.instance.SpawnScheme(name);
             //spawnQueue.StartQueueTimer(name);
             //UnitSpawnQueue.instance.StartQueueTimer(name);
         }

@@ -7,16 +7,21 @@ namespace UI
 {
     public class ResourcesFrame : MonoBehaviour
     {
-        public PlayerStats.Statistics statistics;
+        public Statistics.Statistics statistics;
+        public float timer = 0.0f;
+
         void Start()
         {
-            statistics = GameObject.Find("PlayerStatistics").GetComponent<PlayerStats.Statistics>();
+            statistics = GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>();
         }
 
         void Update()
         {
+            timer += Time.deltaTime;
+            
             gameObject.transform.GetChild(0).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = statistics.money.ToString();
             gameObject.transform.GetChild(1).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = statistics.units.ToString();
+            gameObject.transform.GetChild(2).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"{Mathf.FloorToInt(timer/60)}:{Mathf.FloorToInt(timer % 60).ToString("00")}";
         }
     }
 }
