@@ -1,25 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class BuildingRTS : MonoBehaviour, IClickable
+namespace Buildings
 {
-    public void Click()
+    public class BuildingRTS : MonoBehaviour, IClickable
     {
-        Debug.Log("Building options in UI");
-        Debug.Log("Building health");
+        //statistics
+        public BuildingStatTypes.Base baseStats;
+
+
+        internal GameObject selectedGameObject;
+
+        [System.Serializable]
+        public class BuildUnits
+        {
+            public Units.UnitBasic[] basicUnits;
+
+        }
+        public void Click()
+        {
+
+            Debug.Log("Building options in UI");
+            Debug.Log("Building health");
+        }
+        public void SetSelectedVisible(bool visible)
+        {
+            selectedGameObject.SetActive(visible);
+        }
+
     }
 
-    public int Layer() { return gameObject.layer; }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

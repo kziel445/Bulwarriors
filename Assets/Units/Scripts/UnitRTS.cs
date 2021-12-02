@@ -1,131 +1,162 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 namespace Units
 {
     /// Functions to show selected units and move groups
-    public class UnitRTS : MonoBehaviour, IClickable
+    public class UnitRTS : MonoBehaviour
     {
-        private UnitRTS instance;
+        public static UnitRTS instance;
+
+        //statistics
         public UnitStatTypes.Base baseStats;
+        //combat
+        public bool isPlayer;
         public IClickable attackObjective; //TODO other class
-        private GameObject selectedGameObject;
-        private IMovePosition movePosition;
-        
         private Collider2D[] rangeColliders;
-        private protected Transform aggroTarget;
-
-        private protected bool hasAggro = false;
+        //change from public
+        public Transform aggroTarget;
+        //change from public
+        public bool hasAggro = false;
         private float distanceToTarget;
-
-        public Image healthBarAmount;
-        public float currentHealth;
-
+        public Transform missile;
         public float atkCooldown;
+        
+        //animation
+        public Animator animator;
+        //movement
+        public bool IfCommand = false;
+        internal IMovePosition movePosition;
+
         private void Start()
         {
             instance = this;
-            currentHealth = baseStats.health;
         }
-        private void Awake()
-        {
-            selectedGameObject = transform.Find("Selected").gameObject;
-            movePosition = GetComponent<IMovePosition>();
-            SetSelectedVisible(false);
-        }
-        private void Update()
-        {
-            HandleHealth();
-            //OnCollisionEnter(GameObject.Find(attackObjective.ToString()).);
-        }
-        public void SetSelectedVisible(bool visible)
-        {
-            selectedGameObject.SetActive(visible);
-        }
-        public void Click()
-        {
-            Debug.Log("Unit");
-        }
+
         public void OnTriggerEnter2D(Collider2D collision)
         {
             Debug.Log("trigger");
         }
-
-        public int Layer() { return gameObject.layer; }
-
         //movement segment
         public void MoveTo(Vector3 targetPosition)
         {
             movePosition.SetMovePosition(targetPosition);
         }
+
         public void MoveToTarget(Vector3 targetPosition)
         {
-                MoveTo(transform.position);
-                //get distanceToTarget, when good range can attack
-                distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
-                //(baseStats.atkRange + 1);
-                if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
-                else MoveTo(transform.position);
+            //MoveTo(transform.position);
+            //get distanceToTarget, when good range can attack
+            distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
+            if(aggroTarget.GetComponent<BoxCollider2D>()!=null)
+            {
+                distanceToTarget -= aggroTarget.GetComponent<BoxCollider2D>().bounds.extents.x/2*Mathf.Sqrt(2);
+            }
+            else if (aggroTarget.GetComponent<CircleCollider2D>() != null)
+            {
+                distanceToTarget -= aggroTarget.GetComponent<CircleCollider2D>().bounds.extents.x / 2;
+            }
+            //(baseStats.atkRange + 1);
+            if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
+            else MoveTo(transform.position);
         }
         //for now, function check for random enemy(probably close to "0,0")
         internal void CheckForEnenmyTargets(float aggroRange)
         {
             rangeColliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
+
+            Transform aggroTmp = null;
             for (int i = 0; i < rangeColliders.Length; i++)
             {
-                if (rangeColliders[i].gameObject.layer != gameObject.layer && rangeColliders[i].gameObject.layer != gameObject.layer + 1)
+                if(aggroTmp==null &&
+                    rangeColliders[i].gameObject.layer != gameObject.layer &&
+                    rangeColliders[i].gameObject.layer != gameObject.layer + 1 &&
+                    rangeColliders[i].gameObject.layer != 7 //7 is world obstacles
+                    )
                 {
-                    aggroTarget = rangeColliders[i].gameObject.transform;
-                    hasAggro = true;
-                    break;
+                    aggroTmp = rangeColliders[i].gameObject.transform;
+                }
+                else if (rangeColliders[i].gameObject.layer != gameObject.layer &&
+                    rangeColliders[i].gameObject.layer != gameObject.layer + 1 &&
+                    rangeColliders[i].gameObject.layer != 7 &&
+                    Vector2.Distance(aggroTmp.transform.position,gameObject.transform.position)>
+                    Vector2.Distance(rangeColliders[i].gameObject.transform.position, gameObject.transform.position)
+                    )
+                {
+                    aggroTmp = rangeColliders[i].gameObject.transform;
                 }
             }
-        }
-        // combat segment
-        public void HandleHealth()
-        {
-            healthBarAmount.fillAmount = currentHealth / baseStats.health;
+            aggroTarget = aggroTmp;
+            hasAggro = true;
 
-            if (currentHealth <= 0)
-            {
-                if (InputManager.InputHandler.instance.selectedUnitRTSList.Contains(gameObject.GetComponent<UnitRTS>()))
-                    {
-                    InputManager.InputHandler.instance.selectedUnitRTSList.Remove(gameObject.GetComponent<UnitRTS>());
-                    }
-                Die();
-            }
-        } 
-        public void TakeDamage(float damage)
-        {
-            //TODO: do better formula for fight
-            damage -= baseStats.armor;
-            if (damage < 0) damage = 1;
-            Debug.Log(damage);
-            currentHealth -= damage;
+
         }
         public void Attack()
         {
-            if(aggroTarget!=null)
+            if (aggroTarget != null)
             {
                 if (atkCooldown <= 0 && distanceToTarget <= baseStats.atkRange)
                 {
-                    Debug.Log("Hit!");
-                    aggroTarget.GetComponent<UnitRTS>().TakeDamage(baseStats.damage);
+                    AttackAnimation(true);
+                    animator.SetBool("IfAttack", true);
+                    //Debug.Log("Hit!");
+                    
+                    aggroTarget.GetComponentInChildren<Core.HealthHandler>().TakeDamage(baseStats.damage);
                     atkCooldown = baseStats.atkSpeed;
                 }
             }
-            else hasAggro = false;
+            else AttackAnimation(false);
+
+            //else hasAggro = false;
 
             //Debug.Log("Hit: " + damage + " to " + attackObjective);
         }
-        public void Die()
+        public void FollowAndAttack()
         {
-            Destroy(gameObject);
+            if (aggroTarget != null && Vector2.Distance(aggroTarget.position, gameObject.transform.position) > baseStats.aggroRange * 2)
+            {
+                MoveToTarget(gameObject.transform.position);
+                aggroTarget = null;
+                animator.SetBool("IfAttack", false);
+                hasAggro = false;
+            }
+             else if (aggroTarget != null)
+            {
+                MoveToTarget(aggroTarget.position);
+                Attack();
+            }
+            else
+            {
+                animator.SetBool("IfAttack", false);
+                hasAggro = false;
+            }       
         }
+        public void AttackAnimation(bool TurnOn)
+        {
+            if (TurnOn)
+            {
+                float attackDirection = 0;
+                animator.SetBool("IfAttack", true);
+
+                attackDirection = aggroTarget.position.x - gameObject.transform.position.x;
+                if (attackDirection > 0) attackDirection = 1;
+                else attackDirection = -1;
+                animator.SetFloat("AttackDirection", attackDirection);
+            }
+            else animator.SetBool("IfAttack", false);
+
+        }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if(collision.gameObject.transform == aggroTarget)
+            {
+
+            }
+        }
+
     }
+    
     //Debug.Log("collide (name) : " + collide.collider.gameObject.name);
     //Debug.Log("collide (tag) : " + collide.collider.gameObject.tag);
     //if (collide.collider.gameObject.name == "Hitbox")

@@ -5,7 +5,9 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float cameraSpeed = 10f;
-    [SerializeField] private float zoom = 1.6f;
+    [SerializeField] private float zoom = 3f;
+    [SerializeField] private float xMinBound = 0, xMaxBound = 33;
+    [SerializeField] private float yMinBound = 0, yMaxBound = 33;
 
     private void Start()
     {
@@ -31,18 +33,23 @@ public class CameraMovement : MonoBehaviour
         {
             position.x += cameraSpeed * Time.deltaTime;
         }
-        if(Input.GetAxis("Mouse ScrollWheel") > 0)
+        if(Input.GetAxis("Mouse ScrollWheel") > 0 && Time.timeScale != 0)
         {
             zoom-=0.2f;
             zoom = zoomController(zoom);
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && Time.timeScale != 0)
         {
             zoom += 0.2f;
             zoom = zoomController(zoom);
         }
         GetComponent<Camera>().orthographicSize = zoom;
-        transform.position = position;
+
+        transform.position = new Vector3(
+            Mathf.Clamp(position.x, xMinBound, xMaxBound),
+            Mathf.Clamp(position.y, yMinBound, yMaxBound),
+            position.z
+            );
     }
     private float zoomController(float zoom)
     {
