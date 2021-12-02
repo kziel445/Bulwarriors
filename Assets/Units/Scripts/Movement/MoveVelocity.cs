@@ -5,14 +5,14 @@ using UnityEngine;
 public class MoveVelocity : MonoBehaviour, IMoveVelocity
 {
     [SerializeField] private float moveSpeed;
-    private Vector2 velocityVector;
+    private Vector3 velocityVector;
     private Rigidbody2D rigidbody2D;
 
     public void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
-    public void SetVelocity(Vector2 velocityVector)
+    public void SetVelocity(Vector3 velocityVector)
     {
         this.velocityVector = velocityVector;
     }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public interface IMoveVelocity
 {
-    void SetVelocity(Vector2 velocityVector);
+    void SetVelocity(Vector3 velocityVector);
 }
 public interface IMovePosition
 {
-    void SetMovePosition(Vector2 movePosition);
+    void SetMovePosition(Vector3 movePosition);
 }

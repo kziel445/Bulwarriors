@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float cameraSpeed = 10f;
-    [SerializeField] private float zoom = 3f;
+    [SerializeField] private float zoom = 1.6f;
 
     private void Start()
     {

@@ -6,7 +6,6 @@ namespace Cursor
 {
     public class Position
     {
-
         public Vector2 getMousePosition()
         {
             Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
