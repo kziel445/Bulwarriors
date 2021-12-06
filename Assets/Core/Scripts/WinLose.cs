@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class WinLose : MonoBehaviour
 {
-    [SerializeField]
-    GameObject victory;
-    [SerializeField]
-    GameObject deafeat;
+    [SerializeField] GameObject victory;
+    [SerializeField] GameObject deafeat;
 
-    [SerializeField]
-    Transform playerBuildings;
-    [SerializeField]
-    Transform enemyBuildings;
+    [SerializeField] Transform playerBuildings;
+    [SerializeField] Transform enemyBuildings;
     int playerBuildingsCount = 1;
     int enemyBuildingsCount = 1;
     private bool ifEndOfGame = false;
