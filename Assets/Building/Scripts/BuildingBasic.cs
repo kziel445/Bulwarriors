@@ -9,9 +9,10 @@ namespace Buildings
     {
         public enum BuildingType
         {
-            Barrack,
-            Economic,
-            Citadel
+            ArcheryRange, Bank, Barrack, 
+            Citadel, Farm, House, 
+            ShootingRange, Stable, BlackSmith
+
         }
         public BuildingType type;
         public new string name;

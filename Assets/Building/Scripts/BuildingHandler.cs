@@ -8,7 +8,9 @@ namespace Buildings
     {
         public static BuildingHandler instance;
         [SerializeField] public BuildingBasic 
-            archeryRange, bank, barrack, citadel, farm, house, shootingRange, stable;
+            archeryRange, bank, barrack, citadel, 
+            farm, house, shootingRange, stable,
+            blackSmith;
         private void Awake()
         {
             instance = this;
@@ -41,6 +43,9 @@ namespace Buildings
                     break;
                 case "stable":
                     building = stable;
+                    break;
+                case "blackSmith":
+                    building = blackSmith;
                     break;
                 default:
                     Debug.Log($"Building Type: {type} could not be found or does not exist!");
