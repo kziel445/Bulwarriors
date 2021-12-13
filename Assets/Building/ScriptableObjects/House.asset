@@ -19,7 +19,7 @@ MonoBehaviour:
   spawnTime: 4
   baseStats:
     cost: 100
-    health: 500
+    health: 100
     armor: 1
     attack: 0
     actions: {fileID: 11400000, guid: 8458b6f6337d6c248a13d5096f7b18db, type: 2}

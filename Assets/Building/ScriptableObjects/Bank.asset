@@ -18,8 +18,8 @@ MonoBehaviour:
   icon: {fileID: 0}
   spawnTime: 0
   baseStats:
-    cost: 0
-    health: 0
-    armor: 0
+    cost: 1000
+    health: 300
+    armor: 3
     attack: 0
     actions: {fileID: 0}
