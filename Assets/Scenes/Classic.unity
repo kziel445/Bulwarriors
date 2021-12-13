@@ -2702,7 +2702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 837124030}
   m_Layer: 0
-  m_Name: Economics
+  m_Name: Houses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3061,7 +3061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 977169254}
   m_Layer: 0
-  m_Name: Economics
+  m_Name: Houses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
