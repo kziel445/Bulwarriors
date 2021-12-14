@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9030e00956fe14443a12dfd06c89c5bc, type: 3}
+  m_Name: BasicWorkersAction
+  m_EditorClassIdentifier: 
+  basicUnits: []
+  basicBuildings:
+  - {fileID: 11400000, guid: ae96190311d493a45991f63a0c644f8b, type: 2}
+  - {fileID: 11400000, guid: c18827405df0dd74ba3c3172dd14bfe0, type: 2}
+  - {fileID: 11400000, guid: 97c2338dbc68ed5409b2e5519a9f8c97, type: 2}
+  - {fileID: 11400000, guid: 8914ebd1513c91a49a6d74ea96e2fa56, type: 2}
+  - {fileID: 11400000, guid: 31d383e5397dc2f4da29a6709730e00f, type: 2}

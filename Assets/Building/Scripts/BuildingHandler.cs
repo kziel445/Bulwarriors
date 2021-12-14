@@ -17,10 +17,11 @@ namespace Buildings
         }
         public BuildingBasic GetBuildingStats(string type)
         {
+            type = type.Replace(" ", "");
             BuildingBasic building;
             switch (type)
             {
-                case "archeryRange":
+                case "archeryrange":
                     building = archeryRange;
                     break;
                 case "bank":
@@ -38,13 +39,13 @@ namespace Buildings
                 case "house":
                     building = house;
                     break;
-                case "shootingRange":
+                case "shootingrange":
                     building = shootingRange;
                     break;
                 case "stable":
                     building = stable;
                     break;
-                case "blackSmith":
+                case "blacksmith":
                     building = blackSmith;
                     break;
                 default:

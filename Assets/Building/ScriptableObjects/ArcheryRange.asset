@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ArcheryRange
   m_EditorClassIdentifier: 
   type: 0
-  name: 
-  buildingPrefab: {fileID: 0}
-  icon: {fileID: 0}
+  name: Archery Range
+  buildingPrefab: {fileID: 8379953237749845854, guid: 2d80643210d89864db85d77ba2a7f28c, type: 3}
+  icon: {fileID: 21300000, guid: 501c8a303b257ec42b62d11c9786b5e8, type: 3}
   spawnTime: 0
   baseStats:
     cost: 800

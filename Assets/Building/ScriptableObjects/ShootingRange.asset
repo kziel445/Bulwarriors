@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8458292b142e12f43a6d7f2ad37e3b0f, type: 3}
   m_Name: ShootingRange
   m_EditorClassIdentifier: 
-  type: 0
-  name: 
-  buildingPrefab: {fileID: 0}
-  icon: {fileID: 0}
+  type: 6
+  name: ShootingRange
+  buildingPrefab: {fileID: 8379953237749845854, guid: 2d80643210d89864db85d77ba2a7f28c, type: 3}
+  icon: {fileID: 21300000, guid: f9899fbc349a55b43a821dbd8416afce, type: 3}
   spawnTime: 0
   baseStats:
     cost: 2000
