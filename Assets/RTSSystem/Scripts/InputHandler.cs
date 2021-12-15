@@ -38,8 +38,6 @@ namespace InputManager
         // Update is called once per frame
         void Update()
         {
-            
-            
             //TODO when selected buidlding then units, slection in UI stuck
             // Selection area
             if (Input.GetMouseButtonDown(0))
@@ -88,7 +86,6 @@ namespace InputManager
                 // deslect units
                 
 
-
                 if (collider2DArray.Length==1 && collider2DArray[0].GetComponent<Buildings.Player.PlayerBuilding>()!=null)
                 {
                     
@@ -119,19 +116,36 @@ namespace InputManager
             }
 
 
-            // Command attack or move
+            // Command attack, build or move
             if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0 && !isSelectedBuilding)
             {
                 Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D clicked = Physics2D.Raycast(mousePosition, Vector2.zero);
                 if (clicked)
                 {
-                    Debug.Log(clicked);
-
+                    
                     Transform target = clicked.collider.GetComponent<Transform>();
                     int unitLayer = selectedUnitRTSList[0].gameObject.layer;
                     int targetLayer = clicked.collider.gameObject.layer;
-                    if (targetLayer != unitLayer && targetLayer != unitLayer + 1 && targetLayer != 7)
+                    //build
+                    if (targetLayer == unitLayer + 1)
+                    {
+                        foreach (Interactable interactableObject in selectedUnitRTSList)
+                        {
+                            if(interactableObject.transform.parent.name.Contains("Workers"))
+                            {
+                                Units.UnitRTS unitRTS = interactableObject.GetComponent<Units.UnitRTS>();
+                                unitRTS.MoveTo(clicked.transform.position);
+                                Debug.Log("Repair/Build");
+                                Physics2D.Distance(unitRTS.GetComponent<Collider2D>(), clicked.collider);
+                                
+                            }
+                        }
+                            
+                        //foreach builder go to repair
+                    }
+                    //attack
+                    else if (targetLayer != unitLayer && targetLayer != unitLayer + 1 && targetLayer != 7)
                     {
                         //Debug.Log(selectedUnitRTSList[0].name + " group is going to attack " + target);
                         foreach (Interactable interactableObject in selectedUnitRTSList)
@@ -145,6 +159,7 @@ namespace InputManager
                         //Debug.Log("Attacking objective is " + selectedUnitRTSList[0].attackObjective);
                     }
                 }
+                //move
                 else GroupMove();
 
             }
@@ -162,6 +177,7 @@ namespace InputManager
 
                 //Debug.Log(hit.collider.gameObject.tag);
             }
+            
         }
         public void GroupMove()
         {
@@ -183,7 +199,6 @@ namespace InputManager
         {
             foreach (Interactable interactableObject in selectedUnits)
             {
-
                 PlayerRTS unitRTS = interactableObject.GetComponent<PlayerRTS>();
                 try
                 {
@@ -196,12 +211,7 @@ namespace InputManager
                 {
                     Debug.Log("Object died");
                 }
-                
             }
-        }
-        private void GroupAttack()
-        {
-
         }
         //private void SelectAllUnits()
         //{

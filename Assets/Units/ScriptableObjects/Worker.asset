@@ -21,11 +21,11 @@ MonoBehaviour:
   spawnTime: 1
   baseStats:
     cost: 50
-    damage: 10
+    damage: 5
     atkSpeed: 1
     atkRange: 1
     aggroRange: 1
     health: 10
     armor: 10
-    movementSpeed: 10
+    movementSpeed: 5
     actions: {fileID: 11400000, guid: 54971b804d36ab747a69e39d2698862d, type: 2}

@@ -48,6 +48,7 @@ namespace Units
         {
             //MoveTo(transform.position);
             //get distanceToTarget, when good range can attack
+            // TODO: Physics2D.Distance(unitRTS.GetComponent<Collider2D>(), clicked.collider); !!!
             distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
             if(aggroTarget.GetComponent<BoxCollider2D>()!=null)
             {
