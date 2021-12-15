@@ -22,4 +22,4 @@ MonoBehaviour:
     health: 1000
     armor: 10
     attack: 0
-    actions: {fileID: 0}
+    actions: {fileID: 11400000, guid: ba9007b6a872cc748949fba382d5ccd3, type: 2}
