@@ -49,7 +49,7 @@ namespace Buildings
                     building = blackSmith;
                     break;
                 default:
-                    Debug.Log($"Building Type: {type} could not be found or does not exist!");
+                    Debug.LogWarning($"Building Type: {type} could not be found or does not exist!");
                     return null;
             }
             return building;

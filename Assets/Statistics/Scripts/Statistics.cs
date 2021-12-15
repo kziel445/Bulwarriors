@@ -24,10 +24,6 @@ namespace Statistics
             }
             units = GetNumberOfUnits();
         }
-        private void Start()
-        {
-            StartCoroutine(GetMoneyPassive(10));
-        }
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.M))
@@ -52,12 +48,12 @@ namespace Statistics
             return count;
         }
 
-        public IEnumerator GetMoneyPassive(int gold)
-        {
-            yield return new WaitForSeconds(2);
-            GetMoney(gold);
-            StartCoroutine(GetMoneyPassive(gold));
-        }
+        //public IEnumerator GetMoneyPassive(int gold)
+        //{
+        //    yield return new WaitForSeconds(2);
+        //    GetMoney(gold);
+        //    StartCoroutine(GetMoneyPassive(gold));
+        //}
     }
 }
 
