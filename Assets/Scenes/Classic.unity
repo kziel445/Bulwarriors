@@ -178,6 +178,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUnit
       objectReference: {fileID: 0}
+    - target: {fileID: 7398042696346863045, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398042696346863045, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398042696346863045, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398042696346863045, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8249411027295003965, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
       propertyPath: m_Radius
       value: 0.24035612
@@ -139023,7 +139039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4541322018156118899, guid: 66ea3550128537a408d4d1219c251a1f, type: 3}
       propertyPath: xMaxBound
-      value: 33
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 4541322018156118899, guid: 66ea3550128537a408d4d1219c251a1f, type: 3}
       propertyPath: xMinBound
@@ -139031,7 +139047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4541322018156118899, guid: 66ea3550128537a408d4d1219c251a1f, type: 3}
       propertyPath: yMaxBound
-      value: 33
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 4541322018156118899, guid: 66ea3550128537a408d4d1219c251a1f, type: 3}
       propertyPath: yMinBound
