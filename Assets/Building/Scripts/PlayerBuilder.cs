@@ -62,7 +62,7 @@ namespace Buildings
                 buildingType.buildingPrefab,
                 new Vector3(mousePosition.x,mousePosition.y, mousePosition.y/1000),
                 Quaternion.identity,
-                parentObject.Find(buildingType.name + "s")
+                parentObject.Find(buildingType.name.Replace(" ", "") + "s")
                 );
 
             //TODO to function, the same in PlayerManager.cs and createBuilding
@@ -70,6 +70,11 @@ namespace Buildings
 
             BuildingBasic settings = BuildingHandler.instance.GetBuildingStats(buildingType.name.ToLower());
             playerBuilding.baseStats = settings.baseStats;
+            //disable functions of building and reduce health
+            playerBuilding.isBuilded = false;
+            playerBuilding.gameObject.GetComponentInChildren<Core.HealthHandler>().
+                SetHealthStats(playerBuilding.baseStats.health, playerBuilding.baseStats.armor);
+            playerBuilding.TurnOnOffFunctions(false);
         }
         public void SpawnScheme(string objectName)
         {
@@ -81,7 +86,7 @@ namespace Buildings
                 buildingType.buildingPrefab.transform.GetChild(1),
                 cursorPosition.getMousePosition(),
                 Quaternion.identity,
-                parentObject.Find(buildingType.name + "s")
+                parentObject.Find(buildingType.name.Replace(" ","") + "s")
                 );
             schemeColor = scheme.GetComponent<SpriteRenderer>().color;
             schemeColor.a = 0.75f;

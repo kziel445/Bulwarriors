@@ -108,8 +108,8 @@ GameObject:
   - component: {fileID: 5343193723807792800}
   - component: {fileID: 5343193723807792804}
   - component: {fileID: 5343193723807792802}
-  - component: {fileID: 7651622717156668377}
   - component: {fileID: 5343193723807792801}
+  - component: {fileID: 7651622717156668377}
   - component: {fileID: 5931782247232273954}
   - component: {fileID: 3588695005650211339}
   - component: {fileID: 5064767662737116950}
@@ -178,23 +178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedGameObject: {fileID: 5343193723931082570}
   isInteracting: 0
---- !u!114 &7651622717156668377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5343193723807792863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16127bd1f5e5cef4986c36642ac6870b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons: []
-  spawningQueueTimer: []
-  spawnQueue: []
-  spawnTypes: 
-  objectToStoreUnits: {fileID: 0}
 --- !u!114 &5343193723807792801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +196,24 @@ MonoBehaviour:
     armor: 0
     attack: 0
     actions: {fileID: 0}
+  isBuilded: 1
+--- !u!114 &7651622717156668377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343193723807792863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16127bd1f5e5cef4986c36642ac6870b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons: []
+  spawningQueueTimer: []
+  spawnQueue: []
+  spawnTypes: 
+  objectToStoreUnits: {fileID: 0}
 --- !u!114 &5931782247232273954
 MonoBehaviour:
   m_ObjectHideFlags: 0

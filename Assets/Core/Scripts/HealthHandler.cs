@@ -14,14 +14,13 @@ namespace Core
         public float baseHealth;
         public float baseArmor;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             if (gameObject.GetComponentInParent<Units.Player.PlayerRTS>() !=null)
             {
                 var component = gameObject.GetComponentInParent<Units.Player.PlayerRTS>();
                 baseHealth = component.baseStats.health;
                 baseArmor = component.baseStats.armor;
-
             }
             else if(gameObject.GetComponentInParent<Units.Enemy.EnemyRTS>() != null)
             {
@@ -48,6 +47,11 @@ namespace Core
         void Update()
         {
             HandleHealth();
+        }
+        public void SetHealthStats(float health, float armor)
+        {
+            baseHealth = health;
+            baseArmor = armor;
         }
         public void HandleHealth()
         {

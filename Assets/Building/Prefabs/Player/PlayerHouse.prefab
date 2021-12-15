@@ -336,9 +336,7 @@ GameObject:
   - component: {fileID: 8010202288869818771}
   - component: {fileID: 8010202288869818775}
   - component: {fileID: 8010202288869818769}
-  - component: {fileID: 5710323231359831274}
   - component: {fileID: 8010202288869818770}
-  - component: {fileID: 8601539309990625553}
   - component: {fileID: 3103509717947991365}
   m_Layer: 9
   m_Name: PlayerHouse
@@ -404,23 +402,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedGameObject: {fileID: 8010202289013883001}
   isInteracting: 0
---- !u!114 &5710323231359831274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8010202288869818860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16127bd1f5e5cef4986c36642ac6870b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons: []
-  spawningQueueTimer: []
-  spawnQueue: []
-  spawnTypes: 
-  objectToStoreUnits: {fileID: 0}
 --- !u!114 &8010202288869818770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,18 +420,7 @@ MonoBehaviour:
     armor: 0
     attack: 0
     actions: {fileID: 0}
---- !u!114 &8601539309990625553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8010202288869818860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e003cb4c3d211a5409d9cdc257b5f320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  isBuilded: 1
 --- !u!114 &3103509717947991365
 MonoBehaviour:
   m_ObjectHideFlags: 0

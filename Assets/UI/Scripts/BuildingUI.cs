@@ -12,9 +12,10 @@ namespace UI
         {
             if(ActionFrame.instance!=null)
             {
-                if (visible) ActionFrame.instance.SetActionButtonsBuilding(
-                    gameObject.GetComponent<Buildings.Player.PlayerBuilding>().baseStats.actions, 
-                    gameObject
+                if (visible && gameObject.GetComponent<Buildings.BuildingRTS>().isBuilded) 
+                    ActionFrame.instance.SetActionButtonsBuilding(
+                        gameObject.GetComponent<Buildings.Player.PlayerBuilding>().baseStats.actions, 
+                        gameObject
                     );
                 else if (!visible) ActionFrame.instance.ClearActions();
             }
