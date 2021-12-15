@@ -9,15 +9,13 @@ namespace Buildings
     {
         public static PlayerBuilder instance;
         public bool isHoldingAScheme = false;
-        [SerializeField]
-        BuildingBasic buildingType;
+        [SerializeField] BuildingBasic buildingType;
         public Transform parentObject;
 
         [SerializeField] private Camera camera;
         private Transform scheme;
 
-        [SerializeField]
-        private UI.PlayerActions actionList = null;
+        [SerializeField] private UI.PlayerActions actionList = null;
 
         private Position cursorPosition = new Position();
 
@@ -25,10 +23,6 @@ namespace Buildings
         {
             instance = this;
             parentObject = GameObject.Find("PlayerBuildings").transform;
-            
-        }
-        private void Start()
-        {
             
         }
         // Update is called once per frame
