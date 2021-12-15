@@ -7,10 +7,8 @@ namespace Buildings
     public class GoldUp : MonoBehaviour
     {
         Statistics.Statistics statistics;
-        [SerializeField]
-        private int goldPerTime = 10;
-        [SerializeField]
-        private int secondsToGold = 2;
+        [SerializeField] private int goldPerTime = 10;
+        [SerializeField] private int secondsToGold = 2;
 
         private void Awake()
         {
