@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9030e00956fe14443a12dfd06c89c5bc, type: 3}
-  m_Name: BarracksAction
+  m_Name: ArcheryAction
   m_EditorClassIdentifier: 
   basicUnits:
-  - {fileID: 11400000, guid: 93f20337f80c0974cae909c8bc5d2cf8, type: 2}
   - {fileID: 11400000, guid: 88d1ef44b3413ef439ec2c9efaed147f, type: 2}
-  - {fileID: 11400000, guid: e0111b863dd607f4cb6bfbbab4ccc9c0, type: 2}
   basicBuildings: []

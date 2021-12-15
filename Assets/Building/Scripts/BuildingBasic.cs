@@ -4,13 +4,15 @@ using UnityEngine;
 
 namespace Buildings
 {
-    [CreateAssetMenu(fileName = "Building", menuName = "New Building/Basic")]
+    [CreateAssetMenu(fileName = "Building", menuName = "New Building")]
     public class BuildingBasic : ScriptableObject
     {
         public enum BuildingType
         {
-            Barrack,
-            House
+            ArcheryRange, Bank, Barrack, 
+            Citadel, Farm, House, 
+            ShootingRange, Stable, BlackSmith
+
         }
         public BuildingType type;
         public new string name;

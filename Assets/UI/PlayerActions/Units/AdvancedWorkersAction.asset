@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9030e00956fe14443a12dfd06c89c5bc, type: 3}
-  m_Name: HousesAction
+  m_Name: AdvancedWorkersAction
   m_EditorClassIdentifier: 
-  basicUnits:
-  - {fileID: 11400000, guid: e0111b863dd607f4cb6bfbbab4ccc9c0, type: 2}
-  basicBuildings: []
+  basicUnits: []
+  basicBuildings:
+  - {fileID: 11400000, guid: 53f515aa3d45693418abd68e15b3dff2, type: 2}
+  - {fileID: 11400000, guid: c73ce13bc13341a428e59079db1d43cb, type: 2}
+  - {fileID: 11400000, guid: 1b67d36db8dbfd54c9b6e3af6ac16dd3, type: 2}
+  - {fileID: 11400000, guid: a6989e36c7aa4dd4891fcdad88465a3e, type: 2}

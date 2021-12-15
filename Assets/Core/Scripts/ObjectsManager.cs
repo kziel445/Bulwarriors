@@ -22,16 +22,6 @@ namespace Player
             SetStats(playerBuildings);
             SetStats(enemyBuildings);
         }
-        private void Start()
-        {
-            
-
-        }
-
-        private void Update()
-        {
-           
-        }
         public void SetStats(Transform type)
         {
             //Transform playerUnits = PlayerManager.instance.playerUnits;
@@ -76,7 +66,6 @@ namespace Player
                         enemyBuilding.baseStats = Buildings.BuildingHandler.instance.GetBuildingStats(objectName).baseStats;
                         objectPostion = enemyBuilding.gameObject.transform;
                         objectPostion.position = new Vector3(objectPostion.position.x, objectPostion.position.y, objectPostion.position.y / 1000);
-
                     }
                 }
             }

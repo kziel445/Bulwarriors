@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9030e00956fe14443a12dfd06c89c5bc, type: 3}
-  m_Name: WorkersAction
+  m_Name: CitadelAction
   m_EditorClassIdentifier: 
-  basicUnits: []
-  basicBuildings:
-  - {fileID: 11400000, guid: 97c2338dbc68ed5409b2e5519a9f8c97, type: 2}
-  - {fileID: 11400000, guid: ae96190311d493a45991f63a0c644f8b, type: 2}
+  basicUnits:
+  - {fileID: 11400000, guid: e0111b863dd607f4cb6bfbbab4ccc9c0, type: 2}
+  basicBuildings: []
