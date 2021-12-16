@@ -89,8 +89,7 @@ namespace Units
                 }
             }
             aggroTarget = aggroTmp;
-            hasAggro = true;
-
+            if (aggroTarget != null) hasAggro = true;
 
         }
         public void Attack()
@@ -100,7 +99,7 @@ namespace Units
                 if (atkCooldown <= 0 && distanceToTarget <= baseStats.atkRange)
                 {
                     AttackAnimation(true);
-                    animator.SetBool("IfAttack", true);
+                    //animator.SetBool("IfAttack", true);
                     //Debug.Log("Hit!");
                     
                     aggroTarget.GetComponentInChildren<Core.HealthHandler>().TakeDamage(baseStats.damage);

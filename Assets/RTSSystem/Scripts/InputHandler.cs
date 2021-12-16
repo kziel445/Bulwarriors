@@ -135,9 +135,14 @@ namespace InputManager
                             if(interactableObject.transform.parent.name.Contains("Workers"))
                             {
                                 Units.UnitRTS unitRTS = interactableObject.GetComponent<Units.UnitRTS>();
-                                unitRTS.MoveTo(clicked.transform.position);
-                                Debug.Log("Repair/Build");
-                                Physics2D.Distance(unitRTS.GetComponent<Collider2D>(), clicked.collider);
+                                if (unitRTS.gameObject.GetComponent<Units.WorkerFunctions>() == null)
+                                    unitRTS.gameObject.AddComponent<Units.WorkerFunctions>();
+                                {
+                                    unitRTS.gameObject.GetComponent<Units.WorkerFunctions>()
+                                        .SetRepairValues(true, clicked.collider.gameObject);
+                                }
+          
+                                //Physics2D.Distance(unitRTS.GetComponent<Collider2D>(), clicked.collider);
                                 
                             }
                         }

@@ -74,6 +74,11 @@ namespace Core
             //Debug.Log(damage);
             currentHealth -= damage;
         }
+        public void GiveHealth(float damage)
+        {
+            if (currentHealth >= baseHealth) currentHealth = baseHealth;
+            else currentHealth += damage;
+        }
         public void Die()
         {
             Destroy(gameObject.transform.parent.gameObject);

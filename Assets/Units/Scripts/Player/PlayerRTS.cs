@@ -46,17 +46,6 @@ namespace Units.Player
             }
             //auto commands
         }
-        //public override void HandleHealth()
-        //{
-
-        //    healthBarAmount.fillAmount = currentHealth / baseStats.health;
-
-        //    if (currentHealth <= 0)
-        //    {
-                
-        //        Die();
-        //    }
-        //}
         public void Click()
         {
             Debug.Log("Unit");
