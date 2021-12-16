@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9030e00956fe14443a12dfd06c89c5bc, type: 3}
-  m_Name: BasicWorkersAction
+  m_Name: AllBuildingsAction
   m_EditorClassIdentifier: 
   basicUnits: []
   basicBuildings:
-  - {fileID: 11400000, guid: ae96190311d493a45991f63a0c644f8b, type: 2}
-  - {fileID: 11400000, guid: c18827405df0dd74ba3c3172dd14bfe0, type: 2}
-  - {fileID: 11400000, guid: 97c2338dbc68ed5409b2e5519a9f8c97, type: 2}
   - {fileID: 11400000, guid: 8914ebd1513c91a49a6d74ea96e2fa56, type: 2}
-  - {fileID: 11400000, guid: 31d383e5397dc2f4da29a6709730e00f, type: 2}
+  - {fileID: 11400000, guid: 1b67d36db8dbfd54c9b6e3af6ac16dd3, type: 2}
+  - {fileID: 11400000, guid: 97c2338dbc68ed5409b2e5519a9f8c97, type: 2}
+  - {fileID: 11400000, guid: a6989e36c7aa4dd4891fcdad88465a3e, type: 2}
   - {fileID: 11400000, guid: 53f515aa3d45693418abd68e15b3dff2, type: 2}
+  - {fileID: 11400000, guid: c18827405df0dd74ba3c3172dd14bfe0, type: 2}
+  - {fileID: 11400000, guid: ae96190311d493a45991f63a0c644f8b, type: 2}
+  - {fileID: 11400000, guid: c73ce13bc13341a428e59079db1d43cb, type: 2}
+  - {fileID: 11400000, guid: 31d383e5397dc2f4da29a6709730e00f, type: 2}

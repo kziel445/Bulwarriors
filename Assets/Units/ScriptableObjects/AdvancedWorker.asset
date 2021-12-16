@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd5bf295aab1acf47b8c15b9b4d711a6, type: 3}
-  m_Name: Worker
+  m_Name: AdvancedWorker
   m_EditorClassIdentifier: 
-  unitName: 
-  type: 0
+  unitName: Advanced Worker
+  type: 3
   playerPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
   enemyPrefab: {fileID: 7623033894500739430, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
-  icon: {fileID: 21300000, guid: 725a0906245408d43bd23bd7dd2b1463, type: 3}
-  classColor: {r: 0.6698113, g: 0.63521796, b: 0.4960395, a: 1}
-  spawnTime: 1
+  icon: {fileID: 21300000, guid: 41424d2e082f79a4188c960ed0a45352, type: 3}
+  classColor: {r: 1, g: 0.653165, b: 0, a: 1}
+  spawnTime: 3
   baseStats:
-    cost: 50
-    damage: 5
+    cost: 1000
+    damage: 20
     atkSpeed: 1
     atkRange: 1
     aggroRange: 1
-    health: 10
-    armor: 10
-    movementSpeed: 3
-    actions: {fileID: 11400000, guid: 54971b804d36ab747a69e39d2698862d, type: 2}
+    health: 15
+    armor: 1
+    movementSpeed: 2
+    actions: {fileID: 11400000, guid: c5bc983ef040e88489b4811f3611b4cb, type: 2}

@@ -9,7 +9,7 @@ namespace Units
     {
         public static UnitHandler instance;
         [SerializeField]
-        public UnitBasic worker, warrior, archer;
+        public UnitBasic worker, warrior, archer, advancedWorker;
         private void Awake()
         {
            instance = this;
@@ -27,6 +27,9 @@ namespace Units
                     break;
                 case "archer":
                     unit = archer;
+                    break;
+                case "advancedworker":
+                    unit = advancedWorker;
                     break;
                 default:
                     Debug.Log($"Unit Type: {type} could not be found or does not exist!");

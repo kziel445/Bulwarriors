@@ -68,18 +68,16 @@ namespace Buildings
             
             string objectName = spawnTypes[0].ToString() + "s";
             //objectName = spawnQueue[0].GetComponent<Units.Player.PlayerRTS>().baseStats.unitClass;
-            Debug.Log(objectName);
-
             GameObject unit = Instantiate(
                 spawnQueue[0],
                 //spawnTMP[0].Item4,
                 new Vector3(
-                    gameObject.transform.position.x, 
+                    gameObject.transform.position.x,
                     gameObject.transform.position.y - 0.5f,
                     gameObject.transform.position.z
                     ),
                 Quaternion.identity,
-                objectToStoreUnits.Find(objectName)
+                objectToStoreUnits.Find(objectName.Replace(" ", ""))
                 );
             objectName = objectName.Substring(0, objectName.Length - 1).ToLower();
             //TODO to function, the same in PlayerManager.cs and createBuilding
