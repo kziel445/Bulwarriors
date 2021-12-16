@@ -72,9 +72,9 @@ namespace Buildings
             playerBuilding.baseStats = settings.baseStats;
             //disable functions of building and reduce health
             playerBuilding.isBuilded = false;
-            playerBuilding.gameObject.GetComponentInChildren<Core.HealthHandler>().
-                SetHealthStats(playerBuilding.baseStats.health, playerBuilding.baseStats.armor);
             playerBuilding.TurnOnOffFunctions(false);
+            playerBuilding.gameObject.GetComponentInChildren<Core.HealthHandler>().
+                SetHealthStats(playerBuilding.baseStats.health, playerBuilding.baseStats.armor, 1);
         }
         public void SpawnScheme(string objectName)
         {
