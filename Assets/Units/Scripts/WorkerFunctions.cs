@@ -29,7 +29,7 @@ namespace Units
         public void Repair()
         {
             var targetHealthHandler = targetToRepair.GetComponentInChildren<Core.HealthHandler>();
-            var distanceToTarget = Vector2.Distance(gameObject.transform.position, transform.position);
+            var distanceToTarget = Vector2.Distance(targetToRepair.transform.position, transform.position);
 
             if(targetToRepair != null)
             {
@@ -42,7 +42,8 @@ namespace Units
                     unit.atkCooldown = unit.baseStats.atkSpeed;
 
                 }
-            }else RepairAnimation(false);
+            }
+            else RepairAnimation(false);
 
         }
         public void GoToRepairing()
