@@ -44,22 +44,22 @@ namespace Units
             movePosition.SetMovePosition(targetPosition);
         }
 
-        public void MoveToTarget(Vector3 targetPosition)
+        public void MoveToTarget(Transform targetPosition)
         {
             //MoveTo(transform.position);
             //get distanceToTarget, when good range can attack
             // TODO: Physics2D.Distance(unitRTS.GetComponent<Collider2D>(), clicked.collider); !!!
-            distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
-            if(aggroTarget.GetComponent<BoxCollider2D>()!=null)
+            distanceToTarget = Vector2.Distance(targetPosition.position, transform.position);
+            if(targetPosition.GetComponent<BoxCollider2D>()!=null)
             {
-                distanceToTarget -= aggroTarget.GetComponent<BoxCollider2D>().bounds.extents.x/2*Mathf.Sqrt(2);
+                distanceToTarget -= targetPosition.GetComponent<BoxCollider2D>().bounds.extents.x/2*Mathf.Sqrt(2);
             }
-            else if (aggroTarget.GetComponent<CircleCollider2D>() != null)
+            else if (targetPosition.GetComponent<CircleCollider2D>() != null)
             {
-                distanceToTarget -= aggroTarget.GetComponent<CircleCollider2D>().bounds.extents.x / 2;
+                distanceToTarget -= targetPosition.GetComponent<CircleCollider2D>().bounds.extents.x / 2;
             }
             //(baseStats.atkRange + 1);
-            if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
+            if (distanceToTarget > baseStats.atkRange) MoveTo(targetPosition.position);
             else MoveTo(transform.position);
         }
         //for now, function check for random enemy(probably close to "0,0")
@@ -114,21 +114,23 @@ namespace Units
         }
         public void FollowAndAttack()
         {
+            //lost aggro
             if (aggroTarget != null && Vector2.Distance(aggroTarget.position, gameObject.transform.position) > baseStats.aggroRange * 2)
             {
-                MoveToTarget(gameObject.transform.position);
+                MoveToTarget(gameObject.transform);
                 aggroTarget = null;
-                animator.SetBool("IfAttack", false);
+                AttackAnimation(false);
                 hasAggro = false;
             }
+            //
              else if (aggroTarget != null)
             {
-                MoveToTarget(aggroTarget.position);
+                MoveToTarget(aggroTarget);
                 Attack();
             }
             else
             {
-                animator.SetBool("IfAttack", false);
+                AttackAnimation(false);
                 hasAggro = false;
             }       
         }

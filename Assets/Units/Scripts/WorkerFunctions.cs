@@ -19,7 +19,7 @@ namespace Units
             if (unit.IfCommand == true)
                 isRepairing = false;
             if (isRepairing == true)
-                Repair();
+                GoToRepairing();
         }
         public void SetRepairValues(bool Repair, GameObject target = null)
         {
@@ -30,31 +30,49 @@ namespace Units
         {
             var targetHealthHandler = targetToRepair.GetComponentInChildren<Core.HealthHandler>();
             var distanceToTarget = Vector2.Distance(gameObject.transform.position, transform.position);
-            if (unit.atkCooldown <= 0 && distanceToTarget <= unit.baseStats.atkRange)
+
+            if(targetToRepair != null)
             {
-                RepairAnimation(true, targetToRepair.transform);
-                unit.animator.SetBool("IfAttack", true);
-                //Debug.Log("Hit!");
-                targetHealthHandler.GiveHealth(unit.baseStats.damage * buildingSpeedMultiply);
-                unit.atkCooldown = unit.baseStats.atkSpeed;
-                if (targetHealthHandler.baseHealth == targetHealthHandler.currentHealth)
+                if (unit.atkCooldown <= 0 && distanceToTarget <= unit.baseStats.atkRange)
                 {
-                    RepairAnimation(false);
-                    SetRepairValues(false);
-                    return;
+                    RepairAnimation(true);
+                    //Debug.Log("Hit!");
+
+                    targetHealthHandler.GiveHealth(unit.baseStats.damage * buildingSpeedMultiply);
+                    unit.atkCooldown = unit.baseStats.atkSpeed;
+
                 }
-            }
-            else if(distanceToTarget > unit.baseStats.atkRange) unit.MoveTo(targetToRepair.transform.position);
-            else if(distanceToTarget <= unit.baseStats.atkRange) RepairAnimation(false);
+            }else RepairAnimation(false);
+
         }
-        public void RepairAnimation(bool TurnOn, Transform targetPosition = null)
+        public void GoToRepairing()
+        {
+            if(targetToRepair != null 
+                && targetToRepair
+                .GetComponentInChildren<Buildings.BuildingRTS>().isBuilded)
+            {
+                targetToRepair = null;
+                RepairAnimation(false);
+                isRepairing = false;
+            }
+            else if(targetToRepair != null)
+            {
+                unit.MoveToTarget(targetToRepair.transform);
+                Repair();
+            }
+            else
+            {
+                RepairAnimation(false);
+            }
+        }
+        public void RepairAnimation(bool TurnOn)
         {
             if (TurnOn)
             {
                 float attackDirection = 0;
                 unit.animator.SetBool("IfAttack", true);
 
-                attackDirection = targetPosition.position.x - gameObject.transform.position.x;
+                attackDirection = targetToRepair.transform.position.x - gameObject.transform.position.x;
                 if (attackDirection > 0) attackDirection = 1;
                 else attackDirection = -1;
                 unit.animator.SetFloat("AttackDirection", attackDirection);

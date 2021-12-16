@@ -83,7 +83,7 @@ namespace Core
         }
         public void GiveHealth(float damage)
         {
-            if (currentHealth >= baseHealth) currentHealth = baseHealth;
+            if (currentHealth + damage >= baseHealth) currentHealth = baseHealth;
             else currentHealth += damage;
         }
         public void Die()
