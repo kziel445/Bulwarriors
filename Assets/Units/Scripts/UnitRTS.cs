@@ -44,21 +44,19 @@ namespace Units
             movePosition.SetMovePosition(targetPosition);
         }
 
+        //TODO: make function, include in WorkerFnctions
         public void MoveToTarget(Transform targetPosition)
         {
-            //MoveTo(transform.position);
-            //get distanceToTarget, when good range can attack
-            // TODO: Physics2D.Distance(unitRTS.GetComponent<Collider2D>(), clicked.collider); !!!
-            distanceToTarget = Vector2.Distance(targetPosition.position, transform.position);
-            if(targetPosition.GetComponent<BoxCollider2D>()!=null)
+            var targetColliders = targetPosition.GetComponents<Collider2D>();
+            float tmpDistance = -1;
+            foreach(Collider2D collider in targetColliders)
             {
-                distanceToTarget -= targetPosition.GetComponent<BoxCollider2D>().bounds.extents.x/2*Mathf.Sqrt(2);
+                if(tmpDistance == -1) 
+                    distanceToTarget = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
+                tmpDistance = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
+                if (tmpDistance < distanceToTarget) distanceToTarget = tmpDistance;
             }
-            else if (targetPosition.GetComponent<CircleCollider2D>() != null)
-            {
-                distanceToTarget -= targetPosition.GetComponent<CircleCollider2D>().bounds.extents.x / 2;
-            }
-            //(baseStats.atkRange + 1);
+           //(baseStats.atkRange + 1);
             if (distanceToTarget > baseStats.atkRange) MoveTo(targetPosition.position);
             else MoveTo(transform.position);
         }

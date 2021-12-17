@@ -123,7 +123,6 @@ namespace InputManager
                 RaycastHit2D clicked = Physics2D.Raycast(mousePosition, Vector2.zero);
                 if (clicked)
                 {
-                    
                     Transform target = clicked.collider.GetComponent<Transform>();
                     int unitLayer = selectedUnitRTSList[0].gameObject.layer;
                     int targetLayer = clicked.collider.gameObject.layer;

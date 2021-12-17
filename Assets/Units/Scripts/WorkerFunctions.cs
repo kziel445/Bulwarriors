@@ -31,7 +31,18 @@ namespace Units
             var targetHealthHandler = targetToRepair.GetComponentInChildren<Core.HealthHandler>();
             var distanceToTarget = Vector2.Distance(targetToRepair.transform.position, transform.position);
 
-            if(targetToRepair != null)
+            //TODO make function, in unitRTS the same
+            var targetColliders = targetToRepair.GetComponents<Collider2D>();
+            float tmpDistance = -1;
+            foreach (Collider2D collider in targetColliders)
+            {
+                if (tmpDistance == -1)
+                    distanceToTarget = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
+                tmpDistance = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
+                if (tmpDistance < distanceToTarget) distanceToTarget = tmpDistance;
+            }
+
+            if (targetToRepair != null)
             {
                 if (unit.atkCooldown <= 0 && distanceToTarget <= unit.baseStats.atkRange)
                 {
