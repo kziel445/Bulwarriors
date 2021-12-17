@@ -21,7 +21,6 @@ namespace Core
                 var component = gameObject.GetComponentInParent<Units.Player.PlayerRTS>();
                 baseHealth = component.baseStats.health;
                 baseArmor = component.baseStats.armor;
-
             }
             else if(gameObject.GetComponentInParent<Units.Enemy.EnemyRTS>() != null)
             {
@@ -41,13 +40,25 @@ namespace Core
                 baseHealth = component.baseStats.health;
                 baseArmor = component.baseStats.armor;
             }
-                currentHealth = baseHealth;
+            if(gameObject.GetComponentInParent<BuildingRTS>()!=null &&
+                !gameObject.GetComponentInParent<BuildingRTS>().isBuilded)
+            {
+                currentHealth = 1;
+            }
+            else currentHealth = baseHealth;
         }
 
         // Update is called once per frame
         void Update()
         {
             HandleHealth();
+        }
+        public void SetHealthStats(float health, float armor, float current = 0)
+        {
+            baseHealth = health;
+            baseArmor = armor;
+            if (currentHealth == 0) currentHealth = health;
+            else currentHealth = current;
         }
         public void HandleHealth()
         {
@@ -69,6 +80,11 @@ namespace Core
             if (damage <= 0) damage = 1;
             //Debug.Log(damage);
             currentHealth -= damage;
+        }
+        public void GiveHealth(float damage)
+        {
+            if (currentHealth + damage >= baseHealth) currentHealth = baseHealth;
+            else currentHealth += damage;
         }
         public void Die()
         {

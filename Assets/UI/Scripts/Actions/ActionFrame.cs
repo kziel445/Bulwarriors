@@ -37,7 +37,6 @@ namespace UI
             {
                 try
                 {
-
                     foreach (Button button in buttons)
                     {
 
@@ -45,7 +44,6 @@ namespace UI
                         {
                             button.interactable = false;
                             button.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
-                            
                         }
                         else
                         {

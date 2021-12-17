@@ -11,10 +11,7 @@ namespace UI
         public static Action instance;
 
         public bool isUnit=false;
-        void Start()
-        {
 
-        }
         public void OnClick()
         {
             if(isUnit) ActionFrame.instance.spawnBuilding.GetComponent<ObjectSpawnQueue>().StartQueueTimer(name);
@@ -22,7 +19,5 @@ namespace UI
             //spawnQueue.StartQueueTimer(name);
             //UnitSpawnQueue.instance.StartQueueTimer(name);
         }
-
-
     }
 }

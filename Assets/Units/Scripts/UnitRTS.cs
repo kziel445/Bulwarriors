@@ -33,32 +33,15 @@ namespace Units
         {
             instance = this;
         }
-
-        public void OnTriggerEnter2D(Collider2D collision)
-        {
-            Debug.Log("trigger");
-        }
         //movement segment
         public void MoveTo(Vector3 targetPosition)
         {
             movePosition.SetMovePosition(targetPosition);
         }
-
-        public void MoveToTarget(Vector3 targetPosition)
+        public void MoveToTarget(Transform targetPosition)
         {
-            //MoveTo(transform.position);
-            //get distanceToTarget, when good range can attack
-            distanceToTarget = Vector2.Distance(aggroTarget.position, transform.position);
-            if(aggroTarget.GetComponent<BoxCollider2D>()!=null)
-            {
-                distanceToTarget -= aggroTarget.GetComponent<BoxCollider2D>().bounds.extents.x/2*Mathf.Sqrt(2);
-            }
-            else if (aggroTarget.GetComponent<CircleCollider2D>() != null)
-            {
-                distanceToTarget -= aggroTarget.GetComponent<CircleCollider2D>().bounds.extents.x / 2;
-            }
-            //(baseStats.atkRange + 1);
-            if (distanceToTarget > baseStats.atkRange) MoveTo(aggroTarget.position);
+            distanceToTarget = DistanceBetweenColliders(targetPosition);
+            if (distanceToTarget > baseStats.atkRange) MoveTo(targetPosition.position);
             else MoveTo(transform.position);
         }
         //for now, function check for random enemy(probably close to "0,0")
@@ -88,9 +71,7 @@ namespace Units
                 }
             }
             aggroTarget = aggroTmp;
-            hasAggro = true;
-
-
+            if (aggroTarget != null) hasAggro = true;
         }
         public void Attack()
         {
@@ -99,36 +80,32 @@ namespace Units
                 if (atkCooldown <= 0 && distanceToTarget <= baseStats.atkRange)
                 {
                     AttackAnimation(true);
-                    animator.SetBool("IfAttack", true);
-                    //Debug.Log("Hit!");
-                    
                     aggroTarget.GetComponentInChildren<Core.HealthHandler>().TakeDamage(baseStats.damage);
                     atkCooldown = baseStats.atkSpeed;
                 }
             }
             else AttackAnimation(false);
-
-            //else hasAggro = false;
-
-            //Debug.Log("Hit: " + damage + " to " + attackObjective);
         }
         public void FollowAndAttack()
         {
+            //lost aggro
             if (aggroTarget != null && Vector2.Distance(aggroTarget.position, gameObject.transform.position) > baseStats.aggroRange * 2)
             {
-                MoveToTarget(gameObject.transform.position);
+                MoveToTarget(gameObject.transform);
                 aggroTarget = null;
-                animator.SetBool("IfAttack", false);
+                AttackAnimation(false);
                 hasAggro = false;
             }
+            //follow and attack
              else if (aggroTarget != null)
             {
-                MoveToTarget(aggroTarget.position);
+                MoveToTarget(aggroTarget);
                 Attack();
             }
+            //target lost/null
             else
             {
-                animator.SetBool("IfAttack", false);
+                AttackAnimation(false);
                 hasAggro = false;
             }       
         }
@@ -145,19 +122,19 @@ namespace Units
                 animator.SetFloat("AttackDirection", attackDirection);
             }
             else animator.SetBool("IfAttack", false);
-
         }
-        private void OnCollisionEnter2D(Collision2D collision)
+        public float DistanceBetweenColliders(Transform targetObject)
         {
-            if(collision.gameObject.transform == aggroTarget)
+            var targetColliders = targetObject.GetComponents<Collider2D>();
+            float tmpDistance = -1;
+            foreach (Collider2D collider in targetColliders)
             {
-
+                if (tmpDistance == -1)
+                    distanceToTarget = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
+                tmpDistance = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
+                if (tmpDistance < distanceToTarget) distanceToTarget = tmpDistance;
             }
+            return distanceToTarget;
         }
-
     }
-    
-    //Debug.Log("collide (name) : " + collide.collider.gameObject.name);
-    //Debug.Log("collide (tag) : " + collide.collider.gameObject.tag);
-    //if (collide.collider.gameObject.name == "Hitbox")
 }

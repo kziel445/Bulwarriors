@@ -106,8 +106,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5005592763079248060}
   - component: {fileID: 5005592763079248056}
-  - component: {fileID: 7305296178178721221}
-  - component: {fileID: 6701438707407079486}
   - component: {fileID: 342586999677487932}
   - component: {fileID: 432814380293212426}
   m_Layer: 11
@@ -160,35 +158,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9875721, y: 0.57629156}
   m_EdgeRadius: 0
---- !u!114 &7305296178178721221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5005592763079248067}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16127bd1f5e5cef4986c36642ac6870b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons: []
-  spawningQueueTimer: []
-  spawnQueue: []
-  spawnTypes: 
-  objectToStoreUnits: {fileID: 0}
---- !u!114 &6701438707407079486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5005592763079248067}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e003cb4c3d211a5409d9cdc257b5f320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &342586999677487932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +190,7 @@ MonoBehaviour:
     armor: 0
     attack: 0
     actions: {fileID: 0}
+  isBuilded: 1
 --- !u!1 &5005592763206469974
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5005592763206469975
 Transform:
   m_ObjectHideFlags: 0

@@ -9,36 +9,43 @@ namespace Buildings
     {
         public static PlayerBuilder instance;
         public bool isHoldingAScheme = false;
-        [SerializeField]
-        BuildingBasic buildingType;
+        [SerializeField] BuildingBasic buildingType;
         public Transform parentObject;
 
         [SerializeField] private Camera camera;
         private Transform scheme;
+        private Color schemeColor;
 
-        [SerializeField]
-        private UI.PlayerActions actionList = null;
+        [SerializeField] private UI.PlayerActions actionList = null;
 
         private Position cursorPosition = new Position();
-
+        private bool isFreeSpace = true;
         private void Awake()
         {
             instance = this;
             parentObject = GameObject.Find("PlayerBuildings").transform;
-            
         }
-        private void Start()
-        {
-            
-        }
-        // Update is called once per frame
         void Update()
         {
-            if (scheme != null) scheme.transform.position = cursorPosition.getMousePosition();
-
-            if (isHoldingAScheme && Input.GetMouseButtonDown(0))
+            if (scheme != null)
             {
-                SpawnNewBuilding(camera.ScreenToWorldPoint(Input.mousePosition),buildingType.name);
+                scheme.transform.position = cursorPosition.getMousePosition();
+                isFreeSpace = CheckIfFreeSpace(
+                    cursorPosition.getMousePosition(),
+                    new Vector2(
+                        scheme.GetComponent<SpriteRenderer>().bounds.size.x,
+                        scheme.GetComponent<SpriteRenderer>().bounds.size.y
+                        ));
+                if (isFreeSpace)
+                {
+                    schemeColor.a = 0.75f;
+                    scheme.GetComponent<SpriteRenderer>().color = schemeColor;
+                }
+                else scheme.GetComponent<SpriteRenderer>().color = new Color(128f, 0, 0, 0.75f);
+            }
+            if (isHoldingAScheme && Input.GetMouseButtonDown(0) && isFreeSpace)
+            {
+                SpawnNewBuilding(camera.ScreenToWorldPoint(Input.mousePosition), buildingType.name);
                 isHoldingAScheme = false;
                 Destroy(scheme.gameObject);
             }
@@ -50,23 +57,24 @@ namespace Buildings
         }
         public void SpawnNewBuilding(Vector2 mousePosition, string buildingToSpawn)
         {
-
             GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().money -= buildingType.baseStats.cost;
             GameObject building = Instantiate(
                 buildingType.buildingPrefab,
                 new Vector3(mousePosition.x,mousePosition.y, mousePosition.y/1000),
                 Quaternion.identity,
-                parentObject.Find(buildingType.name + "s")
+                parentObject.Find(buildingType.name.Replace(" ", "") + "s")
                 );
 
             //TODO to function, the same in PlayerManager.cs and createBuilding
-            Buildings.Player.PlayerBuilding playerBuilding = building.GetComponent<Player.PlayerBuilding>();
-
+            Player.PlayerBuilding playerBuilding = building.GetComponent<Player.PlayerBuilding>();
 
             BuildingBasic settings = BuildingHandler.instance.GetBuildingStats(buildingType.name.ToLower());
             playerBuilding.baseStats = settings.baseStats;
-
-
+            //disable functions of building and reduce health
+            playerBuilding.isBuilded = false;
+            playerBuilding.TurnOnOffFunctions(false);
+            playerBuilding.gameObject.GetComponentInChildren<Core.HealthHandler>().
+                SetHealthStats(playerBuilding.baseStats.health, playerBuilding.baseStats.armor, 1);
         }
         public void SpawnScheme(string objectName)
         {
@@ -78,8 +86,11 @@ namespace Buildings
                 buildingType.buildingPrefab.transform.GetChild(1),
                 cursorPosition.getMousePosition(),
                 Quaternion.identity,
-                parentObject.Find(buildingType.name + "s")
+                parentObject.Find(buildingType.name.Replace(" ","") + "s")
                 );
+            schemeColor = scheme.GetComponent<SpriteRenderer>().color;
+            schemeColor.a = 0.75f;
+            scheme.GetComponent<SpriteRenderer>().color = schemeColor;
         }
         private BuildingBasic IsBuilding(string name)
         {
@@ -95,6 +106,11 @@ namespace Buildings
             }
             return null;
         }
-        
+        private bool CheckIfFreeSpace(Vector2 center, Vector2 size)
+        {
+            var checkSpace = Physics2D.OverlapBox(center, size, 0);
+            if (checkSpace == null) return true;
+            return false;
+        }
     }
 }

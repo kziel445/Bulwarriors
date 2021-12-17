@@ -14,15 +14,12 @@ namespace UI
         {
             instance = this;
         }
-
         public void ChangeStatsOfObject(float currentHealth, float maxHealth, Sprite sprite)
         {
-            Debug.Log("tU!");
             text.SetActive(true);
             icon.SetActive(true);
             text.GetComponent<TMPro.TextMeshProUGUI>().text = $"Health: {currentHealth} \nMax health: {maxHealth}";
             icon.GetComponent<Image>().sprite = sprite;
-            
         }
         public void Clear()
         {
