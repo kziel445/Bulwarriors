@@ -33,30 +33,14 @@ namespace Units
         {
             instance = this;
         }
-
-        public void OnTriggerEnter2D(Collider2D collision)
-        {
-            Debug.Log("trigger");
-        }
         //movement segment
         public void MoveTo(Vector3 targetPosition)
         {
             movePosition.SetMovePosition(targetPosition);
         }
-
-        //TODO: make function, include in WorkerFnctions
         public void MoveToTarget(Transform targetPosition)
         {
-            var targetColliders = targetPosition.GetComponents<Collider2D>();
-            float tmpDistance = -1;
-            foreach(Collider2D collider in targetColliders)
-            {
-                if(tmpDistance == -1) 
-                    distanceToTarget = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
-                tmpDistance = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
-                if (tmpDistance < distanceToTarget) distanceToTarget = tmpDistance;
-            }
-           //(baseStats.atkRange + 1);
+            distanceToTarget = DistanceBetweenColliders(targetPosition);
             if (distanceToTarget > baseStats.atkRange) MoveTo(targetPosition.position);
             else MoveTo(transform.position);
         }
@@ -88,7 +72,6 @@ namespace Units
             }
             aggroTarget = aggroTmp;
             if (aggroTarget != null) hasAggro = true;
-
         }
         public void Attack()
         {
@@ -97,18 +80,11 @@ namespace Units
                 if (atkCooldown <= 0 && distanceToTarget <= baseStats.atkRange)
                 {
                     AttackAnimation(true);
-                    //animator.SetBool("IfAttack", true);
-                    //Debug.Log("Hit!");
-                    
                     aggroTarget.GetComponentInChildren<Core.HealthHandler>().TakeDamage(baseStats.damage);
                     atkCooldown = baseStats.atkSpeed;
                 }
             }
             else AttackAnimation(false);
-
-            //else hasAggro = false;
-
-            //Debug.Log("Hit: " + damage + " to " + attackObjective);
         }
         public void FollowAndAttack()
         {
@@ -120,12 +96,13 @@ namespace Units
                 AttackAnimation(false);
                 hasAggro = false;
             }
-            //
+            //follow and attack
              else if (aggroTarget != null)
             {
                 MoveToTarget(aggroTarget);
                 Attack();
             }
+            //target lost/null
             else
             {
                 AttackAnimation(false);
@@ -145,19 +122,19 @@ namespace Units
                 animator.SetFloat("AttackDirection", attackDirection);
             }
             else animator.SetBool("IfAttack", false);
-
         }
-        private void OnCollisionEnter2D(Collision2D collision)
+        public float DistanceBetweenColliders(Transform targetObject)
         {
-            if(collision.gameObject.transform == aggroTarget)
+            var targetColliders = targetObject.GetComponents<Collider2D>();
+            float tmpDistance = -1;
+            foreach (Collider2D collider in targetColliders)
             {
-
+                if (tmpDistance == -1)
+                    distanceToTarget = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
+                tmpDistance = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
+                if (tmpDistance < distanceToTarget) distanceToTarget = tmpDistance;
             }
+            return distanceToTarget;
         }
-
     }
-    
-    //Debug.Log("collide (name) : " + collide.collider.gameObject.name);
-    //Debug.Log("collide (tag) : " + collide.collider.gameObject.tag);
-    //if (collide.collider.gameObject.name == "Hitbox")
 }

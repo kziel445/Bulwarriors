@@ -28,34 +28,21 @@ namespace Units
         }
         public void Repair()
         {
-            var targetHealthHandler = targetToRepair.GetComponentInChildren<Core.HealthHandler>();
-            var distanceToTarget = Vector2.Distance(targetToRepair.transform.position, transform.position);
-
-            //TODO make function, in unitRTS the same
-            var targetColliders = targetToRepair.GetComponents<Collider2D>();
-            float tmpDistance = -1;
-            foreach (Collider2D collider in targetColliders)
-            {
-                if (tmpDistance == -1)
-                    distanceToTarget = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
-                tmpDistance = Physics2D.Distance(gameObject.GetComponent<Collider2D>(), collider).distance;
-                if (tmpDistance < distanceToTarget) distanceToTarget = tmpDistance;
-            }
+            var targetHealthHandler = targetToRepair
+                .GetComponentInChildren<Core.HealthHandler>();
+            var distanceToTarget = gameObject.GetComponent<UnitRTS>()
+                .DistanceBetweenColliders(targetToRepair.transform);
 
             if (targetToRepair != null)
             {
                 if (unit.atkCooldown <= 0 && distanceToTarget <= unit.baseStats.atkRange)
                 {
                     RepairAnimation(true);
-                    //Debug.Log("Hit!");
-
                     targetHealthHandler.GiveHealth(unit.baseStats.damage * buildingSpeedMultiply);
                     unit.atkCooldown = unit.baseStats.atkSpeed;
-
                 }
             }
             else RepairAnimation(false);
-
         }
         public void GoToRepairing()
         {
@@ -72,10 +59,7 @@ namespace Units
                 unit.MoveToTarget(targetToRepair.transform);
                 Repair();
             }
-            else
-            {
-                RepairAnimation(false);
-            }
+            else RepairAnimation(false);
         }
         public void RepairAnimation(bool TurnOn)
         {
