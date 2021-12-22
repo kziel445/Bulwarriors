@@ -48,17 +48,30 @@ public class WinLose : MonoBehaviour
     }
     public void VictoryScreen()
     {
-        victory.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text +=
-            GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().moneyCollected.ToString();
+        GetStatistics(victory.transform);
         victory.SetActive(true);
         Debug.Log("You are a winner! :D");
         
     }
     public void DefeatScreen()
     {
-        deafeat.transform.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text +=
-            GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().moneyCollected.ToString();
+        GetStatistics(deafeat.transform);
         deafeat.SetActive(true);
         Debug.Log("You lose");
+    }
+    public void GetStatistics(Transform screen)
+    {
+        string[] values = new string[] 
+        {
+            GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().moneyCollected.ToString(),
+            UI.ResourcesFrame.instance.TimerString(),
+            GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().unitsRecruted.ToString()
+        };
+        string[] lines = screen.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text.Split('\n');
+        for(int i = 0; i < lines.Length; i++)
+        {
+            lines[i]+=values[i];
+        }
+        screen.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text = string.Join("\n", lines);
     }
 }

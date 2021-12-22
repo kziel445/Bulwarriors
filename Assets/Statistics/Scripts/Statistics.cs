@@ -8,8 +8,9 @@ namespace Statistics
     {
         public Transform unitsObject;
         [SerializeField] internal int money = 100;
-        [SerializeField] internal int moneyCollected;
+        internal int moneyCollected;
         [SerializeField] internal int units;
+        internal int unitsRecruted = 0;
 
         private void Awake()
         {
@@ -23,6 +24,7 @@ namespace Statistics
                 else Debug.LogWarning("Player or enemy statistics not found");
             }
             units = GetNumberOfUnits();
+            unitsRecruted = units;
         }
         private void Update()
         {
@@ -46,6 +48,10 @@ namespace Statistics
                 count += child.childCount;
             }
             return count;
+        }
+        public void UnitsRecrutedUpdate()
+        {
+            unitsRecruted+=1;
         }
 
         //public IEnumerator GetMoneyPassive(int gold)
