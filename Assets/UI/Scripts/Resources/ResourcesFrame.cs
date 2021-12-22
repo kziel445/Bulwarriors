@@ -9,7 +9,6 @@ namespace UI
     {
         public static ResourcesFrame instance;
         public Statistics.Statistics statistics;
-        public float timer = 0.0f;
 
         private void Awake() 
         {
@@ -22,16 +21,11 @@ namespace UI
 
         void Update()
         {
-            timer += Time.deltaTime;
-            
             gameObject.transform.GetChild(0).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = statistics.money.ToString();
             gameObject.transform.GetChild(1).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = statistics.units.ToString();
-            gameObject.transform.GetChild(2).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = TimerString();
+            gameObject.transform.GetChild(2).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = statistics.TimerString();
         }
-        public string TimerString()
-        {
-            return $"{Mathf.FloorToInt(timer/60)}:{Mathf.FloorToInt(timer % 60).ToString("00")}".ToString();
-        }
+        
     }
 }
 
