@@ -903,9 +903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c474c957c726b489c00b79e8ea6820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp: 0
-  tmp2: 0
-  tmp1: 0
+  timer: 0
 --- !u!1 &317870020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1043,6 @@ MonoBehaviour:
   dataObject: {fileID: 0}
   money: 100
   units: 0
-  timer: 0
 --- !u!4 &364232655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8159024177342774654, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
@@ -2264,9 +2261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c474c957c726b489c00b79e8ea6820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp: 0
-  tmp2: 0
-  tmp1: 0
+  timer: 0
 --- !u!4 &745515937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6447400095836820631, guid: 6c93b49d188023a4eae26716ef396000, type: 3}
@@ -3150,7 +3145,6 @@ MonoBehaviour:
   dataObject: {fileID: 0}
   money: 100
   units: 0
-  timer: 0
 --- !u!1 &1033240625
 GameObject:
   m_ObjectHideFlags: 0
@@ -134740,6 +134734,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 562843645, guid: 573d743306cc4084b8e4eb8a13fdfdbd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1515419129416086709, guid: 573d743306cc4084b8e4eb8a13fdfdbd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5953893215907145234, guid: 573d743306cc4084b8e4eb8a13fdfdbd, type: 3}
       propertyPath: m_Name
       value: UI
@@ -134790,7 +134792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8716122819466779619, guid: 573d743306cc4084b8e4eb8a13fdfdbd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 573d743306cc4084b8e4eb8a13fdfdbd, type: 3}
