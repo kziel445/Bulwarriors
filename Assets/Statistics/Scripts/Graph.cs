@@ -10,13 +10,13 @@ namespace Statistics
         [SerializeField] private Sprite circleSprite;
         private Color color = Color.white;
         private RectTransform graphContainer;
+        [SerializeField] private RectTransform labelTemplate;
         [SerializeField] float unitsPointModifier = 50;
         //tmp
         Data dataSet;
         private void Awake() 
         {
             graphContainer = transform.Find("GraphContainer").GetComponent<RectTransform>();
-
             //tmp data
             dataSet = new Data();
             dataSet.datas = new List<DataRecord>(){
@@ -28,7 +28,16 @@ namespace Statistics
                 new DataRecord(50,700,7),
                 new DataRecord(60,3300,7),
                 new DataRecord(70,5200,8),
-                new DataRecord(80,10000,40)
+                new DataRecord(80,10000,40),
+                new DataRecord(90,100,1),
+                new DataRecord(100,100,4),
+                new DataRecord(110,100,4),
+                new DataRecord(120,1020,4),
+                new DataRecord(130,800,4),
+                new DataRecord(140,700,7),
+                new DataRecord(150,3300,7),
+                new DataRecord(160,5200,8),
+                new DataRecord(170,10000,40)
             };
             dataSet.moneyCollected = 40000;
             dataSet.timer = 100;
@@ -70,6 +79,13 @@ namespace Statistics
                         point.GetComponent<RectTransform>().anchoredPosition);
                 
                 lastPoint = point;
+                //TODO setParent to instainate
+                RectTransform labelX = Instantiate(labelTemplate);
+                labelX.SetParent(graphContainer);
+                labelX.gameObject.SetActive(true);
+                labelX.anchoredPosition = new Vector2(xPosition,-20f);
+                labelX.GetComponent<TMPro.TextMeshProUGUI>().text = datas.Key.ToString();
+                labelX.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
                 i++;
             }
         }
