@@ -34,17 +34,19 @@ namespace Statistics
             dataSet.timer = 100;
             dataSet.unitsRecruted = 40;
         }
-        private void AddPoint(Vector2 anchoredPosition)
+        private GameObject AddPoint(Vector2 anchoredPosition)
         {
             GameObject gameObject = new GameObject("circle", typeof(Image));
             gameObject.transform.SetParent(graphContainer, false);
             gameObject.GetComponent<Image>().sprite = circleSprite;
-             gameObject.GetComponent<Image>().color = color;
+            gameObject.GetComponent<Image>().color = color;
             RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = anchoredPosition;
             rectTransform.sizeDelta = new Vector2(11,11);
             rectTransform.anchorMin = new Vector2(0,0);
             rectTransform.anchorMax = new Vector2(0,0);
+
+            return gameObject;
         }
         private void ShowGraph(Dictionary<float,int> values)
         {
@@ -57,16 +59,50 @@ namespace Statistics
                 if(datas.Value>yMaximum) yMaximum = datas.Value;
             }
             int i = 0;
+            GameObject lastPoint = null;
             foreach(KeyValuePair<float, int> datas in values)
             {
                 float xPosition =  i * xSize;
                 float yPosition = (datas.Value / yMaximum) * graphHeight;
-                AddPoint(new Vector2(xPosition, yPosition));
+                GameObject point = AddPoint(new Vector2(xPosition, yPosition));
+                if(lastPoint != null) 
+                    CreateLines(lastPoint.GetComponent<RectTransform>().anchoredPosition,
+                        point.GetComponent<RectTransform>().anchoredPosition);
+                
+                lastPoint = point;
                 i++;
+            }
+        }
+        private void CreateLines(Vector2 positionA, Vector2 positionB)
+        {
+            GameObject gameObject = new GameObject("Connection", typeof(Image));
+            gameObject.transform.SetParent(graphContainer, false);
+            gameObject.GetComponent<Image>().color = color;
+
+            RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
+            Vector2 direction = (positionA - positionB).normalized;
+            float distance = Vector2.Distance(positionA, positionB);
+
+            rectTransform.anchorMin = new Vector2(0,0);
+            rectTransform.anchorMax = new Vector2(0,0);
+            rectTransform.sizeDelta = new Vector2(distance,3f);
+            rectTransform.anchoredPosition = positionB + direction * distance * 0.5f;
+            float angl = Vector3.Angle(positionB, positionA);
+            
+            angl = Mathf.Atan2(positionB.y - positionA.y, positionB.x - positionA.x);
+            angl *= 180/Mathf.PI;
+            rectTransform.localEulerAngles = new Vector3(0,0,angl);
+        }
+        public void RemoveGraph()
+        {
+            foreach(Transform child in graphContainer.transform)
+            {
+                if(child.gameObject.name != "Background") Destroy(child.gameObject);
             }
         }
         public void ShowUnitsGraph()
         {
+            RemoveGraph();
             Dictionary<float, int> values = new Dictionary<float,int>();
             foreach(DataRecord record in dataSet.datas)
             {
@@ -77,6 +113,7 @@ namespace Statistics
         }
         public void ShowMoneysGraph()
         {
+            RemoveGraph();
             Dictionary<float, int> values = new Dictionary<float,int>();
             foreach(DataRecord record in dataSet.datas)
             {
@@ -87,6 +124,7 @@ namespace Statistics
         }
         public void ShowPointsGraph()
         {
+            RemoveGraph();
             Dictionary<float, int> values = new Dictionary<float,int>();
             foreach(DataRecord record in dataSet.datas)
             {
@@ -97,6 +135,7 @@ namespace Statistics
         }
         public float Points(float time, int money, int units)
         {
+            if(time==0) time = 1;
             float points = (money + units * unitsPointModifier)/time;
             return points;
         }
