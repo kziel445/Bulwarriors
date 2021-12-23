@@ -20,28 +20,15 @@ namespace Statistics
             //tmp data
             dataSet = new Data();
             dataSet.datas = new List<DataRecord>(){
-                new DataRecord(0,100,1),
+                new DataRecord(0,100,4),
                 new DataRecord(10,100,4),
-                new DataRecord(20,100,4),
-                new DataRecord(30,1020,4),
-                new DataRecord(40,800,4),
-                new DataRecord(50,700,7),
-                new DataRecord(60,3300,7),
-                new DataRecord(70,5200,8),
-                new DataRecord(80,10000,40),
-                new DataRecord(90,100,1),
-                new DataRecord(100,100,4),
-                new DataRecord(110,100,4),
-                new DataRecord(120,1020,4),
-                new DataRecord(130,800,4),
-                new DataRecord(140,700,7),
-                new DataRecord(150,3300,7),
-                new DataRecord(160,5200,8),
-                new DataRecord(170,10000,40)
+                new DataRecord(20,100,4)
             };
             dataSet.moneyCollected = 40000;
             dataSet.timer = 100;
             dataSet.unitsRecruted = 40;
+            if(GameObject.Find("PlayerData").GetComponent<Data>()!= null)
+                dataSet = GameObject.Find("PlayerData").GetComponent<Data>();
         }
         private GameObject AddPoint(Vector2 anchoredPosition)
         {
@@ -65,7 +52,6 @@ namespace Statistics
             float yMaximum = 0;
             foreach(KeyValuePair<float, int> datas in values)
             {
-                Debug.Log("max:" + yMaximum);
                 if(datas.Value>yMaximum) yMaximum = datas.Value;
             }
             yMaximum = MaximumY(yMaximum);
@@ -76,7 +62,6 @@ namespace Statistics
             {
                 float xPosition =  i * xSize;
                 float yPosition = (datas.Value / yMaximum) * graphHeight;
-                Debug.Log(datas.Value);
                 GameObject point = AddPoint(new Vector2(xPosition, yPosition));
                 if(lastPoint != null) 
                     CreateLines(lastPoint.GetComponent<RectTransform>().anchoredPosition,
