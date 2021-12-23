@@ -24,12 +24,16 @@ namespace UI
         }
         void Update()
         {
-
+            
             
         }
         public void GoToMainMenu()
         {
             SceneManager.LoadScene(0);
+        }
+        public void GoToStatisticsScene()
+        {
+            SceneManager.LoadScene(2);
         }
         public void UpdateSelectedUnits()
         {

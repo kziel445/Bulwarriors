@@ -11,8 +11,8 @@ namespace Statistics
         {
             DontDestroyOnLoad(transform.gameObject);   
         }
-        internal int moneyCollected;
-        internal int unitsRecruted = 0;
+        public int moneyCollected;
+        public int unitsRecruted = 0;
         public float timer = 0.0f;
     }
 }
