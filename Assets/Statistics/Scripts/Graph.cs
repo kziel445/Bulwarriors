@@ -8,6 +8,7 @@ namespace Statistics
     public class Graph : MonoBehaviour
     {
         [SerializeField] private Sprite circleSprite;
+        private Color color = Color.white;
         private RectTransform graphContainer;
         [SerializeField] float unitsPointModifier = 50;
         //tmp
@@ -38,6 +39,7 @@ namespace Statistics
             GameObject gameObject = new GameObject("circle", typeof(Image));
             gameObject.transform.SetParent(graphContainer, false);
             gameObject.GetComponent<Image>().sprite = circleSprite;
+             gameObject.GetComponent<Image>().color = color;
             RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = anchoredPosition;
             rectTransform.sizeDelta = new Vector2(11,11);
@@ -70,6 +72,7 @@ namespace Statistics
             {
                 values.Add(record.time, record.units);
             }
+            color = new Color(128,0,0);
             ShowGraph(values);
         }
         public void ShowMoneysGraph()
@@ -79,6 +82,7 @@ namespace Statistics
             {
                 values.Add(record.time, record.money);
             }
+            color = new Color(0,255,0);
             ShowGraph(values);
         }
         public void ShowPointsGraph()
@@ -88,6 +92,7 @@ namespace Statistics
             {
                 values.Add(record.time, (int)Points(record.time, record.money, record. units));
             }
+            color = new Color(128,128,0);
             ShowGraph(values);
         }
         public float Points(float time, int money, int units)
