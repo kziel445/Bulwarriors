@@ -65,14 +65,18 @@ namespace Statistics
             float yMaximum = 0;
             foreach(KeyValuePair<float, int> datas in values)
             {
+                Debug.Log("max:" + yMaximum);
                 if(datas.Value>yMaximum) yMaximum = datas.Value;
             }
+            yMaximum = MaximumY(yMaximum);
+            
             int i = 0;
             GameObject lastPoint = null;
             foreach(KeyValuePair<float, int> datas in values)
             {
                 float xPosition =  i * xSize;
                 float yPosition = (datas.Value / yMaximum) * graphHeight;
+                Debug.Log(datas.Value);
                 GameObject point = AddPoint(new Vector2(xPosition, yPosition));
                 if(lastPoint != null) 
                     CreateLines(lastPoint.GetComponent<RectTransform>().anchoredPosition,
@@ -88,6 +92,32 @@ namespace Statistics
                 labelX.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
                 i++;
             }
+            int separatorCount = 10;
+            for(int j = 0; j<=separatorCount; j++)
+            {
+                RectTransform labelY = Instantiate(labelTemplate);
+                labelY.SetParent(graphContainer);
+                labelY.gameObject.SetActive(true);
+                float normalizedValue = j * 1f / separatorCount;
+                labelY.anchoredPosition = new Vector2(-20f, normalizedValue * graphHeight);
+                labelY.GetComponent<TMPro.TextMeshProUGUI>().text = ((int)(normalizedValue * yMaximum)).ToString();
+                labelY.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+                //if(j==9) labelY.anchoredPosition = new Vector2(-6f, 1f * graphHeight);
+            }
+        }
+        public float MaximumY(float maxValue)
+        {
+            int length = maxValue.ToString().Length;
+            float largestDigit = maxValue/Mathf.Pow(10, length-1);
+            float rest = maxValue%Mathf.Pow(10, length-1);
+            maxValue = (int)largestDigit * Mathf.Pow(10, length-1);
+            
+            largestDigit = rest/Mathf.Pow(10, length-2); 
+            if(largestDigit >= 0) largestDigit = (int)largestDigit + 1;
+            maxValue += largestDigit * Mathf.Pow(10, length-2);
+            
+
+            return maxValue;
         }
         private void CreateLines(Vector2 positionA, Vector2 positionB)
         {
