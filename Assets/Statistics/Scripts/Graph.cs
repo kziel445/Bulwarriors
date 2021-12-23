@@ -73,7 +73,7 @@ namespace Statistics
                 labelX.SetParent(graphContainer);
                 labelX.gameObject.SetActive(true);
                 labelX.anchoredPosition = new Vector2(xPosition,-20f);
-                labelX.GetComponent<TMPro.TextMeshProUGUI>().text = datas.Key.ToString();
+                labelX.GetComponent<TMPro.TextMeshProUGUI>().text = ((int)datas.Key).ToString();
                 labelX.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
                 i++;
             }
@@ -169,6 +169,11 @@ namespace Statistics
             if(time==0) time = 1;
             float points = (money + units * unitsPointModifier)/time;
             return points;
+        }
+        public void DestroyDatas()
+        {
+            Destroy(GameObject.Find("PlayerData"));
+            Destroy(GameObject.Find("EnemyData"));
         }
     }
     
