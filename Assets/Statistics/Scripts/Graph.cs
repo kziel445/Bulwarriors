@@ -27,7 +27,7 @@ namespace Statistics
             dataSet.moneyCollected = 40000;
             dataSet.timer = 100;
             dataSet.unitsRecruted = 40;
-            if(GameObject.Find("PlayerData").GetComponent<Data>()!= null)
+            if(GameObject.Find("PlayerData")!= null)
                 dataSet = GameObject.Find("PlayerData").GetComponent<Data>();
         }
         private GameObject AddPoint(Vector2 anchoredPosition)

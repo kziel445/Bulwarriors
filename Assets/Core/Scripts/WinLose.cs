@@ -64,7 +64,7 @@ public class WinLose : MonoBehaviour
         string[] values = new string[] 
         {
             GameObject.Find("PlayerData").GetComponent<Statistics.Data>().moneyCollected.ToString(),
-            GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().TimerString(),
+            GameObject.Find("PlayerData").GetComponent<Statistics.Data>().TimerString(),
             GameObject.Find("PlayerData").GetComponent<Statistics.Data>().unitsRecruted.ToString()
         };
         string[] lines = screen.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text.Split('\n');

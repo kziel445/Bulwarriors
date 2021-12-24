@@ -14,6 +14,11 @@ namespace Statistics
         public int moneyCollected;
         public int unitsRecruted = 0;
         public float timer = 0.0f;
+
+        public string TimerString()
+        {
+            return $"{Mathf.FloorToInt(timer/60)}:{Mathf.FloorToInt(timer % 60).ToString("00")}".ToString();
+        }
     }
 }
 
