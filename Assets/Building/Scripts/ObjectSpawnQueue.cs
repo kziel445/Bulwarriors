@@ -86,6 +86,7 @@ namespace Buildings
             Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);
             playerUnit.baseStats = settings.baseStats;
             playerUnit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = settings.classColor;
+            GameObject.Find("PlayerData").GetComponent<Statistics.Data>().unitsRecruted ++;
         }
         private Units.UnitBasic IsUnit(string name)
         {
