@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Scout
   m_EditorClassIdentifier: 
   unitName: 
-  type: 0
-  playerPrefab: {fileID: 0}
-  enemyPrefab: {fileID: 0}
+  type: 6
+  playerPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
+  enemyPrefab: {fileID: 7623033894500739430, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
   icon: {fileID: 0}
-  classColor: {r: 0, g: 0, b: 0, a: 0}
-  spawnTime: 0
+  classColor: {r: 0.9816698, g: 1, b: 0.6462264, a: 1}
+  spawnTime: 5
   baseStats:
     cost: 0
     damage: 0
     atkSpeed: 0
     atkRange: 0
     aggroRange: 0
-    health: 0
+    health: 1
     armor: 0
     movementSpeed: 0
     actions: {fileID: 0}

@@ -17,7 +17,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
   enemyPrefab: {fileID: 7623033894500739430, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
   icon: {fileID: 21300000, guid: 7afe7993aaad98547b851d6cf0f13cc0, type: 3}
-  classColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
+  classColor: {r: 0.4716981, g: 0.46502313, b: 0.46502313, a: 1}
   spawnTime: 3
   baseStats:
     cost: 150
