@@ -51,7 +51,6 @@ namespace Statistics
             float graphHeight = graphContainer.sizeDelta.y;
             float graphWidth = graphContainer.sizeDelta.x;
             float xSize = graphWidth/values.Count;
-            Debug.Log("cell: " + xSize);
             float yMaximum = 0;
             foreach(KeyValuePair<float, int> datas in values)
             {
@@ -64,7 +63,6 @@ namespace Statistics
             foreach(KeyValuePair<float, int> datas in values)
             {
                 float xPosition =  i * xSize;
-                Debug.Log("xpos: " + xPosition);
                 float yPosition = (datas.Value / yMaximum) * graphHeight;
                 GameObject point = AddPoint(new Vector2(xPosition, yPosition));
                 if(lastPoint != null) 
@@ -95,9 +93,9 @@ namespace Statistics
                 labelY.gameObject.SetActive(true);
                 float normalizedValue = j * 1f / separatorCount;
                 labelY.anchoredPosition = new Vector2(-20f, normalizedValue * graphHeight);
-                labelY.GetComponent<TMPro.TextMeshProUGUI>().text = ((int)(normalizedValue * yMaximum)).ToString();
+                int value = (int)Mathf.Round(normalizedValue * yMaximum);
+                labelY.GetComponent<TMPro.TextMeshProUGUI>().text = (value).ToString();
                 labelY.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
-                //if(j==9) labelY.anchoredPosition = new Vector2(-6f, 1f * graphHeight);
             }
         }
         public float MaximumY(float maxValue)
