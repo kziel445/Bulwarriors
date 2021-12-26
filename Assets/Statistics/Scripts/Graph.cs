@@ -22,7 +22,9 @@ namespace Statistics
             dataSet.datas = new List<DataRecord>(){
                 new DataRecord(0,100,4),
                 new DataRecord(10,100,4),
-                new DataRecord(20,100,4)
+                new DataRecord(20,100,4),
+                new DataRecord(30,100,4),
+                new DataRecord(40,100,4)
             };
             dataSet.moneyCollected = 40000;
             dataSet.timer = 100;
@@ -49,6 +51,7 @@ namespace Statistics
             float graphHeight = graphContainer.sizeDelta.y;
             float graphWidth = graphContainer.sizeDelta.x;
             float xSize = graphWidth/values.Count;
+            Debug.Log("cell: " + xSize);
             float yMaximum = 0;
             foreach(KeyValuePair<float, int> datas in values)
             {
@@ -61,23 +64,30 @@ namespace Statistics
             foreach(KeyValuePair<float, int> datas in values)
             {
                 float xPosition =  i * xSize;
+                Debug.Log("xpos: " + xPosition);
                 float yPosition = (datas.Value / yMaximum) * graphHeight;
                 GameObject point = AddPoint(new Vector2(xPosition, yPosition));
                 if(lastPoint != null) 
                     CreateLines(lastPoint.GetComponent<RectTransform>().anchoredPosition,
                         point.GetComponent<RectTransform>().anchoredPosition);
-                
                 lastPoint = point;
+
+                i++;
+            }
+            
+            int separatorCount = 10;
+            for(int j = 0; j <= separatorCount; j++)
+            {
                 //TODO setParent to instainate
                 RectTransform labelX = Instantiate(labelTemplate);
                 labelX.SetParent(graphContainer);
                 labelX.gameObject.SetActive(true);
-                labelX.anchoredPosition = new Vector2(xPosition,-20f);
-                labelX.GetComponent<TMPro.TextMeshProUGUI>().text = ((int)datas.Key).ToString();
+                float normalizedValue = j * 1f/separatorCount;
+                labelX.anchoredPosition = new Vector2(normalizedValue * graphWidth, -20f);
+                float maxTimerValue = GameObject.Find("PlayerData").GetComponent<Data>().timer;
+                labelX.GetComponent<TMPro.TextMeshProUGUI>().text = GameObject.Find("PlayerData").GetComponent<Data>().TimerString((maxTimerValue * normalizedValue));
                 labelX.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
-                i++;
             }
-            int separatorCount = 10;
             for(int j = 0; j<=separatorCount; j++)
             {
                 RectTransform labelY = Instantiate(labelTemplate);

@@ -49,23 +49,25 @@ public class WinLose : MonoBehaviour
     public void VictoryScreen()
     {
         GetStatistics(victory.transform);
+        GameObject.Find("PlayerData").GetComponent<Statistics.Data>().isVictory = true;
         victory.SetActive(true);
         Debug.Log("You are a winner! :D");
-        
     }
     public void DefeatScreen()
     {
         GetStatistics(deafeat.transform);
+        GameObject.Find("PlayerData").GetComponent<Statistics.Data>().isVictory = false;
         deafeat.SetActive(true);
         Debug.Log("You lose");
     }
     public void GetStatistics(Transform screen)
     {
+        Statistics.Data playerData = GameObject.Find("PlayerData").GetComponent<Statistics.Data>();
         string[] values = new string[] 
         {
-            GameObject.Find("PlayerData").GetComponent<Statistics.Data>().moneyCollected.ToString(),
-            GameObject.Find("PlayerData").GetComponent<Statistics.Data>().TimerString(),
-            GameObject.Find("PlayerData").GetComponent<Statistics.Data>().unitsRecruted.ToString()
+            playerData.moneyCollected.ToString(),
+            playerData.TimerString(playerData.timer),
+            playerData.unitsRecruted.ToString()
         };
         string[] lines = screen.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text.Split('\n');
         for(int i = 0; i < lines.Length; i++)

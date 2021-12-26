@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class SumStatistics : MonoBehaviour
 {
-    private void Start() {
-        if(GameObject.Find("PlayerData")!= null)
+    private void Start() 
+    {
+        GetStatistics();
+        GetGameState();
+        /* if(GameObject.Find("PlayerData")!= null)
+        {
             GetStatistics();
+            GetGameState();
+        } */
     }   
     public void GetStatistics()
     {
+        Statistics.Data playerData = GameObject.Find("PlayerData").GetComponent<Statistics.Data>();
         string[] values = new string[] 
         {
-            GameObject.Find("PlayerData").GetComponent<Statistics.Data>().moneyCollected.ToString(),
-            GameObject.Find("PlayerData").GetComponent<Statistics.Data>().TimerString(),
-            GameObject.Find("PlayerData").GetComponent<Statistics.Data>().unitsRecruted.ToString()
+            playerData.moneyCollected.ToString(),
+            playerData.TimerString(playerData.timer),
+            playerData.unitsRecruted.ToString()
         };
         string[] lines = gameObject.transform.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text.Split('\n');
         for(int i = 0; i < lines.Length; i++)
@@ -22,5 +29,17 @@ public class SumStatistics : MonoBehaviour
             lines[i]+=values[i];
         }
         gameObject.transform.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text = string.Join("\n", lines);
+    }
+    public void GetGameState()
+    {
+        if(GameObject.Find("PlayerData").GetComponent<Statistics.Data>().isVictory)
+        {
+            gameObject.transform.Find("State").GetComponent<TMPro.TextMeshProUGUI>().text = "Victory!";
+        }
+        else
+        {
+            gameObject.transform.Find("State").GetComponent<TMPro.TextMeshProUGUI>().text = "Defeat";
+            gameObject.transform.Find("State").GetComponent<TMPro.TextMeshProUGUI>().color = Color.black;
+        }
     }
 }

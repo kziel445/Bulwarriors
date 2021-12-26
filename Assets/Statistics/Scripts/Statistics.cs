@@ -6,7 +6,7 @@ namespace Statistics
 {
     public class Statistics : MonoBehaviour
     {
-        public float dataUpdateTime = 10;
+        public float dataUpdateTime = 1;
         public Transform unitsObject;
         public Data dataObject;
         [SerializeField] internal int money = 100;
