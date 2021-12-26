@@ -48,17 +48,32 @@ public class WinLose : MonoBehaviour
     }
     public void VictoryScreen()
     {
-        victory.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text +=
-            GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().moneyCollected.ToString();
+        GetStatistics(victory.transform);
+        GameObject.Find("PlayerData").GetComponent<Statistics.Data>().isVictory = true;
         victory.SetActive(true);
         Debug.Log("You are a winner! :D");
-        
     }
     public void DefeatScreen()
     {
-        deafeat.transform.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text +=
-            GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().moneyCollected.ToString();
+        GetStatistics(deafeat.transform);
+        GameObject.Find("PlayerData").GetComponent<Statistics.Data>().isVictory = false;
         deafeat.SetActive(true);
         Debug.Log("You lose");
+    }
+    public void GetStatistics(Transform screen)
+    {
+        Statistics.Data playerData = GameObject.Find("PlayerData").GetComponent<Statistics.Data>();
+        string[] values = new string[] 
+        {
+            playerData.moneyCollected.ToString(),
+            playerData.TimerString(playerData.timer),
+            playerData.unitsRecruted.ToString()
+        };
+        string[] lines = screen.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text.Split('\n');
+        for(int i = 0; i < lines.Length; i++)
+        {
+            lines[i]+=values[i];
+        }
+        screen.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text = string.Join("\n", lines);
     }
 }

@@ -197,6 +197,7 @@ MonoBehaviour:
     armor: 0
     attack: 0
     actions: {fileID: 0}
+  isBuilded: 1
 --- !u!114 &4277732535849585978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4797860255917590411, guid: df5ab0c88b964fc439dbfb46c03b9782, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.00001
       objectReference: {fileID: 0}
     - target: {fileID: 4797860255917590411, guid: df5ab0c88b964fc439dbfb46c03b9782, type: 3}
       propertyPath: m_LocalRotation.w
