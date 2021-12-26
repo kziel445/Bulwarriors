@@ -10,7 +10,8 @@ namespace Units
     {
         public enum unitType
         {
-            Worker, Warrior, Archer, AdvancedWorker
+            Worker, Warrior, Archer, AdvancedWorker, 
+            Shooter, Knight, Scout, Swordsman, Ranger
         }
         //statistics
         [Header("Unit Settings")]
