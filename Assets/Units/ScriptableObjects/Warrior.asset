@@ -18,14 +18,14 @@ MonoBehaviour:
   enemyPrefab: {fileID: 7623033894500739430, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
   icon: {fileID: 21300000, guid: 7afe7993aaad98547b851d6cf0f13cc0, type: 3}
   classColor: {r: 0.4716981, g: 0.46502313, b: 0.46502313, a: 1}
-  spawnTime: 3
+  spawnTime: 5
   baseStats:
-    cost: 150
-    damage: 5
+    cost: 200
+    damage: 10
     atkSpeed: 1
-    atkRange: 0.6
+    atkRange: 0.2
     aggroRange: 10
-    health: 50
-    armor: 50
-    movementSpeed: 2
+    health: 100
+    armor: 15
+    movementSpeed: 3
     actions: {fileID: 0}
