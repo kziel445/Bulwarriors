@@ -24,7 +24,7 @@ MonoBehaviour:
     damage: 13
     atkSpeed: 1
     atkRange: 1
-    aggroRange: 0
+    aggroRange: 3
     health: 200
     armor: 25
     movementSpeed: 2
