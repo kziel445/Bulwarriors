@@ -4,13 +4,12 @@ using UnityEngine;
 using InputManager;
 using Core.Interactables;
 
-public class EnemyAIHandler : MonoBehaviour
+public class EnemyUnitAI : MonoBehaviour
 {
     [SerializeField] Transform parentOfUnits;
     public List<Interactable> selectedUnit;
     public List<Interactable> unitsWithCommands;
     [SerializeField] Transform parentOfBuildings;
-    public List<Interactable> selectedBuildings;
 
     public delegate void CommandMethod();
     private bool waitingForCommand = true;

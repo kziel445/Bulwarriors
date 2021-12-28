@@ -18,18 +18,24 @@ namespace Buildings
 
         public Transform objectToStoreUnits;
        
-
-
         private void Awake()
         {
             instance = this;
         }
         private void Start()
         {
-            actionList = gameObject.GetComponent<Player.PlayerBuilding>().baseStats.actions;
             try
             {
-                objectToStoreUnits = GameObject.Find("PlayerUnits").transform;
+                if(gameObject.name.Contains("Player"))
+                {
+                    objectToStoreUnits = GameObject.Find("PlayerUnits").transform;
+                    actionList = gameObject.GetComponent<Player.PlayerBuilding>().baseStats.actions;
+                }
+                else 
+                {
+                    objectToStoreUnits = GameObject.Find("EnemyUnits").transform;
+                    actionList = gameObject.GetComponent<Player.PlayerBuilding>().baseStats.actions;
+                }
             }
             catch
             {
@@ -65,7 +71,6 @@ namespace Buildings
         }
         public void Spawn()
         {
-            
             string objectName = spawnTypes[0].ToString() + "s";
             //objectName = spawnQueue[0].GetComponent<Units.Player.PlayerRTS>().baseStats.unitClass;
             GameObject unit = Instantiate(

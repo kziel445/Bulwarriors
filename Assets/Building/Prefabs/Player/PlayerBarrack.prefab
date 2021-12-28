@@ -312,6 +312,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7421084164264809674}
     m_Modifications:
+    - target: {fileID: 547677863885083938, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3570855488675475108, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_Name
       value: StatsDisplay
@@ -386,7 +390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.498
+      value: 0.601
       objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

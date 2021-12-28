@@ -445,6 +445,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: StatsDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 4192465220906052657, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1590
+      objectReference: {fileID: 0}
+    - target: {fileID: 4192465220906052657, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 608.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4192465220906052657, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

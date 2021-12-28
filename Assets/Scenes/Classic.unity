@@ -906,6 +906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 324754782}
+  - component: {fileID: 324754783}
   - component: {fileID: 324754781}
   m_Layer: 0
   m_Name: EnemyAI
@@ -930,9 +931,8 @@ MonoBehaviour:
   selectedUnit: []
   unitsWithCommands: []
   parentOfBuildings: {fileID: 0}
-  selectedBuildings: []
-  playerBase: {x: 3, y: 3}
-  groupPoint: {x: 20, y: 20}
+  playerBase: {x: 0, y: 0}
+  groupPoint: {x: 0, y: 0}
 --- !u!4 &324754782
 Transform:
   m_ObjectHideFlags: 0
@@ -947,6 +947,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &324754783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324754780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4c10f345474d344b0e8389db2f7d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  moneyForUnits: 0
+  moneyForBuildings: 0
+  buildings: []
+  parentBuildings: {fileID: 0}
 --- !u!4 &331345122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8159024177342774654, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
@@ -134964,6 +134981,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 536880027}
     m_Modifications:
+    - target: {fileID: 4687964489289290773, guid: 6c93b49d188023a4eae26716ef396000, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6447400095836820631, guid: 6c93b49d188023a4eae26716ef396000, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -135011,6 +135032,10 @@ PrefabInstance:
     - target: {fileID: 6447400095836820712, guid: 6c93b49d188023a4eae26716ef396000, type: 3}
       propertyPath: m_Name
       value: EnemyCitadel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750234633916520942, guid: 6c93b49d188023a4eae26716ef396000, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c93b49d188023a4eae26716ef396000, type: 3}

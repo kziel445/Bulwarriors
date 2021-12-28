@@ -18,6 +18,7 @@ MonoBehaviour:
     armor: 0
     attack: 0
     actions: {fileID: 0}
+  isBuilded: 1
 --- !u!1001 &50592842892808189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5931782247232273954, guid: 8910969bdf1e46c4da6d5984f2e1aa4a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6815555503590188146, guid: 8910969bdf1e46c4da6d5984f2e1aa4a, type: 3}
       propertyPath: m_Layer
@@ -192,7 +193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651622717156668377, guid: 8910969bdf1e46c4da6d5984f2e1aa4a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7748602115965867047, guid: 8910969bdf1e46c4da6d5984f2e1aa4a, type: 3}
       propertyPath: m_Layer
