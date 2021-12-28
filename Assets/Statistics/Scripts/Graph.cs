@@ -39,6 +39,7 @@ namespace Statistics
             gameObject.GetComponent<Image>().sprite = circleSprite;
             gameObject.GetComponent<Image>().color = color;
             RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
+            rectTransform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             rectTransform.anchoredPosition = anchoredPosition;
             rectTransform.sizeDelta = new Vector2(11,11);
             rectTransform.anchorMin = new Vector2(0,0);

@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd5bf295aab1acf47b8c15b9b4d711a6, type: 3}
-  m_Name: Warrior
+  m_Name: Ranger
   m_EditorClassIdentifier: 
   unitName: 
-  type: 1
+  type: 8
   playerPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
   enemyPrefab: {fileID: 7623033894500739430, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
-  icon: {fileID: 21300000, guid: 7afe7993aaad98547b851d6cf0f13cc0, type: 3}
-  classColor: {r: 0.4716981, g: 0.46502313, b: 0.46502313, a: 1}
-  spawnTime: 5
+  icon: {fileID: 0}
+  classColor: {r: 0.30047527, g: 0.5471698, b: 0.19357423, a: 1}
+  spawnTime: 12
   baseStats:
-    cost: 200
-    damage: 10
-    atkSpeed: 1
-    atkRange: 0.2
-    aggroRange: 10
+    cost: 600
+    damage: 20
+    atkSpeed: 0.8
+    atkRange: 6
+    aggroRange: 7
     health: 100
-    armor: 15
-    movementSpeed: 3
+    armor: 5
+    movementSpeed: 4
     actions: {fileID: 0}

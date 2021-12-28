@@ -433,6 +433,14 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3219833293703309033, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.6875
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219833293703309033, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0039978027
+      objectReference: {fileID: 0}
     - target: {fileID: 3570855488675475108, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_Name
       value: StatsDisplay
@@ -475,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0012670313
+      value: 0.000478125
       objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_LocalPosition.x

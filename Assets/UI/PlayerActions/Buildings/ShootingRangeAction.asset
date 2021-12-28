@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9030e00956fe14443a12dfd06c89c5bc, type: 3}
-  m_Name: ArcheryAction
+  m_Name: ShootingRangeAction
   m_EditorClassIdentifier: 
   basicUnits:
-  - {fileID: 11400000, guid: 88d1ef44b3413ef439ec2c9efaed147f, type: 2}
-  - {fileID: 11400000, guid: c430ac0852182764bbd86980e2a27fcb, type: 2}
+  - {fileID: 11400000, guid: eb9482438d7fb0c45886a3971dac6712, type: 2}
   basicBuildings: []

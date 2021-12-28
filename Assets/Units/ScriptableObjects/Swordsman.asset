@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd5bf295aab1acf47b8c15b9b4d711a6, type: 3}
-  m_Name: Warrior
+  m_Name: Swordsman
   m_EditorClassIdentifier: 
   unitName: 
-  type: 1
+  type: 7
   playerPrefab: {fileID: 3903549335357196982, guid: 16c8d10e53419434a95d360431a5635f, type: 3}
   enemyPrefab: {fileID: 7623033894500739430, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
-  icon: {fileID: 21300000, guid: 7afe7993aaad98547b851d6cf0f13cc0, type: 3}
-  classColor: {r: 0.4716981, g: 0.46502313, b: 0.46502313, a: 1}
-  spawnTime: 5
+  icon: {fileID: 0}
+  classColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+  spawnTime: 10
   baseStats:
-    cost: 200
-    damage: 10
+    cost: 500
+    damage: 13
     atkSpeed: 1
-    atkRange: 0.2
-    aggroRange: 10
-    health: 100
-    armor: 15
-    movementSpeed: 3
+    atkRange: 1
+    aggroRange: 3
+    health: 200
+    armor: 25
+    movementSpeed: 2
     actions: {fileID: 0}
