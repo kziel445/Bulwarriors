@@ -6,10 +6,10 @@ using Core.Interactables;
 public class EnemyBuildingAI : MonoBehaviour
 {
     public Statistics.Statistics stats;
-    public float moneyForUnits;
-    public float moneyForBuildings;
+    public float moneyForUnits = 0;
+    public float moneyForBuildings = 0;
 
-    public List<Interactable> buildings;
+    public List<Interactable> buildings = new List<Interactable>();
     public Transform parentBuildings;
     
     // Start is called before the first frame update
@@ -19,6 +19,7 @@ public class EnemyBuildingAI : MonoBehaviour
         catch {Debug.LogWarning("Cant find enemy statistics");}
         try {parentBuildings = GameObject.Find("EnemyBuildings").transform;}
         catch {Debug.LogWarning("Cant find enemy builidings");}
+        StartCoroutine(RecrutNewUnit());
     }
 
     // Update is called once per frame
@@ -27,11 +28,7 @@ public class EnemyBuildingAI : MonoBehaviour
         //control segment
         AllocateGold();
         CheckIfNewRecrutationBuildings();
-
-        //recruting units
-        if(moneyForUnits > 100) RecrutNewUnit();
         
-
     }
     public void AllocateGold()
     {
@@ -56,15 +53,25 @@ public class EnemyBuildingAI : MonoBehaviour
             }
         }
     }
-    public void RecrutNewUnit()
+    public IEnumerator RecrutNewUnit()
     {
-        var building = buildings[Random.Range(0,buildings.Count)];
-        var availableUnits = building.GetComponent<Buildings.BuildingRTS>().baseStats.actions.basicUnits;
-        Debug.Log(availableUnits[Random.Range(0,availableUnits.Count)].name);
-        building.GetComponent<Buildings.ObjectSpawnQueue>()
-            .StartQueueTimer(availableUnits[Random.Range(0,availableUnits.Count)].name.ToString());
-        //and so on like i those script
-
+        if(buildings.Count != 0)
+        {
+            var building = buildings[Random.Range(0,buildings.Count)];
+            var availableUnits = building.GetComponent<Buildings.BuildingRTS>().baseStats.actions.basicUnits;
+            var unitNameToRecruit = availableUnits[Random.Range(0,availableUnits.Count)];
+            //Units.UnitBasic unit = IsUnit(objectToSpawn);
+            //statistics.money -= unit.baseStats.cost;
+            var unitCost = building.GetComponent<Buildings.ObjectSpawnQueue>()
+                .IsUnit(unitNameToRecruit.name.ToString()).baseStats.cost;
+            yield return new WaitUntil(() => moneyForBuildings >= unitCost);
+            if(moneyForBuildings >= unitCost)
+                building.GetComponent<Buildings.ObjectSpawnQueue>()
+                    .StartQueueTimer(unitNameToRecruit.name.ToString());
+        }
+        yield return new WaitForSeconds(2);
+        StartCoroutine(RecrutNewUnit());
+        
     }
 
 }
