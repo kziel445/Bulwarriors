@@ -34,12 +34,14 @@ namespace Buildings
                 else 
                 {
                     objectToStoreUnits = GameObject.Find("EnemyUnits").transform;
-                    actionList = gameObject.GetComponent<Player.PlayerBuilding>().baseStats.actions;
+                    actionList = gameObject.GetComponent<Buildings.Enemy.EnemyBuilding>().baseStats.actions;
                 }
             }
             catch
             {
                 Debug.Log("Units goes wrong object");
+                Debug.Log(actionList);
+                Debug.Log(objectToStoreUnits);
             }
             
         }

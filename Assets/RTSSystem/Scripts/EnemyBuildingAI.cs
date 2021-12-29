@@ -60,8 +60,9 @@ public class EnemyBuildingAI : MonoBehaviour
     {
         var building = buildings[Random.Range(0,buildings.Count)];
         var availableUnits = building.GetComponent<Buildings.BuildingRTS>().baseStats.actions.basicUnits;
-        //Debug.Log(tmp[0]);
-        //StartQuerTime(name from available units)
+        Debug.Log(availableUnits[Random.Range(0,availableUnits.Count)].name);
+        building.GetComponent<Buildings.ObjectSpawnQueue>()
+            .StartQueueTimer(availableUnits[Random.Range(0,availableUnits.Count)].name.ToString());
         //and so on like i those script
 
     }
