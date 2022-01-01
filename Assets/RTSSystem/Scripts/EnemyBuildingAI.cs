@@ -32,11 +32,11 @@ public class EnemyBuildingAI : MonoBehaviour
     }
     public void AllocateGold()
     {
-        if(stats.money > 100)
+        if(stats.money > moneyForBuildings + moneyForUnits)
         {
-            moneyForBuildings += stats.money * 0.5f;
-            moneyForUnits += stats.money * 0.5f;
-            stats.money = 0;
+            float difference = stats.money - (moneyForBuildings + moneyForUnits);
+            moneyForBuildings += difference * 0.5f;
+            moneyForUnits += difference * 0.5f;
         }
     }
     public void CheckIfNewRecrutationBuildings()
@@ -64,10 +64,16 @@ public class EnemyBuildingAI : MonoBehaviour
             //statistics.money -= unit.baseStats.cost;
             var unitCost = building.GetComponent<Buildings.ObjectSpawnQueue>()
                 .IsUnit(unitNameToRecruit.name.ToString()).baseStats.cost;
-            yield return new WaitUntil(() => moneyForBuildings >= unitCost);
-            if(moneyForBuildings >= unitCost)
+            yield return new WaitUntil(() => moneyForUnits >= unitCost);
+            if(moneyForUnits >= unitCost)
+            {
+                Debug.Log(moneyForUnits + " " + unitCost);
+
+                moneyForUnits -= unitCost;
                 building.GetComponent<Buildings.ObjectSpawnQueue>()
                     .StartQueueTimer(unitNameToRecruit.name.ToString());
+            }
+                
         }
         yield return new WaitForSeconds(2);
         StartCoroutine(RecrutNewUnit());
