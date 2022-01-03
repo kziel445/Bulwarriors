@@ -8,9 +8,11 @@ public class EnemyBuildingAI : MonoBehaviour
     public Statistics.Statistics stats;
     public float moneyForUnits = 0;
     public float moneyForBuildings = 0;
+    public bool builderAvailable = true;
 
     public List<Interactable> buildings = new List<Interactable>();
     public Transform parentBuildings;
+    public Transform parentUnits;
     
     // Start is called before the first frame update
     void Start()
@@ -19,7 +21,10 @@ public class EnemyBuildingAI : MonoBehaviour
         catch {Debug.LogWarning("Cant find enemy statistics");}
         try {parentBuildings = GameObject.Find("EnemyBuildings").transform;}
         catch {Debug.LogWarning("Cant find enemy builidings");}
+        try {parentUnits = GameObject.Find("EnemyBuildings").transform;}
+        catch {Debug.LogWarning("Cant find enemy units");}
         StartCoroutine(RecrutNewUnit());
+        StartCoroutine(BuildNewStructure());
     }
 
     // Update is called once per frame
@@ -29,6 +34,7 @@ public class EnemyBuildingAI : MonoBehaviour
         AllocateGold();
         //check if new buildings available
         CheckIfNewRecrutationBuildings();
+        CheckIfBuildersAvaiable();
 
         
     }
@@ -54,6 +60,27 @@ public class EnemyBuildingAI : MonoBehaviour
                 }
             }
         }
+    }
+    public void CheckIfBuildersAvaiable()
+    {
+        foreach(Transform group in parentUnits)
+        {
+            if(group.name.Contains("Workers"))
+            {
+                if(group.childCount>0) builderAvailable = true;
+                return;
+            }
+        }
+        builderAvailable = false;
+    }
+    public IEnumerator BuildNewStructure()
+    {
+        if(builderAvailable)
+        {
+            //using code down below write buidling script
+            yield return new WaitForSeconds(1);
+        }
+        StartCoroutine(BuildNewStructure());
     }
     public IEnumerator RecrutNewUnit()
     {
