@@ -27,7 +27,9 @@ public class EnemyBuildingAI : MonoBehaviour
     {
         //control segment
         AllocateGold();
+        //check if new buildings available
         CheckIfNewRecrutationBuildings();
+
         
     }
     public void AllocateGold()
