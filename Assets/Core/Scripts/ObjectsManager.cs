@@ -48,9 +48,13 @@ namespace Player
                     else if (type == enemyUnits)
                     {
                         Units.Enemy.EnemyRTS enemyUnit = transformObject.GetComponent<Units.Enemy.EnemyRTS>();
+                        Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);
+                        
                         enemyUnit.baseStats = Units.UnitHandler.instance.GetUnitSettings(objectName).baseStats;
                         objectPostion = enemyUnit.gameObject.transform;
                         objectPostion.position = new Vector3(objectPostion.position.x, objectPostion.position.y, objectPostion.position.y / 1000);
+
+                        enemyUnit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = settings.classColor;
                     }
                     else if (type == playerBuildings)
                     {
