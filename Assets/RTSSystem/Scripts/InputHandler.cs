@@ -190,7 +190,7 @@ namespace InputManager
             Vector2 moveToPosition = cursorPosition.getMousePosition();
             // TODO: set dynamic vlaues down below
 
-            List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f, 2f }, new int[] { 5, 10, 20, 40 });
+            List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f, 2f, 2.5f }, new int[] { 5, 10, 20, 25, 30 });
             int targetPositionListIndex = 0;
             foreach (Interactable interactableObject in selectedUnitRTSList)
             {

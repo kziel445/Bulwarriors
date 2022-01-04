@@ -11,8 +11,11 @@ public class EnemyBuildingAI : MonoBehaviour
     public bool builderAvailable = true;
 
     public List<Interactable> buildings = new List<Interactable>();
+    List<Vector2> targetPositionList;
     public Transform parentBuildings;
     public Transform parentUnits;
+    //tmp 
+    public GameObject prefab;
     
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,7 @@ public class EnemyBuildingAI : MonoBehaviour
         catch {Debug.LogWarning("Cant find enemy units");}
         StartCoroutine(RecrutNewUnit());
         StartCoroutine(BuildNewStructure());
+        AddStructurePositions();
     }
 
     // Update is called once per frame
@@ -78,6 +82,7 @@ public class EnemyBuildingAI : MonoBehaviour
         if(builderAvailable)
         {
             //using code down below write buidling script
+            // use code to build in circle
             yield return new WaitForSeconds(1);
         }
         StartCoroutine(BuildNewStructure());
@@ -108,5 +113,40 @@ public class EnemyBuildingAI : MonoBehaviour
         StartCoroutine(RecrutNewUnit());
         
     }
+    public void AddStructurePositions()
+    {
+        targetPositionList = GetPositionListAround(parentBuildings.position, new float[] { 3, 6, 9 }, new int[] { 8, 16, 24 });
+        foreach(Vector2 vec in targetPositionList)
+        {
+            Instantiate(prefab, vec, Quaternion.identity);
+        }
+        
+    }
+    public List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
+        {
+            List<Vector2> positionList = new List<Vector2>();
+            positionList.Add(startPosition);
+            for (int i = 0; i < ringDistanceArray.Length; i++)
+            {
+                positionList.AddRange(GetPositionListAround(startPosition, ringDistanceArray[i], ringPositionCountArray[i]));
+            }
+            return positionList;
+        }
+        private List<Vector2> GetPositionListAround(Vector2 startPosition, float distance, int positionCount)
+        {
+            List<Vector2> positionList = new List<Vector2>();
+            for (int i = 0; i < positionCount; i++)
+            {
+                float angle = i * (360f / positionCount);
+                Vector2 dir = ApplyRotationToVector(new Vector2(1, 0), angle);
+                Vector2 position = startPosition + dir * distance;
+                positionList.Add(position);
+            }
+            return positionList;
+        }
 
+        private Vector2 ApplyRotationToVector(Vector2 vec, float angle)
+        {
+            return Quaternion.Euler(0, 0, angle) * vec;
+        }
 }
