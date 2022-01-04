@@ -9,6 +9,7 @@ public class EnemyBuildingAI : MonoBehaviour
     public float moneyForUnits = 0;
     public float moneyForBuildings = 0;
     public bool builderAvailable = true;
+    public bool advancedBuilderAvailable = false;
 
     public List<Interactable> buildings = new List<Interactable>();
     List<Vector2> targetPositionList;
@@ -69,20 +70,32 @@ public class EnemyBuildingAI : MonoBehaviour
     {
         foreach(Transform group in parentUnits)
         {
+            if(group.name.Contains("AdvancedWorkers"))
+            {
+                if(group.childCount>0) advancedBuilderAvailable = true;
+            }
+            else advancedBuilderAvailable = false;
+
             if(group.name.Contains("Workers"))
             {
                 if(group.childCount>0) builderAvailable = true;
-                return;
             }
+            else builderAvailable = false;
         }
-        builderAvailable = false;
     }
     public IEnumerator BuildNewStructure()
     {
-        if(builderAvailable)
+        if(builderAvailable || advancedBuilderAvailable)
         {
-            //using code down below write buidling script
-            // use code to build in circle
+            //if adv 
+            //  if citadel > 0 
+            //  else random from adv structures
+            //else basic structures 
+
+            //check gold stats and wait until gold
+
+            //build in position closest to center and check is position free or wait until its free
+
             yield return new WaitForSeconds(1);
         }
         StartCoroutine(BuildNewStructure());
@@ -115,35 +128,30 @@ public class EnemyBuildingAI : MonoBehaviour
     }
     public void AddStructurePositions()
     {
-        targetPositionList = GetPositionListAround(parentBuildings.position, new float[] { 3, 6, 9 }, new int[] { 8, 16, 24 });
-        foreach(Vector2 vec in targetPositionList)
-        {
-            Instantiate(prefab, vec, Quaternion.identity);
-        }
-        
+        targetPositionList = GetPositionListAround(parentBuildings.position, new float[] { 3, 6, 9 }, new int[] { 8, 16, 24 });        
     }
     public List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
+    {
+        List<Vector2> positionList = new List<Vector2>();
+        positionList.Add(startPosition);
+        for (int i = 0; i < ringDistanceArray.Length; i++)
         {
-            List<Vector2> positionList = new List<Vector2>();
-            positionList.Add(startPosition);
-            for (int i = 0; i < ringDistanceArray.Length; i++)
-            {
-                positionList.AddRange(GetPositionListAround(startPosition, ringDistanceArray[i], ringPositionCountArray[i]));
-            }
-            return positionList;
+            positionList.AddRange(GetPositionListAround(startPosition, ringDistanceArray[i], ringPositionCountArray[i]));
         }
-        private List<Vector2> GetPositionListAround(Vector2 startPosition, float distance, int positionCount)
+        return positionList;
+    }
+    private List<Vector2> GetPositionListAround(Vector2 startPosition, float distance, int positionCount)
+    {
+        List<Vector2> positionList = new List<Vector2>();
+        for (int i = 0; i < positionCount; i++)
         {
-            List<Vector2> positionList = new List<Vector2>();
-            for (int i = 0; i < positionCount; i++)
-            {
-                float angle = i * (360f / positionCount);
-                Vector2 dir = ApplyRotationToVector(new Vector2(1, 0), angle);
-                Vector2 position = startPosition + dir * distance;
-                positionList.Add(position);
-            }
-            return positionList;
+            float angle = i * (360f / positionCount);
+            Vector2 dir = ApplyRotationToVector(new Vector2(1, 0), angle);
+            Vector2 position = startPosition + dir * distance;
+            positionList.Add(position);
         }
+        return positionList;
+    }    
 
         private Vector2 ApplyRotationToVector(Vector2 vec, float angle)
         {
