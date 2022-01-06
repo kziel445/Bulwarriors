@@ -25,7 +25,7 @@ public class EnemyBuildingAI : MonoBehaviour
         catch {Debug.LogWarning("Cant find enemy statistics");}
         try {parentBuildings = GameObject.Find("EnemyBuildings").transform;}
         catch {Debug.LogWarning("Cant find enemy builidings");}
-        try {parentUnits = GameObject.Find("EnemyBuildings").transform;}
+        try {parentUnits = GameObject.Find("EnemyUnits").transform;}
         catch {Debug.LogWarning("Cant find enemy units");}
         StartCoroutine(RecrutNewUnit());
         StartCoroutine(BuildNewStructure());
@@ -40,8 +40,6 @@ public class EnemyBuildingAI : MonoBehaviour
         //check if new buildings available
         CheckIfNewRecrutationBuildings();
         CheckIfBuildersAvaiable();
-
-        
     }
     public void AllocateGold()
     {
@@ -85,27 +83,62 @@ public class EnemyBuildingAI : MonoBehaviour
     }
     public IEnumerator BuildNewStructure()
     {
+        
         if(builderAvailable || advancedBuilderAvailable)
         {
-            //if adv 
-            //  if citadel > 0 
-            //  else random from adv structures
-            //else basic structures 
+            Debug.Log("Builder available");
+            string buildingNameToBuild;
+            Transform unit = null;
+            if(advancedBuilderAvailable)
+            {
+                unit = parentUnits.transform.Find("AdvancedWorkers").GetChild(0);
+                var availableBuildings = unit.GetComponent<Units.UnitRTS>().baseStats.actions.basicBuildings;
+                
+                if(parentBuildings.transform.Find("Citadels").childCount==0) 
+                {
+                    buildingNameToBuild = "Citadel";
+                }
+                else
+                {
+                    buildingNameToBuild = availableBuildings[Random.Range(0,availableBuildings.Count)].name;
+                }
+            }
+            else
+            {
+                unit = parentUnits.transform.Find("Workers").GetChild(0);
+                var availableBuildings = unit.GetComponent<Units.UnitRTS>().baseStats.actions.basicBuildings;
+                buildingNameToBuild = availableBuildings[Random.Range(0,availableBuildings.Count)].name;
+            }
+            var buildingCost = GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>()
+                .IsBuilding(buildingNameToBuild).baseStats.cost;
 
-            //check gold stats and wait until gold
+            Debug.Log("Wait to build: "+ buildingNameToBuild);
+            yield return new WaitUntil(() => moneyForBuildings >= buildingCost);
+            if(moneyForBuildings >= buildingCost)
+            {
+                moneyForBuildings -= buildingCost;
+                Debug.Log("Building: " + buildingNameToBuild);
+                GameObject.Find("EnemyBuilderManager")
+                    .GetComponent<Buildings.Builder>().SpawnNewBuilding(new Vector2(0,0),buildingNameToBuild);
 
-            //build in position closest to center and check is position free or wait until its free
+                //build in position closest to center and check is position free or wait until its free
+            }
+            
 
-            yield return new WaitForSeconds(1);
         }
+        
+        yield return new WaitForSeconds(1);
         StartCoroutine(BuildNewStructure());
     }
     public IEnumerator RecrutNewUnit()
     {
         if(buildings.Count != 0)
         {
+            //random building from existing
             var building = buildings[Random.Range(0,buildings.Count)];
+            //avaialbeUnits in building
             var availableUnits = building.GetComponent<Buildings.BuildingRTS>().baseStats.actions.basicUnits;
+            //get name of unit from list
             var unitNameToRecruit = availableUnits[Random.Range(0,availableUnits.Count)];
             //Units.UnitBasic unit = IsUnit(objectToSpawn);
             //statistics.money -= unit.baseStats.cost;
@@ -114,8 +147,6 @@ public class EnemyBuildingAI : MonoBehaviour
             yield return new WaitUntil(() => moneyForUnits >= unitCost);
             if(moneyForUnits >= unitCost)
             {
-                Debug.Log(moneyForUnits + " " + unitCost);
-
                 moneyForUnits -= unitCost;
                 building.GetComponent<Buildings.ObjectSpawnQueue>()
                     .StartQueueTimer(unitNameToRecruit.name.ToString());

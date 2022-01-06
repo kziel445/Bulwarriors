@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5109945695360620979}
   - component: {fileID: 7421084164264809675}
   - component: {fileID: 9118599976796050504}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: PlayerBarrack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
