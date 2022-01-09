@@ -16,7 +16,8 @@ namespace Buildings
         }
         public BuildingType type;
         public new string name;
-        public GameObject buildingPrefab;
+        public GameObject playerPrefab;
+        public GameObject enemyPrefab;
         public Sprite icon;
         public float spawnTime;
 

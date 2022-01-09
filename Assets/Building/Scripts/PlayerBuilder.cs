@@ -59,7 +59,7 @@ namespace Buildings
         {
             GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().money -= buildingType.baseStats.cost;
             GameObject building = Instantiate(
-                buildingType.buildingPrefab,
+                buildingType.playerPrefab,
                 new Vector3(mousePosition.x,mousePosition.y, mousePosition.y/1000),
                 Quaternion.identity,
                 parentObject.Find(buildingType.name.Replace(" ", "") + "s")
@@ -83,7 +83,7 @@ namespace Buildings
 
             isHoldingAScheme = true;
             scheme = Instantiate(
-                buildingType.buildingPrefab.transform.GetChild(1),
+                buildingType.playerPrefab.transform.GetChild(1),
                 cursorPosition.getMousePosition(),
                 Quaternion.identity,
                 parentObject.Find(buildingType.name.Replace(" ","") + "s")
@@ -106,7 +106,7 @@ namespace Buildings
             }
             return null;
         }
-        private bool CheckIfFreeSpace(Vector2 center, Vector2 size)
+        public bool CheckIfFreeSpace(Vector2 center, Vector2 size)
         {
             var checkSpace = Physics2D.OverlapBox(center, size, 0);
             if (checkSpace == null) return true;

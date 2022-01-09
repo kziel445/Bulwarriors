@@ -34,6 +34,7 @@ namespace Buildings
         
         public void SpawnNewBuilding(Vector2 mousePosition, string buildingToSpawn)
         {
+            GameObject buildingPrefab = null;
             Debug.Log("cmon" + buildingToSpawn);
             buildingType = IsBuilding(buildingToSpawn);
             if (buildingType == null) return;
@@ -41,22 +42,25 @@ namespace Buildings
             if(gameObject.name.Contains("Player"))
             {
                 GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().money -= buildingType.baseStats.cost;
+                buildingPrefab = buildingType.playerPrefab;
             }
             else if(gameObject.name.Contains("Enemy"))
             {
                 Debug.Log(GameObject.Find("EnemyStatistics").GetComponent<Statistics.Statistics>());
                 GameObject.Find("EnemyStatistics").GetComponent<Statistics.Statistics>().money -= buildingType.baseStats.cost;
+                buildingPrefab = buildingType.enemyPrefab;
             }
-            else Debug.LogWarning("Statistics not found");
-            GameObject buildingPrefab = buildingType.buildingPrefab;
-            buildingPrefab.layer = 11;
+            else 
+            {
+                Debug.LogWarning("Statistics not found");
+            }
+
             GameObject building = Instantiate(
                 buildingPrefab,
                 new Vector3(mousePosition.x,mousePosition.y, mousePosition.y/1000),
                 Quaternion.identity,
                 parentObject.Find(buildingType.name.Replace(" ", "") + "s")
                 );
-            Debug.Log("BuiLDED: " + building + " vec: " + building.transform.position);
             //TODO to function, the same in PlayerManager.cs and createBuilding
             BuildingRTS playerBuilding = building.GetComponent<BuildingRTS>();
 
@@ -82,11 +86,15 @@ namespace Buildings
             }
             return null;
         }
-        private bool CheckIfFreeSpace(Vector2 center, Vector2 size)
+        public bool CheckIfFreeSpace(Vector2 center, Vector2 size)
         {
             var checkSpace = Physics2D.OverlapBox(center, size, 0);
             if (checkSpace == null) return true;
             return false;
+        }
+        public void GoBuild()
+        {
+            
         }
     }
 }

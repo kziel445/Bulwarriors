@@ -83,7 +83,6 @@ public class EnemyBuildingAI : MonoBehaviour
     }
     public IEnumerator BuildNewStructure()
     {
-        
         if(builderAvailable || advancedBuilderAvailable)
         {
             Debug.Log("Builder available");
@@ -118,8 +117,17 @@ public class EnemyBuildingAI : MonoBehaviour
             {
                 moneyForBuildings -= buildingCost;
                 Debug.Log("Building: " + buildingNameToBuild);
+                var positionFree = false;
+                Vector2 position = new Vector2(0,0);
+                while(!positionFree)
+                {
+                    position = targetPositionList[Random.Range(0, targetPositionList.Count)];
+                    positionFree = GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>()
+                        .CheckIfFreeSpace(position, new Vector2(1,1));
+                }
+                
                 GameObject.Find("EnemyBuilderManager")
-                    .GetComponent<Buildings.Builder>().SpawnNewBuilding(new Vector2(0,0),buildingNameToBuild);
+                    .GetComponent<Buildings.Builder>().SpawnNewBuilding(position, buildingNameToBuild);
 
                 //build in position closest to center and check is position free or wait until its free
             }

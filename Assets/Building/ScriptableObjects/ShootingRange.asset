@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   name: ShootingRange
-  buildingPrefab: {fileID: 8379953237749845854, guid: 2d80643210d89864db85d77ba2a7f28c, type: 3}
+  playerPrefab: {fileID: 5894519150835256300, guid: 46d809a7e64ec9a4e9698b8e062bd0f1, type: 3}
+  enemyPrefab: {fileID: 8379953237749845854, guid: 2d80643210d89864db85d77ba2a7f28c, type: 3}
   icon: {fileID: 21300000, guid: f9899fbc349a55b43a821dbd8416afce, type: 3}
   spawnTime: 0
   baseStats:

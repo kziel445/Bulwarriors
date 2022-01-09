@@ -185,4 +185,9 @@ public class EnemyUnitAI : MonoBehaviour
         selectedUnit.Clear();
         waitingForCommand = true;
     }
+    public void SendWorkersToBuild()
+    {
+        //get all workers
+        //go to point and attack/repair
+    }
 }
