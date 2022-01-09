@@ -185,9 +185,35 @@ public class EnemyUnitAI : MonoBehaviour
         selectedUnit.Clear();
         waitingForCommand = true;
     }
-    public void SendWorkersToBuild()
+    public void SendWorkersToBuild(Vector2 target)
     {
-        //get all workers
-        //go to point and attack/repair
+        foreach (Transform group in parentOfUnits)
+        {   
+            if(group.name.Contains("Workers"))
+            {
+                foreach(Transform unit in group)
+                {
+                    unit.GetComponent<Units.UnitRTS>().MoveTo(target);
+                    if (unit.GetComponent<Units.WorkerFunctions>() == null)
+                    {
+                        unit.gameObject.AddComponent<Units.WorkerFunctions>();
+                        RaycastHit2D hit = Physics2D.Raycast(target, Vector2.up);
+                        unit.GetComponent<Units.WorkerFunctions>()
+                            .SetRepairValues(true, hit.collider.gameObject);
+                    }
+                    Debug.Log("Im building");
+                            
+                    //go to point and attack/repair
+                }
+            }
+        }
+    }
+    public void CheckForUndoneBuildings()
+    {
+        var parentBuilding = gameObject.GetComponent<EnemyBuildingAI>().parentBuildings;
+        foreach(Transform group in parentBuilding)
+        {
+            
+        }
     }
 }

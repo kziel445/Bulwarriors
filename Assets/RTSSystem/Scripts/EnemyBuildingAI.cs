@@ -66,20 +66,17 @@ public class EnemyBuildingAI : MonoBehaviour
     }
     public void CheckIfBuildersAvaiable()
     {
-        foreach(Transform group in parentUnits)
+        if(parentUnits.Find("AdvancedWorkers").childCount>0)
         {
-            if(group.name.Contains("AdvancedWorkers"))
-            {
-                if(group.childCount>0) advancedBuilderAvailable = true;
-            }
-            else advancedBuilderAvailable = false;
-
-            if(group.name.Contains("Workers"))
-            {
-                if(group.childCount>0) builderAvailable = true;
-            }
-            else builderAvailable = false;
+            advancedBuilderAvailable = true;
         }
+        else advancedBuilderAvailable = false;
+
+        if(parentUnits.Find("Workers").childCount>0)
+        {
+            builderAvailable = true;
+        }
+        else builderAvailable = false;
     }
     public IEnumerator BuildNewStructure()
     {
@@ -99,7 +96,10 @@ public class EnemyBuildingAI : MonoBehaviour
                 }
                 else
                 {
-                    buildingNameToBuild = availableBuildings[Random.Range(0,availableBuildings.Count)].name;
+                    do{
+                        buildingNameToBuild = availableBuildings[Random.Range(0,availableBuildings.Count)].name;
+                    }while(buildingNameToBuild != "Citadel");
+                    
                 }
             }
             else
@@ -128,14 +128,13 @@ public class EnemyBuildingAI : MonoBehaviour
                 
                 GameObject.Find("EnemyBuilderManager")
                     .GetComponent<Buildings.Builder>().SpawnNewBuilding(position, buildingNameToBuild);
-
+                
+                gameObject.GetComponent<EnemyUnitAI>().SendWorkersToBuild(position);
                 //build in position closest to center and check is position free or wait until its free
             }
-            
-
         }
-        
         yield return new WaitForSeconds(1);
+        Debug.Log("ANOTHER ONE");
         StartCoroutine(BuildNewStructure());
     }
     public IEnumerator RecrutNewUnit()

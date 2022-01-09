@@ -5,10 +5,8 @@ using UnityEngine;
 namespace Units
 {
     /// Functions to show selected units and move groups
-    public class UnitRTS : MonoBehaviour
+    public abstract class UnitRTS : MonoBehaviour
     {
-        public static UnitRTS instance;
-
         //statistics
         public UnitStatTypes.Base baseStats;
         //combat
@@ -28,11 +26,7 @@ namespace Units
         //movement
         public bool IfCommand = false;
         internal IMovePosition movePosition;
-
-        private void Start()
-        {
-            instance = this;
-        }
+        
         //movement segment
         public void MoveTo(Vector3 targetPosition)
         {
