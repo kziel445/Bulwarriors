@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   name: Citadel
-  buildingPrefab: {fileID: 5343193723807792863, guid: 8910969bdf1e46c4da6d5984f2e1aa4a, type: 3}
+  playerPrefab: {fileID: 5343193723807792863, guid: 8910969bdf1e46c4da6d5984f2e1aa4a, type: 3}
+  enemyPrefab: {fileID: 6447400095836820712, guid: 6c93b49d188023a4eae26716ef396000, type: 3}
   icon: {fileID: 21300000, guid: 0646f2da5dfc7ed4f9818a8e66fb0f4d, type: 3}
   spawnTime: 0
   baseStats:

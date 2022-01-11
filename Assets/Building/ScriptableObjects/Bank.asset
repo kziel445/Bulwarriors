@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   name: Bank
-  buildingPrefab: {fileID: 162147626234567764, guid: 2d861a71acf443d49953d37d0d7e45a3, type: 3}
+  playerPrefab: {fileID: 162147626234567764, guid: 2d861a71acf443d49953d37d0d7e45a3, type: 3}
+  enemyPrefab: {fileID: 5005592763079248067, guid: aa6ed9c298ee43e49a1934112d618a86, type: 3}
   icon: {fileID: 21300000, guid: 3c5540ffa4695134ca235547896fc6e7, type: 3}
   spawnTime: 5
   baseStats:

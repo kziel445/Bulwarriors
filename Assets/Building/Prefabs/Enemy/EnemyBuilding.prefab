@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 5894519150835256301}
   - component: {fileID: 8518670937148741905}
   - component: {fileID: 1554044877042175897}
+  - component: {fileID: 2106682022325371289}
+  - component: {fileID: 4170576814409707948}
   m_Layer: 11
   m_Name: EnemyBuilding
   m_TagString: Untagged
@@ -132,7 +134,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.010953307, y: -0.10131657}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -143,7 +145,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 1.629596, y: 0.9778836}
   m_EdgeRadius: 0
 --- !u!114 &8518670937148741905
 MonoBehaviour:
@@ -163,6 +165,7 @@ MonoBehaviour:
     armor: 0
     attack: 0
     actions: {fileID: 0}
+  isBuilded: 1
 --- !u!114 &1554044877042175897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +180,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedGameObject: {fileID: 6866212300251364042}
   isInteracting: 0
+--- !u!114 &2106682022325371289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894519150835256300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16127bd1f5e5cef4986c36642ac6870b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons: []
+  spawningQueueTimer: []
+  spawnQueue: []
+  spawnTypes: 
+  objectToStoreUnits: {fileID: 0}
+--- !u!114 &4170576814409707948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894519150835256300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e003cb4c3d211a5409d9cdc257b5f320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6866212300251364042
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.49
+      value: 0.594
       objectReference: {fileID: 0}
     - target: {fileID: 6234888390379912680, guid: 4a85f43570f81a4488c8234010bc27cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -4,13 +4,12 @@ using UnityEngine;
 using InputManager;
 using Core.Interactables;
 
-public class EnemyAIHandler : MonoBehaviour
+public class EnemyUnitAI : MonoBehaviour
 {
     [SerializeField] Transform parentOfUnits;
     public List<Interactable> selectedUnit;
     public List<Interactable> unitsWithCommands;
     [SerializeField] Transform parentOfBuildings;
-    public List<Interactable> selectedBuildings;
 
     public delegate void CommandMethod();
     private bool waitingForCommand = true;
@@ -185,5 +184,36 @@ public class EnemyAIHandler : MonoBehaviour
         GroupMove(playerBase);
         selectedUnit.Clear();
         waitingForCommand = true;
+    }
+    public void SendWorkersToBuild(Vector2 target)
+    {
+        foreach (Transform group in parentOfUnits)
+        {   
+            if(group.name.Contains("Workers"))
+            {
+                foreach(Transform unit in group)
+                {
+                    unit.GetComponent<Units.UnitRTS>().MoveTo(target);
+                    if (unit.GetComponent<Units.WorkerFunctions>() == null)
+                    {
+                        unit.gameObject.AddComponent<Units.WorkerFunctions>();
+                        RaycastHit2D hit = Physics2D.Raycast(target, Vector2.up);
+                        unit.GetComponent<Units.WorkerFunctions>()
+                            .SetRepairValues(true, hit.collider.gameObject);
+                    }
+                    Debug.Log("Im building");
+                            
+                    //go to point and attack/repair
+                }
+            }
+        }
+    }
+    public void CheckForUndoneBuildings()
+    {
+        var parentBuilding = gameObject.GetComponent<EnemyBuildingAI>().parentBuildings;
+        foreach(Transform group in parentBuilding)
+        {
+            
+        }
     }
 }

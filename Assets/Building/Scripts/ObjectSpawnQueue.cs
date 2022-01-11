@@ -10,30 +10,47 @@ namespace Buildings
         public static ObjectSpawnQueue instance;
 
         public List<Button> buttons = new List<Button>();
-        private UI.PlayerActions actionList = null;
 
         public List<float> spawningQueueTimer = new List<float>();
         public List<GameObject> spawnQueue = new List<GameObject>();
         public List<Units.UnitBasic.unitType> spawnTypes = new List<Units.UnitBasic.unitType>();
 
         public Transform objectToStoreUnits;
+        private UI.PlayerActions actionList = null;
+        private Statistics.Statistics statistics;
+        private Statistics.Data data;
+        private bool isPlayer;
        
-
-
         private void Awake()
         {
             instance = this;
         }
         private void Start()
         {
-            actionList = gameObject.GetComponent<Player.PlayerBuilding>().baseStats.actions;
             try
             {
-                objectToStoreUnits = GameObject.Find("PlayerUnits").transform;
+                if(gameObject.name.Contains("Player"))
+                {
+                    objectToStoreUnits = GameObject.Find("PlayerUnits").transform;
+                    actionList = gameObject.GetComponent<Player.PlayerBuilding>().baseStats.actions;
+                    statistics = GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>();
+                    data = GameObject.Find("PlayerData").GetComponent<Statistics.Data>();
+                    isPlayer = true;
+                }
+                else 
+                {
+                    objectToStoreUnits = GameObject.Find("EnemyUnits").transform;
+                    actionList = gameObject.GetComponent<Buildings.Enemy.EnemyBuilding>().baseStats.actions;
+                    statistics = GameObject.Find("EnemyStatistics").GetComponent<Statistics.Statistics>();
+                    data = GameObject.Find("EnemyData").GetComponent<Statistics.Data>();
+                    isPlayer = false;
+                }
             }
             catch
             {
                 Debug.Log("Units goes wrong object");
+                Debug.Log(actionList);
+                Debug.Log(objectToStoreUnits);
             }
             
         }
@@ -42,14 +59,15 @@ namespace Buildings
             
             if (IsUnit(objectToSpawn))
             {
-                
                 Units.UnitBasic unit = IsUnit(objectToSpawn);
-                GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().money -= unit.baseStats.cost;
+                statistics.money -= unit.baseStats.cost;
                 spawningQueueTimer.Add(unit.spawnTime);
-                spawnQueue.Add(unit.playerPrefab);
+
+                if(isPlayer) spawnQueue.Add(unit.playerPrefab);
+                else spawnQueue.Add(unit.enemyPrefab);
+                
                 spawnTypes.Add(unit.type);
                 gameObject.transform.GetComponentInChildren<Text>().text = spawningQueueTimer.Count.ToString();
-
             }
             else Debug.Log($"{objectToSpawn} is not spawnable");
             Debug.Log("Corutine");
@@ -65,7 +83,6 @@ namespace Buildings
         }
         public void Spawn()
         {
-            
             string objectName = spawnTypes[0].ToString() + "s";
             //objectName = spawnQueue[0].GetComponent<Units.Player.PlayerRTS>().baseStats.unitClass;
             GameObject unit = Instantiate(
@@ -81,14 +98,14 @@ namespace Buildings
                 );
             objectName = objectName.Substring(0, objectName.Length - 1).ToLower();
             //TODO to function, the same in PlayerManager.cs and createBuilding
-            Units.Player.PlayerRTS playerUnit = unit.GetComponent<Units.Player.PlayerRTS>();
+            Units.UnitRTS sideUnit = unit.GetComponent<Units.UnitRTS>();
 
             Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);
-            playerUnit.baseStats = settings.baseStats;
-            playerUnit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = settings.classColor;
-            GameObject.Find("PlayerData").GetComponent<Statistics.Data>().unitsRecruted ++;
+            sideUnit.baseStats = settings.baseStats;
+            sideUnit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = settings.classColor;
+            data.unitsRecruted++;
         }
-        private Units.UnitBasic IsUnit(string name)
+        public Units.UnitBasic IsUnit(string name)
         {
             if (actionList.basicUnits.Count > 0)
             {
