@@ -13,26 +13,13 @@ public class CameraMovement : MonoBehaviour
     {
         zoom = zoomController (zoom);
     }
-    // Update is called once per frame
     void Update()
     {
         Vector3 position = transform.position;
-        if (Input.GetKey(KeyCode.W))
-        {
-            position.y += cameraSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            position.y -= cameraSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            position.x -= cameraSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            position.x += cameraSpeed * Time.deltaTime;
-        }
+        if (Input.GetKey(KeyCode.W)) position.y += cameraSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.S)) position.y -= cameraSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.A)) position.x -= cameraSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.D)) position.x += cameraSpeed * Time.deltaTime;
         if(Input.GetAxis("Mouse ScrollWheel") > 0 && Time.timeScale != 0)
         {
             zoom-=0.2f;
@@ -44,7 +31,6 @@ public class CameraMovement : MonoBehaviour
             zoom = zoomController(zoom);
         }
         GetComponent<Camera>().orthographicSize = zoom;
-
         transform.position = new Vector3(
             Mathf.Clamp(position.x, xMinBound, xMaxBound),
             Mathf.Clamp(position.y, yMinBound, yMaxBound),

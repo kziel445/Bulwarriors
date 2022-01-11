@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using InputManager;
 using Core.Interactables;
 
 public class EnemyUnitAI : MonoBehaviour
@@ -9,7 +8,6 @@ public class EnemyUnitAI : MonoBehaviour
     [SerializeField] Transform parentOfUnits;
     public List<Interactable> selectedUnit;
     public List<Interactable> unitsWithCommands;
-    [SerializeField] Transform parentOfBuildings;
 
     public delegate void CommandMethod();
     private bool waitingForCommand = true;
@@ -25,44 +23,12 @@ public class EnemyUnitAI : MonoBehaviour
         else Debug.LogWarning("EnemyUnits parent not found");
 
     }
-    // Update is called once per frame
     void Update()
     {
         if(waitingForCommand)
         {
             waitingForCommand = false;
             StartCoroutine(Command(60, ChooseRandomUnits));
-            Debug.Log("Command get");
-            //ChooseRandomUnits();
-        }
-        if(selectedUnit.Count==0)
-        {
-            
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            ChooseRandomUnits(1, 50);
-            GroupMove(playerBase);
-            selectedUnit.Clear();
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            ChooseRandomUnits(2, 10);
-            GroupMove(new Vector2(30, 10));
-            selectedUnit.Clear();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ChooseRandomUnits(3, 60);
-            GroupMove(new Vector2(30, 10));
-            selectedUnit.Clear();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ChooseRandomUnits();
-            GroupMove(new Vector2(30, 10));
-            selectedUnit.Clear();
         }
     }
     public void ChooseRandomUnits(int option = 0, float percentOfUnit = 0f)
@@ -76,7 +42,6 @@ public class EnemyUnitAI : MonoBehaviour
         int option = Random.Range(1, 3);
         float percentOfUnit = Random.RandomRange(10f, 50f);
         TakeUnitsWithParameters(option, percentOfUnit);
-
     }
     private void TakeUnitsWithParameters(int option, float percentOfUnit)
     {
@@ -90,7 +55,6 @@ public class EnemyUnitAI : MonoBehaviour
                         break;
                     }
                 }
-                Debug.Log("Selected units " + selectedUnit.Count);
                 break;
             case 2:
                 foreach (Transform unit in parentOfUnits.GetChild(2))
@@ -101,7 +65,6 @@ public class EnemyUnitAI : MonoBehaviour
                         break;
                     }
                 }
-                Debug.Log("Selected units " + selectedUnit.Count);
                 break;
             case 3:
                 float percentClass = Random.Range(0f, percentOfUnit);
@@ -121,7 +84,6 @@ public class EnemyUnitAI : MonoBehaviour
                         break;
                     }
                 }
-                Debug.Log("Selected units " + selectedUnit.Count);
                 break;
         }
     }
@@ -201,9 +163,6 @@ public class EnemyUnitAI : MonoBehaviour
                         unit.GetComponent<Units.WorkerFunctions>()
                             .SetRepairValues(true, hit.collider.gameObject);
                     }
-                    Debug.Log("Im building");
-                            
-                    //go to point and attack/repair
                 }
             }
         }

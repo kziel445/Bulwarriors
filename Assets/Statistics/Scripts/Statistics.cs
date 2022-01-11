@@ -39,10 +39,7 @@ namespace Statistics
         {
             dataObject.timer += Time.deltaTime;
 
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                GetMoney(500);
-            }
+            if (Input.GetKeyDown(KeyCode.M) && Input.GetKeyDown(KeyCode.G)) GetMoney(500);
             units = GetNumberOfUnits();
         }
         public void GetMoney(int amout)

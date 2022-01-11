@@ -15,10 +15,7 @@ public class EnemyBuildingAI : MonoBehaviour
     List<Vector2> targetPositionList;
     public Transform parentBuildings;
     public Transform parentUnits;
-    //tmp 
-    public GameObject prefab;
     
-    // Start is called before the first frame update
     void Start()
     {
         try {stats = GameObject.Find("EnemyStatistics").GetComponent<Statistics.Statistics>();}
@@ -31,8 +28,6 @@ public class EnemyBuildingAI : MonoBehaviour
         StartCoroutine(BuildNewStructure());
         AddStructurePositions();
     }
-
-    // Update is called once per frame
     void Update()
     {
         //control segment
@@ -82,7 +77,6 @@ public class EnemyBuildingAI : MonoBehaviour
     {
         if(builderAvailable || advancedBuilderAvailable)
         {
-            Debug.Log("Builder available");
             string buildingNameToBuild;
             Transform unit = null;
             if(advancedBuilderAvailable)
@@ -97,9 +91,8 @@ public class EnemyBuildingAI : MonoBehaviour
                 else
                 {
                     do{
-                        buildingNameToBuild = availableBuildings[Random.Range(0,availableBuildings.Count)].name;
+                        buildingNameToBuild = availableBuildings[Random.Range(0, availableBuildings.Count)].name;
                     }while(buildingNameToBuild != "Citadel");
-                    
                 }
             }
             else
@@ -108,33 +101,32 @@ public class EnemyBuildingAI : MonoBehaviour
                 var availableBuildings = unit.GetComponent<Units.UnitRTS>().baseStats.actions.basicBuildings;
                 buildingNameToBuild = availableBuildings[Random.Range(0,availableBuildings.Count)].name;
             }
-            var buildingCost = GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>()
-                .IsBuilding(buildingNameToBuild).baseStats.cost;
+            var buildingCost = GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>().IsBuilding(buildingNameToBuild).baseStats.cost;
 
-            Debug.Log("Wait to build: "+ buildingNameToBuild);
             yield return new WaitUntil(() => moneyForBuildings >= buildingCost);
             if(moneyForBuildings >= buildingCost)
             {
                 moneyForBuildings -= buildingCost;
-                Debug.Log("Building: " + buildingNameToBuild);
                 var positionFree = false;
                 Vector2 position = new Vector2(0,0);
                 while(!positionFree)
                 {
-                    position = targetPositionList[Random.Range(0, targetPositionList.Count)];
-                    positionFree = GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>()
-                        .CheckIfFreeSpace(position, new Vector2(1,1));
+                    if (buildingNameToBuild == "Citadel")
+                    {
+                        position = targetPositionList[0];
+                        positionFree = true;
+                    }
+                    else
+                    {
+                        position = targetPositionList[Random.Range(1, targetPositionList.Count)];
+                        positionFree = GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>().CheckIfFreeSpace(position, new Vector2(1, 1));
+                    }
                 }
-                
-                GameObject.Find("EnemyBuilderManager")
-                    .GetComponent<Buildings.Builder>().SpawnNewBuilding(position, buildingNameToBuild);
-                
+                GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>().SpawnNewBuilding(position, buildingNameToBuild);
                 gameObject.GetComponent<EnemyUnitAI>().SendWorkersToBuild(position);
-                //build in position closest to center and check is position free or wait until its free
             }
         }
         yield return new WaitForSeconds(1);
-        Debug.Log("ANOTHER ONE");
         StartCoroutine(BuildNewStructure());
     }
     public IEnumerator RecrutNewUnit()
@@ -147,8 +139,6 @@ public class EnemyBuildingAI : MonoBehaviour
             var availableUnits = building.GetComponent<Buildings.BuildingRTS>().baseStats.actions.basicUnits;
             //get name of unit from list
             var unitNameToRecruit = availableUnits[Random.Range(0,availableUnits.Count)];
-            //Units.UnitBasic unit = IsUnit(objectToSpawn);
-            //statistics.money -= unit.baseStats.cost;
             var unitCost = building.GetComponent<Buildings.ObjectSpawnQueue>()
                 .IsUnit(unitNameToRecruit.name.ToString()).baseStats.cost;
             yield return new WaitUntil(() => moneyForUnits >= unitCost);
@@ -158,11 +148,9 @@ public class EnemyBuildingAI : MonoBehaviour
                 building.GetComponent<Buildings.ObjectSpawnQueue>()
                     .StartQueueTimer(unitNameToRecruit.name.ToString());
             }
-                
         }
         yield return new WaitForSeconds(2);
         StartCoroutine(RecrutNewUnit());
-        
     }
     public void AddStructurePositions()
     {
