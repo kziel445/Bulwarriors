@@ -29,16 +29,23 @@ namespace Units.Enemy
             {
                 FollowAndAttack();                
             }
+            if (IfCommand && aggroTarget==null) StartCoroutine(CheckIfReturningToBase());
         }
+        public IEnumerator CheckIfReturningToBase()
+        {
+            var positionTmp = gameObject.transform.position;
+            yield return new WaitForSeconds(5);
+            if (positionTmp == gameObject.transform.position)
+            {
+                IfCommand = false;
+                MoveTo(GameObject.Find("EnemyAI").GetComponent<EnemyUnitAI>().groupPoint);
 
+            }
+        }
         public void Click()
         {
             Debug.Log("Enemy");
         }
-
-        public void ImEnemy()
-        {
-
-        }
+        
     }
 }

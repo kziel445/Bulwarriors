@@ -178,7 +178,6 @@ public class EnemyBuildingAI : MonoBehaviour
         }
         return positionList;
     }    
-
         private Vector2 ApplyRotationToVector(Vector2 vec, float angle)
         {
             return Quaternion.Euler(0, 0, angle) * vec;

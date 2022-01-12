@@ -6,13 +6,14 @@ using Core.Interactables;
 public class EnemyUnitAI : MonoBehaviour
 {
     [SerializeField] Transform parentOfUnits;
-    public List<Interactable> selectedUnit;
-    public List<Interactable> unitsWithCommands;
+    public List<Interactable> selectedUnits;
+    public List<Interactable> unitsAvailable;
 
     public delegate void CommandMethod();
     private bool waitingForCommand = true;
-    [SerializeField] private Vector2 playerBase;
-    [SerializeField] private Vector2 groupPoint;
+    //[SerializeField] private Vector2 playerBase;
+    public Transform playerBuildingsParent;
+    [SerializeField] internal Vector2 groupPoint;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class EnemyUnitAI : MonoBehaviour
             parentOfUnits = GameObject.Find("EnemyUnits").transform;
         }
         else Debug.LogWarning("EnemyUnits parent not found");
-
+        playerBuildingsParent = GameObject.Find("PlayerBuildings").transform;
     }
     void Update()
     {
@@ -30,61 +31,43 @@ public class EnemyUnitAI : MonoBehaviour
             waitingForCommand = false;
             StartCoroutine(Command(60, ChooseRandomUnits));
         }
+
     }
-    public void ChooseRandomUnits(int option = 0, float percentOfUnit = 0f)
+    public void ChooseRandomUnits(float percentOfUnit = 0f)
     {
-        if(option==0) option = Random.Range(1, 3);
         if (percentOfUnit == 0) percentOfUnit = Random.RandomRange(10f, 50f);
-        TakeUnitsWithParameters(option, percentOfUnit);
+        TakeUnitsWithParameters(percentOfUnit);
     }
     public void ChooseRandomUnits()
     {
-        int option = Random.Range(1, 3);
         float percentOfUnit = Random.RandomRange(10f, 50f);
-        TakeUnitsWithParameters(option, percentOfUnit);
+        TakeUnitsWithParameters(percentOfUnit);
     }
-    private void TakeUnitsWithParameters(int option, float percentOfUnit)
+    private void TakeUnitsWithParameters(float percentOfUnit)
     {
-        switch (option)
+        int unitsCount = 0;
+        foreach (Transform group in parentOfUnits)
         {
-            case 1:
-                foreach (Transform unit in parentOfUnits.GetChild(0))
-                {   
-                    if(!unit.GetComponent<Units.UnitRTS>().IfCommand) selectedUnit.Add(unit.transform.GetComponent<Interactable>());
-                    {
-                        break;
-                    }
-                }
-                break;
-            case 2:
-                foreach (Transform unit in parentOfUnits.GetChild(2))
+            if (!group.name.Contains("Workers"))
+            {
+                foreach (Transform unit in group)
                 {
-                    if (!unit.GetComponent<Units.UnitRTS>().IfCommand) selectedUnit.Add(unit.transform.GetComponent<Interactable>());
-                    if (parentOfUnits.GetChild(2).childCount * percentOfUnit / 100 <= selectedUnit.Count)
+                    if (!unit.GetComponent<Units.UnitRTS>().IfCommand)
                     {
-                        break;
+                        if(!unitsAvailable.Contains(unit.GetComponent<Interactable>()))
+                            unitsAvailable.Add(unit.GetComponent<Interactable>());
+                        unitsCount++;
                     }
                 }
-                break;
-            case 3:
-                float percentClass = Random.Range(0f, percentOfUnit);
-                foreach (Transform unit in parentOfUnits.GetChild(0))
-                {
-                    if (!unit.GetComponent<Units.UnitRTS>().IfCommand) selectedUnit.Add(unit.transform.GetComponent<Interactable>());
-                    if (parentOfUnits.GetChild(0).childCount * percentOfUnit - percentClass / 100 <= selectedUnit.Count)
-                    {
-                        break;
-                    }
-                }
-                foreach (Transform unit in parentOfUnits.GetChild(2))
-                {
-                    if(!unit.GetComponent<Units.UnitRTS>().IfCommand) selectedUnit.Add(unit.transform.GetComponent<Interactable>());
-                    if (parentOfUnits.GetChild(2).childCount * percentOfUnit - (percentOfUnit - percentClass) / 100 <= selectedUnit.Count)
-                    {
-                        break;
-                    }
-                }
-                break;
+            }
+        }
+        unitsCount = (int)(unitsCount * percentOfUnit/100);
+        while (unitsCount != 0)
+        {
+            var unit = unitsAvailable[Random.Range(0, unitsAvailable.Count - 1)];
+            selectedUnits.Add(unit);
+            unitsAvailable.Remove(unit);
+            unitsCount--;
         }
     }
     public void ChooseAllUnits()
@@ -93,12 +76,13 @@ public class EnemyUnitAI : MonoBehaviour
         {
             foreach (Transform unit in group)
             {
-                selectedUnit.Add(unit.transform.GetComponent<Interactable>());
+                selectedUnits.Add(unit.transform.GetComponent<Interactable>());
             }
         }
     }
-    public void GroupMove(Vector2 moveToPosition)
+    public void GroupMove(Vector2 moveToPosition, List<Interactable> selectedUnit = null)
     {
+        if (selectedUnit == null) selectedUnit = selectedUnits;
         List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f,2f}, new int[] { 5, 10, 20, 40});
         int targetPositionListIndex = 0;
         foreach (Interactable interactableObject in selectedUnit)
@@ -141,10 +125,31 @@ public class EnemyUnitAI : MonoBehaviour
         yield return new WaitForSeconds(time);
         GroupMove(groupPoint);
         Debug.Log("Command formation");
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         Debug.Log("Command start");
-        GroupMove(playerBase);
-        selectedUnit.Clear();
+        if(playerBuildingsParent.Find("Citadels").childCount>0)
+        {
+            GroupMove(playerBuildingsParent.Find("Citadels").GetChild(0).gameObject.transform.position);
+        }
+        else
+        {
+            List<int> buildingsCounts = new List<int>();
+            foreach(Transform group in playerBuildingsParent)
+            {
+                buildingsCounts.Add(group.childCount);
+            }
+            int groupNumber;
+            do
+            {
+                groupNumber = Random.Range(0, buildingsCounts.Count - 1);
+            } while (buildingsCounts[groupNumber] == 0);
+            
+            var buildingNumber = Random.Range(0, buildingsCounts[groupNumber]-1);
+            GroupMove(playerBuildingsParent.GetChild(groupNumber).GetChild(buildingNumber).gameObject.transform.position);
+            
+        }
+        
+        selectedUnits.Clear();
         waitingForCommand = true;
     }
     public void SendWorkersToBuild(Vector2 target)
