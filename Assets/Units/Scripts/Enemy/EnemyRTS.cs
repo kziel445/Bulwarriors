@@ -39,7 +39,6 @@ namespace Units.Enemy
             {
                 IfCommand = false;
                 MoveTo(GameObject.Find("EnemyAI").GetComponent<EnemyUnitAI>().groupPoint);
-
             }
         }
         public void Click()

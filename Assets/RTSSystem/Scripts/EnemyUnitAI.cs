@@ -145,8 +145,8 @@ public class EnemyUnitAI : MonoBehaviour
             } while (buildingsCounts[groupNumber] == 0);
             
             var buildingNumber = Random.Range(0, buildingsCounts[groupNumber]-1);
-            GroupMove(playerBuildingsParent.GetChild(groupNumber).GetChild(buildingNumber).gameObject.transform.position);
-            
+            GroupMove(playerBuildingsParent.GetChild(groupNumber)
+                .GetChild(buildingNumber).gameObject.transform.position);
         }
         
         selectedUnits.Clear();
