@@ -23,7 +23,7 @@ MonoBehaviour:
     cost: 200
     damage: 10
     atkSpeed: 1
-    atkRange: 0.2
+    atkRange: 0.4
     aggroRange: 10
     health: 100
     armor: 15

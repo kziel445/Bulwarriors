@@ -122,8 +122,12 @@ public class EnemyBuildingAI : MonoBehaviour
                         positionFree = GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>().CheckIfFreeSpace(position, new Vector2(1, 1));
                     }
                 }
-                var worker = parentUnits.Find("Workers").GetChild(0).GetComponent<Units.WorkerFunctions>();
-                yield return new WaitUntil(() => worker.isRepairing == false);
+
+                if (parentUnits.Find("Workers").GetChild(0).GetComponent<Units.WorkerFunctions>() != null)
+                {
+                    var worker = parentUnits.Find("Workers").GetChild(0).GetComponent<Units.WorkerFunctions>();
+                    yield return new WaitUntil(() => worker.isRepairing == false);
+                }
                 GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>().SpawnNewBuilding(position, buildingNameToBuild);
                 gameObject.GetComponent<EnemyUnitAI>().SendWorkersToBuild(position);
             }
