@@ -958,11 +958,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentOfUnits: {fileID: 0}
-  selectedUnit: []
-  unitsWithCommands: []
-  parentOfBuildings: {fileID: 0}
-  playerBase: {x: 0, y: 0}
-  groupPoint: {x: 0, y: 0}
+  selectedUnits: []
+  unitsAvailable: []
+  playerBuildingsParent: {fileID: 0}
+  groupPoint: {x: 40, y: 40}
 --- !u!4 &324754782
 Transform:
   m_ObjectHideFlags: 0
@@ -997,7 +996,6 @@ MonoBehaviour:
   buildings: []
   parentBuildings: {fileID: 0}
   parentUnits: {fileID: 0}
-  prefab: {fileID: 177358027}
 --- !u!4 &331345122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8159024177342774654, guid: bec1bb9a47112fe4aaab0e41dcf6c168, type: 3}
@@ -134874,7 +134872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c3d048b369891449797259fae1eb5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
 --- !u!1001 &1194443711
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -75,10 +75,8 @@ namespace Core
         }
         public void TakeDamage(float damage)
         {
-            //TODO: do better formula for fight
             damage -= baseArmor;
             if (damage <= 0) damage = 1;
-            //Debug.Log(damage);
             currentHealth -= damage;
         }
         public void GiveHealth(float damage)
