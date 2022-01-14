@@ -15,9 +15,8 @@ MonoBehaviour:
   type: 1
   name: Bank
   playerPrefab: {fileID: 162147626234567764, guid: 2d861a71acf443d49953d37d0d7e45a3, type: 3}
-  enemyPrefab: {fileID: 5005592763079248067, guid: aa6ed9c298ee43e49a1934112d618a86, type: 3}
+  enemyPrefab: {fileID: 2699398461138145110, guid: c50945c14c3177544a06fc46c99291be, type: 3}
   icon: {fileID: 21300000, guid: 3c5540ffa4695134ca235547896fc6e7, type: 3}
-  spawnTime: 5
   baseStats:
     cost: 1000
     health: 300

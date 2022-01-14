@@ -16,8 +16,7 @@ MonoBehaviour:
   name: Farm
   playerPrefab: {fileID: 8010202288869818860, guid: 1aa5de554d619ab4baf53bc3f39a0083, type: 3}
   enemyPrefab: {fileID: 5005592763079248067, guid: aa6ed9c298ee43e49a1934112d618a86, type: 3}
-  icon: {fileID: 21300000, guid: f9899fbc349a55b43a821dbd8416afce, type: 3}
-  spawnTime: 0
+  icon: {fileID: 21300000, guid: 76fcc5d874a3b924b9662064270af329, type: 3}
   baseStats:
     cost: 300
     health: 100

@@ -47,8 +47,7 @@ namespace Units
         public void GoToRepairing()
         {
             if(targetToRepair != null 
-                && targetToRepair
-                    .GetComponentInChildren<Buildings.BuildingRTS>().isBuilded)
+                && targetToRepair.GetComponentInChildren<Buildings.BuildingRTS>().isBuilded)
             {
                 targetToRepair = null;
                 RepairAnimation(false);

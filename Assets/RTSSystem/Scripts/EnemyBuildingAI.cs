@@ -35,7 +35,7 @@ public class EnemyBuildingAI : MonoBehaviour
         //control segment
         AllocateGold();
         //check if new buildings available
-        CheckIfNewRecrutationBuildings();
+        
         CheckIfBuildersAvaiable();
     }
     public void AllocateGold()
@@ -59,11 +59,10 @@ public class EnemyBuildingAI : MonoBehaviour
             foreach(Transform building in group)
             {
                 var interactables = building.GetComponent<Interactable>();
-                if(building.GetComponent<Buildings.ObjectSpawnQueue>() 
-                    && !buildings.Contains(interactables) 
+                if(!buildings.Contains(interactables) 
                     && building.GetComponent<Buildings.Enemy.EnemyBuilding>().isBuilded)
                 {
-                    buildings.Add(interactables);
+                    if(building.GetComponent<Buildings.ObjectSpawnQueue>()) buildings.Add(interactables);
                 }
             }
         }
@@ -109,7 +108,16 @@ public class EnemyBuildingAI : MonoBehaviour
             {
                 unit = parentUnits.transform.Find("Workers").GetChild(0);
                 var availableBuildings = unit.GetComponent<Units.UnitRTS>().baseStats.actions.basicBuildings;
-                buildingNameToBuild = availableBuildings[Random.Range(0,availableBuildings.Count)].name;
+                if(GameObject.Find("EnemyData").GetComponent<Statistics.Data>().timer < 40)
+                {
+                    buildingNameToBuild = "House";
+                }
+                else
+                {
+                    buildingNameToBuild = availableBuildings[Random.Range(0, availableBuildings.Count)].name;
+
+                }
+
             }
             var buildingCost = GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>().IsBuilding(buildingNameToBuild).baseStats.cost;
 
@@ -143,8 +151,10 @@ public class EnemyBuildingAI : MonoBehaviour
     }
     public IEnumerator RecrutNewUnit()
     {
-        if(buildings.Count != 0)
+        CheckIfNewRecrutationBuildings();
+        if (buildings.Count != 0)
         {
+            
             //random building from existing
             var building = buildings[Random.Range(0,buildings.Count)];
             //avaialbeUnits in building

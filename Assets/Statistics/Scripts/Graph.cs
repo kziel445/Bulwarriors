@@ -176,7 +176,7 @@ namespace Statistics
         public float Points(float time, int money, int units)
         {
             if(time==0) time = 1;
-            float points = (money + units * unitsPointModifier)/time;
+            float points = (money + units * unitsPointModifier)-time;
             return points;
         }
         public void DestroyDatas()

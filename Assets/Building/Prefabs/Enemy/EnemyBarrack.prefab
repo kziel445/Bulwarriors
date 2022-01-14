@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2106682022325371289}
   - component: {fileID: 4170576814409707948}
   m_Layer: 11
-  m_Name: EnemyBuilding
+  m_Name: EnemyBarrack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
