@@ -35,7 +35,7 @@ namespace Player
 
                     if (type == playerUnits)
                     {
-                        Units.Player.PlayerRTS playerUnit = transformObject.GetComponent<Units.Player.PlayerRTS >();
+                        Units.Player.PlayerRTS playerUnit = transformObject.GetComponent<Units.Player.PlayerRTS>();
                         Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);
                         playerUnit.baseStats = settings.baseStats;
                         objectPostion = playerUnit.gameObject.transform;

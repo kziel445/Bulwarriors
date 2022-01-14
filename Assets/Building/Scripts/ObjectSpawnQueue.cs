@@ -89,9 +89,9 @@ namespace Buildings
                 spawnQueue[0],
                 //spawnTMP[0].Item4,
                 new Vector3(
-                    gameObject.transform.position.x,
-                    gameObject.transform.position.y - 0.5f,
-                    gameObject.transform.position.z
+                    transform.position.x,
+                    transform.position.y - gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().bounds.size.y/2,
+                    transform.position.z
                     ),
                 Quaternion.identity,
                 objectToStoreUnits.Find(objectName.Replace(" ", ""))

@@ -164,10 +164,9 @@ public class EnemyUnitAI : MonoBehaviour
                     if (unit.GetComponent<Units.WorkerFunctions>() == null)
                     {
                         unit.gameObject.AddComponent<Units.WorkerFunctions>();
-                        RaycastHit2D hit = Physics2D.Raycast(target, Vector2.up);
-                        unit.GetComponent<Units.WorkerFunctions>()
-                            .SetRepairValues(true, hit.collider.gameObject);
                     }
+                    RaycastHit2D hit = Physics2D.Raycast(target, Vector2.up);
+                    unit.GetComponent<Units.WorkerFunctions>().SetRepairValues(true, hit.collider.gameObject);
                 }
             }
         }

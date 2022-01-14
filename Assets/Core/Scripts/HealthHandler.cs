@@ -86,7 +86,9 @@ namespace Core
         }
         public void Die()
         {
+            var layer = gameObject.layer;
             Destroy(gameObject.transform.parent.gameObject);
+            if(layer == 9 || layer == 11) AstarPath.active.Scan();
         }
     }
 

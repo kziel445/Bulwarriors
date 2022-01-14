@@ -35,7 +35,11 @@ namespace Units
         public void MoveToTarget(Transform targetPosition)
         {
             distanceToTarget = DistanceBetweenColliders(targetPosition);
-            if (distanceToTarget > baseStats.atkRange) MoveTo(targetPosition.position);
+            if (distanceToTarget > baseStats.atkRange)
+            {
+                MoveTo(targetPosition.position);
+                AttackAnimation(false);
+            }
             else MoveTo(transform.position);
         }
         //for now, function check for random enemy(probably close to "0,0")
