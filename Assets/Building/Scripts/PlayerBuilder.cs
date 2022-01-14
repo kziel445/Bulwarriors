@@ -75,6 +75,7 @@ namespace Buildings
             playerBuilding.TurnOnOffFunctions(false);
             playerBuilding.gameObject.GetComponentInChildren<Core.HealthHandler>().
                 SetHealthStats(playerBuilding.baseStats.health, playerBuilding.baseStats.armor, 1);
+            AstarPath.active.Scan();
         }
         public void SpawnScheme(string objectName)
         {

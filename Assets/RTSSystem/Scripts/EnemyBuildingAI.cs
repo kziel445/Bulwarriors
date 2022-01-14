@@ -145,6 +145,8 @@ public class EnemyBuildingAI : MonoBehaviour
             var availableUnits = building.GetComponent<Buildings.BuildingRTS>().baseStats.actions.basicUnits;
             //get name of unit from list
             var unitNameToRecruit = availableUnits[Random.Range(0,availableUnits.Count)];
+            if(unitNameToRecruit.name == "AdvancedWorker")
+                unitNameToRecruit = availableUnits[Random.Range(0, availableUnits.Count)];
             var unitCost = building.GetComponent<Buildings.ObjectSpawnQueue>()
                 .IsUnit(unitNameToRecruit.name.ToString()).baseStats.cost;
             yield return new WaitUntil(() => moneyForUnits >= unitCost);

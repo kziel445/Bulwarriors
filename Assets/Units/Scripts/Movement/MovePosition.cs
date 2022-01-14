@@ -26,8 +26,6 @@ namespace Movement
 
         private void Update()
         {
-            Debug.Log(aiPath.targetDirection);
-            //Vector2 moveDir = (movePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
             movement.x = aiPath.targetDirection.x;
             movement.y = aiPath.targetDirection.y;
             animator.SetFloat("Horizontal", movement.x);
