@@ -45,11 +45,17 @@ public class EnemyBuildingAI : MonoBehaviour
             float difference = stats.money - (moneyForBuildings + moneyForUnits);
             moneyForBuildings += difference;
         }
-        if(stats.money > moneyForBuildings + moneyForUnits)
+        else if(stats.money > moneyForBuildings + moneyForUnits)
         {
             float difference = stats.money - (moneyForBuildings + moneyForUnits);
             moneyForBuildings += difference * 0.5f;
             moneyForUnits += difference * 0.5f;
+        }
+        else if (GameObject.Find("EnemyData").GetComponent<Statistics.Data>().timer > 180)
+        {
+            float difference = stats.money - (moneyForBuildings + moneyForUnits);
+            moneyForBuildings += difference * 0.3f;
+            moneyForUnits += difference * 0.7f;
         }
     }
     public void CheckIfNewRecrutationBuildings()
@@ -108,20 +114,24 @@ public class EnemyBuildingAI : MonoBehaviour
             {
                 unit = parentUnits.transform.Find("Workers").GetChild(0);
                 var availableBuildings = unit.GetComponent<Units.UnitRTS>().baseStats.actions.basicBuildings;
-                if(GameObject.Find("EnemyData").GetComponent<Statistics.Data>().timer < 40)
+                if (parentBuildings.Find("Houses").childCount >= 1 && GameObject.Find("EnemyData").GetComponent<Statistics.Data>().timer < 40)
+                {
+                    buildingNameToBuild = "Barrack";
+                }
+                else if (GameObject.Find("EnemyData").GetComponent<Statistics.Data>().timer < 90)
                 {
                     buildingNameToBuild = "House";
                 }
                 else
                 {
                     buildingNameToBuild = availableBuildings[Random.Range(0, availableBuildings.Count)].name;
-
                 }
-
             }
             var buildingCost = GameObject.Find("EnemyBuilderManager").GetComponent<Buildings.Builder>().IsBuilding(buildingNameToBuild).baseStats.cost;
-
-            yield return new WaitUntil(() => moneyForBuildings >= buildingCost);
+            if(GameObject.Find("EnemyData").GetComponent<Statistics.Data>().timer < 60)
+                yield return new WaitUntil(() => moneyForBuildings >= buildingCost);
+            else
+                yield return new WaitForSeconds(4);
             if(moneyForBuildings >= buildingCost)
             {
                 moneyForBuildings -= buildingCost;
@@ -172,20 +182,29 @@ public class EnemyBuildingAI : MonoBehaviour
                     && parentUnits.transform.Find("AdvancedWorkers").childCount < maxAdvancedWorkers
                     && GameObject.Find("EnemyData").GetComponent<Statistics.Data>().timer > 300)
                     passUnit = true;
-                else passUnit = true;
+                else if(unitNameToRecruit == "Scout" && parentUnits.transform.Find("Workers").childCount < 1)
+                {
+                    passUnit = true;
+                }
+                else if(unitNameToRecruit != "Scout" && unitNameToRecruit != "Worker" && unitNameToRecruit != "AdvancedWorkers")
+                    passUnit = true;
             } while (!passUnit);
               
             var unitCost = building.GetComponent<Buildings.ObjectSpawnQueue>()
                 .IsUnit(unitNameToRecruit).baseStats.cost;
-            yield return new WaitUntil(() => moneyForUnits >= unitCost);
-            if(moneyForUnits >= unitCost)
+            
+            if (GameObject.Find("EnemyData").GetComponent<Statistics.Data>().timer > 300)
+                yield return new WaitUntil(() => moneyForUnits >= unitCost);
+            else
+                yield return new WaitForSeconds(2);
+            if (moneyForUnits >= unitCost)
             {
                 moneyForUnits -= unitCost;
                 building.GetComponent<Buildings.ObjectSpawnQueue>()
                     .StartQueueTimer(unitNameToRecruit);
             }
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         StartCoroutine(RecrutNewUnit());
     }
     public void AddStructurePositions()
