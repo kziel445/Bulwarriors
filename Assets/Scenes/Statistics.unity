@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Money
+  m_text: Gold
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d1c6a64fa6b2ab4fb385e68cf4b8221, type: 2}
   m_sharedMaterial: {fileID: -1794747884681483874, guid: 4d1c6a64fa6b2ab4fb385e68cf4b8221, type: 2}

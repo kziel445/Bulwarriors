@@ -23,8 +23,6 @@ namespace Units.Player
         {
 
             if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
-            //HandleHealth();
-            //player commands
 
             if (IfCommand)
             {

@@ -17,6 +17,7 @@ namespace Units
         public Transform aggroTarget;
         //change from public
         public bool hasAggro = false;
+        public bool reachedTargetOnce = true;
         private float distanceToTarget;
         public Transform missile;
         public float atkCooldown;
@@ -87,9 +88,9 @@ namespace Units
         public void FollowAndAttack()
         {
             //lost aggro
-            if (aggroTarget != null && Vector2.Distance(aggroTarget.position, gameObject.transform.position) > baseStats.aggroRange * 2)
+            if (aggroTarget != null && Vector2.Distance(aggroTarget.position, transform.position) > baseStats.aggroRange * 2 && reachedTargetOnce)
             {
-                MoveToTarget(gameObject.transform);
+                MoveTo(transform.position);
                 aggroTarget = null;
                 AttackAnimation(false);
                 hasAggro = false;
@@ -123,6 +124,7 @@ namespace Units
         }
         public float DistanceBetweenColliders(Transform targetObject)
         {
+
             var targetColliders = targetObject.GetComponents<Collider2D>();
             float tmpDistance = -1;
             foreach (Collider2D collider in targetColliders)

@@ -103,6 +103,7 @@ namespace Buildings
             Units.UnitBasic settings = Units.UnitHandler.instance.GetUnitSettings(objectName);
             sideUnit.baseStats = settings.baseStats;
             sideUnit.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = settings.classColor;
+            sideUnit.GetComponent<Pathfinding.AIPath>().maxSpeed = settings.baseStats.movementSpeed;
             data.unitsRecruted++;
         }
         public Units.UnitBasic IsUnit(string name)

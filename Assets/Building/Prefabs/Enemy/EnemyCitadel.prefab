@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.7254902
       objectReference: {fileID: 0}
+    - target: {fileID: 5396499562921516628, guid: 8910969bdf1e46c4da6d5984f2e1aa4a, type: 3}
+      propertyPath: goldPerTime
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5931782247232273954, guid: 8910969bdf1e46c4da6d5984f2e1aa4a, type: 3}
       propertyPath: m_Enabled
       value: 1

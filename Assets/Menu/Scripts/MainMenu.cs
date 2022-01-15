@@ -12,9 +12,12 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1;
     }
     public void GoToMainMenu()
     {
+        Destroy(GameObject.Find("PlayerData"));
+        Destroy(GameObject.Find("EnemyData"));
         SceneManager.LoadScene(0);
     }
     public void QuitGame()

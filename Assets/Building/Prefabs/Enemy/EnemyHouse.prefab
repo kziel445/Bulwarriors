@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldPerTime: 10
-  secondsToGold: 2
+  secondsToGold: 4
 --- !u!114 &432814380293212426
 MonoBehaviour:
   m_ObjectHideFlags: 0

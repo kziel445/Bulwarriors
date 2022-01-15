@@ -157,6 +157,7 @@ namespace InputManager
                             PlayerRTS unitRTS = interactableObject.GetComponent<PlayerRTS>();
                             unitRTS.GetComponent<PlayerRTS>().aggroTarget = target;
                             unitRTS.hasAggro = true;
+                            unitRTS.reachedTargetOnce = false;
 
                             //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
                         }
