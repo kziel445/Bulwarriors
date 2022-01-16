@@ -9,7 +9,7 @@ public class EnemyBuildingAI : MonoBehaviour
     public float moneyForUnits = 0;
     public float moneyForBuildings = 0;
     public bool builderAvailable = true;
-    public int maxWorkers = 8;
+    public int maxWorkers = 6;
     public bool advancedBuilderAvailable = false;
     public int maxAdvancedWorkers = 2;
 
@@ -189,7 +189,7 @@ public class EnemyBuildingAI : MonoBehaviour
                 else if(unitNameToRecruit != "Scout" && unitNameToRecruit != "Worker" && unitNameToRecruit != "AdvancedWorkers")
                     passUnit = true;
             } while (!passUnit);
-              
+            
             var unitCost = building.GetComponent<Buildings.ObjectSpawnQueue>()
                 .IsUnit(unitNameToRecruit).baseStats.cost;
             

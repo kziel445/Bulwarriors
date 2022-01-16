@@ -823,7 +823,7 @@ MonoBehaviour:
   moneyForUnits: 0
   moneyForBuildings: 0
   builderAvailable: 1
-  maxWorkers: 8
+  maxWorkers: 6
   advancedBuilderAvailable: 0
   maxAdvancedWorkers: 2
   buildings: []
@@ -1961,7 +1961,7 @@ MonoBehaviour:
   dataUpdateTime: 10
   unitsObject: {fileID: 0}
   dataObject: {fileID: 0}
-  money: 100
+  money: 1000
   units: 0
 --- !u!1 &1033240625
 GameObject:
