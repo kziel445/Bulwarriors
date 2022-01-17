@@ -18,6 +18,7 @@ namespace Movement
             movePosition = transform.position;
             aiPath = gameObject.GetComponent<AIPath>();
         }
+        
         public void SetMovePosition(Vector2 movePosition)
         {
             this.movePosition = movePosition;

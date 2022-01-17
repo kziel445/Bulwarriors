@@ -11,7 +11,6 @@ public class EnemyUnitAI : MonoBehaviour
 
     public delegate void CommandMethod();
     private bool waitingForCommand = true;
-    //[SerializeField] private Vector2 playerBase;
     public Transform playerBuildingsParent;
     [SerializeField] internal Vector2 groupPoint;
 
@@ -24,6 +23,7 @@ public class EnemyUnitAI : MonoBehaviour
         else Debug.LogWarning("EnemyUnits parent not found");
         playerBuildingsParent = GameObject.Find("PlayerBuildings").transform;
     }
+
     void Update()
     {
         if(waitingForCommand)
@@ -33,16 +33,19 @@ public class EnemyUnitAI : MonoBehaviour
         }
 
     }
+
     public void ChooseRandomUnits(float percentOfUnit = 0f)
     {
         if (percentOfUnit == 0) percentOfUnit = Random.RandomRange(10f, 50f);
         TakeUnitsWithParameters(percentOfUnit);
     }
+
     public void ChooseRandomUnits()
     {
         float percentOfUnit = Random.RandomRange(10f, 50f);
         TakeUnitsWithParameters(percentOfUnit);
     }
+
     private void TakeUnitsWithParameters(float percentOfUnit)
     {
         int unitsCount = 0;
@@ -70,6 +73,7 @@ public class EnemyUnitAI : MonoBehaviour
             unitsCount--;
         }
     }
+
     public void ChooseAllUnits()
     {
         foreach (Transform group in parentOfUnits)
@@ -80,6 +84,7 @@ public class EnemyUnitAI : MonoBehaviour
             }
         }
     }
+
     public void GroupMove(Vector2 moveToPosition, List<Interactable> selectedUnit = null)
     {
         if (selectedUnit == null) selectedUnit = selectedUnits;
@@ -93,6 +98,7 @@ public class EnemyUnitAI : MonoBehaviour
             targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
         }
     }
+
     public List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
     {
         List<Vector2> positionList = new List<Vector2>();
@@ -103,6 +109,7 @@ public class EnemyUnitAI : MonoBehaviour
         }
         return positionList;
     }
+
     private List<Vector2> GetPositionListAround(Vector2 startPosition, float distance, int positionCount)
     {
         List<Vector2> positionList = new List<Vector2>();
@@ -115,10 +122,12 @@ public class EnemyUnitAI : MonoBehaviour
         }
         return positionList;
     }
+
     private Vector2 ApplyRotationToVector(Vector2 vec, float angle)
     {
         return Quaternion.Euler(0, 0, angle) * vec;
     }
+
     public IEnumerator Command(float time, CommandMethod method)
     {
         method();
@@ -152,6 +161,7 @@ public class EnemyUnitAI : MonoBehaviour
         selectedUnits.Clear();
         waitingForCommand = true;
     }
+
     public void SendWorkersToBuild(Vector2 target)
     {
         foreach (Transform group in parentOfUnits)
@@ -171,6 +181,7 @@ public class EnemyUnitAI : MonoBehaviour
             }
         }
     }
+    
     public void CheckForUndoneBuildings()
     {
         var parentBuilding = gameObject.GetComponent<EnemyBuildingAI>().parentBuildings;

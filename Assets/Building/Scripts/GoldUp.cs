@@ -17,13 +17,11 @@ namespace Buildings
             else if (gameObject.name.Contains("Enemy"))
                 statistics = GameObject.Find("EnemyStatistics").GetComponent<Statistics.Statistics>();
             else Debug.LogWarning("Player or enemy statistics not found");
-            
         }
         private void Start()
         {
             StartCoroutine(GetMoneyPassive(goldPerTime));
         }
-
         public IEnumerator GetMoneyPassive(int gold)
         {
             yield return new WaitForSeconds(secondsToGold);

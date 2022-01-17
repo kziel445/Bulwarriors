@@ -7,7 +7,6 @@ namespace UI
 {
     public class BuildingUI : Interactable
     {
-
         public override void SetSelectedVisible(bool visible)
         {
             if(ActionFrame.instance!=null)
@@ -19,7 +18,6 @@ namespace UI
                     );
                 else if (!visible) ActionFrame.instance.ClearActions();
             }
-            Debug.Log(StatisticsFrame.instance);
             if (StatisticsFrame.instance!=null)
             {
                 if (visible) StatisticsFrame.instance.ChangeStatsOfObject(
@@ -34,7 +32,6 @@ namespace UI
 
         public override void SetSelection(bool visible)
         {
-            
             base.SetSelection(visible);
         }
     }

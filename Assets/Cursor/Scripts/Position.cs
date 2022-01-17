@@ -12,7 +12,6 @@ namespace KZ.Cursor
             Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
             return worldPosition;
         }
-
     }
 }
 

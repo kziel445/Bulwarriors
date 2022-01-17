@@ -10,10 +10,12 @@ namespace UI
         public static StatisticsFrame instance;
         public GameObject text;
         public GameObject icon;
+        
         private void Awake()
         {
             instance = this;
         }
+
         public void ChangeStatsOfObject(float currentHealth, float maxHealth, Sprite sprite)
         {
             text.SetActive(true);
@@ -21,6 +23,7 @@ namespace UI
             text.GetComponent<TMPro.TextMeshProUGUI>().text = $"Health: {currentHealth} \nMax health: {maxHealth}";
             icon.GetComponent<Image>().sprite = sprite;
         }
+
         public void Clear()
         {
             text.GetComponent<TMPro.TextMeshProUGUI>().text = " ";

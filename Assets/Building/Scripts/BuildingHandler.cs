@@ -11,10 +11,12 @@ namespace Buildings
             archeryRange, bank, barrack, citadel, 
             farm, house, shootingRange, stable,
             blackSmith;
+            
         private void Awake()
         {
             instance = this;
         }
+
         public BuildingBasic GetBuildingStats(string type)
         {
             type = type.Replace(" ", "");

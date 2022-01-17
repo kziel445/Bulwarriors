@@ -29,15 +29,16 @@ public class EnemyBuildingAI : MonoBehaviour
         StartCoroutine(RecrutNewUnit());
         StartCoroutine(BuildNewStructure());
         AddStructurePositions();
+
     }
     void Update()
     {
         //control segment
         AllocateGold();
         //check if new buildings available
-        
         CheckIfBuildersAvaiable();
     }
+
     public void AllocateGold()
     {
         if(GameObject.Find("EnemyData").GetComponent<Statistics.Data>().timer<30)
@@ -58,6 +59,7 @@ public class EnemyBuildingAI : MonoBehaviour
             moneyForUnits += difference * 0.7f;
         }
     }
+
     public void CheckIfNewRecrutationBuildings()
     {
         foreach(Transform group in parentBuildings)
@@ -73,6 +75,7 @@ public class EnemyBuildingAI : MonoBehaviour
             }
         }
     }
+
     public void CheckIfBuildersAvaiable()
     {
         if(parentUnits.Find("AdvancedWorkers").childCount>0)
@@ -87,6 +90,7 @@ public class EnemyBuildingAI : MonoBehaviour
         }
         else builderAvailable = false;
     }
+
     public IEnumerator BuildNewStructure()
     {
 
@@ -159,6 +163,7 @@ public class EnemyBuildingAI : MonoBehaviour
         yield return new WaitForSeconds(1);
         StartCoroutine(BuildNewStructure());
     }
+
     public IEnumerator RecrutNewUnit()
     {
         CheckIfNewRecrutationBuildings();
@@ -207,6 +212,7 @@ public class EnemyBuildingAI : MonoBehaviour
         yield return new WaitForSeconds(1);
         StartCoroutine(RecrutNewUnit());
     }
+
     public void AddStructurePositions()
     {
         targetPositionList = GetPositionListAround(parentBuildings.position, new float[] { 3, 6, 9 }, new int[] { 8, 16, 24 });        
@@ -221,6 +227,7 @@ public class EnemyBuildingAI : MonoBehaviour
         }
         return positionList;
     }
+
     private List<Vector2> GetPositionListAround(Vector2 startPosition, float distance, int positionCount)
     {
         List<Vector2> positionList = new List<Vector2>();
@@ -233,8 +240,9 @@ public class EnemyBuildingAI : MonoBehaviour
         }
         return positionList;
     }    
-        private Vector2 ApplyRotationToVector(Vector2 vec, float angle)
-        {
-            return Quaternion.Euler(0, 0, angle) * vec;
-        }
+
+    private Vector2 ApplyRotationToVector(Vector2 vec, float angle)
+    {
+        return Quaternion.Euler(0, 0, angle) * vec;
+    }
 }

@@ -22,19 +22,17 @@ namespace UI
         {
             instance = this;
         }
-        void Update()
-        {
-            
-            
-        }
+
         public void GoToMainMenu()
         {
             SceneManager.LoadScene(0);
         }
+
         public void GoToStatisticsScene()
         {
             SceneManager.LoadScene(2);
         }
+
         public void UpdateSelectedUnits()
         {
             if (InputHandler.instance.selectedUnitRTSList.Count == 0)
@@ -59,7 +57,6 @@ namespace UI
                     var parent = unit.gameObject.transform.parent.name;
                     string objectName = parent.Substring(0, parent.Length - 1).ToLower();
 
-
                     frame.transform.GetChild(1).GetComponent<Image>().sprite = Units.UnitHandler.instance.GetUnitSettings(objectName).icon;
                     frame.transform.GetChild(1).GetComponent<Image>().color = Units.UnitHandler.instance.GetUnitSettings(objectName).classColor;
 
@@ -73,7 +70,6 @@ namespace UI
                         posX = minPosX;
                     }
                 }
-
             }
         }
     }

@@ -25,7 +25,6 @@ namespace UI
             instance = this;
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             statistics = GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>();
@@ -66,15 +65,13 @@ namespace UI
             ActiveUI = false;
             buttons.Clear();
         }
-        //worker actions
-
 
         //building actions
         public void SetActionButtonsBuilding(PlayerActions actions, GameObject spawnLocation)
         {
             ActiveUI = true;
             if (actions == null) return;
-            //unused
+
             spawnBuilding = spawnLocation;
             actionList = actions;
             if (actions.basicUnits.Count > 0)
@@ -106,11 +103,8 @@ namespace UI
                         button.gameObject.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text = building.baseStats.cost.ToString();
                         button.gameObject.transform.GetComponent<Action>().isUnit = false;
                         buttons.Add(button);
-
-
                 }
             }
         }
     }
-
 }

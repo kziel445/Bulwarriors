@@ -5,10 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuInputs : MonoBehaviour
 {
-    [SerializeField]
-    GameObject menu;
-    [SerializeField]
-    GameObject pasued;
+    [SerializeField] GameObject menu;
+    [SerializeField] GameObject pasued;
 
     void Update()
     {
@@ -23,7 +21,6 @@ public class MenuInputs : MonoBehaviour
             }
             else
             {
-                Debug.Log(GameObject.Find("Menu"));
                 pasued.SetActive(false);
                 menu.SetActive(true);
                 Time.timeScale = 0;

@@ -10,16 +10,14 @@ namespace UI
     {
         [SerializeField]
         private GameObject gameController;
+
         private void Awake()
         {
             gameController = GameObject.Find("GameController");
-            //Debug.Log(inputHandler);
         }
-
 
         public override void SetSelectedVisible(bool visible)
         {
-            //foreach()
             if (ActionFrame.instance != null)
             {
                 if (visible) ActionFrame.instance.SetActionButtonsBuilding(
@@ -28,10 +26,8 @@ namespace UI
                     );
                 else if (!visible) ActionFrame.instance.ClearActions();
             }
-            Debug.Log(gameController);
             if (StatisticsFrame.instance != null)
             {
-                
                 if (visible && gameController.GetComponent<InputManager.InputHandler>().selectedUnitRTSList.Count==1) 
                     StatisticsFrame.instance.ChangeStatsOfObject(
                         gameObject.transform.Find("StatsDisplay").GetComponent<Core.HealthHandler>().currentHealth,

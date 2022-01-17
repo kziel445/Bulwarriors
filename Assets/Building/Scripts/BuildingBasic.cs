@@ -12,18 +12,14 @@ namespace Buildings
             ArcheryRange, Bank, Barrack, 
             Citadel, Farm, House, 
             ShootingRange, Stable, BlackSmith
-
         }
         public BuildingType type;
         public new string name;
         public GameObject playerPrefab;
         public GameObject enemyPrefab;
         public Sprite icon;
-        //public float spawnTime;
 
-        public BuildingStatTypes.Base baseStats;
-        //public BuildingRTS.BuildUnits Units;
-         
+        public BuildingStatTypes.Base baseStats;         
     }
 
 }

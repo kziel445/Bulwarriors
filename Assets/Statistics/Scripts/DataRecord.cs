@@ -9,6 +9,7 @@ namespace Statistics
         public float time;
         public int money;
         public int units;
+        
         public DataRecord(float time, int money, int units)
         {
             this.time = time;

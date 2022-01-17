@@ -24,7 +24,7 @@ namespace InputManager
 
         //cursor
         private Position cursorPosition = new Position();
-        //unused?
+        
         public Transform playerUnits;
 
         [SerializeField] private Camera camera;
@@ -35,7 +35,7 @@ namespace InputManager
             selectedUnitRTSList = new List<Interactable>();
             selectionAreaTransform.gameObject.SetActive(false);
         }
-        // Update is called once per frame
+
         void Update()
         {
             //TODO when selected buidlding then units, slection in UI stuck
@@ -80,17 +80,14 @@ namespace InputManager
             }
             if (Input.GetMouseButtonUp(0) && isSelecting == true)
             {
-                // get curosor cordinates, when LPM state is changed, again
+                // get curosor cordinates, when LPM state is changed
                 selectionAreaTransform.gameObject.SetActive(false);
                 Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, cursorPosition.getMousePosition());
-                // deslect units
-                
-
+                // deselect units
                 if (collider2DArray.Length==1 && collider2DArray[0].GetComponent<Buildings.Player.PlayerBuilding>()!=null)
                 {
-                    
                     Interactable building = collider2DArray[0].GetComponent<Interactable>();
-                    //BuildingUI building = collider2DArray[0].gameObject.GetComponent<BuildingUI>();
+
                     building.SetSelectedVisible(true);
                     selectedUnitRTSList.Add(building);
                     isSelectedBuilding = true;
@@ -106,15 +103,11 @@ namespace InputManager
                     {
                         selectedUnitRTSList.Add(interactableObject);
                         interactableObject.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
-                        
                     }
                 }
                 UIHandler.instance.UpdateSelectedUnits();
                 isSelecting = false;
-                // show how manyh objects has been selected
-                //Debug.Log(selectedUnitRTSList.Count);
             }
-
 
             // Command attack, build or move
             if (Input.GetMouseButtonDown(1) && selectedUnitRTSList.Count != 0 && !isSelectedBuilding)
@@ -140,56 +133,31 @@ namespace InputManager
                                     unitRTS.gameObject.GetComponent<Units.WorkerFunctions>()
                                         .SetRepairValues(true, clicked.collider.gameObject);
                                 }
-          
-                                //Physics2D.Distance(unitRTS.GetComponent<Collider2D>(), clicked.collider);
-                                
                             }
                         }
-                            
-                        //foreach builder go to repair
                     }
                     //attack
                     else if (targetLayer != unitLayer && targetLayer != unitLayer + 1 && targetLayer != 7)
                     {
-                        //Debug.Log(selectedUnitRTSList[0].name + " group is going to attack " + target);
                         foreach (Interactable interactableObject in selectedUnitRTSList)
                         {
                             PlayerRTS unitRTS = interactableObject.GetComponent<PlayerRTS>();
                             unitRTS.GetComponent<PlayerRTS>().aggroTarget = target;
                             unitRTS.hasAggro = true;
                             unitRTS.reachedTargetOnce = false;
-
-                            //unitRTS.aggroTarget = clicked.collider.GetComponent<Transform>();
                         }
-                        //Debug.Log("Attacking objective is " + selectedUnitRTSList[0].attackObjective);
                     }
                 }
                 //move
                 else GroupMove();
-
             }
-
-            //// when I-key pressed, select all units
-            //if (Input.GetKey(KeyCode.I))
-            //{
-            //    SelectAllUnits();
-            //    Debug.Log(selectedUnitRTSList.Count);
-            //}
-
-            RaycastHit2D hit = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if (hit.collider != null)
-            {
-
-                //Debug.Log(hit.collider.gameObject.tag);
-            }
-            
         }
+
         public void GroupMove()
         {
             ReCommand(selectedUnitRTSList);
 
             Vector2 moveToPosition = cursorPosition.getMousePosition();
-            // TODO: set dynamic vlaues down below
 
             List<Vector2> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 0.5f, 1, 1.5f, 2f, 2.5f }, new int[] { 5, 10, 20, 25, 30 });
             int targetPositionListIndex = 0;
@@ -218,27 +186,7 @@ namespace InputManager
                 }
             }
         }
-        //private void SelectAllUnits()
-        //{
-        //    Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(new Vector2(-100, -100), new Vector2(1000, 1000));
 
-        //    //deslect units
-        //    foreach (PlayerRTS unitRTS in selectedUnitRTSList)
-        //    {
-        //        unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(false);
-        //    }
-        //    selectedUnitRTSList.Clear();
-        //    //select units
-        //    foreach (Collider2D collider2D in collider2DArray)
-        //    {
-        //        PlayerRTS unitRTS = collider2D.GetComponent<PlayerRTS>();
-        //        if (unitRTS != null)
-        //        {
-        //            unitRTS.gameObject.GetComponent<Interactable>().SetSelectedVisible(true);
-        //            selectedUnitRTSList.Add(unitRTS);
-        //        }
-        //    }
-        //}
         public List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
         {
             List<Vector2> positionList = new List<Vector2>();
@@ -249,6 +197,7 @@ namespace InputManager
             }
             return positionList;
         }
+
         private List<Vector2> GetPositionListAround(Vector2 startPosition, float distance, int positionCount)
         {
             List<Vector2> positionList = new List<Vector2>();
@@ -266,7 +215,5 @@ namespace InputManager
         {
             return Quaternion.Euler(0, 0, angle) * vec;
         }
-
     }
-
 }

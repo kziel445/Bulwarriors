@@ -14,6 +14,7 @@ namespace Player
         public Transform enemyBuildings;
 
         private Transform objectPostion;
+        
         private void Awake()
         {
             instance = this;
@@ -22,11 +23,9 @@ namespace Player
             SetStats(playerBuildings);
             SetStats(enemyBuildings);
         }
+
         public void SetStats(Transform type)
         {
-            //Transform playerUnits = PlayerManager.instance.playerUnits;
-            //Transform enemyUnits = PlayerManager.instance.enemyUnits;
-
             foreach (Transform child in type)
             {
                 foreach (Transform transformObject in child)

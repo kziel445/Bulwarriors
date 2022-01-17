@@ -13,7 +13,7 @@ namespace Core
         public float currentHealth;
         public float baseHealth;
         public float baseArmor;
-        // Start is called before the first frame update
+
         void Start()
         {
             if (gameObject.GetComponentInParent<Units.Player.PlayerRTS>() !=null)
@@ -48,11 +48,11 @@ namespace Core
             else currentHealth = baseHealth;
         }
 
-        // Update is called once per frame
         void Update()
         {
             HandleHealth();
         }
+
         public void SetHealthStats(float health, float armor, float current = 0)
         {
             baseHealth = health;
@@ -60,6 +60,7 @@ namespace Core
             if (currentHealth == 0) currentHealth = health;
             else currentHealth = current;
         }
+
         public void HandleHealth()
         {
             healthBarAmount.fillAmount = currentHealth / baseHealth;
@@ -73,17 +74,20 @@ namespace Core
                 Die();
             }
         }
+
         public void TakeDamage(float damage)
         {
             damage -= baseArmor;
             if (damage <= 0) damage = 1;
             currentHealth -= damage;
         }
+
         public void GiveHealth(float damage)
         {
             if (currentHealth + damage >= baseHealth) currentHealth = baseHealth;
             else currentHealth += damage;
         }
+        
         public void Die()
         {
             var layer = gameObject.layer;

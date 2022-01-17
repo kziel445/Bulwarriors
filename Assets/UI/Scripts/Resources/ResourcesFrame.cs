@@ -14,6 +14,7 @@ namespace UI
         {
             instance = this;       
         }
+        
         void Start()
         {
             statistics = GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>();
@@ -25,7 +26,6 @@ namespace UI
             gameObject.transform.GetChild(1).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = statistics.units.ToString();
             gameObject.transform.GetChild(2).GetComponentInChildren<TMPro.TextMeshProUGUI>().text = statistics.TimerString();
         }
-        
     }
 }
 

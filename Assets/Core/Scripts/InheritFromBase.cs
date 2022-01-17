@@ -17,10 +17,12 @@ namespace Core
                 .Where(type => type.IsSubclassOf(typeof(Interactables.Interactable)))
                 .Select(type => Activator.CreateInstance(type) as Interactables.Interactable);
         }
+
         private void Awake()
         {
             instance = this;
         }
+        
         private void Update()
         {
             if(Input.GetKey(KeyCode.K))

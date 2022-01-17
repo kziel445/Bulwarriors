@@ -48,15 +48,11 @@ namespace Buildings
             }
             catch
             {
-                Debug.Log("Units goes wrong object");
-                Debug.Log(actionList);
-                Debug.Log(objectToStoreUnits);
+                Debug.LogWarning("Units goes wrong object " + actionList + " " + objectToStoreUnits);
             }
-            
         }
         public void StartQueueTimer(string objectToSpawn)
         {
-            
             if (IsUnit(objectToSpawn))
             {
                 Units.UnitBasic unit = IsUnit(objectToSpawn);
@@ -70,7 +66,6 @@ namespace Buildings
                 gameObject.transform.GetComponentInChildren<Text>().text = spawningQueueTimer.Count.ToString();
             }
             else Debug.Log($"{objectToSpawn} is not spawnable");
-            Debug.Log("Corutine");
             if (spawnQueue.Count == 1)
             {
                 gameObject.GetComponent<SpawnTimer>().StartCoroutine(gameObject.GetComponent<SpawnTimer>().SpawnQueue());
@@ -79,15 +74,12 @@ namespace Buildings
             {
                 gameObject.GetComponent<SpawnTimer>().StopAllCoroutines();
             }
-
         }
         public void Spawn()
         {
             string objectName = spawnTypes[0].ToString() + "s";
-            //objectName = spawnQueue[0].GetComponent<Units.Player.PlayerRTS>().baseStats.unitClass;
             GameObject unit = Instantiate(
                 spawnQueue[0],
-                //spawnTMP[0].Item4,
                 new Vector3(
                     transform.position.x,
                     transform.position.y - gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().bounds.size.y/2,
@@ -120,7 +112,6 @@ namespace Buildings
             }
             return null;
         }
-        
     }
 }
 

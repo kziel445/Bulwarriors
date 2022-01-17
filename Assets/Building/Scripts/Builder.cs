@@ -35,10 +35,8 @@ namespace Buildings
         public void SpawnNewBuilding(Vector2 mousePosition, string buildingToSpawn)
         {
             GameObject buildingPrefab = null;
-            Debug.Log("cmon" + buildingToSpawn);
             buildingType = IsBuilding(buildingToSpawn);
             if (buildingType == null) return;
-            Debug.Log("Halo?");
             if(gameObject.name.Contains("Player"))
             {
                 GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().money -= buildingType.baseStats.cost;
@@ -46,14 +44,10 @@ namespace Buildings
             }
             else if(gameObject.name.Contains("Enemy"))
             {
-                Debug.Log(GameObject.Find("EnemyStatistics").GetComponent<Statistics.Statistics>());
                 GameObject.Find("EnemyStatistics").GetComponent<Statistics.Statistics>().money -= buildingType.baseStats.cost;
                 buildingPrefab = buildingType.enemyPrefab;
             }
-            else 
-            {
-                Debug.LogWarning("Statistics not found");
-            }
+            else Debug.LogWarning("Statistics not found");
 
             GameObject building = Instantiate(
                 buildingPrefab,
@@ -73,6 +67,7 @@ namespace Buildings
                 SetHealthStats(playerBuilding.baseStats.health, playerBuilding.baseStats.armor, 1);
             AstarPath.active.Scan();
         }
+
         public BuildingBasic IsBuilding(string name)
         {
             if (actionList.basicBuildings.Count > 0)
@@ -87,15 +82,12 @@ namespace Buildings
             }
             return null;
         }
+        
         public bool CheckIfFreeSpace(Vector2 center, Vector2 size)
         {
             var checkSpace = Physics2D.OverlapBox(center, size, 0);
             if (checkSpace == null) return true;
             return false;
-        }
-        public void GoBuild()
-        {
-            
         }
     }
 }

@@ -13,6 +13,7 @@ public class CameraMovement : MonoBehaviour
     {
         zoom = zoomController (zoom);
     }
+    
     void Update()
     {
         Vector3 position = transform.position;
@@ -37,6 +38,7 @@ public class CameraMovement : MonoBehaviour
             position.z
             );
     }
+    
     private float zoomController(float zoom)
     {
         if (zoom > 10f) return 10f;

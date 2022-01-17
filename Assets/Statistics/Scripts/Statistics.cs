@@ -35,6 +35,7 @@ namespace Statistics
             dataObject.moneyCollected = money;
             StartCoroutine(GetNewData());
         }
+
         private void Update()
         {
             dataObject.timer += Time.deltaTime;
@@ -42,11 +43,13 @@ namespace Statistics
             if (Input.GetKeyDown(KeyCode.M) && Input.GetKeyDown(KeyCode.G)) GetMoney(500);
             units = GetNumberOfUnits();
         }
+
         public void GetMoney(int amout)
         {
             money += amout;
             dataObject.moneyCollected += amout;
         }
+
         public int GetNumberOfUnits()
         {
             var count = 0;
@@ -56,14 +59,17 @@ namespace Statistics
             }
             return count;
         }
+
         public void UnitsRecrutedUpdate()
         {
             dataObject.unitsRecruted+=1;
         }
+
         public string TimerString()
         {
             return $"{Mathf.FloorToInt(dataObject.timer/60)}:{Mathf.FloorToInt(dataObject.timer % 60).ToString("00")}".ToString();
         }
+        
         IEnumerator GetNewData()
         {
             dataObject.GetComponent<Data>().datas.Add(new DataRecord(dataObject.timer, money, units));

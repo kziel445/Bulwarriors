@@ -28,6 +28,7 @@ public class WinLose : MonoBehaviour
             ifEndOfGame = true;
         }
     }
+
     public int UpdatePlayerBuildings()
     {
         playerBuildingsCount = 0;
@@ -37,6 +38,7 @@ public class WinLose : MonoBehaviour
         }
         return playerBuildingsCount;
     }
+
     public int UpdateEnemyBuildings()
     {
         enemyBuildingsCount = 0;
@@ -46,13 +48,15 @@ public class WinLose : MonoBehaviour
         }
         return enemyBuildingsCount;
     }
+
     public void VictoryScreen()
     {
         GetStatistics(victory.transform);
         GameObject.Find("PlayerData").GetComponent<Statistics.Data>().isVictory = true;
         victory.SetActive(true);
-        Debug.Log("You are a winner! :D");
+        Debug.Log("You win");
     }
+
     public void DefeatScreen()
     {
         GetStatistics(deafeat.transform);
@@ -60,6 +64,7 @@ public class WinLose : MonoBehaviour
         deafeat.SetActive(true);
         Debug.Log("You lose");
     }
+    
     public void GetStatistics(Transform screen)
     {
         Statistics.Data playerData = GameObject.Find("PlayerData").GetComponent<Statistics.Data>();

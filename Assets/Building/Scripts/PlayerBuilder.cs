@@ -20,11 +20,13 @@ namespace Buildings
 
         private Position cursorPosition = new Position();
         private bool isFreeSpace = true;
+
         private void Awake()
         {
             instance = this;
             parentObject = GameObject.Find("PlayerBuildings").transform;
         }
+        
         void Update()
         {
             if (scheme != null)
@@ -55,6 +57,7 @@ namespace Buildings
                 Destroy(scheme.gameObject);
             }
         }
+
         public void SpawnNewBuilding(Vector2 mousePosition, string buildingToSpawn)
         {
             GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().money -= buildingType.baseStats.cost;
@@ -77,6 +80,7 @@ namespace Buildings
                 SetHealthStats(playerBuilding.baseStats.health, playerBuilding.baseStats.armor, 1);
             AstarPath.active.Scan();
         }
+
         public void SpawnScheme(string objectName)
         {
             buildingType = IsBuilding(objectName);
@@ -93,6 +97,7 @@ namespace Buildings
             schemeColor.a = 0.75f;
             scheme.GetComponent<SpriteRenderer>().color = schemeColor;
         }
+
         private BuildingBasic IsBuilding(string name)
         {
             if (actionList.basicBuildings.Count > 0)
@@ -107,6 +112,7 @@ namespace Buildings
             }
             return null;
         }
+        
         public bool CheckIfFreeSpace(Vector2 center, Vector2 size)
         {
             var checkSpace = Physics2D.OverlapBox(center, size, 0);

@@ -33,6 +33,7 @@ namespace Units
         {
             movePosition.SetMovePosition(targetPosition);
         }
+
         public void MoveToTarget(Transform targetPosition)
         {
             distanceToTarget = DistanceBetweenColliders(targetPosition);
@@ -43,7 +44,7 @@ namespace Units
             }
             else MoveTo(transform.position);
         }
-        //for now, function check for random enemy(probably close to "0,0")
+        
         internal void CheckForEnenmyTargets(float aggroRange)
         {
             rangeColliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
@@ -72,6 +73,7 @@ namespace Units
             aggroTarget = aggroTmp;
             if (aggroTarget != null) hasAggro = true;
         }
+
         public void Attack()
         {
             if (aggroTarget != null)
@@ -85,6 +87,7 @@ namespace Units
             }
             else AttackAnimation(false);
         }
+
         public void FollowAndAttack()
         {
             //lost aggro
@@ -108,6 +111,7 @@ namespace Units
                 hasAggro = false;
             }       
         }
+
         public void AttackAnimation(bool TurnOn)
         {
             if (TurnOn)
@@ -122,6 +126,7 @@ namespace Units
             }
             else animator.SetBool("IfAttack", false);
         }
+        
         public float DistanceBetweenColliders(Transform targetObject)
         {
 

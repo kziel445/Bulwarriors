@@ -8,12 +8,8 @@ public class SumStatistics : MonoBehaviour
     {
         GetStatistics();
         GetGameState();
-        /* if(GameObject.Find("PlayerData")!= null)
-        {
-            GetStatistics();
-            GetGameState();
-        } */
     }   
+
     public void GetStatistics()
     {
         Statistics.Data playerData = GameObject.Find("PlayerData").GetComponent<Statistics.Data>();
@@ -30,6 +26,7 @@ public class SumStatistics : MonoBehaviour
         }
         gameObject.transform.Find("Statistics").GetComponent<TMPro.TextMeshProUGUI>().text = string.Join("\n", lines);
     }
+    
     public void GetGameState()
     {
         if(GameObject.Find("PlayerData").GetComponent<Statistics.Data>().isVictory)

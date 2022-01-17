@@ -19,6 +19,7 @@ namespace Buildings
         {
             public Units.UnitBasic[] basicUnits;
         }
+        
         private void Start()
         {
             try 
@@ -30,25 +31,20 @@ namespace Buildings
                 Debug.LogWarning("HealtHandler not loaded");
             }
         }
+
         private void Update()
         {
-            
             if (!isBuilded && healthHandler.baseHealth == healthHandler.currentHealth)
             {
                 TurnOnOffFunctions(true);
-                Debug.Log(healthHandler.baseHealth + " ¿ycia  " + healthHandler.currentHealth);
             }
-                
         }
-        public void Click()
-        {
-            Debug.Log("Building options in UI");
-            Debug.Log("Building health");
-        }
+
         public void SetSelectedVisible(bool visible)
         {
             selectedGameObject.SetActive(visible);
         }
+
         public void TurnOnOffFunctions(bool onOff)
         {
             try
@@ -58,11 +54,8 @@ namespace Buildings
             }
             catch
             {
-                Debug.LogWarning("Not disabled scripts");
+                Debug.LogWarning("Not disabled structure scripts");
             }
-            
-
         }
     }
-
 }

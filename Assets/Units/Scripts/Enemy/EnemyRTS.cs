@@ -20,7 +20,6 @@ namespace Units.Enemy
         void Update()
         {
             if (atkCooldown > 0) atkCooldown = atkCooldown - Time.deltaTime;
-            //HandleHealth();
             if (!hasAggro)
             {
                 CheckForEnenmyTargets(baseStats.aggroRange);
@@ -31,6 +30,7 @@ namespace Units.Enemy
             }
             if (IfCommand && aggroTarget==null) StartCoroutine(CheckIfReturningToBase());
         }
+
         public IEnumerator CheckIfReturningToBase()
         {
             var positionTmp = gameObject.transform.position;
@@ -41,10 +41,10 @@ namespace Units.Enemy
                 MoveTo(GameObject.Find("EnemyAI").GetComponent<EnemyUnitAI>().groupPoint);
             }
         }
+        
         public void Click()
         {
             Debug.Log("Enemy");
         }
-        
     }
 }

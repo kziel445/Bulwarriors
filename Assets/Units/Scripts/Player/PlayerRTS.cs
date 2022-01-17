@@ -9,16 +9,16 @@ namespace Units.Player
     {
         public static PlayerRTS instance;
         
-        
-        // Start is called before the first frame update
         private void Start()
         {
             instance = this;
         }
+
         private void Awake()
         {
             movePosition = GetComponent<IMovePosition>();
         }
+
         private void Update()
         {
 
@@ -42,8 +42,8 @@ namespace Units.Player
                     CheckForEnenmyTargets(baseStats.aggroRange);
                 }
             }
-            //auto commands
         }
+        
         public void Click()
         {
             Debug.Log("Unit");

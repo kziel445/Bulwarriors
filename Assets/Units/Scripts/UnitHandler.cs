@@ -11,10 +11,12 @@ namespace Units
         [SerializeField]
         public UnitBasic worker, warrior, archer, advancedWorker,
             shooter, knight, swordsman, ranger, scout;
+            
         private void Awake()
         {
            instance = this;
         }
+
         public UnitBasic GetUnitSettings(string type)
         {
             UnitBasic unit;
