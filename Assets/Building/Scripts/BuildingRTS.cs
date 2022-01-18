@@ -57,5 +57,10 @@ namespace Buildings
                 Debug.LogWarning("Not disabled structure scripts");
             }
         }
+
+        public void Click()
+        {
+            
+        }
     }
 }
