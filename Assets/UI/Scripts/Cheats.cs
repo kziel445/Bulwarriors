@@ -15,7 +15,7 @@ public class Cheats : MonoBehaviour
         {"help", "few commands to \"help\""},
         {"win", " you win"},
         {"lose", "you lose"},
-        {"money", "+500 gold{not working}"}
+        {"gold", "+10000 gold"}
 
     };
     private void Start() 
@@ -66,7 +66,7 @@ public class Cheats : MonoBehaviour
                 if(command=="win") WinCode(true);
                 else if(command=="lose")WinCode(false);
                 else if(command=="help")HelpCode();
-                else if(command=="money")HelpCode();
+                else if(command=="gold")GoldCode();
                 else text.text += "Invalid command\n";
             }
         }
@@ -92,6 +92,11 @@ public class Cheats : MonoBehaviour
             addText+=element.Key + " - " + element.Value +"\n";
         }
         text.text+=addText;
+    }
+
+    private void GoldCode()
+    {
+        GameObject.Find("PlayerStatistics").GetComponent<Statistics.Statistics>().GetMoney(10000);
     }
 
 }
