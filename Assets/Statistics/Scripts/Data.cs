@@ -8,7 +8,7 @@ namespace Statistics
     {
         public List<DataRecord> datas = new List<DataRecord>();
 
-        public int moneyCollected;
+        public float moneyCollected;
         public int unitsRecruted = 0;
         public float timer = 0.0f;
         public bool isVictory;

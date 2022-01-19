@@ -51,13 +51,13 @@ namespace Statistics
             return gameObject;
         }
 
-        private void ShowGraph(Dictionary<float,int> values)
+        private void ShowGraph(Dictionary<float,float> values)
         {
             float graphHeight = graphContainer.sizeDelta.y;
             float graphWidth = graphContainer.sizeDelta.x;
             float xSize = graphWidth/values.Count;
             float yMaximum = 0;
-            foreach(KeyValuePair<float, int> datas in values)
+            foreach(KeyValuePair<float, float> datas in values)
             {
                 if(datas.Value>yMaximum) yMaximum = datas.Value;
             }
@@ -65,7 +65,7 @@ namespace Statistics
             
             int i = 0;
             GameObject lastPoint = null;
-            foreach(KeyValuePair<float, int> datas in values)
+            foreach(KeyValuePair<float, float> datas in values)
             {
                 float xPosition =  i * xSize;
                 float yPosition = (datas.Value / yMaximum) * graphHeight;
@@ -149,7 +149,7 @@ namespace Statistics
         public void ShowUnitsGraph()
         {
             RemoveGraph();
-            Dictionary<float, int> values = new Dictionary<float,int>();
+            Dictionary<float, float> values = new Dictionary<float,float>();
             foreach(DataRecord record in dataSet.datas)
             {
                 values.Add(record.time, record.units);
@@ -161,7 +161,7 @@ namespace Statistics
         public void ShowMoneysGraph()
         {
             RemoveGraph();
-            Dictionary<float, int> values = new Dictionary<float,int>();
+            Dictionary<float, float> values = new Dictionary<float,float>();
             foreach(DataRecord record in dataSet.datas)
             {
                 values.Add(record.time, record.money);
@@ -173,7 +173,7 @@ namespace Statistics
         public void ShowPointsGraph()
         {
             RemoveGraph();
-            Dictionary<float, int> values = new Dictionary<float,int>();
+            Dictionary<float, float> values = new Dictionary<float,float>();
             foreach(DataRecord record in dataSet.datas)
             {
                 values.Add(record.time, (int)Points(record.time, record.money, record. units));
@@ -182,7 +182,7 @@ namespace Statistics
             ShowGraph(values);
         }
 
-        public float Points(float time, int money, int units)
+        public float Points(float time, float money, int units)
         {
             if(time==0) time = 1;
             float points = (money + units * unitsPointModifier)/time;

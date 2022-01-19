@@ -9,8 +9,9 @@ namespace Statistics
         public float dataUpdateTime = 1;
         public Transform unitsObject;
         public Data dataObject;
-        [SerializeField] internal int money = 100;
+        [SerializeField] internal float money = 100;
         [SerializeField] internal int units;
+        internal float goldModifier = 1;
         
         private void Awake()
         {
@@ -46,7 +47,7 @@ namespace Statistics
 
         public void GetMoney(int amout)
         {
-            money += amout;
+            money += amout * goldModifier;
             dataObject.moneyCollected += amout;
         }
 

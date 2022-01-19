@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &970529543028575780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203117880886506243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1ddec5fcca3cd4f93bd206466df92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats:
+    cost: 0
+    health: 1
+    armor: 0
+    attack: 0
+    actions: {fileID: 0}
+  isBuilded: 1
 --- !u!1001 &9028493293169564227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,7 +84,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 212702875755178304, guid: ff4998d14552e544c992cf8a93c301b8, type: 3}
       propertyPath: m_Name
-      value: PlayerFarm Variant
+      value: EnemyFarm
       objectReference: {fileID: 0}
     - target: {fileID: 212702875755178304, guid: ff4998d14552e544c992cf8a93c301b8, type: 3}
       propertyPath: m_Layer
@@ -83,5 +102,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 212702875755178302, guid: ff4998d14552e544c992cf8a93c301b8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ff4998d14552e544c992cf8a93c301b8, type: 3}
+--- !u!1 &9203117880886506243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 212702875755178304, guid: ff4998d14552e544c992cf8a93c301b8, type: 3}
+  m_PrefabInstance: {fileID: 9028493293169564227}
+  m_PrefabAsset: {fileID: 0}

@@ -104,6 +104,7 @@ namespace Buildings
             {
                 foreach (Units.UnitBasic unit in actionList.basicUnits)
                 {
+                    Debug.Log(unit.name + " " + name);
                     if (unit.name == name)
                     {
                         return unit;
